@@ -1,15 +1,29 @@
 package com.th3pl4gu3.lifestyle.core.lifestyle
 
-import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
-import java.lang.IllegalStateException
+import java.util.*
 
-class LifestyleFactory {
-    companion object {
-        fun getLifestyleItem(value: Int) = when (value){
-            LifestyleItem.TO_BUY.value -> ToBuy()
-            LifestyleItem.TO_DO.value -> ToDo()
-            LifestyleItem.GOAL.value -> Goal()
-            else -> throw IllegalStateException("Unknown Format")
-        }
+abstract class LifestyleFactory{
+
+    //Variables
+    var uniqueId: String = UUID.randomUUID().toString()
+    open var dateAdded: Calendar = Calendar.getInstance()
+
+    abstract var title: String
+    abstract var category: String
+    abstract var dateCompleted: Calendar?
+    abstract var type: Int
+
+    //Functions
+    fun isCompleted(): Boolean {
+        return true
     }
+
+    fun daysActive(): Int {
+        return 0
+    }
+
+    abstract fun update()
+
+    abstract fun delete()
+
 }

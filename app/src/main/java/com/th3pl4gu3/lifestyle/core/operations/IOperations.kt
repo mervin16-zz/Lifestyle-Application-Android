@@ -1,22 +1,24 @@
 
 package com.th3pl4gu3.lifestyle.core.operations
 
+import java.util.ArrayList
+
 interface IOperations<L>{
 
     fun getById(id: String): L
 
-    fun getAll(): List<L>
+    fun getAll(): ArrayList<L>
 
-    fun getByTitle(title: String): List<L>
+    fun getByTitle(title: String): ArrayList<L>
 
-    fun getByCategory(category: String): List<L>
+    fun getByCategory(category: String): ArrayList<L>
 
-    fun getCompleted(): List<L>
+    fun getCompleted(): ArrayList<L>
 
-    fun getActive(): List<L>
+    fun getActive(): ArrayList<L>
 
-    fun sortDateAddedByAsc(): List<L>
+    fun sortDateAddedByAsc(): ArrayList<L>
 
-    fun sortDateAddedByDsc(): List<L>
+    fun sortDateAddedByDsc(): ArrayList<L>
 
 }
