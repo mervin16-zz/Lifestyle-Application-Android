@@ -1,24 +1,15 @@
 
 package com.th3pl4gu3.lifestyle.core.operations
 
-import java.util.ArrayList
-
 interface IOperations<L>{
 
-    fun getById(id: String): L
+    fun removeAllOnline()
 
-    fun getAll(): ArrayList<L>
+    fun removeAllOffline()
 
-    fun getByTitle(title: String): ArrayList<L>
+    fun getRecentlyAdded(): List<L>
 
-    fun getByCategory(category: String): ArrayList<L>
+    fun getRecentlyCompleted(): List<L>
 
-    fun getCompleted(): ArrayList<L>
-
-    fun getActive(): ArrayList<L>
-
-    fun sortDateAddedByAsc(): ArrayList<L>
-
-    fun sortDateAddedByDsc(): ArrayList<L>
-
+    fun getOlderPendingItems(): List<L>
 }

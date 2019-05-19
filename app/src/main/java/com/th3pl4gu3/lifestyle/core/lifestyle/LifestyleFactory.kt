@@ -26,4 +26,5 @@ abstract class LifestyleFactory{
 
     abstract fun delete()
 
+    abstract fun add()
 }

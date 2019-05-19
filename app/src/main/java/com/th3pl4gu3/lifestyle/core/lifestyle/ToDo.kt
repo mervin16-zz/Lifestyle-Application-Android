@@ -32,6 +32,11 @@ data class ToDo constructor(
 
     override var type: Int = LifestyleItem.TO_DO.value
 
+    @Throws(Exception::class)
+    override fun add() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun update() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

@@ -39,6 +39,11 @@ data class ToBuy constructor(
     override var type: Int = LifestyleItem.TO_BUY.value
 
     @Throws(Exception::class)
+    override fun add() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    @Throws(Exception::class)
     override fun update() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

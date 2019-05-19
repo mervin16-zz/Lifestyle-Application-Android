@@ -44,7 +44,6 @@ class GoalDaoDatabaseClass {
         db.close()
     }
 
-    //To Do's Tests
     @Test
     @Throws(Exception::class)
     fun insertAndGet_Unmodified() {
