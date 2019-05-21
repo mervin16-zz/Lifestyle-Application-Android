@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.enums.Priority
 import com.th3pl4gu3.lifestyle.core.utils.*
+import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import java.util.*
 
-//TODO(Test this class)
 @Entity(tableName = DATABASE_TABLE_TOBUY)
 data class ToBuy constructor(
     @ColumnInfo(name = DATABASE_TABLE_TOBUY_TITLE)
@@ -39,17 +39,17 @@ data class ToBuy constructor(
     override var type: Int = LifestyleItem.TO_BUY.value
 
     @Throws(Exception::class)
-    override fun add() {
+    override fun add(database: LifestyleDatabase) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     @Throws(Exception::class)
-    override fun update() {
+    override fun update(database: LifestyleDatabase) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     @Throws(Exception::class)
-    override fun delete() {
+    override fun delete(database: LifestyleDatabase) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

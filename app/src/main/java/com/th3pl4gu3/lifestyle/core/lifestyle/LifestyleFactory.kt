@@ -1,5 +1,6 @@
 package com.th3pl4gu3.lifestyle.core.lifestyle
 
+import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import java.util.*
 
 abstract class LifestyleFactory{
@@ -15,16 +16,16 @@ abstract class LifestyleFactory{
 
     //Functions
     fun isCompleted(): Boolean {
-        return true
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     fun daysActive(): Int {
-        return 0
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    abstract fun update()
+    abstract fun update(database: LifestyleDatabase)
 
-    abstract fun delete()
+    abstract fun delete(database: LifestyleDatabase)
 
-    abstract fun add()
+    abstract fun add(database: LifestyleDatabase)
 }

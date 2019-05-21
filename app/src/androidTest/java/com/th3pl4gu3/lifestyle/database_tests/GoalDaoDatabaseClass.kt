@@ -69,14 +69,14 @@ class GoalDaoDatabaseClass {
         //Insert into db
         goalDao.insert(goal)
         //Get the item
-        val sutTodo = goalDao.get(id)
+        val sutGoal = goalDao.get(id)
 
-        resultTypeValue = sutTodo!!.type
-        resultId = sutTodo.id
-        resultTitle = sutTodo.title
-        resultCategory = sutTodo.category
-        resultDateAdded = sutTodo.dateAdded
-        resultDateCompleted = sutTodo.dateCompleted
+        resultTypeValue = sutGoal!!.type
+        resultId = sutGoal.id
+        resultTitle = sutGoal.title
+        resultCategory = sutGoal.category
+        resultDateAdded = sutGoal.dateAdded
+        resultDateCompleted = sutGoal.dateCompleted
 
         //Assert
         assertEquals(expectedTypeValue, resultTypeValue)
@@ -122,14 +122,14 @@ class GoalDaoDatabaseClass {
         //Insert into db
         goalDao.insert(goal)
         //Get the item
-        val sutTodo = goalDao.get(id)
+        val sutGoal = goalDao.get(id)
 
-        resultTypeValue = sutTodo!!.type
-        resultId = sutTodo.id
-        resultTitle = sutTodo.title
-        resultCategory = sutTodo.category
-        resultDateAdded = sutTodo.dateAdded
-        resultDateCompleted = sutTodo.dateCompleted
+        resultTypeValue = sutGoal!!.type
+        resultId = sutGoal.id
+        resultTitle = sutGoal.title
+        resultCategory = sutGoal.category
+        resultDateAdded = sutGoal.dateAdded
+        resultDateCompleted = sutGoal.dateCompleted
 
         //Assert
         assertEquals(expectedTypeValue, resultTypeValue)
@@ -179,14 +179,14 @@ class GoalDaoDatabaseClass {
         //Update To Do into db
         goalDao.update(newGoal)
         //Get the new To Do
-        val sutTodo = goalDao.get(testID)
+        val sutGoal = goalDao.get(testID)
 
-        resultTypeValue = sutTodo!!.type
-        resultId = sutTodo.id
-        resultTitle = sutTodo.title
-        resultCategory = sutTodo.category
-        resultDateAdded = sutTodo.dateAdded
-        resultDateCompleted = sutTodo.dateCompleted
+        resultTypeValue = sutGoal!!.type
+        resultId = sutGoal.id
+        resultTitle = sutGoal.title
+        resultCategory = sutGoal.category
+        resultDateAdded = sutGoal.dateAdded
+        resultDateCompleted = sutGoal.dateCompleted
 
         //Assert
         assertEquals(expectedTypeValue, resultTypeValue)

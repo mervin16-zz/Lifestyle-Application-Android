@@ -52,3 +52,9 @@ const val PLACEHOLDER_ITEM_LIFESTYLE_TITLE = "Title"
 const val PLACEHOLDER_ITEM_LIFESTYLE_CATEGORY = "Category"
 const val PLACEHOLDER_ITEM_LIFESTYLE_ESTIMATEDPRICE = 0.0
 const val PLACEHOLDER_ITEM_LIFESTYLE_QTY = 0
+
+
+/********************************* Messages *********************************/
+
+// Error Messages //
+const val MESSAGE_EXCEPTION_GOAL_NOT_EXIST = "Error while fetching your Goal. This Goal doesn't exist."
