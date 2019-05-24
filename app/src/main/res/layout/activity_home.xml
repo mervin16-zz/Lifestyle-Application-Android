@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.ActivityHome">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        
+        <fragment
+                android:id="@id/Container_fromHomeActivity_BottomAppBarFragments"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/Margin_Views_Default"
+                app:defaultNavHost="@bool/Navigation_NavigationHost_Default"
+                app:navGraph="@navigation/bottomappbar_navigation"/>
+        
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            
+            <com.google.android.material.bottomappbar.BottomAppBar
+                    android:id="@id/BottomAppBar_fromHomeActivity_Main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:fabAlignmentMode="center"
+                    app:navigationIcon="@drawable/ic_menu_dark"
+                    app:menu="@menu/menu_bottomappbar_main"/>
+            
+            
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@id/FAB_fromHomeActivity_BottomAppBarAttached"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_dark"
+                    android:backgroundTint="@color/colorAccent"
+                    app:layout_anchor="@id/BottomAppBar_fromHomeActivity_Main"/>
+        
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test Text"/>
-</RelativeLayout>
+</layout>

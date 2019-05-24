@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    
+    <!-- Rounded Views Dimensions -->
+    <dimen name="Rounded_Views_Default">16dp</dimen>
+    
+    <!-- Padding Views Dimensions -->
+    <dimen name="Padding_Views_Default">16dp</dimen>
+    
+    <!-- Margin Views Dimensions -->
+    <dimen name="Margin_Views_Default">16dp</dimen>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+    
+    <!--
+        Menu (& Navigation) ID Values
+     -->
+    
+    <!-- Bottom App Bar Drawer Menu & Navigation -->
+    <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Home" />
+    <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Goals" />
+    <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_ToBuy" />
+    <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_ToDo" />
+    <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Statistics" />
+    
+    <!-- Bottom App Bar Menu Main -->
+    <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Search" />
+    
+    
+    <!--
+        Fragments
+     -->
+    
+    <!-- Bottom App Bar Drawer Fragment -->
+    <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_NavigationView"/>
+    
+    
+    <!--
+        Activity
+     -->
+    
+    <!-- Home Activity -->
+    <item type="id" name="Container_fromHomeActivity_BottomAppBarFragments"/>
+    <item type="id" name="BottomAppBar_fromHomeActivity_Main"/>
+    <item type="id" name="FAB_fromHomeActivity_BottomAppBarAttached"/>
+</resources>

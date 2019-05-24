@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/Padding_Views_Default"
+            android:paddingBottom="@dimen/Padding_Views_Default">
+
+
+        <com.google.android.material.navigation.NavigationView
+                android:id="@id/BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_NavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/menu_bottomappbar_drawer"
+                app:itemBackground="@drawable/custom_bottomappbar_drawer_item_state"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
