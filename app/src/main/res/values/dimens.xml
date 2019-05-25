@@ -10,4 +10,19 @@
     
     <!-- Margin Views Dimensions -->
     <dimen name="Margin_Views_Default">16dp</dimen>
+    
+    
+    <!--
+        Fragment
+     -->
+    
+    <!-- Bottom App Bar Drawer Fragment -->
+    <dimen name="MarginTop_forNavigationView">16dp</dimen>
+    <dimen name="MarginStart_forUserIcon">16dp</dimen>
+    <dimen name="MarginStart_forDrawerTitle">8dp</dimen>
+    <dimen name="MarginStart_forDrawerSubtitle">8dp</dimen>
+    <dimen name="MarginEnd_forSettingsIcon">16dp</dimen>
+    <dimen name="MarginTop_forSettingsIcon">8dp</dimen>
+    
+    <dimen name="PaddingTop_forNavigationView">16dp</dimen>
 </resources>

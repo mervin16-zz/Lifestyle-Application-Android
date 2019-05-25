@@ -13,7 +13,7 @@
 
     </style>
 
-    <!-- Bottom Sheet Dialog-->
+    <!-- Bottom Sheet Dialog -->
     <!-- set the rounded drawable as background to your bottom sheet -->
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/custom_rounded_dialog</item>
@@ -25,5 +25,19 @@
     </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
-
+    
+    
+    <!-- Typography -->
+    <style name="typography_h6">
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_subtitle_2">
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
 </resources>

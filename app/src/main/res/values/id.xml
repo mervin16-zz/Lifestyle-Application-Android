@@ -24,6 +24,10 @@
     
     <!-- Bottom App Bar Drawer Fragment -->
     <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_NavigationView"/>
+    <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_UserIcon"/>
+    <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_SettingsIcon"/>
+    <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_Title"/>
+    <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_Subtitle"/>
     
     
     <!--

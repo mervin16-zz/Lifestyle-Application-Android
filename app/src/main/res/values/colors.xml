@@ -11,6 +11,8 @@
     
     <color name="black_400">#161616</color>
     
+    <color name="grey_100">#DBDBDB</color>
+    
     <color name="white_000">@android:color/white</color>
     
 </resources>

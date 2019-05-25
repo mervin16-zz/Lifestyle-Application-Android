@@ -3,7 +3,11 @@
 <resources>
     
     <!-- Application -->
-    <string name="app_name">Lifestyle</string>
+    <string name="App_Name">Lifestyle</string>
+    
+    
+    <!-- Placeholders -->
+    <string name="Placeholder_BottomAppBar_DrawerMenu_Title_User">User</string>
     
     
     <!-- 
@@ -19,5 +23,22 @@
     
     <!-- Bottom App Bar Menu Main -->
     <string name="Menu_BottomAppBar_MenuMain_Search">Search</string>
-
+    
+    
+    <!--
+        Fragments
+     -->
+    
+    <!-- Bottom App Bar Drawer Fragment -->
+    <string name="Fragment_BottomAppBar_Drawer_Menu">Menu</string>
+    
+    
+    
+    <!--
+       Image Content Description
+    -->
+    
+    <!-- Bottom App Bar Drawer Menu -->
+    <string name="ContentDescription_BottomAppBarDrawerFragment_UserIcon">The User Icon.</string>
+    <string name="ContentDescription_BottomAppBarDrawerFragment_SettingsIcon">The Settings Icon.</string>
 </resources>
