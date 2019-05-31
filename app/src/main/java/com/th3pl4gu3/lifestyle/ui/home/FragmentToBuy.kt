@@ -1,4 +1,4 @@
-package com.th3pl4gu3.lifestyle.ui
+package com.th3pl4gu3.lifestyle.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

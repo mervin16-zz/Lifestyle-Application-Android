@@ -1,4 +1,4 @@
-package com.th3pl4gu3.lifestyle.ui
+package com.th3pl4gu3.lifestyle.ui.home
 
 import android.app.Dialog
 import android.os.Bundle

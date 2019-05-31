@@ -1,4 +1,4 @@
-package com.th3pl4gu3.lifestyle.ui
+package com.th3pl4gu3.lifestyle.ui.home
 
 
 import android.os.Bundle
@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-
+import com.th3pl4gu3.lifestyle.databinding.FragmentHomeBinding
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.databinding.FragmentGoalsBinding
 
-class FragmentGoals : Fragment() {
+class FragmentHome : Fragment() {
 
-    private lateinit var mBinding: FragmentGoalsBinding
+
+    private lateinit var mBinding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,7 +21,7 @@ class FragmentGoals : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_goals, container, false)
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         return mBinding.root
     }

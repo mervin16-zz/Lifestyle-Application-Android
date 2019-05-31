@@ -1,8 +1,10 @@
 package com.th3pl4gu3.lifestyle.core.operations
 
 import com.th3pl4gu3.lifestyle.core.lifestyle.LifestyleFactory
+import com.th3pl4gu3.lifestyle.core.utils.*
 import java.lang.Exception
 
+@Suppress(VALUE_SUPPRESSED_UNCHECKED_CAST)
 class Sort<L>(var list: ArrayList<out LifestyleFactory>) {
 
     enum class Order {

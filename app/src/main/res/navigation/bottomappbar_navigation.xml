@@ -2,27 +2,27 @@
 
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/bottomappbar_navigation" app:startDestination="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home">
+            app:startDestination="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home">
     
     <fragment android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home"
-              android:name="com.th3pl4gu3.lifestyle.ui.FragmentHome"
+              android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentHome"
               android:label="FragmentHome"/>
     
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Goals"
-            android:name="com.th3pl4gu3.lifestyle.ui.FragmentGoals"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentGoals"
             android:label="FragmentGoals"/>
 
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_ToDo"
-            android:name="com.th3pl4gu3.lifestyle.ui.FragmentToDo"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentToDo"
             android:label="FragmentToDo"/>
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_ToBuy"
-            android:name="com.th3pl4gu3.lifestyle.ui.FragmentToBuy"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentToBuy"
             android:label="FragmentToBuy"/>
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Statistics"
-            android:name="com.th3pl4gu3.lifestyle.ui.FragmentStatistics"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentStatistics"
             android:label="FragmentStatistics"/>
 </navigation>

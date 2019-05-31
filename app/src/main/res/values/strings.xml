@@ -5,6 +5,16 @@
     <!-- Application -->
     <string name="App_Name">Lifestyle</string>
     
+    <string-array name="App_LifeStyleItem_Categories">
+        <item>Personal</item>
+        <item>Household</item>
+        <item>House Chores</item>
+        <item>Family</item>
+        <item>Business</item>
+        <item>School</item>
+        <item>Personal</item>
+        <item>Party</item>
+    </string-array>
     
     <!-- Placeholders -->
     <string name="Placeholder_BottomAppBar_DrawerMenu_Title_User">User</string>
@@ -24,6 +34,18 @@
     <!-- Bottom App Bar Menu Main -->
     <string name="Menu_BottomAppBar_MenuMain_Search">Search</string>
     
+    <!--
+        Activities
+     -->
+    
+    <!-- Add Item Activity -->
+    <string name="TextView_fromAddItemActivity_Title">Add Item</string>
+    <string name="TextView_fromAddItemActivity_Subtitle_Details">Details</string>
+    <string name="TextView_fromAddItemActivity_Subtitle_Priority">Priority</string>
+    <string name="EditText_fromAddItemActivity_Hint_Title">Title</string>
+    <string name="EditText_fromAddItemActivity_Hint_Price">Price</string>
+    <string name="EditText_fromAddItemActivity_Hint_Qty">Quantity</string>
+    
     
     <!--
         Fragments
@@ -33,7 +55,6 @@
     <string name="Fragment_BottomAppBar_Drawer_Menu">Menu</string>
     
     
-    
     <!--
        Image Content Description
     -->
@@ -41,4 +62,11 @@
     <!-- Bottom App Bar Drawer Menu -->
     <string name="ContentDescription_BottomAppBarDrawerFragment_UserIcon">The User Icon.</string>
     <string name="ContentDescription_BottomAppBarDrawerFragment_SettingsIcon">The Settings Icon.</string>
+    
+    <!-- AddItemActivity -->
+    <string name="ContentDescription_fromAddItemActivity_Priority1Icon">Priority 1 Icon</string>
+    <string name="ContentDescription_fromAddItemActivity_Priority2Icon">Priority 2 Icon</string>
+    <string name="ContentDescription_fromAddItemActivity_Priority3Icon">Priority 3 Icon</string>
+    <string name="ContentDescription_fromAddItemActivity_Priority4Icon">Priority 4 Icon</string>
+    <string name="ContentDescription_fromAddItemActivity_BackIcon">Back Icon</string>
 </resources>

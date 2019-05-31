@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable name="Constant" type="com.th3pl4gu3.lifestyle.core.utils.ConstantsKt"/>
+    </data>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/custom_background_gradient_accent"
+            tools:context=".ui.add_item.ActivityAddItem">
+        
+        <ImageView
+                android:id="@id/ImageView_fromAddItemActivity_BackIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/ContentDescription_fromAddItemActivity_BackIcon"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:srcCompat="@drawable/ic_back_dark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+    
+        <TextView
+                android:id="@id/TextView_fromAddItemActivity_ActivityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/TextView_fromAddItemActivity_Title"
+                android:textColor="@color/colorTextPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/typography_h6"
+                app:layout_constraintStart_toStartOf="parent"/>
+    
+        <TextView
+                android:id="@id/TextView_fromAddItemActivity_SubtitleDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:text="@string/TextView_fromAddItemActivity_Subtitle_Details"
+                android:textColor="@color/colorTextPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_ActivityTitle"
+                app:layout_constraintBottom_toTopOf="@+id/LinearLayout_fromAddItemActivity_Details"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/typography_overline"/>
+        
+        <LinearLayout
+                android:id="@id/LinearLayout_fromAddItemActivity_Details"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_SubtitleDetails"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0" >
+        
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/EditText_fromAddItemActivity_Hint_Title"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@id/EditText_fromAddItemActivity_Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        
+            <Spinner
+                    android:id="@id/Spinner_fromAddItemActivity_Type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:spinnerMode="dropdown"
+                    
+                    android:background="@drawable/custom_background_spinner_default"/>
+        
+            <Spinner
+                    android:id="@id/Spinner_fromAddItemActivity_Category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:spinnerMode="dropdown"
+                    android:background="@drawable/custom_background_spinner_default"/>
+        
+        
+            <!-- Layout will appear for To Buy ONLY -->
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false">
+    
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:hint="@string/EditText_fromAddItemActivity_Hint_Price"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@id/EditText_fromAddItemActivity_Price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"/>
+                </com.google.android.material.textfield.TextInputLayout>
+    
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:hint="@string/EditText_fromAddItemActivity_Hint_Qty"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@id/EditText_fromAddItemActivity_Quantity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+    
+        </LinearLayout>
+    
+        <TextView
+                android:id="@id/TextView_fromAddItemActivity_SubtitlePriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TextView_fromAddItemActivity_Subtitle_Priority"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@+id/LinearLayout_fromAddItemActivity_Details"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/typography_overline"
+                app:layout_constraintBottom_toTopOf="@+id/LinearLayout_fromAddItemActivity_Priority"
+                app:layout_constraintVertical_chainStyle="packed" android:layout_marginBottom="8dp"
+                app:layout_constraintVertical_bias="0.35000002"/>
+    
+        <LinearLayout
+                android:id="@id/LinearLayout_fromAddItemActivity_Priority"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/FAB_fromAddItemActivity_AddItem"
+                app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_SubtitlePriority"
+                app:layout_constraintVertical_chainStyle="packed">
+                
+            <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="setPriority"
+                    android:tag="@{Constant.ENUM_PRIORITY_P1}"
+                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority1Icon"
+                    app:srcCompat="@drawable/ic_priority_1"/>
+        
+            <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="setPriority"
+                    android:tag="@{Constant.ENUM_PRIORITY_P2}"
+                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority2Icon"
+                    app:srcCompat="@drawable/ic_priority_2"/>
+    
+            <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="setPriority"
+                    android:tag="@{Constant.ENUM_PRIORITY_P3}"
+                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority3Icon"
+                    app:srcCompat="@drawable/ic_priority_3"/>
+        
+            <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="setPriority"
+                    android:tag="@{Constant.ENUM_PRIORITY_P4}"
+                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority4Icon"
+                    app:srcCompat="@drawable/ic_priority_4"/>
+            
+        </LinearLayout>
+    
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@id/FAB_fromAddItemActivity_AddItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_done_light"
+                android:backgroundTint="@color/colorAccent"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

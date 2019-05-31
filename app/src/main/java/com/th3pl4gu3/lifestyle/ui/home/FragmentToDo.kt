@@ -1,4 +1,4 @@
-package com.th3pl4gu3.lifestyle.ui
+package com.th3pl4gu3.lifestyle.ui.home
 
 
 import android.os.Bundle
@@ -9,12 +9,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.databinding.FragmentStatisticsBinding
+import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
 
+class FragmentToDo : Fragment() {
 
-class FragmentStatistics : Fragment() {
-
-    private lateinit var mBinding: FragmentStatisticsBinding
+    private lateinit var mBinding: FragmentToDoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,9 +21,8 @@ class FragmentStatistics : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_statistics, container, false)
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_to_do, container, false)
 
         return mBinding.root
     }
-
 }

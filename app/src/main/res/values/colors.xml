@@ -4,15 +4,23 @@
     <color name="colorPrimaryDark">@color/white_000</color>
     <color name="colorAccent">@color/blue_light_300</color>
 
-    <color name="colorTextPrimary">@color/black_400</color>
+    <color name="colorTextPrimary">@color/black_200</color>
+    <color name="colorTextSecondary">@color/white_000</color>
     
     
     <color name="blue_light_300">#00B0FF</color>
+    <color name="blue_light_100">#DBEEF7</color>
     
     <color name="black_400">#161616</color>
+    <color name="black_200">#3A3A3A</color>
     
+    <color name="grey_300">#7E7E7E</color>
     <color name="grey_100">#DBDBDB</color>
     
     <color name="white_000">@android:color/white</color>
     
+    <color name="material_red_light">#ef9a9a</color>
+    <color name="material_red_blue">#bbdefb</color>
+    <color name="material_red_yellow">#fff59d</color>
+    <color name="material_red_orange">#ffcc80</color>
 </resources>

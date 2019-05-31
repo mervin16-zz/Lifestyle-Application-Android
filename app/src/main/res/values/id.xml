@@ -38,4 +38,18 @@
     <item type="id" name="Container_fromHomeActivity_BottomAppBarFragments"/>
     <item type="id" name="BottomAppBar_fromHomeActivity_Main"/>
     <item type="id" name="FAB_fromHomeActivity_BottomAppBarAttached"/>
+    
+    <!-- Add Item Activity -->
+    <item type="id" name="ImageView_fromAddItemActivity_BackIcon"/>
+    <item type="id" name="TextView_fromAddItemActivity_ActivityTitle"/>
+    <item type="id" name="TextView_fromAddItemActivity_SubtitleDetails"/>
+    <item type="id" name="TextView_fromAddItemActivity_SubtitlePriority"/>
+    <item type="id" name="EditText_fromAddItemActivity_Name"/>
+    <item type="id" name="EditText_fromAddItemActivity_Price"/>
+    <item type="id" name="EditText_fromAddItemActivity_Quantity"/>
+    <item type="id" name="LinearLayout_fromAddItemActivity_Details"/>
+    <item type="id" name="Spinner_fromAddItemActivity_Type"/>
+    <item type="id" name="Spinner_fromAddItemActivity_Category"/>
+    <item type="id" name="LinearLayout_fromAddItemActivity_Priority"/>
+    <item type="id" name="FAB_fromAddItemActivity_AddItem"/>
 </resources>

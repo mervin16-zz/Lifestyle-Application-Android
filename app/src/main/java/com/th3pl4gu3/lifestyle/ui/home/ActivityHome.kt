@@ -1,5 +1,6 @@
-package com.th3pl4gu3.lifestyle.ui
+package com.th3pl4gu3.lifestyle.ui.home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.databinding.ActivityHomeBinding
+import com.th3pl4gu3.lifestyle.ui.add_item.ActivityAddItem
 
 
 class ActivityHome : AppCompatActivity() {
@@ -28,7 +30,8 @@ class ActivityHome : AppCompatActivity() {
 
         //Configure FAB
         mBinding.FABFromHomeActivityBottomAppBarAttached.setOnClickListener{
-            Toast.makeText(this, "Not Implemented yet!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ActivityAddItem::class.java))
+            overridePendingTransition(R.anim.slide_up_in, R.anim.slide_down_out)
         }
     }
 
