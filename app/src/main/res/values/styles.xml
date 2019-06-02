@@ -28,28 +28,68 @@
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
     
     <!-- Typography -->
-    <style name="typography_h6">
-        <item name="android:fontFamily">@font/work_sans_medium</item>
-        <item name="android:textSize">20sp</item>
+    <style name="typography_h1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
     
-    <style name="typography_subtitle_2">
-        <item name="android:fontFamily">@font/work_sans_medium</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-    </style>
-    
-    <style name="typography_overline">
+    <style name="typography_h2" parent="TextAppearance.MaterialComponents.Headline2">
         <item name="android:fontFamily">@font/work_sans_semi_bold</item>
-        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textAllCaps">true</item>
     </style>
     
-    <style name="typography_button">
+    <style name="typography_h3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_h4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_h5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_h6" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:fontFamily">@font/work_sans_medium</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_subtitle_1." parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_subtitle_2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_body_1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_body_2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:fontFamily">@font/work_sans_semi_bold</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
 </resources>

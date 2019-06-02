@@ -5,24 +5,24 @@
             app:startDestination="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home">
     
     <fragment android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home"
-              android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentHome"
+              android:name="com.th3pl4gu3.lifestyle.ui.home.section_home.FragmentHome"
               android:label="FragmentHome"/>
     
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Goals"
-            android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentGoals"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.section_goal.FragmentGoals"
             android:label="FragmentGoals"/>
 
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_ToDo"
-            android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentToDo"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.section_todo.FragmentToDo"
             android:label="FragmentToDo"/>
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_ToBuy"
-            android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentToBuy"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.section_tobuy.FragmentToBuy"
             android:label="FragmentToBuy"/>
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Statistics"
-            android:name="com.th3pl4gu3.lifestyle.ui.home.FragmentStatistics"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.section_statistics.FragmentStatistics"
             android:label="FragmentStatistics"/>
 </navigation>

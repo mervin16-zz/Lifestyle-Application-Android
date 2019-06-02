@@ -7,10 +7,20 @@
     
     <!-- Padding Views Dimensions -->
     <dimen name="Padding_Views_Default">16dp</dimen>
+    <dimen name="Padding_Views_Small">8dp</dimen>
     
     <!-- Margin Views Dimensions -->
     <dimen name="Margin_Views_Default">16dp</dimen>
+    <dimen name="Margin_Views_Small">8dp</dimen>
     
+    <!--
+        Custom Views
+     -->
+    
+    <!-- Add Item Activity -->
+    <dimen name="Margin_List_RecyclerView_Default_StartOfTitle">24dp</dimen>
+    <dimen name="Margin_List_RecyclerView_Default_BetweenTitle">4dp</dimen>
+    <dimen name="Margin_List_RecyclerView_Default_EndOfList">8dp</dimen>
     
     <!--
         Fragment
@@ -25,4 +35,15 @@
     <dimen name="MarginTop_forSettingsIcon">8dp</dimen>
     
     <dimen name="PaddingTop_forNavigationView">16dp</dimen>
+    
+    
+    <!--
+        Activities
+     -->
+    
+    <!-- Add Item Activity -->
+    <dimen name="Size_Icon_Priority">32dp</dimen>
+    
+    <dimen name="Margin_BetweenIcon_Priority">8dp</dimen>
+    <dimen name="Margin_BetweenFormFields_Default">8dp</dimen>
 </resources>

@@ -2,19 +2,63 @@
 
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-
+    
     <FrameLayout
-
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.home.FragmentToDo">
-
-        <TextView
+            android:animateLayoutChanges="true">
+        
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/RecyclerView_fromFragmentToDo_Main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="?attr/actionBarSize"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@id/EmptyView_forRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="I am To Do Fragment!"/>
-
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:visibility="gone"
+                tools:visibility="visible">
+            
+            <ImageView
+                    android:id="@id/ImageView_fromFragmentToDo_EmptyView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/ContentDescription_fromToDoFragment_EmptyView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/TextView_fromFragmentToDo_EmptyView"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:srcCompat="@drawable/ic_sadface_accent_light"
+                    tools:srcCompat="@drawable/ic_sadface_accent_light"/>
+            
+            <TextView
+                    android:id="@id/TextView_fromFragmentToDo_EmptyView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/TextView_fromToDoFragment_Message_EmptyList"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorTextAlternate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ImageView_fromFragmentToDo_EmptyView"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="@string/TextView_fromToDoFragment_Message_EmptyList"
+                    style="@style/typography_h6" />
+        
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 
 </layout>

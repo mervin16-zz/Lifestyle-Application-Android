@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/white_000</color>
+    <color name="colorPrimary">@color/blue_light_300</color>
     <color name="colorPrimaryDark">@color/white_000</color>
     <color name="colorAccent">@color/blue_light_300</color>
 
     <color name="colorTextPrimary">@color/black_200</color>
     <color name="colorTextSecondary">@color/white_000</color>
+    <color name="colorTextAlternate">@color/grey_300</color>
     
     
     <color name="blue_light_300">#00B0FF</color>

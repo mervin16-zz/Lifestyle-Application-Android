@@ -46,6 +46,11 @@
     <string name="EditText_fromAddItemActivity_Hint_Price">Price</string>
     <string name="EditText_fromAddItemActivity_Hint_Qty">Quantity</string>
     
+    <!-- Home Activity -->
+    <string name="Button_fromHomeActivity_ToggleButton_Active">Active</string>
+    <string name="Button_fromHomeActivity_ToggleButton_Completed">Completed</string>
+    
+    
     
     <!--
         Fragments
@@ -53,6 +58,17 @@
     
     <!-- Bottom App Bar Drawer Fragment -->
     <string name="Fragment_BottomAppBar_Drawer_Menu">Menu</string>
+    
+    <!-- Goals Fragment -->
+    <string name="TextView_fromToBuyFragment_Message_EmptyList">Don\'t you have some goals in your life?</string>
+    
+    <!-- To Buy Fragment -->
+    <string name="TextView_fromToDoFragment_Message_EmptyList">Stop being a miser and plan to buy something!</string>
+    
+    <!-- To Do Fragment -->
+    <string name="TextView_fromGoalsFragment_Message_EmptyList">Please plan to do something with your life!</string>
+    
+    
     
     
     <!--
@@ -69,4 +85,20 @@
     <string name="ContentDescription_fromAddItemActivity_Priority3Icon">Priority 3 Icon</string>
     <string name="ContentDescription_fromAddItemActivity_Priority4Icon">Priority 4 Icon</string>
     <string name="ContentDescription_fromAddItemActivity_BackIcon">Back Icon</string>
+    
+    <!-- HomeActivity -->
+    <string name="ContentDescription_fromHomeActivity_SortIcon">Sort Icon</string>
+    <string name="ContentDescription_fromHomeActivity_FilterIcon">Filter Icon</string>
+    
+    <!-- Bottom App Bar Drawer Menu -->
+    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_Home">Home</string>
+    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_Goals">Goals</string>
+    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_ToDo">To Do</string>
+    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_ToBuy">To Buy</string>
+    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_Statistics">Statistics</string>
+    
+    <!-- To Do Fragment -->
+    <string name="ContentDescription_fromToBuyFragment_EmptyView">Sad Face</string>
+    <string name="ContentDescription_fromGoalFragment_EmptyView">Sad Face</string>
+    <string name="ContentDescription_fromToDoFragment_EmptyView">Sad Face</string>
 </resources>

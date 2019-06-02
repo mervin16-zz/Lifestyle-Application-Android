@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     
     <data>
         <variable name="Constant" type="com.th3pl4gu3.lifestyle.core.utils.ConstantsKt"/>
@@ -11,17 +10,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/custom_background_gradient_accent"
-            tools:context=".ui.add_item.ActivityAddItem">
+            android:background="@drawable/custom_background_gradient_accent">
         
-        <ImageView
-                android:id="@id/ImageView_fromAddItemActivity_BackIcon"
+        <ImageButton
+                android:id="@id/ImageView_fromAddItemActivity_Icon_Back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/Margin_Views_Default"
+                android:layout_marginTop="@dimen/Margin_Views_Default"
                 android:contentDescription="@string/ContentDescription_fromAddItemActivity_BackIcon"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_back_dark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -30,7 +28,7 @@
                 android:id="@id/TextView_fromAddItemActivity_ActivityTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/Margin_Views_Default"
                 android:text="@string/TextView_fromAddItemActivity_Title"
                 android:textColor="@color/colorTextPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,9 +54,9 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginTop="@dimen/Margin_Views_Default"
+                android:layout_marginEnd="@dimen/Margin_Views_Default"
+                android:layout_marginStart="@dimen/Margin_Views_Default"
                 app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_SubtitleDetails"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,8 +65,9 @@
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="@dimen/Margin_BetweenFormFields_Default"
                     android:hint="@string/EditText_fromAddItemActivity_Hint_Title"
+                    app:endIconMode="clear_text"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             
                 <com.google.android.material.textfield.TextInputEditText
@@ -81,32 +80,34 @@
                     android:id="@id/Spinner_fromAddItemActivity_Type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="@dimen/Margin_BetweenFormFields_Default"
                     android:spinnerMode="dropdown"
-                    
                     android:background="@drawable/custom_background_spinner_default"/>
         
             <Spinner
                     android:id="@id/Spinner_fromAddItemActivity_Category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="@dimen/Margin_BetweenFormFields_Default"
                     android:spinnerMode="dropdown"
                     android:background="@drawable/custom_background_spinner_default"/>
         
         
             <!-- Layout will appear for To Buy ONLY -->
             <LinearLayout
+                    android:id="@id/LinearLayout_fromAddItemActivity_ToBuy_ExtraTextFields"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:baselineAligned="false">
+                    android:baselineAligned="false"
+                    android:animateLayoutChanges="true"
+                    android:visibility="gone">
     
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="@dimen/Margin_BetweenFormFields_Default"
                         android:hint="@string/EditText_fromAddItemActivity_Hint_Price"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         
@@ -121,7 +122,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="@dimen/Margin_BetweenFormFields_Default"
                         android:hint="@string/EditText_fromAddItemActivity_Hint_Qty"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         
@@ -156,50 +157,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:animateLayoutChanges="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/FAB_fromAddItemActivity_AddItem"
                 app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_SubtitlePriority"
                 app:layout_constraintVertical_chainStyle="packed">
                 
-            <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+            <ImageButton
+                    android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority1"
+                    android:layout_width="@dimen/Size_Icon_Priority"
+                    android:layout_height="@dimen/Size_Icon_Priority"
+                    android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
+                    android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
                     android:onClick="setPriority"
                     android:tag="@{Constant.ENUM_PRIORITY_P1}"
                     android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority1Icon"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     app:srcCompat="@drawable/ic_priority_1"/>
         
-            <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+            <ImageButton
+                    android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority2"
+                    android:layout_width="@dimen/Size_Icon_Priority"
+                    android:layout_height="@dimen/Size_Icon_Priority"
+                    android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
+                    android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
                     android:onClick="setPriority"
                     android:tag="@{Constant.ENUM_PRIORITY_P2}"
                     android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority2Icon"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     app:srcCompat="@drawable/ic_priority_2"/>
     
-            <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+            <ImageButton
+                    android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority3"
+                    android:layout_width="@dimen/Size_Icon_Priority"
+                    android:layout_height="@dimen/Size_Icon_Priority"
+                    android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
+                    android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
                     android:onClick="setPriority"
                     android:tag="@{Constant.ENUM_PRIORITY_P3}"
                     android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority3Icon"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     app:srcCompat="@drawable/ic_priority_3"/>
         
-            <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+            <ImageButton
+                    android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority4"
+                    android:layout_width="@dimen/Size_Icon_Priority"
+                    android:layout_height="@dimen/Size_Icon_Priority"
+                    android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
+                    android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
                     android:onClick="setPriority"
                     android:tag="@{Constant.ENUM_PRIORITY_P4}"
                     android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority4Icon"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     app:srcCompat="@drawable/ic_priority_4"/>
             
         </LinearLayout>
@@ -208,10 +218,9 @@
                 android:id="@id/FAB_fromAddItemActivity_AddItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="@dimen/Margin_Views_Default"
                 android:src="@drawable/ic_done_light"
                 android:backgroundTint="@color/colorAccent"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
