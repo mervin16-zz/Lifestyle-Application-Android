@@ -18,14 +18,6 @@ class GoalOperations : IOperations<Goal> {
             val dataSource = database.goalDao
             return dataSource.getAllGoals()
         }
-
-        override fun getByIdOnline(id: String): Goal {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
-        override fun getAllOnline(): List<Goal> {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
     }
 
     override fun getRecentlyAdded(list: List<Goal>): List<Goal> {
@@ -44,10 +36,5 @@ class GoalOperations : IOperations<Goal> {
     override fun removeAllOffline(database: LifestyleDatabase) {
         val dataSource = database.goalDao
         return dataSource.removeAll()
-    }
-
-    //Online Database Operations
-    override fun removeAllOnline() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

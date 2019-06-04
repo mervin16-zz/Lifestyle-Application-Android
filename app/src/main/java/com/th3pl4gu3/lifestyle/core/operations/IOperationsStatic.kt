@@ -9,10 +9,4 @@ interface IOperationsStatic<L> {
     fun getByIdOffline(database: LifestyleDatabase, id: String): L
 
     fun getAllOffline(database: LifestyleDatabase): LiveData<List<L>>
-
-
-    //Online Operations
-    fun getByIdOnline(id: String): L
-
-    fun getAllOnline(): List<L>
 }

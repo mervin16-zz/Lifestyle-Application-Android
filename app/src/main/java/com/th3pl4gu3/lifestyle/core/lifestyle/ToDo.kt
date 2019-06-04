@@ -32,7 +32,15 @@ data class ToDo constructor(
 
     override var type: Int = LifestyleItem.TO_DO.value
 
-    @Throws(Exception::class)
+
+    override fun markAsIncomplete() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun markAsComplete() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun add(database: LifestyleDatabase) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

@@ -23,6 +23,10 @@ abstract class LifestyleFactory{
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    abstract fun markAsIncomplete()
+
+    abstract fun markAsComplete()
+
     abstract fun update(database: LifestyleDatabase)
 
     abstract fun delete(database: LifestyleDatabase)

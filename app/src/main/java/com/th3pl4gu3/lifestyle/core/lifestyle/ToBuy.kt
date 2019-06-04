@@ -38,17 +38,23 @@ data class ToBuy constructor(
 
     override var type: Int = LifestyleItem.TO_BUY.value
 
-    @Throws(Exception::class)
+
+    override fun markAsIncomplete() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun markAsComplete() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun add(database: LifestyleDatabase) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    @Throws(Exception::class)
     override fun update(database: LifestyleDatabase) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    @Throws(Exception::class)
     override fun delete(database: LifestyleDatabase) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

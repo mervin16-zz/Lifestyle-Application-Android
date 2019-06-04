@@ -28,21 +28,24 @@ data class Goal constructor(
 
     override var type: Int = LifestyleItem.GOAL.value
 
-    @Throws(Exception::class)
+
+    override fun markAsIncomplete() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun markAsComplete() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun add(database: LifestyleDatabase) {
-        val dataSource = database.goalDao
-        dataSource.insert(this)
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    @Throws(Exception::class)
     override fun update(database: LifestyleDatabase) {
-        val dataSource = database.goalDao
-        dataSource.update(this)
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    @Throws(Exception::class)
     override fun delete(database: LifestyleDatabase) {
-        val dataSource = database.goalDao
-        dataSource.remove(this.id)
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

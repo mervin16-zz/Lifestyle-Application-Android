@@ -5,8 +5,6 @@ import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 
 interface IOperations<L>{
 
-    fun removeAllOnline()
-
     fun removeAllOffline(database: LifestyleDatabase)
 
     fun getRecentlyAdded(list: List<L>): List<L>
