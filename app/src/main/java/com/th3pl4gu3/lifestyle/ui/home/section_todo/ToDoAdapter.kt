@@ -11,15 +11,15 @@ import com.th3pl4gu3.lifestyle.databinding.CustomRecyclerviewListTodoBinding
 class ToDoAdapter : ListAdapter<ToDo, ToDoAdapter.ViewHolder>(ToDoDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val toDO = getItem(position)
-        holder.bind(toDO)
+        val toDo = getItem(position)
+        holder.bind(toDo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: CustomRecyclerviewListTodoBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder private constructor(val binding: CustomRecyclerviewListTodoBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(toDo: ToDo) {
             binding.myToDo = toDo
             binding.executePendingBindings()
@@ -35,7 +35,7 @@ class ToDoAdapter : ListAdapter<ToDo, ToDoAdapter.ViewHolder>(ToDoDiffCallback()
     }
 }
 
-class ToDoDiffCallback: DiffUtil.ItemCallback<ToDo>(){
+class ToDoDiffCallback: DiffUtil.ItemCallback<ToDo>() {
 
     override fun areItemsTheSame(oldItem: ToDo, newItem: ToDo): Boolean {
         return oldItem.id == newItem.id

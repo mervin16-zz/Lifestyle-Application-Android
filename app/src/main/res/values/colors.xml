@@ -20,8 +20,10 @@
     
     <color name="white_000">@android:color/white</color>
     
-    <color name="material_red_light">#ef9a9a</color>
-    <color name="material_red_blue">#bbdefb</color>
-    <color name="material_red_yellow">#fff59d</color>
-    <color name="material_red_orange">#ffcc80</color>
+    <color name="material_red">#ef9a9a</color>
+    <color name="material_blue">#bbdefb</color>
+    <color name="material_yellow">#fff59d</color>
+    <color name="material_orange">#ffcc80</color>
+    
+    <color name="material_green">#A8FFBA</color>
 </resources>

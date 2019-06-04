@@ -12,11 +12,17 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 import com.th3pl4gu3.lifestyle.R
+import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
+import com.th3pl4gu3.lifestyle.core.operations.Filter
+import com.th3pl4gu3.lifestyle.core.utils.toast
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
+import com.th3pl4gu3.lifestyle.ui.SwipeToCallback
 
 class FragmentToDo : Fragment() {
 
@@ -44,7 +50,9 @@ class FragmentToDo : Fragment() {
         mBinding.RecyclerViewFromFragmentToDoMain.adapter = adapter
 
         mToDoViewModel.toDos.observe(viewLifecycleOwner, Observer {
-            it?.let { x ->
+            val newList = Filter<ToDo>(it).getActive()
+
+            newList.let { x ->
 
                 //Update the UI and determine whether recyclerview should be visible or not
                 updateUI(x.isNotEmpty())
@@ -52,6 +60,33 @@ class FragmentToDo : Fragment() {
                 adapter.submitList(x)
             }
         })
+
+        val swipeHandler = object : SwipeToCallback() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+                val toDo = (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
+
+                when(direction){
+                    ItemTouchHelper.LEFT -> {
+                        mToDoViewModel.markAsCompleted(toDo)
+                        requireContext().toast("I was swiped left. ${toDo.title} should be marked as completed.")
+                    }
+
+                    ItemTouchHelper.RIGHT -> {
+                        mToDoViewModel.markAsDeleted(toDo.id)
+
+                        requireContext().toast("${toDo.title} has been deleted.")
+                    }
+
+                    else ->{
+                        requireContext().toast("There was an error while swiping your request. Please try again.")
+                    }
+                }
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(mBinding.RecyclerViewFromFragmentToDoMain)
 
         return mBinding.root
     }
