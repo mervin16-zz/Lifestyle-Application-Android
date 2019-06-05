@@ -34,22 +34,16 @@ data class ToDo constructor(
 
 
     override fun markAsIncomplete() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.dateCompleted = null
     }
 
     override fun markAsComplete() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.dateCompleted = Calendar.getInstance()
     }
 
-    override fun add(database: LifestyleDatabase) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun add(database: LifestyleDatabase) = database.toDoDao.insert(this)
 
-    override fun update(database: LifestyleDatabase) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun update(database: LifestyleDatabase) = database.toDoDao.update(this)
 
-    override fun delete(database: LifestyleDatabase) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun delete(database: LifestyleDatabase) = database.toDoDao.remove(this.id)
 }
