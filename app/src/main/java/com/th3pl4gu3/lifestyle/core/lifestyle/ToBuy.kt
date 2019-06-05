@@ -40,22 +40,16 @@ data class ToBuy constructor(
 
 
     override fun markAsIncomplete() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.dateCompleted = null
     }
 
     override fun markAsComplete() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.dateCompleted = Calendar.getInstance()
     }
 
-    override fun add(database: LifestyleDatabase) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun add(database: LifestyleDatabase) = database.toBuyDao.insert(this)
 
-    override fun update(database: LifestyleDatabase) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun update(database: LifestyleDatabase) = database.toBuyDao.update(this)
 
-    override fun delete(database: LifestyleDatabase) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun delete(database: LifestyleDatabase) = database.toBuyDao.remove(this.id)
 }

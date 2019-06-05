@@ -1,5 +1,6 @@
 package com.th3pl4gu3.lifestyle.core.lifestyle
 
+import com.th3pl4gu3.lifestyle.core.utils.Utils
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import java.util.*
 
@@ -14,14 +15,18 @@ abstract class LifestyleFactory{
     abstract var dateCompleted: Calendar?
     abstract var type: Int
 
-    //Functions
-    fun isCompleted(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    //TODO("Test property in Goal")
+    //TODO("Test property in ToDo")
+    //TODO("Test property in ToBuy")
+    open val daysActive: Long
+        get() = Utils.countDays(dateAdded, Calendar.getInstance())
 
-    fun daysActive(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
+    //Functions
+    //TODO("Test property in Goal")
+    //TODO("Test property in ToDo")
+    //TODO("Test property in ToBuy")
+    fun isCompleted() = dateCompleted != null
 
     abstract fun markAsIncomplete()
 

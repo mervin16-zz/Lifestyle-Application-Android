@@ -1,15 +1,14 @@
 package com.th3pl4gu3.lifestyle.core_tests
 
-
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
-import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
+import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
 import com.th3pl4gu3.lifestyle.core.utils.Utils
-import com.th3pl4gu3.lifestyle.database.GoalDao
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
+import com.th3pl4gu3.lifestyle.database.ToDoDao
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -21,13 +20,13 @@ import java.util.*
 
 
 @RunWith(AndroidJUnit4::class)
-class GoalTests {
+class ToDoTests {
 
     private val TESTING_KEYWORD = "LIFESTYLE_ITEM"
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
-    private lateinit var goalDao: GoalDao
+    private lateinit var toDoDao: ToDoDao
     private lateinit var db: LifestyleDatabase
 
     private var theTitle1 = "Do the dishes "
@@ -46,38 +45,38 @@ class GoalTests {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        goalDao = db.goalDao
+        toDoDao = db.toDoDao
     }
 
-    private fun generateGoalsInDb(){
+    private fun generateToDosInDb(){
         var title1 = theTitle1
         var title2 = theTitle2
         var title3 = theTitle3
-        var goal: Goal
+        var toDo: ToDo
 
-        //Add several goals in a for loop
+        //Add several to do's in a for loop
         for (x in 1..10) {
             title1 += x
-            goal = Goal(title = title1, category = theCategory1)
+            toDo = ToDo(title = title1, category = theCategory1)
             //Make changes in some ids for better testing
-            goal.id = x.toString()
-            goalDao.insert(goal)
+            toDo.id = x.toString()
+            toDoDao.insert(toDo)
 
             title1 = theTitle1
         }
 
         for (x in 1..10) {
             title2 += x
-            goal = Goal(title = title2, category = theCategory2)
-            goalDao.insert(goal)
+            toDo = ToDo(title = title2, category = theCategory2)
+            toDoDao.insert(toDo)
 
             title2 = theTitle2
         }
 
         for (x in 1..10) {
             title3 += x
-            goal = Goal(title = title3, category = theCategory3)
-            goalDao.insert(goal)
+            toDo = ToDo(title = title3, category = theCategory3)
+            toDoDao.insert(toDo)
 
             title3 = theTitle3
         }
@@ -88,8 +87,8 @@ class GoalTests {
         //Create the database
         initializeDbWithData()
 
-        //Add some Goals in the database
-        generateGoalsInDb()
+        //Add some To Do in the database
+        generateToDosInDb()
     }
 
     @After
@@ -100,17 +99,17 @@ class GoalTests {
 
     @Test
     @Throws(Exception::class)
-    fun addGoal() {
+    fun addToDo() {
 
         //Arrange
-        val goal = Goal()
-        val id = goal.id
-        val dateNow = Utils.dateToFormattedString(goal.dateAdded)
+        val toDo = ToDo()
+        val id = toDo.id
+        val dateNow = Utils.dateToFormattedString(toDo.dateAdded)
         val expectedId = id
         val expectedTitle = "Title"
         val expectedCategory = "Category"
         val expectedDateAdded = dateNow
-        val expectedTypeValue = LifestyleItem.GOAL.value
+        val expectedTypeValue = LifestyleItem.TO_DO.value
 
         val resultTypeValue: Int
         val resultId: String
@@ -120,16 +119,16 @@ class GoalTests {
         val resultDateCompleted: Calendar?
 
         //Act
-        goal.add(db)
+        toDo.add(db)
         //Fetch the goal for testing
-        val sutGoal = goalDao.get(id)
+        val sutToDo = toDoDao.get(id)
 
-        resultTypeValue = sutGoal!!.type
-        resultId = sutGoal.id
-        resultTitle = sutGoal.title
-        resultCategory = sutGoal.category
-        resultDateAdded = Utils.dateToFormattedString(sutGoal.dateAdded)
-        resultDateCompleted = sutGoal.dateCompleted
+        resultTypeValue = sutToDo!!.type
+        resultId = sutToDo.id
+        resultTitle = sutToDo.title
+        resultCategory = sutToDo.category
+        resultDateAdded = Utils.dateToFormattedString(sutToDo.dateAdded)
+        resultDateCompleted = sutToDo.dateCompleted
 
         //Assert
         assertEquals(expectedTypeValue, resultTypeValue)
@@ -142,23 +141,23 @@ class GoalTests {
 
     @Test
     @Throws(Exception::class)
-    fun updateGoal() {
+    fun updateToDo() {
 
         //Arrange
         val id = "4"
         val title = "Do the dishes 44"
         val category = "House Chores 44"
 
-        val newGoal = Goal(title = title, category = category)
+        val newToDo = ToDo(title = title, category = category)
 
         //set the ID
-        newGoal.id = id
+        newToDo.id = id
 
         val expectedId = id
         val expectedTitle = title
         val expectedCategory = category
-        val expectedDateAdded = Utils.dateToFormattedString(newGoal.dateAdded)
-        val expectedTypeValue = LifestyleItem.GOAL.value
+        val expectedDateAdded = Utils.dateToFormattedString(newToDo.dateAdded)
+        val expectedTypeValue = LifestyleItem.TO_DO.value
 
         val resultTypeValue: Int
         val resultId: String
@@ -168,16 +167,16 @@ class GoalTests {
         val resultDateCompleted: Calendar?
 
         //Act
-        newGoal.update(db)
-        //Get the goal for testing
-        val sutGoal = goalDao.get(id)
+        newToDo.update(db)
+        //Get the To Do for testing
+        val sutToDo = toDoDao.get(id)
 
-        resultTypeValue = sutGoal!!.type
-        resultId = sutGoal.id
-        resultTitle = sutGoal.title
-        resultCategory = sutGoal.category
-        resultDateAdded = Utils.dateToFormattedString(sutGoal.dateAdded)
-        resultDateCompleted = sutGoal.dateCompleted
+        resultTypeValue = sutToDo!!.type
+        resultId = sutToDo.id
+        resultTitle = sutToDo.title
+        resultCategory = sutToDo.category
+        resultDateAdded = Utils.dateToFormattedString(sutToDo.dateAdded)
+        resultDateCompleted = sutToDo.dateCompleted
 
         //Assert
         assertEquals(expectedTypeValue, resultTypeValue)
@@ -194,18 +193,18 @@ class GoalTests {
 
         //Arrange
         val idToRemove = "3"
-        val resultGoal: Goal?
+        val resultToDo: ToDo?
 
         //Act
-        //Get the goal to remove
-        val sutGoal = goalDao.get(idToRemove)
+        //Get the To Do to remove
+        val sutToDo = toDoDao.get(idToRemove)
         //Test the function
-        sutGoal!!.delete(db)
+        sutToDo!!.delete(db)
         //Try to get the object again
-        resultGoal = goalDao.get(idToRemove)
+        resultToDo = toDoDao.get(idToRemove)
 
         //Assert
-        assertNull(resultGoal)
+        assertNull(resultToDo)
     }
 
     @Test
@@ -213,14 +212,14 @@ class GoalTests {
     fun markAsCompleted() {
 
         //Arrange
-        val goal = Goal()
+        val toDo = ToDo()
         val expectedDateCompleted = Utils.dateToFormattedString(Calendar.getInstance())
 
         val resultDateCompleted: String?
 
         //Act
-        goal.markAsComplete()
-        resultDateCompleted = Utils.dateToFormattedString(goal.dateCompleted!!)
+        toDo.markAsComplete()
+        resultDateCompleted = Utils.dateToFormattedString(toDo.dateCompleted!!)
 
         //Assert
         assertEquals(expectedDateCompleted, resultDateCompleted)
@@ -231,14 +230,14 @@ class GoalTests {
     fun markAsIncomplete() {
 
         //Arrange
-        val goal = Goal()
-        goal.dateCompleted = Calendar.getInstance()
+        val toDo = ToDo()
+        toDo.dateCompleted = Calendar.getInstance()
 
         val resultDateCompleted: Calendar?
 
         //Act
-        goal.markAsIncomplete()
-        resultDateCompleted = goal.dateCompleted
+        toDo.markAsIncomplete()
+        resultDateCompleted = toDo.dateCompleted
 
         //Assert
         assertNull(resultDateCompleted)

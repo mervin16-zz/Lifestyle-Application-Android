@@ -30,4 +30,44 @@ class UtilsTest {
         //Assert
         assertEquals(expectedResult, result)
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun countDaysBetween1Of2(){
+
+        //Arrange
+        val expectedResult = 2L
+        val startDate = Calendar.getInstance()
+        val endDate = Calendar.getInstance()
+
+        val result: Long
+
+        //Act
+        //Add days
+        startDate.add(Calendar.DAY_OF_MONTH, 2)
+        endDate.add(Calendar.DAY_OF_MONTH, 4)
+        //Test function
+        result = Utils.countDays(startDate, endDate)
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun countDaysBetween2Of2(){
+
+        //Arrange
+        val expectedResult = 0L
+        val startDate = Calendar.getInstance()
+        val endDate = Calendar.getInstance()
+
+        val result: Long
+
+        //Act
+        result = Utils.countDays(startDate, endDate)
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
 }
