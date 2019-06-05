@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.core.utils.toast
+import com.th3pl4gu3.lifestyle.ui.Utils.toast
 import com.th3pl4gu3.lifestyle.databinding.ActivityHomeBinding
 import com.th3pl4gu3.lifestyle.ui.add_item.ActivityAddItem
 

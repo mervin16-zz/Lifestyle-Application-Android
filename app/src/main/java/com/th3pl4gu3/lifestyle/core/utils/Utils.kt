@@ -1,6 +1,7 @@
 package com.th3pl4gu3.lifestyle.core.utils
 
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
+import com.th3pl4gu3.lifestyle.ui.Utils.capitalizeEachWords
 import java.text.DateFormat
 import java.time.temporal.ChronoUnit
 import java.util.*
@@ -8,10 +9,7 @@ import java.util.*
 sealed class Utils{
     companion object{
         //Return date in format eg. 16 March 1996
-<<<<<<< HEAD
-        fun dateToFormattedString(cal: Calendar): String{
-            return DateFormat.getDateInstance(DateFormat.MEDIUM).format(cal.time)
-        }
+        fun dateToFormattedString(cal: Calendar): String = DateFormat.getDateInstance(DateFormat.MEDIUM).format(cal.time)
 
         //TODO("Test method")
         fun getLifestyleItemEnumsToFormattedString(): ArrayList<String> {
@@ -36,11 +34,8 @@ sealed class Utils{
                 else -> throw Exception(MESSAGE_EXCEPTION_REQUEST_PROCESSING)
             }
         }
-=======
-        fun dateToFormattedString(cal: Calendar) = DateFormat.getDateInstance(DateFormat.MEDIUM).format(cal.time)
 
         //Returns a Long object counting days between the two time
         fun countDays(startDate: Calendar, endDate: Calendar) = ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant())
->>>>>>> Core-Operations
     }
 }

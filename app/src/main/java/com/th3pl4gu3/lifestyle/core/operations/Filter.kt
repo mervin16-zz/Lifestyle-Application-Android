@@ -6,9 +6,7 @@ import com.th3pl4gu3.lifestyle.core.utils.*
 @Suppress(VALUE_SUPPRESSED_UNCHECKED_CAST)
 class Filter<L>(var list: List<LifestyleFactory> = ArrayList()) {
 
-    fun getByTitle(title: String): List<L> {
-        return list.filter { (it.title.toLowerCase() == title.toLowerCase()) || (it.title.toLowerCase().contains(title.toLowerCase())) } as List<L>
-    }
+    fun getByTitle(title: String) = list.filter { (it.title.toLowerCase() == title.toLowerCase()) || (it.title.toLowerCase().contains(title.toLowerCase())) } as List<L>
 
     fun getByCategory(category: String): List<L> {
         return list.filter {
@@ -18,12 +16,7 @@ class Filter<L>(var list: List<LifestyleFactory> = ArrayList()) {
         } as List<L>
     }
 
-    fun getCompleted(): List<L> {
-        return list.filter { it.dateCompleted != null } as List<L>
-    }
+    fun getCompleted() = list.filter { it.dateCompleted != null } as List<L>
 
-    fun getActive(): List<L> {
-        return list.filter { it.dateCompleted == null } as List<L>
-    }
-
+    fun getActive() = list.filter { it.dateCompleted == null } as List<L>
 }

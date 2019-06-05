@@ -19,10 +19,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
 import com.th3pl4gu3.lifestyle.core.operations.Filter
-import com.th3pl4gu3.lifestyle.core.utils.toast
+import com.th3pl4gu3.lifestyle.ui.Utils.toast
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
-import com.th3pl4gu3.lifestyle.ui.SwipeToCallback
+import com.th3pl4gu3.lifestyle.ui.Utils.SwipeToCallback
 
 class FragmentToDo : Fragment() {
 

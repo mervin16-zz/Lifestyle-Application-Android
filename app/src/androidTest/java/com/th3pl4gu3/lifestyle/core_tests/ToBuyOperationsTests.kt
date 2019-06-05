@@ -5,30 +5,25 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
-import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
-import com.th3pl4gu3.lifestyle.core.operations.GoalOperations
+import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
+import com.th3pl4gu3.lifestyle.core.operations.ToBuyOperations
 import com.th3pl4gu3.lifestyle.core.utils.Utils
-import com.th3pl4gu3.lifestyle.database.GoalDao
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
+import com.th3pl4gu3.lifestyle.database.ToBuyDao
 import com.th3pl4gu3.lifestyle.database_tests.LiveDataTestUtil
-import org.junit.After
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import java.io.IOException
 import java.util.*
 
-
 @RunWith(AndroidJUnit4::class)
-class GoalOperationsTests {
+class ToBuyOperationsTests {
 
     private val TESTING_KEYWORD = "LIFESTYLE_ITEM"
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
-    private lateinit var goalDao: GoalDao
+    private lateinit var toBuyDao: ToBuyDao
     private lateinit var db: LifestyleDatabase
     private lateinit var emptyDb: LifestyleDatabase
     private var theTitle1 = "Do the dishes "
@@ -47,7 +42,7 @@ class GoalOperationsTests {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        goalDao = db.goalDao
+        toBuyDao = db.toBuyDao
     }
 
     private fun initializeDbWithNoData(){
@@ -58,38 +53,38 @@ class GoalOperationsTests {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        goalDao = emptyDb.goalDao
+        toBuyDao = emptyDb.toBuyDao
     }
 
-    private fun generateGoalsInDb(){
+    private fun generateToBuysInDb(){
         var title1 = theTitle1
         var title2 = theTitle2
         var title3 = theTitle3
-        var goal: Goal
+        var toBuy: ToBuy
 
-        //Add several Goals in a for loop
+        //Add several to buy's in a for loop
         for (x in 1..10) {
             title1 += x
-            goal = Goal(title = title1, category = theCategory1)
+            toBuy = ToBuy(title = title1, category = theCategory1)
             //Change the IDs of some for testing
-            goal.id = x.toString()
-            goalDao.insert(goal)
+            toBuy.id = x.toString()
+            toBuyDao.insert(toBuy)
 
             title1 = theTitle1
         }
 
         for (x in 1..10) {
             title2 += x
-            goal = Goal(title = title2, category = theCategory2)
-            goalDao.insert(goal)
+            toBuy = ToBuy(title = title2, category = theCategory2)
+            toBuyDao.insert(toBuy)
 
             title2 = theTitle2
         }
 
         for (x in 1..10) {
             title3 += x
-            goal = Goal(title = title3, category = theCategory3)
-            goalDao.insert(goal)
+            toBuy = ToBuy(title = title3, category = theCategory3)
+            toBuyDao.insert(toBuy)
 
             title3 = theTitle3
         }
@@ -100,8 +95,8 @@ class GoalOperationsTests {
         //Create the database
         initializeDbWithData()
 
-        //Add some Goals in the database
-        generateGoalsInDb()
+        //Add some To Buy in the database
+        generateToBuysInDb()
     }
 
     @After
@@ -116,19 +111,19 @@ class GoalOperationsTests {
 
         //Arrange
         val id = "uo32ih4i4o23h4"
-        val expectedResult = "Error while fetching your Goal. This Goal doesn't exist."
+        val expectedResult = "Error while fetching your To Buy. This To Buy task doesn't exist."
         var result: String?
 
         //Act
         try{
-            val goal = GoalOperations.getByIdOffline(db, id)
+            val toBuy = ToBuyOperations.getByIdOffline(db, id)
             result = "Failed"
         }catch (ex: Exception){
             result = ex.message
         }
 
         //Assert
-        assertEquals(expectedResult, result)
+        Assert.assertEquals(expectedResult, result)
     }
 
     @Test
@@ -144,7 +139,7 @@ class GoalOperationsTests {
         val expectedTitle = title
         val expectedCategory = category
         val expectedDateAdded = Utils.dateToFormattedString(Calendar.getInstance())
-        val expectedTypeValue = LifestyleItem.GOAL.value
+        val expectedTypeValue = LifestyleItem.TO_BUY.value
 
         val resultTypeValue: Int
         val resultId: String
@@ -154,22 +149,22 @@ class GoalOperationsTests {
         val resultDateCompleted: Calendar?
 
         //Act
-        val goal = GoalOperations.getByIdOffline(db, id)
+        val toBuy = ToBuyOperations.getByIdOffline(db, id)
 
-        resultTypeValue = goal.type
-        resultId = goal.id
-        resultTitle = goal.title
-        resultCategory = goal.category
-        resultDateAdded = Utils.dateToFormattedString(goal.dateAdded)
-        resultDateCompleted = goal.dateCompleted
+        resultTypeValue = toBuy.type
+        resultId = toBuy.id
+        resultTitle = toBuy.title
+        resultCategory = toBuy.category
+        resultDateAdded = Utils.dateToFormattedString(toBuy.dateAdded)
+        resultDateCompleted = toBuy.dateCompleted
 
         //Assert
-        assertEquals(expectedTypeValue, resultTypeValue)
-        assertEquals(expectedId, resultId)
-        assertEquals(expectedTitle, resultTitle)
-        assertEquals(expectedCategory, resultCategory)
-        assertEquals(expectedDateAdded, resultDateAdded)
-        assertNull(resultDateCompleted)
+        Assert.assertEquals(expectedTypeValue, resultTypeValue)
+        Assert.assertEquals(expectedId, resultId)
+        Assert.assertEquals(expectedTitle, resultTitle)
+        Assert.assertEquals(expectedCategory, resultCategory)
+        Assert.assertEquals(expectedDateAdded, resultDateAdded)
+        Assert.assertNull(resultDateCompleted)
     }
 
     @Test
@@ -184,14 +179,14 @@ class GoalOperationsTests {
         //Create the dummy Db
         initializeDbWithNoData()
         //Test the function
-        val sutGoal = LiveDataTestUtil.getValue(GoalOperations.getAllOffline(emptyDb))
-        resultSize = sutGoal.size
+        val sutToBuy = LiveDataTestUtil.getValue(ToBuyOperations.getAllOffline(emptyDb))
+        resultSize = sutToBuy.size
 
         //Clear memory of dummy data
         emptyDb.close()
 
         //Assert
-        assertEquals(expectedSize, resultSize)
+        Assert.assertEquals(expectedSize, resultSize)
     }
 
     @Test
@@ -202,14 +197,13 @@ class GoalOperationsTests {
         val expectedSize = 0
         val resultSize: Int
 
-
         //Act
-        GoalOperations.removeAllOffline(db)
+        ToBuyOperations.removeAllOffline(db)
 
-        resultSize = LiveDataTestUtil.getValue(GoalOperations.getAllOffline(db)).size
+        resultSize = LiveDataTestUtil.getValue(ToBuyOperations.getAllOffline(db)).size
 
         //Assert
-        assertEquals(expectedSize, resultSize)
+        Assert.assertEquals(expectedSize, resultSize)
     }
 
     @Test
@@ -220,19 +214,18 @@ class GoalOperationsTests {
         val expectedSize = 0
         val resultSize: Int
 
-
         //Act
         //Initialize dummy Db
         initializeDbWithNoData()
         //Test the function
-        GoalOperations.removeAllOffline(emptyDb)
+        ToBuyOperations.removeAllOffline(emptyDb)
 
-        resultSize = LiveDataTestUtil.getValue(GoalOperations.getAllOffline(emptyDb)).size
+        resultSize = LiveDataTestUtil.getValue(ToBuyOperations.getAllOffline(emptyDb)).size
 
         //Clear memory of dummy data
         emptyDb.close()
 
         //Assert
-        assertEquals(expectedSize, resultSize)
+        Assert.assertEquals(expectedSize, resultSize)
     }
 }
