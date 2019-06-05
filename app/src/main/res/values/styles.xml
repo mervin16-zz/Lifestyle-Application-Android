@@ -1,11 +1,95 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- App Theme Colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- App Status Bar -->
+        <item name="android:windowLightStatusBar">@bool/Windows_StatusBar_Light</item>
+        
+        <item name="android:windowIsTranslucent">@bool/Windows_IsTranslucent</item>
+    </style>
+    
+    <!-- Bottom Sheet Dialog -->
+    <!-- set the rounded drawable as background to your bottom sheet -->
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/custom_rounded_dialog</item>
     </style>
 
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">@bool/Windows_IsFloating</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+    
+    <!-- Typography -->
+    <style name="typography_h1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_h2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:fontFamily">@font/work_sans_semi_bold</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_h3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_h4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_h5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_h6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_subtitle_1." parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_subtitle_2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_body_1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_body_2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:fontFamily">@font/work_sans_regular</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    
+    <style name="typography_overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:fontFamily">@font/work_sans_semi_bold</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
 </resources>

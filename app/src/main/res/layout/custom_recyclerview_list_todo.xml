@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+                name="MyToDo"
+                type="com.th3pl4gu3.lifestyle.core.lifestyle.ToDo"/>
+    </data>
+    
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        
+        <LinearLayout
+                android:id="@+id/background_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+            
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="16dp"
+                    android:background="@color/material_red">
+                
+                <ImageView
+                        android:id="@+id/RecyclerViewList_Main_HomeActivity_Item_ImageView_Delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_delete_light"/>
+            
+            </RelativeLayout>
+            
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="16dp"
+                    android:background="@color/material_green">
+                
+                <ImageView
+                        android:id="@+id/RecyclerViewList_Main_HomeActivity_Item_ImageView_Done"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_done_light"/>
+            
+            </RelativeLayout>
+        
+        </LinearLayout>
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/foreground_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@color/white_000">
+            
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_Views_Default"
+                    android:layout_marginBottom="@dimen/Margin_List_RecyclerView_Default_BetweenTitle"
+                    android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
+                    app:toDoTitle="@{MyToDo}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    tools:text="This is the title."/>
+            
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_List_RecyclerView_Default_BetweenTitle"
+                    android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
+                    android:layout_marginBottom="@dimen/Margin_Views_Default"
+                    app:toDoCategory="@{MyToDo}"
+                    app:layout_constraintTop_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    tools:text="This is the subtitle."/>
+            
+            <ImageView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_Views_Default"
+                    android:layout_marginEnd="@dimen/Margin_Views_Default"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_priority_4"
+                    tools:srcCompat="@drawable/ic_priority_4"
+                    app:toDoPriority="@{MyToDo}"/>
+            
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/Margin_List_RecyclerView_Default_EndOfList"
+                    app:toDoDateAdded="@{MyToDo}"
+                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    app:layout_constraintEnd_toEndOf="@+id/RecyclerView_LifestyleItem_List_Priority"
+                    style="@style/TextAppearance.MaterialComponents.Overline"
+                    tools:text="16 March 1996"/>
+        
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    </FrameLayout>
+
+</layout>

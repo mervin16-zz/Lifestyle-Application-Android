@@ -1,6 +1,20 @@
 package com.th3pl4gu3.lifestyle.core.utils
 
 
+/********************************* Values *********************************/
+
+// Suppressed Values //
+const val VALUE_SUPPRESSED_UNCHECKED_CAST = "unchecked_cast"
+
+// General Values //
+const val VALUE_WHITESPACE = " "
+const val VALUE_UNDERSCORE = "_"
+
+// Lifestyle Items String Values //
+const val VALUE_LIFESTYLE_ITEM_GOAL = "Goal"
+const val VALUE_LIFESTYLE_ITEM_TODO = "To Do"
+const val VALUE_LIFESTYLE_ITEM_TOBUY = "To Buy"
+
 /********************************* Enums *********************************/
 
 // Lifestyle Item //
@@ -58,3 +72,7 @@ const val PLACEHOLDER_ITEM_LIFESTYLE_QTY = 0
 
 // Error Messages //
 const val MESSAGE_EXCEPTION_GOAL_NOT_EXIST = "Error while fetching your Goal. This Goal doesn't exist."
+const val MESSAGE_EXCEPTION_REQUEST_PROCESSING = "An error has occurred while processing your request. Please try again."
+const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_ADDITEM = "An internal error occurred: Unknown View Model when trying to fetch item."
+const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_GOALS = "An internal error occurred: Unknown View Model when trying to fetch your goals."
+const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_TODOS = "An internal error occurred: Unknown View Model when trying to fetch your to dos."

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@id/BottomAppBar_fromHomeActivity_MenuMain_Search"
+          android:title="@string/Menu_BottomAppBar_MenuMain_Search"
+          android:icon="@drawable/ic_search_dark"
+          app:showAsAction="always"
+          android:tooltipText="@string/Menu_BottomAppBar_MenuMain_Search" />
+
+</menu>

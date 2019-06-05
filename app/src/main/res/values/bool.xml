@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    
+    <!-- Windows Configuration -->
+    <bool name="Windows_StatusBar_Light">true</bool>
+    <bool name="Windows_IsFloating">false</bool>
+    <bool name="Windows_IsTranslucent">true</bool>
+    
+    <!-- Home Activity -->
+    <bool name="Navigation_NavigationHost_Default">true</bool>
+</resources>
