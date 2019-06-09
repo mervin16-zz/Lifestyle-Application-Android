@@ -23,6 +23,7 @@ import com.th3pl4gu3.lifestyle.ui.Utils.toast
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
 import com.th3pl4gu3.lifestyle.ui.Utils.SwipeToCallback
+import com.th3pl4gu3.lifestyle.ui.home.ActivityHomeViewModel
 
 class FragmentToDo : Fragment() {
 
@@ -31,25 +32,32 @@ class FragmentToDo : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        // Inflate the layout for this fragment
+        //Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_to_do, container, false)
 
+        //Configures the screen views (Eg. Title, appearance of top bar etc...)
         configureScreenAppearance()
 
+        //Get the activity's application
         val application = requireNotNull(this.activity).application
 
-        val dataSource = LifestyleDatabase.getInstance(application).toDoDao
+        //Fetch the database
+        val dataSource = LifestyleDatabase.getInstance(application)
 
+        //Instantiate the view model factory
         val viewModelFactory = ToDoViewModelFactory(dataSource, application)
 
+        //Instantiate the view model of this fragment
         mToDoViewModel = ViewModelProviders.of(this, viewModelFactory).get(ToDoViewModel::class.java)
 
+        //Instantiate the lifecycle owner
         mBinding.lifecycleOwner = this
 
+        //RecyclerView's configuration
         val adapter = ToDoAdapter()
         mBinding.RecyclerViewFromFragmentToDoMain.adapter = adapter
 
-        mToDoViewModel.toDos.observe(viewLifecycleOwner, Observer {
+        mToDoViewModel._toDos.observe(viewLifecycleOwner, Observer {
             val newList = Filter<ToDo>(it).getActive()
 
             newList.let { x ->
@@ -61,21 +69,24 @@ class FragmentToDo : Fragment() {
             }
         })
 
+        //Swipe configurations
         val swipeHandler = object : SwipeToCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
-                val toDo = (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
+                val swipedToDo = (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
 
                 when(direction){
                     ItemTouchHelper.LEFT -> {
-                        mToDoViewModel.markAsCompleted(toDo)
-                        requireContext().toast("I was swiped left. ${toDo.title} should be marked as completed.")
+
+                        mToDoViewModel.markAsCompleted(swipedToDo)
+
+                        requireContext().toast("I was swiped left. ${swipedToDo.title} should be marked as completed.")
                     }
 
                     ItemTouchHelper.RIGHT -> {
-                        mToDoViewModel.markAsDeleted(toDo.id)
+                        mToDoViewModel.markAsDeleted(swipedToDo)
 
-                        requireContext().toast("${toDo.title} has been deleted.")
+                        requireContext().toast("${swipedToDo.title} has been deleted.")
                     }
 
                     else ->{
@@ -90,6 +101,7 @@ class FragmentToDo : Fragment() {
 
         return mBinding.root
     }
+
 
     //Private methods
     private fun updateUI(recyclerviewVisibile: Boolean){

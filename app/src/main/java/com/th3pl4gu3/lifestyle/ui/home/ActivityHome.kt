@@ -7,6 +7,9 @@ import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.ui.Utils.toast
 import com.th3pl4gu3.lifestyle.databinding.ActivityHomeBinding
@@ -19,6 +22,7 @@ class ActivityHome : AppCompatActivity(){
 
     private lateinit var mBinding: ActivityHomeBinding
     private var mBottomNavDrawerFragment: RoundedBottomSheetDialogFragment? = null
+    private lateinit var mViewModel: ActivityHomeViewModel
 
     private var saveClickCounter = 0
 
@@ -27,8 +31,12 @@ class ActivityHome : AppCompatActivity(){
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
+        //Get view model
+        mViewModel = ViewModelProviders.of(this).get(ActivityHomeViewModel::class.java)
+
         //Set the bottom bar as SupportActionBar
         setSupportActionBar(mBinding.BottomAppBarFromHomeActivityMain)
+
     }
 
     override fun onStart() {
@@ -39,6 +47,31 @@ class ActivityHome : AppCompatActivity(){
             startActivity(Intent(this, ActivityAddItem::class.java))
             overridePendingTransition(R.anim.slide_up_in, R.anim.slide_down_out)
         }
+
+        //Configure two state button
+        mBinding.ToggleButtonGroupFromHomeActivityDefault.addOnButtonCheckedListener{ _, checkedId, isChecked ->
+
+            when(checkedId){
+                R.id.Button_fromHomeActivity_ToggleButton_Active -> {
+                    if(isChecked){
+                        this.toast("Active")
+                    }
+                }
+                R.id.Button_fromHomeActivity_ToggleButton_Completed -> {
+                    if(isChecked){
+                        this.toast("Completed")
+                    }
+                }
+                else -> { this.toast("An error has occurred while processing your request. Please try again.")}
+            }
+        }
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        mBinding.ToggleButtonGroupFromHomeActivityDefault.clearOnButtonCheckedListeners()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

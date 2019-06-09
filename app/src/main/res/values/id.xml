@@ -76,6 +76,7 @@
     <item type="id" name="ImageButton_fromHomeActivity_Icon_Sort"/>
     <item type="id" name="Button_fromHomeActivity_ToggleButton_Active"/>
     <item type="id" name="Button_fromHomeActivity_ToggleButton_Completed"/>
+    <item type="id" name="ToggleButtonGroup_fromHomeActivity_default"/>
     <item type="id" name="RelativeLayout_fromHomeActivity_TopBar"/>
     <item type="id" name="LinearLayout_fromHomeActivity_ToggleButton"/>
     
