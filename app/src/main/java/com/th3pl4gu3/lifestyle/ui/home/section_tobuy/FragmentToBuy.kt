@@ -38,10 +38,6 @@ class FragmentToBuy : Fragment() {
         val topBar = requireActivity().findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar)
         topBar.visibility = View.VISIBLE
 
-        //Show Toggle Buttons
-        val toggleButtonView = requireActivity().findViewById<LinearLayout>(R.id.LinearLayout_fromHomeActivity_ToggleButton)
-        toggleButtonView.visibility = View.VISIBLE
-
         //Show Fab
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
         fab.show()

@@ -16,6 +16,15 @@
         <item>Party</item>
     </string-array>
     
+    <!--
+        General
+     -->
+    
+    <!-- Toggle Button -->
+    <string name="Button_forLifestyleList_ToggleButton_Active">Active</string>
+    <string name="Button_forLifestyleList_ToggleButton_Completed">Completed</string>
+    
+    
     <!-- Placeholders -->
     <string name="Placeholder_BottomAppBar_DrawerMenu_Title_User">User</string>
     
@@ -34,6 +43,7 @@
     <!-- Bottom App Bar Menu Main -->
     <string name="Menu_BottomAppBar_MenuMain_Search">Search</string>
     
+    
     <!--
         Activities
      -->
@@ -47,8 +57,6 @@
     <string name="EditText_fromAddItemActivity_Hint_Qty">Quantity</string>
     
     <!-- Home Activity -->
-    <string name="Button_fromHomeActivity_ToggleButton_Active">Active</string>
-    <string name="Button_fromHomeActivity_ToggleButton_Completed">Completed</string>
     
     
     
@@ -59,16 +67,34 @@
     <!-- Bottom App Bar Drawer Fragment -->
     <string name="Fragment_BottomAppBar_Drawer_Menu">Menu</string>
     
+    <!-- Home Fragment -->
+    <string name="TextView_fromHomeFragment_Title_Main">Lifestyle</string>
+    
+    <!-- Statistics Fragment -->
+    <string name="TextView_fromStatisticsFragment_Title_Main">Statistics</string>
+    
     <!-- Goals Fragment -->
-    <string name="TextView_fromToBuyFragment_Message_EmptyList">Don\'t you have some goals in your life?</string>
+    <string name="TextView_fromToBuyFragment_Message_EmptyList_Active">Stop being a miser and plan to buy something!</string>
+    <string name="TextView_fromToBuyFragment_Message_EmptyList_Completed">You have not been able to buy anything!</string>
     
     <!-- To Buy Fragment -->
-    <string name="TextView_fromToDoFragment_Message_EmptyList">Stop being a miser and plan to buy something!</string>
+    <string name="TextView_fromToDoFragment_Message_EmptyList_Active">Please plan to do something with your life!</string>
+    <string name="TextView_fromToDoFragment_Message_EmptyList_Completed">You have not completed any tasks… Yet!</string>
     
     <!-- To Do Fragment -->
-    <string name="TextView_fromGoalsFragment_Message_EmptyList">Please plan to do something with your life!</string>
+    <string name="TextView_fromGoalsFragment_Message_EmptyList_Active">Don\'t you have some goals in your life?</string>
+    <string name="TextView_fromGoalsFragment_Message_EmptyList_Completed">You have not achieved any goals!</string>
     
     
+    <!--
+        Messages
+     -->
+    
+    <!-- Info Message -->
+    <string name="Message_Info_fromFragmentLifeStyleItems_ItemDeleted">"There was an error while swiping your request. Please try again."</string>
+    
+    <!-- Error Message -->
+    <string name="Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping">"Your item %1$s has been deleted"</string>
     
     
     <!--

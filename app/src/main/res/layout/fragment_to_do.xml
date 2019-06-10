@@ -5,16 +5,62 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     
-    <FrameLayout
+    <data>
+        
+        <variable
+                name="toDoViewModel"
+                type="com.th3pl4gu3.lifestyle.ui.home.section_todo.ToDoViewModel" />
+    
+        <variable
+                name="toggleButtonState"
+                type="com.th3pl4gu3.lifestyle.ui.home.section_todo.ToDoViewModel.ToggleButton" />
+    </data>
+    
+    <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+        
+        <!-- Two State Button View -->
+    
+        <LinearLayout
+                android:id="@id/LinearLayout_fromHomeActivity_ToggleButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/Margin_Views_Small"
+                android:orientation="horizontal"
+                android:gravity="center">
+        
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@id/ToggleButtonGroup_forLifestyleList_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:checkedButton="@+id/Button_forLifestyleList_ToggleButton_Active">
+            
+                <com.google.android.material.button.MaterialButton
+                        android:id="@id/Button_forLifestyleList_ToggleButton_Active"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Button_forLifestyleList_ToggleButton_Active"
+                        android:onClick="@{() -> toDoViewModel.updateList(toggleButtonState.BUTTON_ACTIVE)}"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            
+                <com.google.android.material.button.MaterialButton
+                        android:id="@id/Button_forLifestyleList_ToggleButton_Completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Button_forLifestyleList_ToggleButton_Completed"
+                        android:onClick="@{() -> toDoViewModel.updateList(toggleButtonState.BUTTON_COMPLETE)}"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+        </LinearLayout>
         
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@id/RecyclerView_fromFragmentToDo_Main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/Margin_Views_Small"
                 android:layout_marginBottom="?attr/actionBarSize"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
         
@@ -30,8 +76,8 @@
                     android:id="@id/ImageView_fromFragmentToDo_EmptyView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="@dimen/Margin_Views_Small"
+                    android:layout_marginStart="@dimen/Margin_Views_Small"
                     android:contentDescription="@string/ContentDescription_fromToDoFragment_EmptyView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -46,7 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/TextView_fromToDoFragment_Message_EmptyList"
+                    android:text="@string/TextView_fromToDoFragment_Message_EmptyList_Active"
                     android:textAlignment="center"
                     android:textColor="@color/colorTextAlternate"
                     app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +100,10 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ImageView_fromFragmentToDo_EmptyView"
                     app:layout_constraintVertical_chainStyle="packed"
-                    tools:text="@string/TextView_fromToDoFragment_Message_EmptyList"
+                    tools:text="@string/TextView_fromToDoFragment_Message_EmptyList_Active"
                     style="@style/typography_h6" />
         
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
+    </LinearLayout>
 
 </layout>

@@ -10,6 +10,11 @@
     <!-- RecyclerView -->
     <item type="id" name="EmptyView_forRecyclerView"/>
     
+    <!-- Toggle Button -->
+    <item type="id" name="Button_forLifestyleList_ToggleButton_Active"/>
+    <item type="id" name="Button_forLifestyleList_ToggleButton_Completed"/>
+    <item type="id" name="ToggleButtonGroup_forLifestyleList_default"/>
+    
     
     <!--
         Custom Lists
@@ -20,6 +25,11 @@
     <item type="id" name="RecyclerView_LifestyleItem_List_Category"/>
     <item type="id" name="RecyclerView_LifestyleItem_List_Date"/>
     <item type="id" name="RecyclerView_LifestyleItem_List_Priority"/>
+    <item type="id" name="RecyclerView_LinearLayout_List_BackgroundView"/>
+    <item type="id" name="RecyclerView_ConstraintLayout_List_ForegroundView"/>
+    <item type="id" name="RecyclerView_LifestyleItem_ImageView_List_Delete"/>
+    <item type="id" name="RecyclerView_LifestyleItem_ImageView_List_Complete"/>
+    
     
     <!--
         Menu (& Navigation) ID Values
@@ -74,9 +84,6 @@
     <item type="id" name="TextView_fromHomeActivity_Screen_Title"/>
     <item type="id" name="ImageButton_fromHomeActivity_Icon_Filter"/>
     <item type="id" name="ImageButton_fromHomeActivity_Icon_Sort"/>
-    <item type="id" name="Button_fromHomeActivity_ToggleButton_Active"/>
-    <item type="id" name="Button_fromHomeActivity_ToggleButton_Completed"/>
-    <item type="id" name="ToggleButtonGroup_fromHomeActivity_default"/>
     <item type="id" name="RelativeLayout_fromHomeActivity_TopBar"/>
     <item type="id" name="LinearLayout_fromHomeActivity_ToggleButton"/>
     

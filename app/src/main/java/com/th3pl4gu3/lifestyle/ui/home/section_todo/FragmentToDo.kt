@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -17,13 +16,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
-import com.th3pl4gu3.lifestyle.core.operations.Filter
 import com.th3pl4gu3.lifestyle.ui.Utils.toast
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
 import com.th3pl4gu3.lifestyle.ui.Utils.SwipeToCallback
-import com.th3pl4gu3.lifestyle.ui.home.ActivityHomeViewModel
+import com.th3pl4gu3.lifestyle.ui.Utils.snackBar
 
 class FragmentToDo : Fragment() {
 
@@ -50,6 +47,9 @@ class FragmentToDo : Fragment() {
         //Instantiate the view model of this fragment
         mToDoViewModel = ViewModelProviders.of(this, viewModelFactory).get(ToDoViewModel::class.java)
 
+        //Bind view model
+        mBinding.toDoViewModel = mToDoViewModel
+
         //Instantiate the lifecycle owner
         mBinding.lifecycleOwner = this
 
@@ -57,10 +57,8 @@ class FragmentToDo : Fragment() {
         val adapter = ToDoAdapter()
         mBinding.RecyclerViewFromFragmentToDoMain.adapter = adapter
 
-        mToDoViewModel._toDos.observe(viewLifecycleOwner, Observer {
-            val newList = Filter<ToDo>(it).getActive()
-
-            newList.let { x ->
+        mToDoViewModel.toDosMediatorLiveData.observe(viewLifecycleOwner, Observer {
+            it.let { x ->
 
                 //Update the UI and determine whether recyclerview should be visible or not
                 updateUI(x.isNotEmpty())
@@ -70,27 +68,27 @@ class FragmentToDo : Fragment() {
         })
 
         //Swipe configurations
-        val swipeHandler = object : SwipeToCallback() {
+        val swipeHandler = object : SwipeToCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
                 val swipedToDo = (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
+                val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
 
                 when(direction){
                     ItemTouchHelper.LEFT -> {
-
-                        mToDoViewModel.markAsCompleted(swipedToDo)
-
-                        requireContext().toast("I was swiped left. ${swipedToDo.title} should be marked as completed.")
+                        mToDoViewModel.markItem(swipedToDo)
                     }
 
                     ItemTouchHelper.RIGHT -> {
                         mToDoViewModel.markAsDeleted(swipedToDo)
 
-                        requireContext().toast("${swipedToDo.title} has been deleted.")
+                        requireActivity().findViewById<View>(android.R.id.content)
+                            .snackBar(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping, swipedToDo.title),
+                                anchorView = fab)
                     }
 
                     else ->{
-                        requireContext().toast("There was an error while swiping your request. Please try again.")
+                        requireContext().toast(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping))
                     }
                 }
             }
@@ -103,12 +101,21 @@ class FragmentToDo : Fragment() {
     }
 
 
-    //Private methods
-    private fun updateUI(recyclerviewVisibile: Boolean){
-        if(recyclerviewVisibile){
+    /**
+     * Private functions for internal use ONLY
+     **/
+
+    private fun updateUI(recyclerViewVisible: Boolean){
+        if(recyclerViewVisible){
             mBinding.RecyclerViewFromFragmentToDoMain.visibility = View.VISIBLE
             mBinding.EmptyViewForRecyclerView.visibility = View.GONE
         }else{
+            if(mToDoViewModel.currentToggleButtonState == ToDoViewModel.ToggleButton.BUTTON_COMPLETE){
+                mBinding.TextViewFromFragmentToDoEmptyView.text = getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Completed)
+            }else if(mToDoViewModel.currentToggleButtonState == ToDoViewModel.ToggleButton.BUTTON_ACTIVE){
+                mBinding.TextViewFromFragmentToDoEmptyView.text = getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Active)
+            }
+
             mBinding.RecyclerViewFromFragmentToDoMain.visibility = View.GONE
             mBinding.EmptyViewForRecyclerView.visibility = View.VISIBLE
         }
@@ -122,10 +129,6 @@ class FragmentToDo : Fragment() {
         //Show Top Bar
         val topBar = requireActivity().findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar)
         topBar.visibility = View.VISIBLE
-
-        //Show Toggle Buttons
-        val toggleButtonView = requireActivity().findViewById<LinearLayout>(R.id.LinearLayout_fromHomeActivity_ToggleButton)
-        toggleButtonView.visibility = View.VISIBLE
 
         //Show Fab
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)

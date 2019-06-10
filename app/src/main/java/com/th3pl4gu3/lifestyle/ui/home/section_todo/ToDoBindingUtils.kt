@@ -39,3 +39,12 @@ fun ImageView.setToDoPriority(toDo: ToDo) {
         Priority.P4 -> R.drawable.ic_priority_4
     })
 }
+
+@BindingAdapter("toDoItemMarking")
+fun ImageView.setItemMarkingIcon(toDo: ToDo) {
+    if(toDo.dateCompleted != null){
+        setImageResource(R.drawable.ic_close_light)
+    }else{
+        setImageResource(R.drawable.ic_done_light)
+    }
+}

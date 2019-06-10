@@ -15,7 +15,7 @@
             android:layout_height="wrap_content">
         
         <LinearLayout
-                android:id="@+id/background_view"
+                android:id="@id/RecyclerView_LinearLayout_List_BackgroundView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
@@ -25,11 +25,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="16dp"
-                    android:background="@color/material_red">
+                    android:padding="@dimen/Margin_Views_Default">
                 
                 <ImageView
-                        android:id="@+id/RecyclerViewList_Main_HomeActivity_Item_ImageView_Delete"
+                        android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Delete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -42,23 +41,24 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="16dp"
-                    android:background="@color/material_green">
+                    android:padding="@dimen/Margin_Views_Default">
                 
                 <ImageView
-                        android:id="@+id/RecyclerViewList_Main_HomeActivity_Item_ImageView_Done"
+                        android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Complete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_done_light"/>
+                        app:srcCompat="@drawable/ic_done_light"
+                        tools:srcCompat="@drawable/ic_done_light"
+                        app:toDoItemMarking="@{MyToDo}"/>
             
             </RelativeLayout>
         
         </LinearLayout>
         
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/foreground_view"
+                android:id="@id/RecyclerView_ConstraintLayout_List_ForegroundView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"

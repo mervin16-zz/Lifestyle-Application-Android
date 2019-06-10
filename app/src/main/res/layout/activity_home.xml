@@ -44,7 +44,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toStartOf="@+id/ImageButton_fromHomeActivity_Icon_Sort"
-                            android:layout_marginStart="@dimen/Margin_Views_Small"
+                            android:layout_marginStart="@dimen/Margin_Views_Default"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:contentDescription="@string/ContentDescription_fromHomeActivity_SortIcon"
                             app:srcCompat="@drawable/ic_filter_dark"/>
@@ -54,45 +54,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginStart="@dimen/Margin_Views_Small"
+                            android:layout_marginStart="@dimen/Margin_Views_Default"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:contentDescription="@string/ContentDescription_fromHomeActivity_FilterIcon"
                             app:srcCompat="@drawable/ic_sort_dark"/>
                 
                 </RelativeLayout>
-                
-                <!-- Two State Button View -->
-                
-                <LinearLayout
-                        android:id="@id/LinearLayout_fromHomeActivity_ToggleButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/Margin_Views_Small"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-                    
-                    <com.google.android.material.button.MaterialButtonToggleGroup
-                            android:id="@id/ToggleButtonGroup_fromHomeActivity_default"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:singleSelection="true"
-                            app:checkedButton="@+id/Button_fromHomeActivity_ToggleButton_Active">
-                        
-                        <com.google.android.material.button.MaterialButton
-                                android:id="@id/Button_fromHomeActivity_ToggleButton_Active"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Button_fromHomeActivity_ToggleButton_Active"
-                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-                        
-                        <com.google.android.material.button.MaterialButton
-                                android:id="@id/Button_fromHomeActivity_ToggleButton_Completed"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Button_fromHomeActivity_ToggleButton_Completed"
-                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-                    </com.google.android.material.button.MaterialButtonToggleGroup>
-                </LinearLayout>
                 
                 
                 <fragment

@@ -33,10 +33,6 @@ class FragmentHome : Fragment() {
         val topBar = requireActivity().findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar)
         topBar.visibility = View.GONE
 
-        //Hide Toggle Buttons
-        val toggleButtonView = requireActivity().findViewById<LinearLayout>(R.id.LinearLayout_fromHomeActivity_ToggleButton)
-        toggleButtonView.visibility = View.GONE
-
         //Hide Fab
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
         fab.hide()

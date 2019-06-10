@@ -47,31 +47,6 @@ class ActivityHome : AppCompatActivity(){
             startActivity(Intent(this, ActivityAddItem::class.java))
             overridePendingTransition(R.anim.slide_up_in, R.anim.slide_down_out)
         }
-
-        //Configure two state button
-        mBinding.ToggleButtonGroupFromHomeActivityDefault.addOnButtonCheckedListener{ _, checkedId, isChecked ->
-
-            when(checkedId){
-                R.id.Button_fromHomeActivity_ToggleButton_Active -> {
-                    if(isChecked){
-                        this.toast("Active")
-                    }
-                }
-                R.id.Button_fromHomeActivity_ToggleButton_Completed -> {
-                    if(isChecked){
-                        this.toast("Completed")
-                    }
-                }
-                else -> { this.toast("An error has occurred while processing your request. Please try again.")}
-            }
-        }
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        mBinding.ToggleButtonGroupFromHomeActivityDefault.clearOnButtonCheckedListeners()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -2,47 +2,88 @@
 
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@id/EmptyView_forRecyclerView"
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="?attr/actionBarSize"
-            android:visibility="visible"
-            tools:visibility="visible">
+            android:layout_height="match_parent">
         
-        <ImageView
-                android:id="@id/ImageView_fromFragmentGoal_EmptyView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/ContentDescription_fromGoalFragment_EmptyView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/TextView_fromFragmentGoal_EmptyView"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:srcCompat="@drawable/ic_sadface_accent_light"
-                tools:srcCompat="@drawable/ic_sadface_accent_light"/>
+        <!-- Two State Button View -->
         
-        <TextView
-                android:id="@id/TextView_fromFragmentGoal_EmptyView"
+        <LinearLayout
+                android:id="@id/LinearLayout_fromHomeActivity_ToggleButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/TextView_fromGoalsFragment_Message_EmptyList"
-                android:textAlignment="center"
-                android:textColor="@color/colorTextAlternate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ImageView_fromFragmentGoal_EmptyView"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="@string/TextView_fromGoalsFragment_Message_EmptyList"
-                style="@style/typography_h6" />
+                android:layout_marginBottom="@dimen/Margin_Views_Small"
+                android:orientation="horizontal"
+                android:gravity="center">
+            
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@id/ToggleButtonGroup_forLifestyleList_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:checkedButton="@+id/Button_forLifestyleList_ToggleButton_Active">
+                
+                <com.google.android.material.button.MaterialButton
+                        android:id="@id/Button_forLifestyleList_ToggleButton_Active"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Button_forLifestyleList_ToggleButton_Active"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                
+                <com.google.android.material.button.MaterialButton
+                        android:id="@id/Button_forLifestyleList_ToggleButton_Completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Button_forLifestyleList_ToggleButton_Completed"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+        </LinearLayout>
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@id/EmptyView_forRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:visibility="visible"
+                tools:visibility="visible">
+            
+            <ImageView
+                    android:id="@id/ImageView_fromFragmentGoal_EmptyView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/Margin_Views_Small"
+                    android:layout_marginStart="@dimen/Margin_Views_Small"
+                    android:contentDescription="@string/ContentDescription_fromGoalFragment_EmptyView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/TextView_fromFragmentGoal_EmptyView"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:srcCompat="@drawable/ic_sadface_accent_light"
+                    tools:srcCompat="@drawable/ic_sadface_accent_light"/>
+            
+            <TextView
+                    android:id="@id/TextView_fromFragmentGoal_EmptyView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/TextView_fromGoalsFragment_Message_EmptyList_Active"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorTextAlternate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ImageView_fromFragmentGoal_EmptyView"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="@string/TextView_fromGoalsFragment_Message_EmptyList_Active"
+                    style="@style/typography_h6"/>
+        
+        </androidx.constraintlayout.widget.ConstraintLayout>
     
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>
+    
 </layout>
