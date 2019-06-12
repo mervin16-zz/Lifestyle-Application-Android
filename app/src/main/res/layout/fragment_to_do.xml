@@ -13,7 +13,7 @@
     
         <variable
                 name="toggleButtonState"
-                type="com.th3pl4gu3.lifestyle.ui.home.section_todo.ToDoViewModel.ToggleButton" />
+                type="com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates" />
     </data>
     
     <LinearLayout

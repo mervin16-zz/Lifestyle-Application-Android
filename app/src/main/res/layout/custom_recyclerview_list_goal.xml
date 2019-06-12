@@ -6,8 +6,8 @@
     
     <data>
         <variable
-                name="MyToDo"
-                type="com.th3pl4gu3.lifestyle.core.lifestyle.ToDo"/>
+                name="MyGoal"
+                type="com.th3pl4gu3.lifestyle.core.lifestyle.Goal"/>
     </data>
     
     <FrameLayout
@@ -21,13 +21,13 @@
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
                 android:orientation="horizontal">
-            
+        
             <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:padding="@dimen/Margin_Views_Default">
-                
+            
                 <ImageView
                         android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Delete"
                         android:layout_width="wrap_content"
@@ -35,15 +35,15 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_delete_light"/>
-            
+        
             </RelativeLayout>
-            
+        
             <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:padding="@dimen/Margin_Views_Default">
-                
+            
                 <ImageView
                         android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Complete"
                         android:layout_width="wrap_content"
@@ -52,12 +52,12 @@
                         android:layout_centerVertical="true"
                         app:srcCompat="@drawable/ic_done_light"
                         tools:srcCompat="@drawable/ic_done_light"
-                        app:lifestyleItemSwipingMarkingIcon="@{MyToDo}"/>
-            
+                        app:lifestyleItemSwipingMarkingIcon="@{MyGoal}"/>
+        
             </RelativeLayout>
-        
+    
         </LinearLayout>
-        
+    
         <!-- Foreground View: Where the Lifestyle item information is visible -->
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@id/RecyclerView_ConstraintLayout_List_ForegroundView"
@@ -66,22 +66,37 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:background="@color/white_000">
-            
+    
+    
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_Views_Default"
+                    android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
+                    app:lifestyleItemDateAdded="@{MyGoal}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/RecyclerView_LifestyleItem_List_Title"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    tools:text="Added On 16 March 1996"/>
+    
             <TextView
                     android:id="@id/RecyclerView_LifestyleItem_List_Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/Margin_Views_Default"
+                    android:layout_marginTop="@dimen/Margin_List_RecyclerView_Default_BetweenTitle"
                     android:layout_marginBottom="@dimen/Margin_List_RecyclerView_Default_BetweenTitle"
                     android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
-                    app:lifestyleItemTitle="@{MyToDo}"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:lifestyleItemTitle="@{MyGoal}"
+                    app:layout_constraintTop_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Date"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/RecyclerView_LifestyleItem_List_Category"
                     app:layout_constraintVertical_chainStyle="packed"
                     style="@style/TextAppearance.MaterialComponents.Headline6"
-                    tools:text="This is the title."/>
-            
+                    tools:text="This is the title." />
+    
             <TextView
                     android:id="@id/RecyclerView_LifestyleItem_List_Category"
                     android:layout_width="wrap_content"
@@ -89,39 +104,28 @@
                     android:layout_marginTop="@dimen/Margin_List_RecyclerView_Default_BetweenTitle"
                     android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
                     android:layout_marginBottom="@dimen/Margin_Views_Default"
-                    app:lifestyleItemCategory="@{MyToDo}"
+                    app:lifestyleItemCategory="@{MyGoal}"
                     app:layout_constraintTop_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintBottom_toBottomOf="parent"
                     style="@style/TextAppearance.MaterialComponents.Subtitle2"
                     tools:text="This is the subtitle."/>
-            
-            <ImageView
-                    android:id="@id/RecyclerView_LifestyleItem_List_Priority"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/Margin_Views_Default"
-                    android:layout_marginEnd="@dimen/Margin_Views_Default"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_priority_4"
-                    tools:srcCompat="@drawable/ic_priority_4"
-                    app:lifestyleItemPriority="@{MyToDo}"/>
-            
-            <TextView
-                    android:id="@id/RecyclerView_LifestyleItem_List_Date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/Margin_List_RecyclerView_Default_EndOfList"
-                    app:lifestyleItemDateAdded="@{MyToDo}"
-                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Category"
-                    app:layout_constraintEnd_toEndOf="@+id/RecyclerView_LifestyleItem_List_Priority"
-                    style="@style/TextAppearance.MaterialComponents.Overline"
-                    tools:text="16 March 1996"/>
-        
-        </androidx.constraintlayout.widget.ConstraintLayout>
     
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_DaysOld"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/Margin_Views_Default"
+                    app:lifestyleItemDaysOld="@{MyGoal}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    style="@style/TextAppearance.MaterialComponents.Overline"
+                    tools:text="10 Days Ago" />
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
     </FrameLayout>
-
+    
 </layout>

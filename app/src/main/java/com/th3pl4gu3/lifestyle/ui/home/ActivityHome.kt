@@ -7,22 +7,16 @@ import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.button.MaterialButtonToggleGroup
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.ui.Utils.toast
+import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.databinding.ActivityHomeBinding
 import com.th3pl4gu3.lifestyle.ui.add_item.ActivityAddItem
-
-
 
 
 class ActivityHome : AppCompatActivity(){
 
     private lateinit var mBinding: ActivityHomeBinding
     private var mBottomNavDrawerFragment: RoundedBottomSheetDialogFragment? = null
-    private lateinit var mViewModel: ActivityHomeViewModel
 
     private var saveClickCounter = 0
 
@@ -30,9 +24,6 @@ class ActivityHome : AppCompatActivity(){
         super.onCreate(savedInstanceState)
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-
-        //Get view model
-        mViewModel = ViewModelProviders.of(this).get(ActivityHomeViewModel::class.java)
 
         //Set the bottom bar as SupportActionBar
         setSupportActionBar(mBinding.BottomAppBarFromHomeActivityMain)

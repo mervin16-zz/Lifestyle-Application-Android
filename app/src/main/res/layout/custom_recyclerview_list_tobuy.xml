@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+                name="MyToBuy"
+                type="com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy"/>
+    </data>
+    
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    
+        <!-- Background View: Where the action to be taken when swiping on the Lifestyle item -->
+        <LinearLayout
+                android:id="@id/RecyclerView_LinearLayout_List_BackgroundView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+        
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/Margin_Views_Default">
+            
+                <ImageView
+                        android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_delete_light"/>
+        
+            </RelativeLayout>
+        
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/Margin_Views_Default">
+            
+                <ImageView
+                        android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Complete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_done_light"
+                        tools:srcCompat="@drawable/ic_done_light"
+                        app:lifestyleItemSwipingMarkingIcon="@{MyToBuy}"/>
+        
+            </RelativeLayout>
+    
+        </LinearLayout>
+    
+        <!-- Foreground View: Where the Lifestyle item information is visible -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@id/RecyclerView_ConstraintLayout_List_ForegroundView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@color/white_000">
+    
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_Views_Default"
+                    android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
+                    app:lifestyleItemCategory="@{MyToBuy}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    tools:text="Subtitle" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintEnd_toStartOf="@+id/RecyclerView_LifestyleItem_List_Date"
+                    android:layout_marginBottom="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/RecyclerView_LifestyleItem_List_Title"/>
+    
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:lifestyleItemDateAdded="@{MyToBuy}"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    tools:text="16 March 1996"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Category"/>
+    
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:lifestyleItemTitle="@{MyToBuy}"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    tools:text="This is the title."
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:layout_marginTop="@dimen/Margin_List_RecyclerView_Default_BetweenTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/RecyclerView_LifestyleItem_List_Price"/>
+    
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:toBuyPrice="@{MyToBuy}"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    tools:text="Rs 10.00"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Title"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"/>
+    
+            <ImageView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_Views_Default"
+                    android:layout_marginEnd="@dimen/Margin_Views_Default"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_priority_4"
+                    tools:srcCompat="@drawable/ic_priority_4"
+                    app:lifestyleItemPriority="@{MyToBuy}"/>
+    
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_Quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:toBuyQuantity="@{MyToBuy}"
+                    style="@style/TextAppearance.MaterialComponents.Overline"
+                    tools:text="Quantity: 6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/RecyclerView_LifestyleItem_List_TotalPrice"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Title"/>
+                    
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_TotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:toBuyTotal="@{MyToBuy}"
+                    style="@style/TextAppearance.MaterialComponents.Overline"
+                    tools:text="= Rs600" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/Margin_List_RecyclerView_Default_EndOfList"
+                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Price"
+                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Price" />
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+    
+</layout>

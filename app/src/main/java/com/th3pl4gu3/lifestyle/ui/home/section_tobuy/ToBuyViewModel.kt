@@ -1,17 +1,19 @@
-package com.th3pl4gu3.lifestyle.ui.home.section_todo
+package com.th3pl4gu3.lifestyle.ui.home.section_tobuy
 
 import android.app.Application
-import androidx.lifecycle.*
-import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MediatorLiveData
+import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.operations.Filter
-import com.th3pl4gu3.lifestyle.core.operations.ToDoOperations
+import com.th3pl4gu3.lifestyle.core.operations.ToBuyOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
 import kotlinx.coroutines.*
 
-class ToDoViewModel(
+class ToBuyViewModel(
     val database: LifestyleDatabase,
-    application: Application) : AndroidViewModel(application) {
+    application: Application
+) : AndroidViewModel(application) {
 
     private var _viewModelJob = Job()
 
@@ -20,66 +22,64 @@ class ToDoViewModel(
     //Current state of the toggle button (Current button checked)
     var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
-    //Fetch all to dos from database
-    private var _toDos = ToDoOperations.getAllOffline(database)
-    val toDosMediatorLiveData = MediatorLiveData<List<ToDo>>()
+    //Fetch all To Buys from database
+    private var _toBuys = ToBuyOperations.getAllOffline(database)
+    val toBuysMediatorLiveData = MediatorLiveData<List<ToBuy>>()
 
     init {
         //Update the list of the recyclerview on INIT
         updateList(currentToggleButtonState)
     }
 
-
     /**
      * Public functions that are accessible from the outside
      **/
-
     fun updateList(toggleButton: ToggleButtonStates) {
-        toDosMediatorLiveData.removeSource(_toDos)
+        toBuysMediatorLiveData.removeSource(_toBuys)
 
         when(toggleButton){
             ToggleButtonStates.BUTTON_ALL ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ALL
 
-                toDosMediatorLiveData.addSource(_toDos){
-                    toDosMediatorLiveData.value = it
+                toBuysMediatorLiveData.addSource(_toBuys){
+                    toBuysMediatorLiveData.value = it
                 }
             }
 
             ToggleButtonStates.BUTTON_ACTIVE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
-                toDosMediatorLiveData.addSource(_toDos){
-                    toDosMediatorLiveData.value = Filter<ToDo>(it).getActive()
+                toBuysMediatorLiveData.addSource(_toBuys){
+                    toBuysMediatorLiveData.value = Filter<ToBuy>(it).getActive()
                 }
             }
             ToggleButtonStates.BUTTON_COMPLETE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
-                toDosMediatorLiveData.addSource(_toDos){
-                    toDosMediatorLiveData.value = Filter<ToDo>(it).getCompleted()
+                toBuysMediatorLiveData.addSource(_toBuys){
+                    toBuysMediatorLiveData.value = Filter<ToBuy>(it).getCompleted()
                 }
             }
         }
     }
 
-    fun insertItem(toDo: ToDo) {
+    fun insertItem(toBuy: ToBuy) {
         _uiScope.launch {
-            insert(toDo)
+            insert(toBuy)
         }
     }
 
-    fun markAsDeleted(toDo: ToDo) {
+    fun markAsDeleted(toBuy: ToBuy) {
         _uiScope.launch {
-            remove(toDo)
+            remove(toBuy)
         }
     }
 
-    fun markItem(toDo: ToDo){
-        if(toDo.dateCompleted == null){
-            markAsCompleted(toDo)
+    fun markItem(toBuy: ToBuy){
+        if(toBuy.dateCompleted == null){
+            markAsCompleted(toBuy)
         }else{
-            markAsIncomplete(toDo)
+            markAsIncomplete(toBuy)
         }
     }
 
@@ -88,35 +88,35 @@ class ToDoViewModel(
      * Private functions for internal use ONLY
      **/
 
-    private fun markAsCompleted(newToDo: ToDo) {
+    private fun markAsCompleted(newToBuy: ToBuy) {
         _uiScope.launch {
-            newToDo.markAsComplete()
-            update(newToDo)
+            newToBuy.markAsComplete()
+            update(newToBuy)
         }
     }
 
-    private fun markAsIncomplete(newToDo: ToDo) {
+    private fun markAsIncomplete(newToBuy: ToBuy) {
         _uiScope.launch {
-            newToDo.markAsIncomplete()
-            update(newToDo)
+            newToBuy.markAsIncomplete()
+            update(newToBuy)
         }
     }
 
-    private suspend fun insert(toDo: ToDo) {
+    private suspend fun insert(toBuy: ToBuy) {
         withContext(Dispatchers.IO) {
-            toDo.add(database)
+            toBuy.add(database)
         }
     }
 
-    private suspend fun remove(toDo: ToDo) {
+    private suspend fun remove(toBuy: ToBuy) {
         withContext(Dispatchers.IO) {
-            toDo.delete(database)
+            toBuy.delete(database)
         }
     }
 
-    private suspend fun update(newToDo: ToDo) {
+    private suspend fun update(newToBuy: ToBuy) {
         withContext(Dispatchers.IO) {
-            newToDo.update(database)
+            newToBuy.update(database)
         }
     }
 

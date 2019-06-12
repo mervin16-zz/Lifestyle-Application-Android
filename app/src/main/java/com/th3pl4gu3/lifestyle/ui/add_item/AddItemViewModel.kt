@@ -142,7 +142,7 @@ class AddItemViewModel(
                             return@launch
                         }
 
-                        val toBuy = ToBuy(title = itemTitle, category = itemCategory)
+                        val toBuy = ToBuy(title = itemTitle, category = itemCategory, priority = _itemPriority!!, estimatedPrice = itemPrice, quantity = itemQty)
                         insert(toBuy)
 
                         _showSnackbarEvent.value = "$itemTitle has been added successfully."
@@ -164,13 +164,13 @@ class AddItemViewModel(
 
     private suspend fun insert(toDo: ToDo) {
         withContext(Dispatchers.IO) {
-            database.toDoDao.insert(toDo)
+            toDo.add(database)
         }
     }
 
     private suspend fun insert(toBuy: ToBuy) {
         withContext(Dispatchers.IO) {
-            database.toBuyDao.insert(toBuy)
+            toBuy.add(database)
         }
     }
 

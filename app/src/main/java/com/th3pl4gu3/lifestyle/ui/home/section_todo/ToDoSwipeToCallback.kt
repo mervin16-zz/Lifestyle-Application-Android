@@ -1,4 +1,4 @@
-package com.th3pl4gu3.lifestyle.ui.Utils
+package com.th3pl4gu3.lifestyle.ui.home.section_todo
 
 import android.content.Context
 import android.graphics.*
@@ -6,9 +6,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.ui.home.section_todo.ToDoAdapter
 
-abstract class SwipeToCallback(ctx: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+abstract class ToDoSwipeToCallback(ctx: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
     private var context = ctx
 
@@ -18,6 +17,7 @@ abstract class SwipeToCallback(ctx: Context) : ItemTouchHelper.SimpleCallback(0,
 
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
                              dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+
         val foregroundView = (viewHolder as ToDoAdapter.ViewHolder).binding.RecyclerViewConstraintLayoutListForegroundView
 
         if(dX < 0){

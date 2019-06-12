@@ -24,7 +24,11 @@
     <item type="id" name="RecyclerView_LifestyleItem_List_Title"/>
     <item type="id" name="RecyclerView_LifestyleItem_List_Category"/>
     <item type="id" name="RecyclerView_LifestyleItem_List_Date"/>
+    <item type="id" name="RecyclerView_LifestyleItem_List_DaysOld"/>
     <item type="id" name="RecyclerView_LifestyleItem_List_Priority"/>
+    <item type="id" name="RecyclerView_LifestyleItem_List_Quantity"/>
+    <item type="id" name="RecyclerView_LifestyleItem_List_Price"/>
+    <item type="id" name="RecyclerView_LifestyleItem_List_TotalPrice"/>
     <item type="id" name="RecyclerView_LinearLayout_List_BackgroundView"/>
     <item type="id" name="RecyclerView_ConstraintLayout_List_ForegroundView"/>
     <item type="id" name="RecyclerView_LifestyleItem_ImageView_List_Delete"/>

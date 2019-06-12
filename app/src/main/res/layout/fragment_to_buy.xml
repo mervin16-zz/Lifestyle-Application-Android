@@ -5,6 +5,17 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     
+    <data>
+        
+        <variable
+                name="toBuyViewModel"
+                type="com.th3pl4gu3.lifestyle.ui.home.section_tobuy.ToBuyViewModel" />
+        
+        <variable
+                name="toggleButtonState"
+                type="com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates" />
+    </data>
+    
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -32,6 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/Button_forLifestyleList_ToggleButton_Active"
+                        android:onClick="@{() -> toBuyViewModel.updateList(toggleButtonState.BUTTON_ACTIVE)}"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
                 
                 <com.google.android.material.button.MaterialButton
@@ -39,9 +51,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/Button_forLifestyleList_ToggleButton_Completed"
+                        android:onClick="@{() -> toBuyViewModel.updateList(toggleButtonState.BUTTON_COMPLETE)}"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
             </com.google.android.material.button.MaterialButtonToggleGroup>
         </LinearLayout>
+    
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/RecyclerView_fromFragmentToBuy_Main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Margin_Views_Small"
+                android:layout_marginBottom="?attr/actionBarSize"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
         
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@id/EmptyView_forRecyclerView"

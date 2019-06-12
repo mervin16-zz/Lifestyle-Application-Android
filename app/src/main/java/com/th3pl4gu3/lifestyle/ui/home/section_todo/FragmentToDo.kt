@@ -16,11 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.ui.Utils.toast
+import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
-import com.th3pl4gu3.lifestyle.ui.Utils.SwipeToCallback
-import com.th3pl4gu3.lifestyle.ui.Utils.snackBar
+import com.th3pl4gu3.lifestyle.ui.utils.action
+import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
+import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
 
 class FragmentToDo : Fragment() {
 
@@ -68,7 +69,7 @@ class FragmentToDo : Fragment() {
         })
 
         //Swipe configurations
-        val swipeHandler = object : SwipeToCallback(requireContext()) {
+        val swipeHandler = object : ToDoSwipeToCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
                 val swipedToDo = (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
@@ -82,9 +83,13 @@ class FragmentToDo : Fragment() {
                     ItemTouchHelper.RIGHT -> {
                         mToDoViewModel.markAsDeleted(swipedToDo)
 
-                        requireActivity().findViewById<View>(android.R.id.content)
-                            .snackBar(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping, swipedToDo.title),
-                                anchorView = fab)
+                        //Show Snackbar with 'Undo' action
+                        requireActivity().findViewById<View>(android.R.id.content).snackBarWithAction(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping, swipedToDo.title), anchorView = fab){
+                                action(getString(R.string.Button_forLifestyleRestoreItem_SnackBar_Undo)){
+                                    mToDoViewModel.insertItem(swipedToDo)
+                                    //Restore Item
+                                }
+                            }
                     }
 
                     else ->{
@@ -110,9 +115,9 @@ class FragmentToDo : Fragment() {
             mBinding.RecyclerViewFromFragmentToDoMain.visibility = View.VISIBLE
             mBinding.EmptyViewForRecyclerView.visibility = View.GONE
         }else{
-            if(mToDoViewModel.currentToggleButtonState == ToDoViewModel.ToggleButton.BUTTON_COMPLETE){
+            if(mToDoViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_COMPLETE){
                 mBinding.TextViewFromFragmentToDoEmptyView.text = getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Completed)
-            }else if(mToDoViewModel.currentToggleButtonState == ToDoViewModel.ToggleButton.BUTTON_ACTIVE){
+            }else if(mToDoViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_ACTIVE){
                 mBinding.TextViewFromFragmentToDoEmptyView.text = getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Active)
             }
 

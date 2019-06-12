@@ -1,4 +1,4 @@
-package com.th3pl4gu3.lifestyle.ui.Utils
+package com.th3pl4gu3.lifestyle.ui.utils
 
 import android.content.Context
 import android.view.View

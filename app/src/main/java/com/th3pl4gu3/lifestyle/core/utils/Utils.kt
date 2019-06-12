@@ -1,7 +1,7 @@
 package com.th3pl4gu3.lifestyle.core.utils
 
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
-import com.th3pl4gu3.lifestyle.ui.Utils.capitalizeEachWords
+import com.th3pl4gu3.lifestyle.ui.utils.capitalizeEachWords
 import java.text.DateFormat
 import java.time.temporal.ChronoUnit
 import java.util.*

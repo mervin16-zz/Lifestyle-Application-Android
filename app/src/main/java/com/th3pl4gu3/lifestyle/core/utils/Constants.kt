@@ -78,3 +78,4 @@ const val MESSAGE_EXCEPTION_REQUEST_PROCESSING = "An error has occurred while pr
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_ADDITEM = "An internal error occurred: Unknown View Model when trying to fetch item."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_GOALS = "An internal error occurred: Unknown View Model when trying to fetch your goals."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_TODOS = "An internal error occurred: Unknown View Model when trying to fetch your to dos."
+const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_TOBUYS = "An internal error occurred: Unknown View Model when trying to fetch your to buys."

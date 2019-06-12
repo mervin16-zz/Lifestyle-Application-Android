@@ -23,6 +23,7 @@
     <!-- Toggle Button -->
     <string name="Button_forLifestyleList_ToggleButton_Active">Active</string>
     <string name="Button_forLifestyleList_ToggleButton_Completed">Completed</string>
+    <string name="Button_forLifestyleRestoreItem_SnackBar_Undo">Undo</string>
     
     
     <!-- Placeholders -->
