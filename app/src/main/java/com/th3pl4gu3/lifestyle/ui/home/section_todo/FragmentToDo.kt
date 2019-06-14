@@ -2,6 +2,7 @@ package com.th3pl4gu3.lifestyle.ui.home.section_todo
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
+import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentForLifestyleItemDetails
 
 class FragmentToDo : Fragment() {
 
@@ -55,7 +57,12 @@ class FragmentToDo : Fragment() {
         mBinding.lifecycleOwner = this
 
         //RecyclerView's configuration
-        val adapter = ToDoAdapter()
+        val adapter = ToDoAdapter(ToDoListener {
+            val bottomFragment =
+                RoundedBottomSheetDialogFragmentForLifestyleItemDetails(it)
+            bottomFragment.show(requireActivity().supportFragmentManager, bottomFragment.tag)
+        })
+
         mBinding.RecyclerViewFromFragmentToDoMain.adapter = adapter
 
         mToDoViewModel.toDosMediatorLiveData.observe(viewLifecycleOwner, Observer {
@@ -74,7 +81,10 @@ class FragmentToDo : Fragment() {
 
                 val swipedToDo = (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
                 val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
-
+                Log.d("POSITIONING", "Layout Position: ${viewHolder.layoutPosition}")
+                Log.d("POSITIONING", "Adapter Position: ${viewHolder.adapterPosition}")
+                Log.d("POSITIONING", "Old Position: ${viewHolder.oldPosition}")
+                Log.d("POSITIONING", "Item Position in Array: ${(mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList.indexOf(swipedToDo)}")
                 when(direction){
                     ItemTouchHelper.LEFT -> {
                         mToDoViewModel.markItem(swipedToDo)
@@ -87,7 +97,6 @@ class FragmentToDo : Fragment() {
                         requireActivity().findViewById<View>(android.R.id.content).snackBarWithAction(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping, swipedToDo.title), anchorView = fab){
                                 action(getString(R.string.Button_forLifestyleRestoreItem_SnackBar_Undo)){
                                     mToDoViewModel.insertItem(swipedToDo)
-                                    //Restore Item
                                 }
                             }
                     }

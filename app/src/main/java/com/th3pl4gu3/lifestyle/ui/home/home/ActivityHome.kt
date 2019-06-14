@@ -1,4 +1,4 @@
-package com.th3pl4gu3.lifestyle.ui.home
+package com.th3pl4gu3.lifestyle.ui.home.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +16,7 @@ import com.th3pl4gu3.lifestyle.ui.add_item.ActivityAddItem
 class ActivityHome : AppCompatActivity(){
 
     private lateinit var mBinding: ActivityHomeBinding
-    private var mBottomNavDrawerFragment: RoundedBottomSheetDialogFragment? = null
+    private var mBottomNavDrawerFragment: RoundedBottomSheetDialogFragmentForBottomAppBarDrawer? = null
 
     private var saveClickCounter = 0
 
@@ -38,6 +38,16 @@ class ActivityHome : AppCompatActivity(){
             startActivity(Intent(this, ActivityAddItem::class.java))
             overridePendingTransition(R.anim.slide_up_in, R.anim.slide_down_out)
         }
+
+        mBinding.ImageButtonFromHomeActivityIconFilter.setOnClickListener {
+            val filterBottomDialog = RoundedBottomSheetDialogFragmentFilter()
+            filterBottomDialog.show(supportFragmentManager, filterBottomDialog.tag)
+        }
+
+        mBinding.ImageButtonFromHomeActivityIconSort.setOnClickListener {
+            val sortBottomDialog = RoundedBottomSheetDialogFragmentSort()
+            sortBottomDialog.show(supportFragmentManager, sortBottomDialog.tag)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -51,7 +61,8 @@ class ActivityHome : AppCompatActivity(){
             android.R.id.home -> {
                 if (saveClickCounter++ == 0) {
 
-                    mBottomNavDrawerFragment = RoundedBottomSheetDialogFragment()
+                    mBottomNavDrawerFragment =
+                        RoundedBottomSheetDialogFragmentForBottomAppBarDrawer()
                     mBottomNavDrawerFragment?.show(supportFragmentManager, mBottomNavDrawerFragment?.tag)
 
                     Handler().postDelayed({

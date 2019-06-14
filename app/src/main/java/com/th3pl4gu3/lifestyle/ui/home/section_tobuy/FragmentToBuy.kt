@@ -19,6 +19,7 @@ import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToBuyBinding
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
+import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentForLifestyleItemDetails
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
 
@@ -54,7 +55,12 @@ class FragmentToBuy : Fragment() {
         mBinding.lifecycleOwner = this
 
         //RecyclerView's configuration
-        val adapter = ToBuyAdapter()
+        val adapter = ToBuyAdapter(ToBuyListener{
+            val bottomFragment =
+                RoundedBottomSheetDialogFragmentForLifestyleItemDetails(it)
+            bottomFragment.show(requireActivity().supportFragmentManager, bottomFragment.tag)
+        })
+
         mBinding.RecyclerViewFromFragmentToBuyMain.adapter = adapter
 
         mToBuyViewModel.toBuysMediatorLiveData.observe(viewLifecycleOwner, Observer {

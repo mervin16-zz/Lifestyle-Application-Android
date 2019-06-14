@@ -9,11 +9,10 @@ import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.databinding.CustomRecyclerviewListTobuyBinding
 import com.th3pl4gu3.lifestyle.databinding.CustomRecyclerviewListTodoBinding
 
-class ToBuyAdapter : ListAdapter<ToBuy, ToBuyAdapter.ViewHolder>(ToDoDiffCallback()) {
+class ToBuyAdapter(private val clickListener: ToBuyListener) : ListAdapter<ToBuy, ToBuyAdapter.ViewHolder>(ToDoDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val toBuy = getItem(position)
-        holder.bind(toBuy)
+        holder.bind(getItem(position), clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,8 +20,9 @@ class ToBuyAdapter : ListAdapter<ToBuy, ToBuyAdapter.ViewHolder>(ToDoDiffCallbac
     }
 
     class ViewHolder private constructor(val binding: CustomRecyclerviewListTobuyBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(toBuy: ToBuy) {
+        fun bind(toBuy: ToBuy, clickListener: ToBuyListener) {
             binding.myToBuy = toBuy
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -47,4 +47,8 @@ class ToDoDiffCallback: DiffUtil.ItemCallback<ToBuy>() {
         return oldItem == newItem
     }
 
+}
+
+class ToBuyListener(val clickListener: (toBuy: ToBuy) -> Unit){
+    fun onClick(toBuy: ToBuy) = clickListener(toBuy)
 }

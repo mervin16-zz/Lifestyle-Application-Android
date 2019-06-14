@@ -1,5 +1,6 @@
 package com.th3pl4gu3.lifestyle.ui.home.section_todo
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
 import com.th3pl4gu3.lifestyle.databinding.CustomRecyclerviewListTodoBinding
 
-class ToDoAdapter : ListAdapter<ToDo, ToDoAdapter.ViewHolder>(ToDoDiffCallback()) {
+class ToDoAdapter(private val clickListener: ToDoListener) : ListAdapter<ToDo, ToDoAdapter.ViewHolder>(ToDoDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val toDo = getItem(position)
-        holder.bind(toDo)
+        holder.bind(getItem(position), clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,8 +20,9 @@ class ToDoAdapter : ListAdapter<ToDo, ToDoAdapter.ViewHolder>(ToDoDiffCallback()
     }
 
     class ViewHolder private constructor(val binding: CustomRecyclerviewListTodoBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(toDo: ToDo) {
+        fun bind(toDo: ToDo, clickListener: ToDoListener) {
             binding.myToDo = toDo
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -48,3 +49,6 @@ class ToDoDiffCallback: DiffUtil.ItemCallback<ToDo>() {
 
 }
 
+class ToDoListener(val clickListener: (toDo: ToDo) -> Unit){
+    fun onClick(toDo: ToDo) = clickListener(toDo)
+}

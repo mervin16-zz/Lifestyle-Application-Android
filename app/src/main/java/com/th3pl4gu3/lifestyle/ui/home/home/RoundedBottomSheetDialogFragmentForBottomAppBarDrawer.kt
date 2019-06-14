@@ -1,4 +1,4 @@
-package com.th3pl4gu3.lifestyle.ui.home
+package com.th3pl4gu3.lifestyle.ui.home.home
 
 import android.app.Dialog
 import android.os.Bundle
@@ -13,7 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.databinding.FragmentBottomappbarDrawerBinding
 
-open class RoundedBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class RoundedBottomSheetDialogFragmentForBottomAppBarDrawer : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 

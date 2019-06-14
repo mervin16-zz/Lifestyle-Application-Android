@@ -8,6 +8,8 @@
         <variable
                 name="MyToBuy"
                 type="com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy"/>
+    
+        <variable name="clickListener" type="com.th3pl4gu3.lifestyle.ui.home.section_tobuy.ToBuyListener"/>
     </data>
     
     <FrameLayout
@@ -65,7 +67,9 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="@color/white_000">
+                android:background="@color/white_000"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="@{() -> clickListener.onClick(MyToBuy)}">
     
             <TextView
                     android:id="@id/RecyclerView_LifestyleItem_List_Category"

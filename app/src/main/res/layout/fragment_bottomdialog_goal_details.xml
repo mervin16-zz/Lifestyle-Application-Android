@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <data>
+        <variable name="MyGoal" type="com.th3pl4gu3.lifestyle.core.lifestyle.Goal"/>
+    </data>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    android:padding="@dimen/Margin_Views_Default">
+    
+        <TextView
+                app:lifestyleItemTitle="@{MyGoal}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                tools:text="The Title"
+                style="@style/typography_h5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textView2" android:layout_marginBottom="8dp"/>
+    
+        <TextView
+                app:lifestyleItemCategory="@{MyGoal}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                style="@style/typography_subtitle_1."
+                tools:text="The Category"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/relativeLayout"/>
+    
+        <TextView
+                app:lifestyleItemDateAdded="@{MyGoal}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                tools:text="Added on 16 March 1996"
+                app:layout_constraintTop_toTopOf="@+id/textView2"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+    
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textView2"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="24dp"
+                android:id="@+id/relativeLayout">
+        
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/Margin_Views_Default"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_edit_blue"
+                    tools:srcCompat="@drawable/ic_edit_blue"
+                    android:id="@+id/imageView3"/>
+    
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/imageView3"
+                    android:layout_marginStart="@dimen/Margin_Views_Default"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_done_green"
+                    tools:srcCompat="@drawable/ic_done_green"
+                    android:id="@+id/imageView4"/>
+    
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/imageView4"
+                    android:layout_marginStart="@dimen/Margin_Views_Default"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_delete_red"
+                    tools:srcCompat="@drawable/ic_delete_red"
+                    android:id="@+id/imageView5"/>
+    
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

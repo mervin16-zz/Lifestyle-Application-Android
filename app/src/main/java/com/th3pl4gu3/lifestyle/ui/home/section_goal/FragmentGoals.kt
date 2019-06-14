@@ -17,9 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentGoalsBinding
-import com.th3pl4gu3.lifestyle.ui.utils.snackBar
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
+import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentForLifestyleItemDetails
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
 
@@ -55,7 +55,12 @@ class FragmentGoals : Fragment() {
         mBinding.lifecycleOwner = this
 
         //RecyclerView's configuration
-        val adapter = GoalAdapter()
+        val adapter = GoalAdapter(GoalListener{
+            val bottomFragment =
+                RoundedBottomSheetDialogFragmentForLifestyleItemDetails(it)
+            bottomFragment.show(requireActivity().supportFragmentManager, bottomFragment.tag)
+        })
+
         mBinding.RecyclerViewFromFragmentGoalMain.adapter = adapter
 
         mGoalViewModel.goalsMediatorLiveData.observe(viewLifecycleOwner, Observer {

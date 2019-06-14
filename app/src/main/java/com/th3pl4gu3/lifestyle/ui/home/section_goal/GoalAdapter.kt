@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
 import com.th3pl4gu3.lifestyle.databinding.CustomRecyclerviewListGoalBinding
 
-class GoalAdapter : ListAdapter<Goal, GoalAdapter.ViewHolder>(ToDoDiffCallback()) {
+class GoalAdapter(private val clickListener: GoalListener) : ListAdapter<Goal, GoalAdapter.ViewHolder>(ToDoDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val goal = getItem(position)
-        holder.bind(goal)
+        holder.bind(getItem(position), clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,8 +19,9 @@ class GoalAdapter : ListAdapter<Goal, GoalAdapter.ViewHolder>(ToDoDiffCallback()
     }
 
     class ViewHolder private constructor(val binding: CustomRecyclerviewListGoalBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(goal: Goal) {
+        fun bind(goal: Goal, clickListener: GoalListener) {
             binding.myGoal = goal
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -46,4 +46,8 @@ class ToDoDiffCallback: DiffUtil.ItemCallback<Goal>() {
         return oldItem == newItem
     }
 
+}
+
+class GoalListener(val clickListener: (goal: Goal) -> Unit){
+    fun onClick(goal: Goal) = clickListener(goal)
 }
