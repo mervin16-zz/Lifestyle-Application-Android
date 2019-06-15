@@ -3,6 +3,9 @@ package com.th3pl4gu3.lifestyle.core.utils
 
 /********************************* Values *********************************/
 
+// Regex Values //
+const val VALUE_REGEX_WHITESPACES_SEQUENCE = "\\s+"
+
 // Suppressed Values //
 const val VALUE_SUPPRESSED_UNCHECKED_CAST = "unchecked_cast"
 
@@ -14,6 +17,9 @@ const val VALUE_UNDERSCORE = "_"
 const val VALUE_LIFESTYLE_ITEM_GOAL = "Goal"
 const val VALUE_LIFESTYLE_ITEM_TODO = "To Do"
 const val VALUE_LIFESTYLE_ITEM_TOBUY = "To Buy"
+
+// Currency //
+const val VALUE_CURRENCY_SYMBOL_RS= "Rs "
 
 /********************************* Enums *********************************/
 
@@ -67,6 +73,14 @@ const val PLACEHOLDER_ITEM_LIFESTYLE_CATEGORY = "Category"
 const val PLACEHOLDER_ITEM_LIFESTYLE_ESTIMATEDPRICE = 0.0
 const val PLACEHOLDER_ITEM_LIFESTYLE_QTY = 0
 
+// Days //
+const val PLACEHOLDER_DAYS_1 = "1 Day"
+const val PLACEHOLDER_DAYS_MULTIPLE = "Days"
+const val PLACEHOLDER_MONTHS_1 = "1 Month"
+const val PLACEHOLDER_MONTHS_MULTIPLE = "Months"
+const val PLACEHOLDER_YEARS_1 = "1 Year"
+const val PLACEHOLDER_YEARS_MULTIPLE = "Years"
+
 
 /********************************* Messages *********************************/
 
@@ -74,6 +88,7 @@ const val PLACEHOLDER_ITEM_LIFESTYLE_QTY = 0
 const val MESSAGE_EXCEPTION_GOAL_NOT_EXIST = "Error while fetching your Goal. This Goal doesn't exist."
 const val MESSAGE_EXCEPTION_TODO_NOT_EXIST = "Error while fetching your To Do. This To Do task doesn't exist."
 const val MESSAGE_EXCEPTION_TOBUY_NOT_EXIST = "Error while fetching your To Buy. This To Buy task doesn't exist."
+const val MESSAGE_EXCEPTION_DAYSACTIVE_ERROR = "An error has occurred while processing the active days in your task. Please try again or refresh the screen."
 const val MESSAGE_EXCEPTION_REQUEST_PROCESSING = "An error has occurred while processing your request. Please try again."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_ADDITEM = "An internal error occurred: Unknown View Model when trying to fetch item."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_GOALS = "An internal error occurred: Unknown View Model when trying to fetch your goals."

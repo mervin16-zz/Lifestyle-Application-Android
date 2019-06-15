@@ -190,4 +190,477 @@ class UtilsTest {
         assertTrue(toDo)
         assertTrue(toBuy)
     }
+
+
+    @Test
+    @Throws(Exception::class)
+    fun toCurrency1Of3(){
+
+        //Arrange
+        val expectedResult = "Rs 100.50"
+        val value = 100.5
+        val result: String?
+
+        //Act
+        result = Utils.toCurrency(value)
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+
+    @Test
+    @Throws(Exception::class)
+    fun toCurrency2Of3(){
+
+        //Arrange
+        val expectedResult = "Rs 1,000.12"
+        val value = 1000.122546
+        val result: String?
+
+        //Act
+        result = Utils.toCurrency(value)
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun toCurrency3Of3(){
+
+        //Arrange
+        val expectedResult = "Rs 1,000,050.00"
+        val value = 1000050.0023
+        val result: String?
+
+        //Act
+        result = Utils.toCurrency(value)
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_InvalidDays1Of2(){
+
+        //Arrange
+        val daysActive = 0
+        val expectedResult = "An error has occurred while processing the active days in your task. Please try again or refresh the screen."
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_InvalidDays2Of2(){
+
+        //Arrange
+        val daysActive = -10
+        val expectedResult = "An error has occurred while processing the active days in your task. Please try again or refresh the screen."
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingDays1Of4(){
+
+        //Arrange
+        val daysActive = 1
+        val expectedResult = "1 Day"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingDays2Of4(){
+
+        //Arrange
+        val daysActive = 2
+        val expectedResult = "2 Days"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingDays3Of4(){
+
+        //Arrange
+        val daysActive = 30
+        val expectedResult = "30 Days"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingDays4Of4(){
+
+        //Arrange
+        val daysActive = 25
+        val expectedResult = "25 Days"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingMonths1Of7(){
+
+        //Arrange
+        val daysActive = 31
+        val expectedResult = "1 Month"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingMonths2Of7(){
+
+        //Arrange
+        val daysActive = 32
+        val expectedResult = "1 Month"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingMonths3Of7(){
+
+        //Arrange
+        val daysActive = 61
+        val expectedResult = "1 Month"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingMonths4Of7(){
+
+        //Arrange
+        val daysActive = 60
+        val expectedResult = "1 Month"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingMonths5Of7(){
+
+        //Arrange
+        val daysActive = 62
+        val expectedResult = "2 Months"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingMonths6Of7(){
+
+        //Arrange
+        val daysActive = 364
+        val expectedResult = "11 Months"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingMonths7Of7(){
+
+        //Arrange
+        val daysActive = 126
+        val expectedResult = "4 Months"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingYears1Of3(){
+
+        //Arrange
+        val daysActive = 365
+        val expectedResult = "1 Year"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingYears2Of3(){
+
+        //Arrange
+        val daysActive = 500
+        val expectedResult = "1 Year"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_CalculatingYears3Of3(){
+
+        //Arrange
+        val daysActive = 1401
+        val expectedResult = "3 Years"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun capitalizeEachWords1Of3(){
+
+        //Arrange
+        val sentence = "longituDe"
+        val expectedResult = "Longitude"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.capitalizeEachWords(sentence)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun capitalizeEachWords2Of3(){
+
+        //Arrange
+        val sentence = "this is a Sentence that i Am prouD of ."
+        val expectedResult = "This Is A Sentence That I Am Proud Of ."
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.capitalizeEachWords(sentence)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun capitalizeEachWords3Of3(){
+
+        //Arrange
+        val sentence = "this is a Sentence     Game"
+        val expectedResult = "This Is A Sentence Game"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.capitalizeEachWords(sentence)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun abbreviate1Of2(){
+
+        //Arrange
+        val sentence = "I ahs aasdj"
+        val length = 8
+        val expectedResult = "I ahs..."
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.abbreviate(sentence, length)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun abbreviate2Of2(){
+
+        //Arrange
+        val sentence = "I ahs aasdj"
+        val length = 50
+        val expectedResult = "I ahs aasdj"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.abbreviate(sentence, length)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
 }
