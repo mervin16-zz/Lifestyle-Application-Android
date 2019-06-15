@@ -1,10 +1,8 @@
 package com.th3pl4gu3.lifestyle.core_tests
 
-import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
-import com.th3pl4gu3.lifestyle.core.operations.Sort
-import com.th3pl4gu3.lifestyle.core.utils.Utils
+import com.th3pl4gu3.lifestyle.core.operations.SortOperations
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -14,7 +12,7 @@ import java.io.IOException
 import java.util.*
 
 @RunWith(AndroidJUnit4::class)
-class ToDoSortTests {
+class ToDoSortOperationsTests {
 
     private val TESTING_KEYWORD = "LIFESTYLE_ITEM"
     private val toDos: ArrayList<ToDo> = ArrayList()
@@ -100,11 +98,11 @@ class ToDoSortTests {
         var resultRowLast:String?
 
         val filteredToDos: List<ToDo>
-        val order = Sort.Order.ASC
+        val order = SortOperations.Order.ASC
 
         //Act
         try{
-            val sutSort = Sort<ToDo>(toDos)
+            val sutSort = SortOperations<ToDo>(toDos)
             filteredToDos = sutSort.byTitle(order)
 
             resultRowFirst = filteredToDos[0].title
@@ -141,11 +139,11 @@ class ToDoSortTests {
         var resultRowLast:String?
 
         val filteredToDos: List<ToDo>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         try{
-            val sutSort = Sort<ToDo>(toDos)
+            val sutSort = SortOperations<ToDo>(toDos)
             filteredToDos = sutSort.byTitle(order)
 
             resultRowFirst = filteredToDos[0].title
@@ -176,14 +174,14 @@ class ToDoSortTests {
         var result:String?
 
         val filteredToDos: List<ToDo>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         //Clear the list first
         toDos.clear()
         //Test the function
         try{
-            val sutSort = Sort<ToDo>(toDos)
+            val sutSort = SortOperations<ToDo>(toDos)
             filteredToDos = sutSort.byTitle(order)
             result = "Passed"
         }catch (ex: Exception){
@@ -206,11 +204,11 @@ class ToDoSortTests {
         var resultRowLast:String?
 
         val filteredToDo: List<ToDo>
-        val order = Sort.Order.ASC
+        val order = SortOperations.Order.ASC
 
         //Act
         try{
-            val sutSort = Sort<ToDo>(toDos)
+            val sutSort = SortOperations<ToDo>(toDos)
             filteredToDo = sutSort.byCategory(order)
 
             resultRowFirst = filteredToDo[0].category
@@ -237,11 +235,11 @@ class ToDoSortTests {
         var resultRowLast:String?
 
         val filteredToDo: List<ToDo>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         try{
-            val sutSort = Sort<ToDo>(toDos)
+            val sutSort = SortOperations<ToDo>(toDos)
             filteredToDo = sutSort.byCategory(order)
 
             resultRowFirst = filteredToDo[0].category
@@ -267,14 +265,14 @@ class ToDoSortTests {
         var result:String?
 
         val filteredToDo: List<ToDo>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         //Clear the list first
         toDos.clear()
         //Test the function
         try{
-            val sutSort = Sort<ToDo>(toDos)
+            val sutSort = SortOperations<ToDo>(toDos)
             filteredToDo = sutSort.byCategory(order)
             result = "Passed"
         }catch (ex: Exception){

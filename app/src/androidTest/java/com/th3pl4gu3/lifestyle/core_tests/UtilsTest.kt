@@ -2,9 +2,11 @@ package com.th3pl4gu3.lifestyle.core_tests
 
 import org.junit.runner.RunWith
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.th3pl4gu3.lifestyle.core.utils.Utils
+import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
+import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
+import com.th3pl4gu3.lifestyle.core.utils.*
 import org.junit.After
-import org.junit.Assert.assertEquals
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import java.util.*
@@ -69,5 +71,123 @@ class UtilsTest {
 
         //Assert
         assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formattedStringToLifestyleEnum_Goal(){
+
+        //Arrange
+        val expectedResultItem = LifestyleItem.GOAL
+        val lifestyleItem = VALUE_LIFESTYLE_ITEM_GOAL
+        var resultItem: LifestyleItem?
+        var resultMessage: String?
+
+        //Act
+        try{
+            resultItem = Utils.formattedStringToLifestyleEnum(lifestyleItem)
+            resultMessage = null
+        }catch(ex: Exception){
+            resultMessage = ex.message
+            resultItem = null
+        }
+
+        //Assert
+        assertEquals(expectedResultItem, resultItem)
+        assertNull(resultMessage)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formattedStringToLifestyleEnum_ToDo(){
+
+        //Arrange
+        val expectedResultItem = LifestyleItem.TO_DO
+        val lifestyleItem = VALUE_LIFESTYLE_ITEM_TODO
+        var resultItem: LifestyleItem?
+        var resultMessage: String?
+
+        //Act
+        try{
+            resultItem = Utils.formattedStringToLifestyleEnum(lifestyleItem)
+            resultMessage = null
+        }catch(ex: Exception){
+            resultMessage = ex.message
+            resultItem = null
+        }
+
+        //Assert
+        assertEquals(expectedResultItem, resultItem)
+        assertNull(resultMessage)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formattedStringToLifestyleEnum_ToBuy(){
+
+        //Arrange
+        val expectedResultItem = LifestyleItem.TO_BUY
+        val lifestyleItem = VALUE_LIFESTYLE_ITEM_TOBUY
+        var resultItem: LifestyleItem?
+        var resultMessage: String?
+
+        //Act
+        try{
+            resultItem = Utils.formattedStringToLifestyleEnum(lifestyleItem)
+            resultMessage = null
+        }catch(ex: Exception){
+            resultMessage = ex.message
+            resultItem = null
+        }
+
+        //Assert
+        assertEquals(expectedResultItem, resultItem)
+        assertNull(resultMessage)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formattedStringToLifestyleEnum_Unknown(){
+
+        //Arrange
+        val expectedResultMessage = MESSAGE_EXCEPTION_REQUEST_PROCESSING
+        val lifestyleItem = "SomethingElse"
+        var resultItem: LifestyleItem?
+        var resultMessage: String?
+
+        //Act
+        try{
+            resultItem = Utils.formattedStringToLifestyleEnum(lifestyleItem)
+            resultMessage = null
+        }catch(ex: Exception){
+            resultMessage = ex.message
+            resultItem = null
+        }
+
+        //Assert
+        assertEquals(expectedResultMessage, resultMessage)
+        assertNull(resultItem)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun getLifestyleItemEnumsToFormattedString(){
+
+        //Arrange
+        val expectedSize = 3
+        val resultSize: Int?
+
+        //Act
+        val list = Utils.getLifestyleItemEnumsToFormattedString()
+        val goal = list.contains(VALUE_LIFESTYLE_ITEM_GOAL)
+        val toDo = list.contains(VALUE_LIFESTYLE_ITEM_TODO)
+        val toBuy = list.contains(VALUE_LIFESTYLE_ITEM_TOBUY)
+        resultSize = list.size
+
+        //Assert
+        assertEquals(expectedSize, resultSize)
+        assertTrue(goal)
+        assertTrue(toDo)
+        assertTrue(toBuy)
     }
 }

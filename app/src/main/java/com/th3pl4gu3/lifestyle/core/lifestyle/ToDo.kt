@@ -9,6 +9,10 @@ import com.th3pl4gu3.lifestyle.core.utils.*
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import java.util.*
 
+/**
+ * To Do Class is one of the child of [Lifestyle] class.
+ * The purpose of the To Do class is to hold data about each to do task of the user.
+ **/
 @Entity(tableName = DATABASE_TABLE_TODO)
 data class ToDo constructor(
     @ColumnInfo(name = DATABASE_TABLE_TODO_TITLE)
@@ -19,7 +23,7 @@ data class ToDo constructor(
 
     @ColumnInfo(name = DATABASE_TABLE_TODO_PRIORITY)
     var priority: Priority = Priority.P4
-) : LifestyleFactory() {
+) : Lifestyle() {
 
     @PrimaryKey(autoGenerate = false)
     var id: String = super.uniqueId
@@ -31,15 +35,6 @@ data class ToDo constructor(
     override var dateCompleted: Calendar? = null
 
     override var type: Int = LifestyleItem.TO_DO.value
-
-
-    override fun markAsIncomplete() {
-        this.dateCompleted = null
-    }
-
-    override fun markAsComplete() {
-        this.dateCompleted = Calendar.getInstance()
-    }
 
     override fun add(database: LifestyleDatabase) = database.toDoDao.insert(this)
 

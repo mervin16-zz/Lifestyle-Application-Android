@@ -1,7 +1,6 @@
 package com.th3pl4gu3.lifestyle.core.operations
 
 import androidx.lifecycle.LiveData
-import com.th3pl4gu3.lifestyle.core.lifestyle.LifestyleFactory
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 
 interface IOperationsStatic <LifestyleItem> {

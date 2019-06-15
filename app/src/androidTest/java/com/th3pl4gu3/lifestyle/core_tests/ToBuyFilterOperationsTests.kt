@@ -3,7 +3,7 @@ package com.th3pl4gu3.lifestyle.core_tests
 import org.junit.runner.RunWith
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
-import com.th3pl4gu3.lifestyle.core.operations.Filter
+import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -13,7 +13,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @RunWith(AndroidJUnit4::class)
-class ToBuyFilterTests {
+class ToBuyFilterOperationsTests {
 
     private val TESTING_KEYWORD = "LIFESTYLE_ITEM"
     private val toBuys: ArrayList<ToBuy> = ArrayList()
@@ -81,105 +81,7 @@ class ToBuyFilterTests {
 
     @Test
     @Throws(Exception::class)
-    fun getByTitle_TitleExists1Of3() {
-
-        //Arrange
-        val searchTitle = "android phone 1"
-        val expectedSize = 2 //Android phone 1 & Android phone 10
-        val resultSize: Int
-        val filteredToBuy: List<ToBuy>
-
-        //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToBuy.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleExists2Of3() {
-
-        //Arrange
-        val searchTitle = "table"
-        val expectedSize = 10 //Vegetables 1 - 10
-        val resultSize: Int
-        val filteredToBuy: List<ToBuy>
-
-        //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToBuy.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleExists3Of3() {
-
-        //Arrange
-        val searchTitle = "car"
-        val expectedSize = 10 //Porsche car 1 - 10
-        val resultSize: Int
-        val filteredToBuy: List<ToBuy>
-
-        //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToBuy.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleDoesntExists() {
-
-        //Arrange
-        val searchTitle = "No Name"
-        val expectedSize = 0
-        val resultSize: Int
-        val filteredToBuy: List<ToBuy>
-
-        //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToBuy.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_NoDataAvailable() {
-
-        //Arrange
-        val searchTitle = "No Name"
-        val expectedSize = 0
-        val resultSize: Int
-        val filteredToBuy: List<ToBuy>
-
-        //Act
-        //Clear the arraylist
-        toBuys.clear()
-        //Test the function
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToBuy.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists1Of3() {
+    fun getByCategory_CategoryExists() {
 
         //Arrange
         val searchCategory = "house chores"
@@ -188,46 +90,8 @@ class ToBuyFilterTests {
         val filteredToBuy: List<ToBuy>
 
         //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByCategory(searchCategory)
-        resultSize = filteredToBuy.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists2Of3() {
-
-        //Arrange
-        val searchCategory = "sonal"
-        val expectedSize = 10 //Wash the car 1 - 10
-        val resultSize: Int
-        val filteredToBuy: List<ToBuy>
-
-        //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByCategory(searchCategory)
-        resultSize = filteredToBuy.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists3Of3() {
-
-        //Arrange
-        val searchCategory = "hobby"
-        val expectedSize = 10 //Clean the house 1 - 10
-        val resultSize: Int
-        val filteredToBuy: List<ToBuy>
-
-        //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
+        filteredToBuy = sutFilter.byCategory(searchCategory)
         resultSize = filteredToBuy.size
 
         //Assert
@@ -245,8 +109,8 @@ class ToBuyFilterTests {
         val filteredToBuy: List<ToBuy>
 
         //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
+        filteredToBuy = sutFilter.byCategory(searchCategory)
         resultSize = filteredToBuy.size
 
         //Assert
@@ -267,8 +131,8 @@ class ToBuyFilterTests {
         //Clear the arrayList
         toBuys.clear()
         // Test the function
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
+        filteredToBuy = sutFilter.byCategory(searchCategory)
         resultSize = filteredToBuy.size
 
         //Assert
@@ -285,7 +149,7 @@ class ToBuyFilterTests {
         val filteredToBuy: List<ToBuy>
 
         //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
         filteredToBuy = sutFilter.getCompleted()
         resultSize = filteredToBuy.size
 
@@ -309,7 +173,7 @@ class ToBuyFilterTests {
         }
 
         //Test the function
-        val sutFilter = Filter<ToBuy>(toBuys)
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
         filteredToBuy = sutFilter.getCompleted()
         resultSize = filteredToBuy.size
 
@@ -330,7 +194,7 @@ class ToBuyFilterTests {
         //Clear the arrayList
         toBuys.clear()
         // Test the function
-        val sutFilter = Filter<ToBuy>(toBuys)
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
         filteredToBuy = sutFilter.getCompleted()
         resultSize = filteredToBuy.size
 
@@ -348,7 +212,7 @@ class ToBuyFilterTests {
         val filteredToBuy: List<ToBuy>
 
         //Act
-        val sutFilter = Filter<ToBuy>(toBuys)
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
         filteredToBuy = sutFilter.getActive()
         resultSize = filteredToBuy.size
 
@@ -375,7 +239,7 @@ class ToBuyFilterTests {
         }
 
         //Test the function
-        val sutFilter = Filter<ToBuy>(toBuys)
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
         filteredToBuy = sutFilter.getActive()
         resultSize = filteredToBuy.size
 
@@ -390,15 +254,15 @@ class ToBuyFilterTests {
         //Arrange
         val expectedSize = 0
         val resultSize: Int
-        val filteredToBuy: List<ToBuy>
+        val filteredToBuys: List<ToBuy>
 
         //Act
         //Clear the arrayList
         toBuys.clear()
         // Test the function
-        val sutFilter = Filter<ToBuy>(toBuys)
-        filteredToBuy = sutFilter.getActive()
-        resultSize = filteredToBuy.size
+        val sutFilter = FilterOperations<ToBuy>(toBuys)
+        filteredToBuys = sutFilter.getActive()
+        resultSize = filteredToBuys.size
 
         //Assert
         assertEquals(expectedSize, resultSize)

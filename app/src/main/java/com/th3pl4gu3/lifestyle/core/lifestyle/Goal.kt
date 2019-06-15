@@ -8,6 +8,10 @@ import com.th3pl4gu3.lifestyle.core.utils.*
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import java.util.*
 
+/**
+ * Goal Class is one of the child of [Lifestyle] class.
+ * The purpose of the Goal class is to hold data about each goals of the user.
+ **/
 @Entity(tableName = DATABASE_TABLE_GOAL)
 data class Goal constructor(
     @ColumnInfo(name = DATABASE_TABLE_GOAL_TITLE)
@@ -15,7 +19,7 @@ data class Goal constructor(
 
     @ColumnInfo(name = DATABASE_TABLE_GOAL_CATEGORY)
     override var category: String = PLACEHOLDER_ITEM_LIFESTYLE_CATEGORY
-) : LifestyleFactory() {
+) : Lifestyle() {
 
     @PrimaryKey(autoGenerate = false)
     var id: String = super.uniqueId
@@ -27,15 +31,6 @@ data class Goal constructor(
     override var dateCompleted: Calendar? = null
 
     override var type: Int = LifestyleItem.GOAL.value
-
-
-    override fun markAsIncomplete() {
-        this.dateCompleted = null
-    }
-
-    override fun markAsComplete() {
-        this.dateCompleted = Calendar.getInstance()
-    }
 
     override fun add(database: LifestyleDatabase) = database.goalDao.insert(this)
 

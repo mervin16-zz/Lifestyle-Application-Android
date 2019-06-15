@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MediatorLiveData
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
-import com.th3pl4gu3.lifestyle.core.operations.Filter
+import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
 import com.th3pl4gu3.lifestyle.core.operations.GoalOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
@@ -51,14 +51,14 @@ class GoalViewModel(
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
                 goalsMediatorLiveData.addSource(_goals){
-                    goalsMediatorLiveData.value = Filter<Goal>(it).getActive()
+                    goalsMediatorLiveData.value = FilterOperations<Goal>(it).getActive()
                 }
             }
             ToggleButtonStates.BUTTON_COMPLETE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
                 goalsMediatorLiveData.addSource(_goals){
-                    goalsMediatorLiveData.value = Filter<Goal>(it).getCompleted()
+                    goalsMediatorLiveData.value = FilterOperations<Goal>(it).getCompleted()
                 }
             }
         }

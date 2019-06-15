@@ -12,15 +12,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
-import com.th3pl4gu3.lifestyle.core.lifestyle.LifestyleFactory
+import com.th3pl4gu3.lifestyle.core.lifestyle.Lifestyle
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
-import com.th3pl4gu3.lifestyle.core.utils.VALUE_LIFESTYLE_ITEM_GOAL
 import com.th3pl4gu3.lifestyle.databinding.FragmentBottomdialogGoalDetailsBinding
 import com.th3pl4gu3.lifestyle.databinding.FragmentBottomdialogTobuyDetailsBinding
 import com.th3pl4gu3.lifestyle.databinding.FragmentBottomdialogTodoDetailsBinding
 
-class RoundedBottomSheetDialogFragmentForLifestyleItemDetails(private val lifestyleFactory: LifestyleFactory) : BottomSheetDialogFragment() {
+class RoundedBottomSheetDialogFragmentForLifestyleItemDetails(private val lifestyle: Lifestyle) : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
@@ -30,22 +29,22 @@ class RoundedBottomSheetDialogFragmentForLifestyleItemDetails(private val lifest
 
         val binding: ViewDataBinding
 
-        when(lifestyleFactory.type){
+        when(lifestyle.type){
             LifestyleItem.GOAL.value -> {
                 binding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottomdialog_goal_details, container, false)
-                (binding as FragmentBottomdialogGoalDetailsBinding).myGoal = (lifestyleFactory as Goal)
+                (binding as FragmentBottomdialogGoalDetailsBinding).myGoal = (lifestyle as Goal)
             }
             LifestyleItem.TO_BUY.value -> {
                 binding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottomdialog_tobuy_details, container, false)
-                (binding as FragmentBottomdialogTobuyDetailsBinding).myToBuy = (lifestyleFactory as ToBuy)
+                (binding as FragmentBottomdialogTobuyDetailsBinding).myToBuy = (lifestyle as ToBuy)
             }
             LifestyleItem.TO_DO.value -> {
                 binding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottomdialog_todo_details, container, false)
-                (binding as FragmentBottomdialogTodoDetailsBinding).myToDo = (lifestyleFactory as ToDo)
+                (binding as FragmentBottomdialogTodoDetailsBinding).myToDo = (lifestyle as ToDo)
             }
             else -> {
                 binding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottomdialog_todo_details, container, false)
-                (binding as FragmentBottomdialogTodoDetailsBinding).myToDo = (lifestyleFactory as ToDo)
+                (binding as FragmentBottomdialogTodoDetailsBinding).myToDo = (lifestyle as ToDo)
             }
         }
 

@@ -208,39 +208,4 @@ class GoalTests {
         assertNull(resultGoal)
     }
 
-    @Test
-    @Throws(Exception::class)
-    fun markAsCompleted() {
-
-        //Arrange
-        val goal = Goal()
-        val expectedDateCompleted = Utils.dateToFormattedString(Calendar.getInstance())
-
-        val resultDateCompleted: String?
-
-        //Act
-        goal.markAsComplete()
-        resultDateCompleted = Utils.dateToFormattedString(goal.dateCompleted!!)
-
-        //Assert
-        assertEquals(expectedDateCompleted, resultDateCompleted)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun markAsIncomplete() {
-
-        //Arrange
-        val goal = Goal()
-        goal.dateCompleted = Calendar.getInstance()
-
-        val resultDateCompleted: Calendar?
-
-        //Act
-        goal.markAsIncomplete()
-        resultDateCompleted = goal.dateCompleted
-
-        //Assert
-        assertNull(resultDateCompleted)
-    }
 }

@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.enums.Priority
-import com.th3pl4gu3.lifestyle.core.lifestyle.LifestyleFactory
+import com.th3pl4gu3.lifestyle.core.lifestyle.Lifestyle
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
 import com.th3pl4gu3.lifestyle.core.utils.Utils
@@ -14,35 +14,35 @@ import com.th3pl4gu3.lifestyle.core.utils.Utils
 * Lifestyle Item Data Bindings
  **/
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_TITLE)
-fun TextView.setLifestyleItemTitle(lifestyle: LifestyleFactory){
+fun TextView.setLifestyleItemTitle(lifestyle: Lifestyle){
     lifestyle.let {
         text = lifestyle.title
     }
 }
 
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_CATEGORY)
-fun TextView.setLifestyleItemCategory(lifestyle: LifestyleFactory){
+fun TextView.setLifestyleItemCategory(lifestyle: Lifestyle){
     lifestyle.let {
         text = lifestyle.category
     }
 }
 
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_DATEADDED)
-fun TextView.setLifestyleItemDateAdded(lifestyle: LifestyleFactory){
+fun TextView.setLifestyleItemDateAdded(lifestyle: Lifestyle){
     lifestyle.let {
         text = Utils.dateToFormattedString(lifestyle.dateAdded)
     }
 }
 
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_DAYSOLD)
-fun TextView.setLifestyleItemDaysOld(lifestyle: LifestyleFactory){
+fun TextView.setLifestyleItemDaysOld(lifestyle: Lifestyle){
     lifestyle.let {
         text = "Dummy"
     }
 }
 
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_SWIPINGMARKINGICON)
-fun ImageView.setLifestyleItemSwipingMarkingIcon(lifestyle: LifestyleFactory) {
+fun ImageView.setLifestyleItemSwipingMarkingIcon(lifestyle: Lifestyle) {
     if(lifestyle.dateCompleted != null){
         setImageResource(R.drawable.ic_close_light)
     }else{

@@ -1,9 +1,8 @@
 package com.th3pl4gu3.lifestyle.core_tests
 
-import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
-import com.th3pl4gu3.lifestyle.core.operations.Sort
+import com.th3pl4gu3.lifestyle.core.operations.SortOperations
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -13,7 +12,7 @@ import java.io.IOException
 import java.util.*
 
 @RunWith(AndroidJUnit4::class)
-class GoalSortTests {
+class GoalSortOperationsTests {
 
     private val TESTING_KEYWORD = "LIFESTYLE_ITEM"
     private val goals: ArrayList<Goal> = ArrayList()
@@ -109,11 +108,11 @@ class GoalSortTests {
         var resultRowLast:String?
 
         val filteredGoals: List<Goal>
-        val order = Sort.Order.ASC
+        val order = SortOperations.Order.ASC
 
         //Act
         try{
-            val sutSort = Sort<Goal>(goals)
+            val sutSort = SortOperations<Goal>(goals)
             filteredGoals = sutSort.byTitle(order)
 
             resultRowFirst = filteredGoals[0].title
@@ -150,11 +149,11 @@ class GoalSortTests {
         var resultRowLast:String?
 
         val filteredGoals: List<Goal>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         try{
-            val sutSort = Sort<Goal>(goals)
+            val sutSort = SortOperations<Goal>(goals)
             filteredGoals = sutSort.byTitle(order)
 
             resultRowFirst = filteredGoals[0].title
@@ -185,14 +184,14 @@ class GoalSortTests {
         var result:String?
 
         val filteredGoals: List<Goal>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         //Clear the list first
         goals.clear()
         //Test the function
         try{
-            val sutSort = Sort<Goal>(goals)
+            val sutSort = SortOperations<Goal>(goals)
             filteredGoals = sutSort.byTitle(order)
             result = "Passed"
         }catch (ex: Exception){
@@ -215,11 +214,11 @@ class GoalSortTests {
         var resultRowLast:String?
 
         val filteredGoals: List<Goal>
-        val order = Sort.Order.ASC
+        val order = SortOperations.Order.ASC
 
         //Act
         try{
-            val sutSort = Sort<Goal>(goals)
+            val sutSort = SortOperations<Goal>(goals)
             filteredGoals = sutSort.byCategory(order)
 
             resultRowFirst = filteredGoals[0].category
@@ -246,11 +245,11 @@ class GoalSortTests {
         var resultRowLast:String?
 
         val filteredGoals: List<Goal>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         try{
-            val sutSort = Sort<Goal>(goals)
+            val sutSort = SortOperations<Goal>(goals)
             filteredGoals = sutSort.byCategory(order)
 
             resultRowFirst = filteredGoals[0].category
@@ -275,14 +274,14 @@ class GoalSortTests {
         var result:String?
 
         val filteredGoals: List<Goal>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         //Clear the list first
         goals.clear()
         //Test the function
         try{
-            val sutSort = Sort<Goal>(goals)
+            val sutSort = SortOperations<Goal>(goals)
             filteredGoals = sutSort.byCategory(order)
             result = "Passed"
         }catch (ex: Exception){

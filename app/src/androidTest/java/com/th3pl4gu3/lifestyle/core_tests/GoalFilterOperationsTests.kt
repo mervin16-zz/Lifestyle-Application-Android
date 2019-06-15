@@ -3,8 +3,7 @@ package com.th3pl4gu3.lifestyle.core_tests
 import org.junit.runner.RunWith
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
-import com.th3pl4gu3.lifestyle.core.operations.Filter
-import com.th3pl4gu3.lifestyle.core.operations.GoalOperations
+import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -14,7 +13,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @RunWith(AndroidJUnit4::class)
-class GoalFilterTests {
+class GoalFilterOperationsTests {
 
     private val TESTING_KEYWORD = "LIFESTYLE_ITEM"
     private val goals: ArrayList<Goal> = ArrayList()
@@ -76,105 +75,7 @@ class GoalFilterTests {
 
     @Test
     @Throws(Exception::class)
-    fun getByTitle_TitleExists1Of3() {
-
-        //Arrange
-        val searchTitle = "wash the car 1"
-        val expectedSize = 2 //Wash the car 1 & Wash the car 10
-        val resultSize: Int
-        val filteredGoals: List<Goal>
-
-        //Act
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredGoals.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleExists2Of3() {
-
-        //Arrange
-        val searchTitle = "wash"
-        val expectedSize = 10 //Wash the car 1 - 10
-        val resultSize: Int
-        val filteredGoals: List<Goal>
-
-        //Act
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredGoals.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleExists3Of3() {
-
-        //Arrange
-        val searchTitle = "sh"
-        val expectedSize = 20 //Wash the car 1 - 10 & Do the dishes 1 - 10
-        val resultSize: Int
-        val filteredGoals: List<Goal>
-
-        //Act
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredGoals.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleDoesntExists() {
-
-        //Arrange
-        val searchTitle = "No Name"
-        val expectedSize = 0
-        val resultSize: Int
-        val filteredGoals: List<Goal>
-
-        //Act
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredGoals.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_NoDataAvailable() {
-
-        //Arrange
-        val searchTitle = "No Name"
-        val expectedSize = 0
-        val resultSize: Int
-        val filteredGoals: List<Goal>
-
-        //Act
-        //Clear the arrayList
-        goals.clear()
-        // Test the function
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredGoals.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists1Of3() {
+    fun getByCategory_CategoryExists() {
 
         //Arrange
         val searchCategory = "house chores"
@@ -183,46 +84,8 @@ class GoalFilterTests {
         val filteredGoals: List<Goal>
 
         //Act
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByCategory(searchCategory)
-        resultSize = filteredGoals.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists2Of3() {
-
-        //Arrange
-        val searchCategory = "sonal"
-        val expectedSize = 10 //Wash the car 1 - 10
-        val resultSize: Int
-        val filteredGoals: List<Goal>
-
-        //Act
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByCategory(searchCategory)
-        resultSize = filteredGoals.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists3Of3() {
-
-        //Arrange
-        val searchCategory = "hobby"
-        val expectedSize = 10 //Clean the house 1 - 10
-        val resultSize: Int
-        val filteredGoals: List<Goal>
-
-        //Act
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<Goal>(goals)
+        filteredGoals = sutFilter.byCategory(searchCategory)
         resultSize = filteredGoals.size
 
         //Assert
@@ -240,8 +103,8 @@ class GoalFilterTests {
         val filteredGoals: List<Goal>
 
         //Act
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<Goal>(goals)
+        filteredGoals = sutFilter.byCategory(searchCategory)
         resultSize = filteredGoals.size
 
         //Assert
@@ -262,8 +125,8 @@ class GoalFilterTests {
         //Clear the arrayList
         goals.clear()
         // Test the function
-        val sutFilter = Filter<Goal>(goals)
-        filteredGoals = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<Goal>(goals)
+        filteredGoals = sutFilter.byCategory(searchCategory)
         resultSize = filteredGoals.size
 
         //Assert
@@ -280,7 +143,7 @@ class GoalFilterTests {
         val filteredGoals: List<Goal>
 
         //Act
-        val sutFilter = Filter<Goal>(goals)
+        val sutFilter = FilterOperations<Goal>(goals)
         filteredGoals = sutFilter.getCompleted()
         resultSize = filteredGoals.size
 
@@ -304,7 +167,7 @@ class GoalFilterTests {
         }
 
         //Test the function
-        val sutFilter = Filter<Goal>(goals)
+        val sutFilter = FilterOperations<Goal>(goals)
         filteredGoals = sutFilter.getCompleted()
         resultSize = filteredGoals.size
 
@@ -325,7 +188,7 @@ class GoalFilterTests {
         //Clear the arrayList
         goals.clear()
         // Test the function
-        val sutFilter = Filter<Goal>(goals)
+        val sutFilter = FilterOperations<Goal>(goals)
         filteredGoals = sutFilter.getCompleted()
         resultSize = filteredGoals.size
 
@@ -343,7 +206,7 @@ class GoalFilterTests {
         val filteredGoals: List<Goal>
 
         //Act
-        val sutFilter = Filter<Goal>(goals)
+        val sutFilter = FilterOperations<Goal>(goals)
         filteredGoals = sutFilter.getActive()
         resultSize = filteredGoals.size
 
@@ -370,7 +233,7 @@ class GoalFilterTests {
         }
 
         //Test the function
-        val sutFilter = Filter<Goal>(goals)
+        val sutFilter = FilterOperations<Goal>(goals)
         filteredGoals = sutFilter.getActive()
         resultSize = filteredGoals.size
 
@@ -391,7 +254,7 @@ class GoalFilterTests {
         //Clear the arrayList
         goals.clear()
         // Test the function
-        val sutFilter = Filter<Goal>(goals)
+        val sutFilter = FilterOperations<Goal>(goals)
         filteredGoals = sutFilter.getActive()
         resultSize = filteredGoals.size
 

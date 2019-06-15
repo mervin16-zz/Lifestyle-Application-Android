@@ -11,7 +11,6 @@ sealed class Utils{
         //Return date in format eg. 16 March 1996
         fun dateToFormattedString(cal: Calendar): String = DateFormat.getDateInstance(DateFormat.MEDIUM).format(cal.time)
 
-        //TODO("Test method")
         fun getLifestyleItemEnumsToFormattedString(): ArrayList<String> {
 
             val list = ArrayList<String>()
@@ -25,7 +24,6 @@ sealed class Utils{
             return list
         }
 
-        //TODO("Test method")
         fun formattedStringToLifestyleEnum(lifestyleItem: String): LifestyleItem{
             return when (lifestyleItem) {
                 VALUE_LIFESTYLE_ITEM_GOAL -> LifestyleItem.GOAL

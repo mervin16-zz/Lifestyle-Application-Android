@@ -1,16 +1,18 @@
 package com.th3pl4gu3.lifestyle.core.operations
 
-open class LifestyleOperations<LifestyleItem>(list: List<LifestyleItem>) {
+import com.th3pl4gu3.lifestyle.core.lifestyle.Lifestyle
 
-    fun getRecentlyAdded(): List<LifestyleItem> {
+open class LifestyleOperations<L>(list: List<Lifestyle>) {
+
+    fun getRecentlyAdded(): List<L> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun getRecentlyCompleted(): List<LifestyleItem> {
+    fun getRecentlyCompleted(): List<L> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun getOlderPendingItems(): List<LifestyleItem> {
+    fun getOlderPendingItems(): List<L> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

@@ -209,37 +209,43 @@ class ToBuyTests {
 
     @Test
     @Throws(Exception::class)
-    fun markAsCompleted() {
+    fun calculateTotal1Of2() {
 
         //Arrange
+        val quantity = 6
+        val price = 10.00
+        val expectedTotal = 60.00
         val toBuy = ToBuy()
-        val expectedDateCompleted = Utils.dateToFormattedString(Calendar.getInstance())
+        toBuy.quantity = quantity
+        toBuy.estimatedPrice = price
 
-        val resultDateCompleted: String?
+        val resultTotal: Double?
 
         //Act
-        toBuy.markAsComplete()
-        resultDateCompleted = Utils.dateToFormattedString(toBuy.dateCompleted!!)
+        resultTotal = toBuy.total
 
         //Assert
-        assertEquals(expectedDateCompleted, resultDateCompleted)
+        assertEquals(expectedTotal, resultTotal, 10.00)
     }
 
     @Test
     @Throws(Exception::class)
-    fun markAsIncomplete() {
+    fun calculateTotal2Of2() {
 
         //Arrange
+        val quantity = 6
+        val price = 50.25
+        val expectedTotal = 301.5
         val toBuy = ToBuy()
-        toBuy.dateCompleted = Calendar.getInstance()
+        toBuy.quantity = quantity
+        toBuy.estimatedPrice = price
 
-        val resultDateCompleted: Calendar?
+        val resultTotal: Double?
 
         //Act
-        toBuy.markAsIncomplete()
-        resultDateCompleted = toBuy.dateCompleted
+        resultTotal = toBuy.total
 
         //Assert
-        assertNull(resultDateCompleted)
+        assertEquals(expectedTotal, resultTotal, 10.00)
     }
 }

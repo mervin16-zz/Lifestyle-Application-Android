@@ -9,6 +9,10 @@ import com.th3pl4gu3.lifestyle.core.utils.*
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import java.util.*
 
+/**
+ * To Buy Class is one of the child of [Lifestyle] class.
+ * The purpose of the To Buy class is to hold data about each to buy task of the user.
+ **/
 @Entity(tableName = DATABASE_TABLE_TOBUY)
 data class ToBuy constructor(
     @ColumnInfo(name = DATABASE_TABLE_TOBUY_TITLE)
@@ -25,7 +29,7 @@ data class ToBuy constructor(
 
     @ColumnInfo(name = DATABASE_TABLE_TOBUY_PRIORITY)
     var priority: Priority = Priority.P4
-) : LifestyleFactory() {
+) : Lifestyle() {
 
     @PrimaryKey(autoGenerate = false)
     var id: String = super.uniqueId
@@ -38,14 +42,8 @@ data class ToBuy constructor(
 
     override var type: Int = LifestyleItem.TO_BUY.value
 
-
-    override fun markAsIncomplete() {
-        this.dateCompleted = null
-    }
-
-    override fun markAsComplete() {
-        this.dateCompleted = Calendar.getInstance()
-    }
+    val total: Double
+        get() = quantity * estimatedPrice
 
     override fun add(database: LifestyleDatabase) = database.toBuyDao.insert(this)
 

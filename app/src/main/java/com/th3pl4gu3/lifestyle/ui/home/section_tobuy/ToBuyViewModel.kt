@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MediatorLiveData
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
-import com.th3pl4gu3.lifestyle.core.operations.Filter
+import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
 import com.th3pl4gu3.lifestyle.core.operations.ToBuyOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
@@ -50,14 +50,14 @@ class ToBuyViewModel(
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
                 toBuysMediatorLiveData.addSource(_toBuys){
-                    toBuysMediatorLiveData.value = Filter<ToBuy>(it).getActive()
+                    toBuysMediatorLiveData.value = FilterOperations<ToBuy>(it).getActive()
                 }
             }
             ToggleButtonStates.BUTTON_COMPLETE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
                 toBuysMediatorLiveData.addSource(_toBuys){
-                    toBuysMediatorLiveData.value = Filter<ToBuy>(it).getCompleted()
+                    toBuysMediatorLiveData.value = FilterOperations<ToBuy>(it).getCompleted()
                 }
             }
         }

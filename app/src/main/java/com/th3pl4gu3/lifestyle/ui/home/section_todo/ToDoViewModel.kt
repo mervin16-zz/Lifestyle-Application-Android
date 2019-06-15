@@ -3,7 +3,7 @@ package com.th3pl4gu3.lifestyle.ui.home.section_todo
 import android.app.Application
 import androidx.lifecycle.*
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
-import com.th3pl4gu3.lifestyle.core.operations.Filter
+import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
 import com.th3pl4gu3.lifestyle.core.operations.ToDoOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
@@ -50,14 +50,14 @@ class ToDoViewModel(
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
                 toDosMediatorLiveData.addSource(_toDos){
-                    toDosMediatorLiveData.value = Filter<ToDo>(it).getActive()
+                    toDosMediatorLiveData.value = FilterOperations<ToDo>(it).getActive()
                 }
             }
             ToggleButtonStates.BUTTON_COMPLETE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
                 toDosMediatorLiveData.addSource(_toDos){
-                    toDosMediatorLiveData.value = Filter<ToDo>(it).getCompleted()
+                    toDosMediatorLiveData.value = FilterOperations<ToDo>(it).getCompleted()
                 }
             }
         }

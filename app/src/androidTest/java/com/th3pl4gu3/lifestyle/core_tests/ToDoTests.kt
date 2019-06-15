@@ -207,39 +207,4 @@ class ToDoTests {
         assertNull(resultToDo)
     }
 
-    @Test
-    @Throws(Exception::class)
-    fun markAsCompleted() {
-
-        //Arrange
-        val toDo = ToDo()
-        val expectedDateCompleted = Utils.dateToFormattedString(Calendar.getInstance())
-
-        val resultDateCompleted: String?
-
-        //Act
-        toDo.markAsComplete()
-        resultDateCompleted = Utils.dateToFormattedString(toDo.dateCompleted!!)
-
-        //Assert
-        assertEquals(expectedDateCompleted, resultDateCompleted)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun markAsIncomplete() {
-
-        //Arrange
-        val toDo = ToDo()
-        toDo.dateCompleted = Calendar.getInstance()
-
-        val resultDateCompleted: Calendar?
-
-        //Act
-        toDo.markAsIncomplete()
-        resultDateCompleted = toDo.dateCompleted
-
-        //Assert
-        assertNull(resultDateCompleted)
-    }
 }

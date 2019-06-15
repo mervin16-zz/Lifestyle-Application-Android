@@ -2,7 +2,7 @@ package com.th3pl4gu3.lifestyle.core_tests
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
-import com.th3pl4gu3.lifestyle.core.operations.Sort
+import com.th3pl4gu3.lifestyle.core.operations.SortOperations
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -13,7 +13,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @RunWith(AndroidJUnit4::class)
-class ToBuySortTests {
+class ToBuySortOperationsTests {
 
     private val TESTING_KEYWORD = "LIFESTYLE_ITEM"
     private val toBuys: ArrayList<ToBuy> = ArrayList()
@@ -95,11 +95,11 @@ class ToBuySortTests {
         var resultRowLast:String?
 
         val filteredGoals: List<ToBuy>
-        val order = Sort.Order.ASC
+        val order = SortOperations.Order.ASC
 
         //Act
         try{
-            val sutSort = Sort<ToBuy>(toBuys)
+            val sutSort = SortOperations<ToBuy>(toBuys)
             filteredGoals = sutSort.byTitle(order)
 
             resultRowFirst = filteredGoals[0].title
@@ -136,11 +136,11 @@ class ToBuySortTests {
         var resultRowLast:String?
 
         val filteredGoals: List<ToBuy>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         try{
-            val sutSort = Sort<ToBuy>(toBuys)
+            val sutSort = SortOperations<ToBuy>(toBuys)
             filteredGoals = sutSort.byTitle(order)
 
             resultRowFirst = filteredGoals[0].title
@@ -171,14 +171,14 @@ class ToBuySortTests {
         var result:String?
 
         val filteredGoals: List<ToBuy>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         //Clear the list first
         toBuys.clear()
         //Test the function
         try{
-            val sutSort = Sort<ToBuy>(toBuys)
+            val sutSort = SortOperations<ToBuy>(toBuys)
             filteredGoals = sutSort.byTitle(order)
             result = "Passed"
         }catch (ex: Exception){
@@ -201,11 +201,11 @@ class ToBuySortTests {
         var resultRowLast:String?
 
         val filteredToBuys: List<ToBuy>
-        val order = Sort.Order.ASC
+        val order = SortOperations.Order.ASC
 
         //Act
         try{
-            val sutSort = Sort<ToBuy>(toBuys)
+            val sutSort = SortOperations<ToBuy>(toBuys)
             filteredToBuys = sutSort.byCategory(order)
 
             resultRowFirst = filteredToBuys[0].category
@@ -232,11 +232,11 @@ class ToBuySortTests {
         var resultRowLast:String?
 
         val filteredToBuys: List<ToBuy>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         try{
-            val sutSort = Sort<ToBuy>(toBuys)
+            val sutSort = SortOperations<ToBuy>(toBuys)
             filteredToBuys = sutSort.byCategory(order)
 
             resultRowFirst = filteredToBuys[0].category
@@ -261,14 +261,14 @@ class ToBuySortTests {
         var result:String?
 
         val filteredToBuys: List<ToBuy>
-        val order = Sort.Order.DESC
+        val order = SortOperations.Order.DESC
 
         //Act
         //Clear the list first
         toBuys.clear()
         //Test the function
         try{
-            val sutSort = Sort<ToBuy>(toBuys)
+            val sutSort = SortOperations<ToBuy>(toBuys)
             filteredToBuys = sutSort.byCategory(order)
             result = "Passed"
         }catch (ex: Exception){

@@ -3,7 +3,7 @@ package com.th3pl4gu3.lifestyle.core_tests
 import org.junit.runner.RunWith
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
-import com.th3pl4gu3.lifestyle.core.operations.Filter
+import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -13,7 +13,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @RunWith(AndroidJUnit4::class)
-class ToDoFilterTests {
+class ToDoFilterOperationsTests {
 
     private val TESTING_KEYWORD = "LIFESTYLE_ITEM"
     private val toDos: ArrayList<ToDo> = ArrayList()
@@ -75,105 +75,7 @@ class ToDoFilterTests {
 
     @Test
     @Throws(Exception::class)
-    fun getByTitle_TitleExists1Of3() {
-
-        //Arrange
-        val searchTitle = "wash the car 1"
-        val expectedSize = 2 //Wash the car 1 & Wash the car 10
-        val resultSize: Int
-        val filteredToDos: List<ToDo>
-
-        //Act
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToDos.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleExists2Of3() {
-
-        //Arrange
-        val searchTitle = "wash"
-        val expectedSize = 10 //Wash the car 1 - 10
-        val resultSize: Int
-        val filteredToDos: List<ToDo>
-
-        //Act
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToDos.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleExists3Of3() {
-
-        //Arrange
-        val searchTitle = "sh"
-        val expectedSize = 20 //Wash the car 1 - 10 & Do the dishes 1 - 10
-        val resultSize: Int
-        val filteredToDos: List<ToDo>
-
-        //Act
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToDos.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_TitleDoesntExists() {
-
-        //Arrange
-        val searchTitle = "No Name"
-        val expectedSize = 0
-        val resultSize: Int
-        val filteredToDos: List<ToDo>
-
-        //Act
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToDos.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByTitle_NoDataAvailable() {
-
-        //Arrange
-        val searchTitle = "No Name"
-        val expectedSize = 0
-        val resultSize: Int
-        val filteredToDos: List<ToDo>
-
-        //Act
-        //Clear the arraylist
-        toDos.clear()
-        //Test the function
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByTitle(searchTitle)
-        resultSize = filteredToDos.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists1Of3() {
+    fun getByCategory_CategoryExists() {
 
         //Arrange
         val searchCategory = "house chores"
@@ -182,46 +84,8 @@ class ToDoFilterTests {
         val filteredToDos: List<ToDo>
 
         //Act
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByCategory(searchCategory)
-        resultSize = filteredToDos.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists2Of3() {
-
-        //Arrange
-        val searchCategory = "sonal"
-        val expectedSize = 10 //Wash the car 1 - 10
-        val resultSize: Int
-        val filteredToDos: List<ToDo>
-
-        //Act
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByCategory(searchCategory)
-        resultSize = filteredToDos.size
-
-        //Assert
-        assertEquals(expectedSize, resultSize)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getByCategory_CategoryExists3Of3() {
-
-        //Arrange
-        val searchCategory = "hobby"
-        val expectedSize = 10 //Clean the house 1 - 10
-        val resultSize: Int
-        val filteredToDos: List<ToDo>
-
-        //Act
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<ToDo>(toDos)
+        filteredToDos = sutFilter.byCategory(searchCategory)
         resultSize = filteredToDos.size
 
         //Assert
@@ -239,8 +103,8 @@ class ToDoFilterTests {
         val filteredToDos: List<ToDo>
 
         //Act
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<ToDo>(toDos)
+        filteredToDos = sutFilter.byCategory(searchCategory)
         resultSize = filteredToDos.size
 
         //Assert
@@ -261,8 +125,8 @@ class ToDoFilterTests {
         //Clear the arrayList
         toDos.clear()
         // Test the function
-        val sutFilter = Filter<ToDo>(toDos)
-        filteredToDos = sutFilter.getByCategory(searchCategory)
+        val sutFilter = FilterOperations<ToDo>(toDos)
+        filteredToDos = sutFilter.byCategory(searchCategory)
         resultSize = filteredToDos.size
 
         //Assert
@@ -279,7 +143,7 @@ class ToDoFilterTests {
         val filteredToDos: List<ToDo>
 
         //Act
-        val sutFilter = Filter<ToDo>(toDos)
+        val sutFilter = FilterOperations<ToDo>(toDos)
         filteredToDos = sutFilter.getCompleted()
         resultSize = filteredToDos.size
 
@@ -303,7 +167,7 @@ class ToDoFilterTests {
         }
 
         //Test the function
-        val sutFilter = Filter<ToDo>(toDos)
+        val sutFilter = FilterOperations<ToDo>(toDos)
         filteredToDos = sutFilter.getCompleted()
         resultSize = filteredToDos.size
 
@@ -324,7 +188,7 @@ class ToDoFilterTests {
         //Clear the arrayList
         toDos.clear()
         // Test the function
-        val sutFilter = Filter<ToDo>(toDos)
+        val sutFilter = FilterOperations<ToDo>(toDos)
         filteredToDos = sutFilter.getCompleted()
         resultSize = filteredToDos.size
 
@@ -342,7 +206,7 @@ class ToDoFilterTests {
         val filteredToDos: List<ToDo>
 
         //Act
-        val sutFilter = Filter<ToDo>(toDos)
+        val sutFilter = FilterOperations<ToDo>(toDos)
         filteredToDos = sutFilter.getActive()
         resultSize = filteredToDos.size
 
@@ -369,7 +233,7 @@ class ToDoFilterTests {
         }
 
         //Test the function
-        val sutFilter = Filter<ToDo>(toDos)
+        val sutFilter = FilterOperations<ToDo>(toDos)
         filteredToDos = sutFilter.getActive()
         resultSize = filteredToDos.size
 
@@ -390,7 +254,7 @@ class ToDoFilterTests {
         //Clear the arrayList
         toDos.clear()
         // Test the function
-        val sutFilter = Filter<ToDo>(toDos)
+        val sutFilter = FilterOperations<ToDo>(toDos)
         filteredToDos = sutFilter.getActive()
         resultSize = filteredToDos.size
 
