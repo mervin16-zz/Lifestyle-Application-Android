@@ -16,7 +16,7 @@ import com.th3pl4gu3.lifestyle.core.utils.Utils
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_TITLE)
 fun TextView.setLifestyleItemTitle(lifestyle: Lifestyle){
     lifestyle.let {
-        text = lifestyle.title
+        text = lifestyle.title.capitalizeEachWords().abbreviate(25)
     }
 }
 
@@ -30,14 +30,14 @@ fun TextView.setLifestyleItemCategory(lifestyle: Lifestyle){
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_DATEADDED)
 fun TextView.setLifestyleItemDateAdded(lifestyle: Lifestyle){
     lifestyle.let {
-        text = Utils.dateToFormattedString(lifestyle.dateAdded)
+        text = lifestyle.dateAdded.toFormattedReadableDate()
     }
 }
 
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_DAYSOLD)
 fun TextView.setLifestyleItemDaysOld(lifestyle: Lifestyle){
     lifestyle.let {
-        text = "Dummy"
+        text = it.daysActive.formatDaysActive()
     }
 }
 
@@ -77,7 +77,7 @@ fun ImageView.setLifestyleItemPriority(toBuy: ToBuy) {
 @BindingAdapter(VALUE_BINDING_TOBUY_ITEM_PRICE)
 fun TextView.setToBuyPrice(toBuy: ToBuy){
     toBuy.let {
-        text = toBuy.estimatedPrice.toString()
+        text = toBuy.estimatedPrice.toCurrency()
     }
 }
 
@@ -91,6 +91,6 @@ fun TextView.setToBuyQuantity(toBuy: ToBuy){
 @BindingAdapter(VALUE_BINDING_TOBUY_ITEM_TOTAL)
 fun TextView.setToBuyTotal(toBuy: ToBuy){
     toBuy.let {
-        text = "Dummy"
+        text = it.total.toCurrency()
     }
 }

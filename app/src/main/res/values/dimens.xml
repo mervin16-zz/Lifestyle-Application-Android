@@ -17,9 +17,9 @@
         Custom Views
      -->
     
-    <!-- Add Item Activity -->
-    <dimen name="Margin_List_RecyclerView_Default_StartOfTitle">24dp</dimen>
-    <dimen name="Margin_List_RecyclerView_Default_BetweenTitle">4dp</dimen>
+    <!-- RecyclerView Lifestyle Item List Layouts -->
+    <dimen name="Margin_List_RecyclerView_Default_StartOfView">8dp</dimen>
+    <dimen name="Margin_List_RecyclerView_Default_BetweenViews">4dp</dimen>
     <dimen name="Margin_List_RecyclerView_Default_EndOfList">8dp</dimen>
     
     <!--

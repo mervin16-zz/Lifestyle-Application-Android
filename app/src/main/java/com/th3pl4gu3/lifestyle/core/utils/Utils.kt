@@ -1,8 +1,6 @@
 package com.th3pl4gu3.lifestyle.core.utils
 
-import androidx.room.util.StringUtil
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
-import com.th3pl4gu3.lifestyle.ui.utils.capitalizeEachWords
 import org.apache.commons.lang3.StringUtils
 import java.text.DateFormat
 import java.text.DecimalFormat
@@ -14,8 +12,7 @@ import kotlin.math.floor
 sealed class Utils {
     companion object {
         //Return date in format eg. 16 March 1996
-        fun dateToFormattedString(cal: Calendar): String =
-            DateFormat.getDateInstance(DateFormat.MEDIUM).format(cal.time)
+        fun dateToFormattedString(cal: Calendar): String = DateFormat.getDateInstance(DateFormat.MEDIUM).format(cal.time)
 
         fun getLifestyleItemEnumsToFormattedString(): ArrayList<String> {
 
@@ -23,7 +20,7 @@ sealed class Utils {
 
             for (enum in LifestyleItem.values()) {
                 val removedUnderscore = enum.toString().toLowerCase().replace(VALUE_UNDERSCORE, VALUE_WHITESPACE)
-                val capitalized = removedUnderscore.capitalizeEachWords()
+                val capitalized = capitalizeEachWords(removedUnderscore)
                 list.add(capitalized)
             }
 
@@ -41,7 +38,7 @@ sealed class Utils {
 
         //Returns a Long object counting days between the two time
         fun countDays(startDate: Calendar, endDate: Calendar) =
-            ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant())
+            ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant()).toInt()
 
         //Convert to currency format
         fun toCurrency(money: Double): String {
@@ -55,6 +52,7 @@ sealed class Utils {
         //Convert number of days to formatted string
         fun formatDaysActive(days: Int): String {
             return when {
+                days == 0 -> PLACEHOLDER_DAYS_RECENTLY
                 days == 1 -> PLACEHOLDER_DAYS_1
                 days in 2..30 -> "$days $PLACEHOLDER_DAYS_MULTIPLE"
                 days == 31 || days in 32..61 -> PLACEHOLDER_MONTHS_1

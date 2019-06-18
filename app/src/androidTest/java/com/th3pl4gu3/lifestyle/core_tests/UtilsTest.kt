@@ -38,11 +38,11 @@ class UtilsTest {
     fun countDaysBetween1Of2(){
 
         //Arrange
-        val expectedResult = 2L
+        val expectedResult = 2
         val startDate = Calendar.getInstance()
         val endDate = Calendar.getInstance()
 
-        val result: Long
+        val result: Int
 
         //Act
         //Add days
@@ -60,11 +60,11 @@ class UtilsTest {
     fun countDaysBetween2Of2(){
 
         //Arrange
-        val expectedResult = 0L
+        val expectedResult = 0
         val startDate = Calendar.getInstance()
         val endDate = Calendar.getInstance()
 
-        val result: Long
+        val result: Int
 
         //Act
         result = Utils.countDays(startDate, endDate)
@@ -243,10 +243,30 @@ class UtilsTest {
 
     @Test
     @Throws(Exception::class)
-    fun formatDaysActive_InvalidDays1Of2(){
+    fun formatDaysActive_Recently(){
 
         //Arrange
         val daysActive = 0
+        val expectedResult = "Added Recently"
+        val result: String?
+
+        //Act
+        result = try{
+            Utils.formatDaysActive(daysActive)
+        }catch (ex: Exception){
+            ex.message
+        }
+
+        //Assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun formatDaysActive_InvalidDays1Of2(){
+
+        //Arrange
+        val daysActive = -56
         val expectedResult = "An error has occurred while processing the active days in your task. Please try again or refresh the screen."
         val result: String?
 

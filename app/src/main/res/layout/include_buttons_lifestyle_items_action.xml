@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@id/Button_forLifestyleItem_Action_Delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Margin_Views_Small"
+                android:src="@drawable/ic_delete_light"
+                app:fabSize="mini"
+                app:backgroundTint="@color/button_delete_background"
+                app:tint="@color/button_delete_content" />
+        
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@id/Button_forLifestyleItem_Action_Done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Margin_Views_Small"
+                android:src="@drawable/ic_done_light"
+                app:fabSize="mini"
+                app:backgroundTint="@color/button_complete_background"
+                app:tint="@color/button_complete_content" />
+        
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@id/Button_forLifestyleItem_Action_Edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Margin_Views_Small"
+                android:src="@drawable/ic_edit_dark"
+                app:fabSize="mini"
+                app:backgroundTint="@color/button_edit_background"
+                app:tint="@color/button_edit_content" />
+    
+    </LinearLayout>
+
+</layout>

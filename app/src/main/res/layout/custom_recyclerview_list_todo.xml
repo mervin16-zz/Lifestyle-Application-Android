@@ -36,6 +36,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:contentDescription="@string/ContentDescription_fromLifestyleItemList_Icon_Delete"
                         android:src="@drawable/ic_delete_light"/>
             
             </RelativeLayout>
@@ -52,9 +53,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:contentDescription="@string/ContentDescription_fromLifestyleItemList_Icon_Complete"
+                        app:lifestyleItemSwipingMarkingIcon="@{MyToDo}"
                         app:srcCompat="@drawable/ic_done_light"
-                        tools:srcCompat="@drawable/ic_done_light"
-                        app:lifestyleItemSwipingMarkingIcon="@{MyToDo}"/>
+                        tools:srcCompat="@drawable/ic_done_light"/>
             
             </RelativeLayout>
         
@@ -65,64 +67,61 @@
                 android:id="@id/RecyclerView_ConstraintLayout_List_ForegroundView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/Padding_Views_Default"
                 android:clickable="true"
                 android:focusable="true"
                 android:background="@color/white_000"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:onClick="@{() -> clickListener.onClick(MyToDo)}">
-            
+    
             <TextView
                     android:id="@id/RecyclerView_LifestyleItem_List_Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/Margin_Views_Default"
-                    android:layout_marginBottom="@dimen/Margin_List_RecyclerView_Default_BetweenTitle"
-                    android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
+                    android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfView"
+                    android:layout_marginBottom="@dimen/Margin_List_RecyclerView_Default_BetweenViews"
                     app:lifestyleItemTitle="@{MyToDo}"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/RecyclerView_LifestyleItem_List_Category"
                     app:layout_constraintVertical_chainStyle="packed"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    tools:text="This is the title."/>
-            
+                    tools:text="This is the title."
+                    style="@style/LifeStyleItemList_Title"/>
+    
             <TextView
                     android:id="@id/RecyclerView_LifestyleItem_List_Category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/Margin_List_RecyclerView_Default_BetweenTitle"
-                    android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfTitle"
-                    android:layout_marginBottom="@dimen/Margin_Views_Default"
+                    android:layout_marginTop="@dimen/Margin_List_RecyclerView_Default_BetweenViews"
                     app:lifestyleItemCategory="@{MyToDo}"
                     app:layout_constraintTop_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Title"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                    tools:text="This is the subtitle."/>
-            
+                    app:layout_constraintStart_toStartOf="@+id/RecyclerView_LifestyleItem_List_Title"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="This is the subtitle."
+                    style="@style/LifeStyleItemList_Category"/>
+    
             <ImageView
                     android:id="@id/RecyclerView_LifestyleItem_List_Priority"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/Margin_Views_Default"
-                    android:layout_marginEnd="@dimen/Margin_Views_Default"
+                    android:contentDescription="@string/ContentDescription_fromLifestyleItemList_Icon_Priority"
+                    app:lifestyleItemPriority="@{MyToDo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_priority_4"
-                    tools:srcCompat="@drawable/ic_priority_4"
-                    app:lifestyleItemPriority="@{MyToDo}"/>
-            
+                    tools:srcCompat="@drawable/ic_priority_4"/>
+    
             <TextView
                     android:id="@id/RecyclerView_LifestyleItem_List_Date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/Margin_List_RecyclerView_Default_EndOfList"
                     app:lifestyleItemDateAdded="@{MyToDo}"
                     app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Category"
                     app:layout_constraintEnd_toEndOf="@+id/RecyclerView_LifestyleItem_List_Priority"
-                    style="@style/TextAppearance.MaterialComponents.Overline"
-                    tools:text="16 March 1996"/>
+                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    tools:text="16 March 1996"
+                    style="@style/LifeStyleItemList_DateAdded"/>
         
         </androidx.constraintlayout.widget.ConstraintLayout>
     

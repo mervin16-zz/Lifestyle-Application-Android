@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -19,7 +20,8 @@ import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToBuyBinding
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
-import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentForLifestyleItemDetails
+import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentFilter
+import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentSort
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
 
@@ -57,7 +59,7 @@ class FragmentToBuy : Fragment() {
         //RecyclerView's configuration
         val adapter = ToBuyAdapter(ToBuyListener{
             val bottomFragment =
-                RoundedBottomSheetDialogFragmentForLifestyleItemDetails(it)
+                RoundedBottomSheetDialogFragmentForToBuyDetails(it, viewModelFactory)
             bottomFragment.show(requireActivity().supportFragmentManager, bottomFragment.tag)
         })
 
@@ -108,6 +110,22 @@ class FragmentToBuy : Fragment() {
         itemTouchHelper.attachToRecyclerView(mBinding.RecyclerViewFromFragmentToBuyMain)
 
         return mBinding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val activity = requireActivity()
+
+        activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Filter).setOnClickListener {
+            val filterBottomDialog = RoundedBottomSheetDialogFragmentFilter()
+            filterBottomDialog.show(requireFragmentManager(), filterBottomDialog.tag)
+        }
+
+        activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Sort).setOnClickListener {
+            val sortBottomDialog = RoundedBottomSheetDialogFragmentSort()
+            sortBottomDialog.show(requireFragmentManager(), sortBottomDialog.tag)
+        }
     }
 
     /**

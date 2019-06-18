@@ -9,17 +9,143 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/Margin_Views_Default">
-        
+            android:padding="@dimen/Padding_Views_Default">
+    
         <TextView
+                android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView"
-                android:text="Filter"
-                tools:text="The Title" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-                style="@style/typography_h5"/>
+                android:layout_marginStart="@dimen/Margin_Views_Small"
+                android:layout_marginBottom="@dimen/Margin_Views_Default"
+                android:text="@string/Fragment_BottomSheetDialog_Filter_Title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_Title"
+                tools:text="@string/Fragment_BottomSheetDialog_Filter_Title"
+                style="@style/typography_h5" />
     
+        <TextView
+                android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_Title"
+                android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Margin_Views_Default"
+                android:layout_marginBottom="@dimen/Margin_Views_Small"
+                android:textColor="@color/colorTextAlternate"
+                app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Title"
+                app:layout_constraintStart_toStartOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Title"
+                app:layout_constraintBottom_toTopOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_ChipGroup"
+                style="@style/typography_subtitle_2" />
+    
+        <com.google.android.material.chip.ChipGroup
+                android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_ChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Margin_Views_Small"
+                app:singleSelection="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_Title"
+                app:layout_constraintBottom_toTopOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Title">
+    
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_P1"
+                    style="@style/Chips_Filter_Default"/>
+    
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_P2"
+                    style="@style/Chips_Filter_Default"/>
+    
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_P3"
+                    style="@style/Chips_Filter_Default"/>
+    
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_P4"
+                    style="@style/Chips_Filter_Default"/>
+
+        </com.google.android.material.chip.ChipGroup>
+    
+        <TextView
+                android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/Margin_Views_Small"
+                android:layout_marginTop="@dimen/Margin_Views_Default"
+                android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_Title"
+                android:textColor="@color/colorTextAlternate"
+                app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_ChipGroup"
+                app:layout_constraintStart_toStartOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_Title"
+                app:layout_constraintBottom_toTopOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_ChipGroup"
+                style="@style/typography_subtitle_2"/>
+    
+        <com.google.android.material.chip.ChipGroup
+                android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_ChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/Margin_Views_Default"
+                android:layout_marginEnd="@dimen/Margin_Views_Small"
+                android:layout_marginTop="@dimen/Margin_Views_Small"
+                android:layout_marginStart="@dimen/Margin_Views_Small"
+                app:singleSelection="false"
+                app:checkedChip="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Chip_All"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Title"
+                app:layout_constraintBottom_toBottomOf="parent">
+    
+            <com.google.android.material.chip.Chip
+                    android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Chip_All"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_All"
+                    style="@style/Chips_Filter_Default"/>
+    
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_Personal"
+                    style="@style/Chips_Filter_Default"/>
+        
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_Family"
+                    style="@style/Chips_Filter_Default"/>
+        
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_Home"
+                    style="@style/Chips_Filter_Default"/>
+        
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_Household"
+                    style="@style/Chips_Filter_Default"/>
+    
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_Friends"
+                    style="@style/Chips_Filter_Default"/>
+    
+            <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_Business"
+                    style="@style/Chips_Filter_Default"/>
+    
+        </com.google.android.material.chip.ChipGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -7,6 +7,11 @@
         General
      -->
     
+    <!-- Layouts -->
+    <item type="id" name="RelativeLayout_forLifestyleItem_ActionButtons"/>
+    <item type="id" name="IncludeLayout_forLifestyleItem_ActionButtons"/>
+    
+    
     <!-- RecyclerView -->
     <item type="id" name="EmptyView_forRecyclerView"/>
     
@@ -15,6 +20,28 @@
     <item type="id" name="Button_forLifestyleList_ToggleButton_Completed"/>
     <item type="id" name="ToggleButtonGroup_forLifestyleList_default"/>
     
+    <!-- Button -->
+    <item type="id" name="Button_forLifestyleItem_Action_Delete"/>
+    <item type="id" name="Button_forLifestyleItem_Action_Edit"/>
+    <item type="id" name="Button_forLifestyleItem_Action_Done"/>
+    
+    <!-- Placeholder -->
+    <item type="id" name="Placeholder_forLifestyleItem_Category"/>
+    <item type="id" name="Placeholder_forLifestyleItem_DateAdded"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Priority"/>
+    <item type="id" name="Placeholder_forLifestyleItem_DaysActive"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Price"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Total"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Quantity"/>
+    
+    <item type="id" name="Placeholder_forLifestyleItem_Value_Title"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Value_Category"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Value_DateAdded"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Value_Priority"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Value_DaysActive"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Value_Price"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Value_Total"/>
+    <item type="id" name="Placeholder_forLifestyleItem_Value_Quantity"/>
     
     <!--
         Custom Lists
@@ -75,6 +102,21 @@
     <item type="id" name="RecyclerView_fromFragmentGoal_Main"/>
     <item type="id" name="ImageView_fromFragmentGoal_EmptyView"/>
     <item type="id" name="TextView_fromFragmentGoal_EmptyView"/>
+    
+    <!-- Bottom App Bar Filter Fragment -->
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Title"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_Title"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Title"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_ChipGroup"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_ChipGroup"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Chip_All"/>
+    
+    <!-- Bottom App Bar Sort Fragment -->
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetSort_Sort_Title"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ChipGroup"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup_Ascending"/>
+    <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup_Descending"/>
     
     
     <!--

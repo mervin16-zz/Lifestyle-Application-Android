@@ -6,4 +6,4 @@
     android:layout_height="wrap_content"
     android:textSize="18sp"
     android:gravity="center"
-    android:textColor="@color/grey_300" />
+    android:textColor="@color/colorTextAlternateLight" />

@@ -127,14 +127,14 @@ class LifestyleTests {
     fun daysActiveInToDo() {
 
         //Arrange
-        val expectedDaysActive = 10L
+        val expectedDaysActive = 10
         val dateAdded = Calendar.getInstance()
         //Configure Date added
         dateAdded.add(Calendar.DAY_OF_MONTH, -10)
         val toDo = ToDo()
         toDo.dateAdded = dateAdded
 
-        val resultDaysActive: Long?
+        val resultDaysActive: Int?
 
         //Act
         resultDaysActive = toDo.daysActive
@@ -148,14 +148,14 @@ class LifestyleTests {
     fun daysActiveInToBuy() {
 
         //Arrange
-        val expectedDaysActive = 10L
+        val expectedDaysActive = 10
         val dateAdded = Calendar.getInstance()
         //Configure Date added
         dateAdded.add(Calendar.DAY_OF_MONTH, -10)
         val toBuy = ToBuy()
         toBuy.dateAdded = dateAdded
 
-        val resultDaysActive: Long?
+        val resultDaysActive: Int?
 
         //Act
         resultDaysActive = toBuy.daysActive
@@ -169,14 +169,14 @@ class LifestyleTests {
     fun daysActiveInGoal() {
 
         //Arrange
-        val expectedDaysActive = 10L
+        val expectedDaysActive = 10
         val dateAdded = Calendar.getInstance()
         //Configure Date added
         dateAdded.add(Calendar.DAY_OF_MONTH, -10)
         val goal = Goal()
         goal.dateAdded = dateAdded
 
-        val resultDaysActive: Long?
+        val resultDaysActive: Int?
 
         //Act
         resultDaysActive = goal.daysActive

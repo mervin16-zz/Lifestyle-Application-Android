@@ -22,7 +22,7 @@ abstract class Lifestyle {
     abstract var dateCompleted: Calendar?
     abstract var type: Int
 
-    val daysActive: Long
+    val daysActive: Int
         get() = Utils.countDays(dateAdded, Calendar.getInstance())
 
     val isCompleted

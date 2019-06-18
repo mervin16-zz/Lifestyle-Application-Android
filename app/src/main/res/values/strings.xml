@@ -25,9 +25,19 @@
     <string name="Button_forLifestyleList_ToggleButton_Completed">Completed</string>
     <string name="Button_forLifestyleRestoreItem_SnackBar_Undo">Undo</string>
     
+    <!-- Button -->
+    <string name="Button_forLifestyleItems_Action_Delete">Delete</string>
+    <string name="Button_forLifestyleItems_Action_Done">Done</string>
     
     <!-- Placeholders -->
     <string name="Placeholder_BottomAppBar_DrawerMenu_Title_User">User</string>
+    <string name="Placeholder_forLifestyleItem_Details_Category">Category: </string>
+    <string name="Placeholder_forLifestyleItem_Details_DateAdded">Date Added: </string>
+    <string name="Placeholder_forLifestyleItem_Details_Priority">Priority: </string>
+    <string name="Placeholder_forLifestyleItem_Details_DaysActive">Days Active: </string>
+    <string name="Placeholder_forLifestyleItem_Details_Price">Estimated Price: </string>
+    <string name="Placeholder_forLifestyleItem_Details_Quantity">Quantity: </string>
+    <string name="Placeholder_forLifestyleItem_Details_Total">Total: </string>
     
     
     <!-- 
@@ -86,6 +96,32 @@
     <string name="TextView_fromGoalsFragment_Message_EmptyList_Active">Don\'t you have some goals in your life?</string>
     <string name="TextView_fromGoalsFragment_Message_EmptyList_Completed">You have not achieved any goals!</string>
     
+    <!-- Bottom Sheet Dialog Sort Fragment -->
+    <string name="Fragment_BottomSheetDialog_Sort_Title">Sort</string>
+    <string name="Fragment_BottomSheetDialog_Sort_Chips_Title">Title</string>
+    <string name="Fragment_BottomSheetDialog_Sort_Chips_DateAdded">Date Added</string>
+    <string name="Fragment_BottomSheetDialog_Sort_Chips_DaysAlive">Days Alive</string>
+    <string name="Fragment_BottomSheetDialog_Sort_Chips_Priority">Priority</string>
+    <string name="Fragment_BottomSheetDialog_Sort_Chips_Category">Category</string>
+    <string name="Fragment_BottomSheetDialog_Sort_ToggleButton_Ascending">Asc.</string>
+    <string name="Fragment_BottomSheetDialog_Sort_ToggleButton_Descending">Desc.</string>
+    
+    <!-- Bottom Sheet Dialog Filter Fragment -->
+    <string name="Fragment_BottomSheetDialog_Filter_Title">Filter</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_Title">Priority</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Title">Category</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_P1">Priority 1</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_P2">Priority 2</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_P3">Priority 3</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_P4">Priority 4</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_All">All</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Personal">Personal</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Family">Family</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Home">Home</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Household">House Hold</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Friends">Friends</string>
+    <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Business">Business</string>
+    
     
     <!--
         Messages
@@ -128,4 +164,9 @@
     <string name="ContentDescription_fromToBuyFragment_EmptyView">Sad Face</string>
     <string name="ContentDescription_fromGoalFragment_EmptyView">Sad Face</string>
     <string name="ContentDescription_fromToDoFragment_EmptyView">Sad Face</string>
+    
+    <!-- Lifestyle Item RecyclerView List -->
+    <string name="ContentDescription_fromLifestyleItemList_Icon_Priority">The Priority icon</string>
+    <string name="ContentDescription_fromLifestyleItemList_Icon_Delete">The Delete icon</string>
+    <string name="ContentDescription_fromLifestyleItemList_Icon_Complete">The Complete icon</string>
 </resources>

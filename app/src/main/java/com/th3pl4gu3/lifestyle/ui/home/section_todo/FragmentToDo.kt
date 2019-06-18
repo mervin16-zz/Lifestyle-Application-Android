@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -23,12 +24,14 @@ import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
-import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentForLifestyleItemDetails
+import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentFilter
+import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentSort
 
 class FragmentToDo : Fragment() {
 
     private lateinit var mBinding: FragmentToDoBinding
     private lateinit var mToDoViewModel: ToDoViewModel
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -58,8 +61,7 @@ class FragmentToDo : Fragment() {
 
         //RecyclerView's configuration
         val adapter = ToDoAdapter(ToDoListener {
-            val bottomFragment =
-                RoundedBottomSheetDialogFragmentForLifestyleItemDetails(it)
+            val bottomFragment = RoundedBottomSheetDialogFragmentForToDoDetails(it, viewModelFactory)
             bottomFragment.show(requireActivity().supportFragmentManager, bottomFragment.tag)
         })
 
@@ -81,10 +83,7 @@ class FragmentToDo : Fragment() {
 
                 val swipedToDo = (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
                 val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
-                Log.d("POSITIONING", "Layout Position: ${viewHolder.layoutPosition}")
-                Log.d("POSITIONING", "Adapter Position: ${viewHolder.adapterPosition}")
-                Log.d("POSITIONING", "Old Position: ${viewHolder.oldPosition}")
-                Log.d("POSITIONING", "Item Position in Array: ${(mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList.indexOf(swipedToDo)}")
+
                 when(direction){
                     ItemTouchHelper.LEFT -> {
                         mToDoViewModel.markItem(swipedToDo)
@@ -114,6 +113,21 @@ class FragmentToDo : Fragment() {
         return mBinding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        val activity = requireActivity()
+
+        activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Filter).setOnClickListener {
+            val filterBottomDialog = RoundedBottomSheetDialogFragmentFilter()
+            filterBottomDialog.show(requireFragmentManager(), filterBottomDialog.tag)
+        }
+
+        activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Sort).setOnClickListener {
+            val sortBottomDialog = RoundedBottomSheetDialogFragmentSort()
+            sortBottomDialog.show(requireFragmentManager(), sortBottomDialog.tag)
+        }
+    }
 
     /**
      * Private functions for internal use ONLY

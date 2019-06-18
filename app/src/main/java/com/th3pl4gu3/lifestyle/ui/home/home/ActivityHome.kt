@@ -38,16 +38,6 @@ class ActivityHome : AppCompatActivity(){
             startActivity(Intent(this, ActivityAddItem::class.java))
             overridePendingTransition(R.anim.slide_up_in, R.anim.slide_down_out)
         }
-
-        mBinding.ImageButtonFromHomeActivityIconFilter.setOnClickListener {
-            val filterBottomDialog = RoundedBottomSheetDialogFragmentFilter()
-            filterBottomDialog.show(supportFragmentManager, filterBottomDialog.tag)
-        }
-
-        mBinding.ImageButtonFromHomeActivityIconSort.setOnClickListener {
-            val sortBottomDialog = RoundedBottomSheetDialogFragmentSort()
-            sortBottomDialog.show(supportFragmentManager, sortBottomDialog.tag)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

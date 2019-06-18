@@ -19,9 +19,9 @@ abstract class GoalSwipeToCallback(val context: Context) : ItemTouchHelper.Simpl
         val foregroundView = (viewHolder as GoalAdapter.ViewHolder).binding.RecyclerViewConstraintLayoutListForegroundView
 
         if(dX < 0){
-            (viewHolder).binding.RecyclerViewLinearLayoutListBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.material_green))
+            (viewHolder).binding.RecyclerViewLinearLayoutListBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.notification_successful))
         }else if(dX > 0){
-            (viewHolder).binding.RecyclerViewLinearLayoutListBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.material_red))
+            (viewHolder).binding.RecyclerViewLinearLayoutListBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.notification_error))
         }
 
         ItemTouchHelper.Callback.getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX/2, dY, actionState, isCurrentlyActive)
