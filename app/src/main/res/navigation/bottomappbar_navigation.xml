@@ -4,25 +4,71 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             app:startDestination="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home">
     
-    <fragment android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home"
-              android:name="com.th3pl4gu3.lifestyle.ui.home.section_home.FragmentHome"
-              android:label="FragmentHome"/>
+    <!--
+        Home fragments
+    -->
+    <fragment
+            android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.section_home.FragmentHome"
+            android:label="FragmentHome"/>
     
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Goals"
             android:name="com.th3pl4gu3.lifestyle.ui.home.section_goal.FragmentGoals"
             android:label="FragmentGoals"/>
-
+    
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_ToDo"
             android:name="com.th3pl4gu3.lifestyle.ui.home.section_todo.FragmentToDo"
             android:label="FragmentToDo"/>
+    
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_ToBuy"
             android:name="com.th3pl4gu3.lifestyle.ui.home.section_tobuy.FragmentToBuy"
             android:label="FragmentToBuy"/>
+    
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Statistics"
             android:name="com.th3pl4gu3.lifestyle.ui.home.section_statistics.FragmentStatistics"
             android:label="FragmentStatistics"/>
+    
+    <!--
+        Sort & Filter Dialogs
+    -->
+    <dialog
+            android:id="@id/BottomSheetDialog_fromActivityHome_Sort"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentSort"
+            android:label="RoundedBottomSheetDialogFragmentSort"/>
+    
+    <dialog
+            android:id="@id/BottomSheetDialog_fromActivityHome_Filter"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentFilter"
+            android:label="RoundedBottomSheetDialogFragmentFilter"/>
+    
+    <!--
+        Bottom App Bar Drawer Dialog
+    -->
+    <dialog
+            android:id="@id/BottomAppBar_fromActivityHome_Drawer"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentForBottomAppBarDrawer"
+            android:label="RoundedBottomSheetDialogFragmentForBottomAppBarDrawer"/>
+    
+    <!--
+        Lifestyle Item Details Dialogs
+    -->
+    <dialog
+            android:id="@id/BottomSheetDialog_fromFragmentGoal_Details"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.section_goal.RoundedBottomSheetDialogFragmentForGoalDetails"
+            android:label="RoundedBottomSheetDialogFragmentForGoalDetails"/>
+    
+    <dialog
+            android:id="@id/BottomSheetDialog_fromFragmentToBuy_Details"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.section_tobuy.RoundedBottomSheetDialogFragmentForToBuyDetails"
+            android:label="RoundedBottomSheetDialogFragmentForToBuyDetails"/>
+    
+    <dialog
+            android:id="@id/BottomSheetDialog_fromFragmentToDo_Details"
+            android:name="com.th3pl4gu3.lifestyle.ui.home.section_todo.RoundedBottomSheetDialogFragmentForToDoDetails"
+            android:label="RoundedBottomSheetDialogFragmentForToDoDetails"/>
+
 </navigation>

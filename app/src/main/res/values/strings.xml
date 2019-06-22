@@ -16,6 +16,10 @@
         <item>Party</item>
     </string-array>
     
+    <!-- Pairs & Values -->
+    <string name="ValuePair_forDataPassing_LifestyleItem">LifestyleItemValuePairDataPassingKey</string>
+    
+    
     <!--
         General
      -->

@@ -11,10 +11,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
+import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentBottomdialogTobuyDetailsBinding
+import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 
-class RoundedBottomSheetDialogFragmentForToBuyDetails(private val toBuy: ToBuy, private val viewModelFactory: ToBuyViewModelFactory) : BottomSheetDialogFragment() {
+class RoundedBottomSheetDialogFragmentForToBuyDetails : BottomSheetDialogFragment() {
+
+    private lateinit var _viewModel: LifestyleOpsViewModel
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
@@ -25,8 +29,17 @@ class RoundedBottomSheetDialogFragmentForToBuyDetails(private val toBuy: ToBuy, 
         //Bind the view and assign to binding object
         val binding: FragmentBottomdialogTobuyDetailsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottomdialog_tobuy_details, container, false)
 
-        //Get the ViewModel of To Buy
-        val viewModel = ViewModelProviders.of(this, viewModelFactory).get(ToBuyViewModel::class.java)
+        //Get the activity's application
+        val application = requireActivity().application
+
+        //Fetch the database
+        val dataSource = LifestyleDatabase.getInstance(application)
+
+        //Instantiate the view model of this fragment
+        _viewModel = ViewModelProviders.of(this, ToBuyViewModelFactory(dataSource, application)).get(LifestyleOpsViewModel::class.java)
+
+        //Get the lifestyle item and cast as To Buy object
+        val toBuy = requireArguments().get(getString(R.string.ValuePair_forDataPassing_LifestyleItem)) as ToBuy
 
         //Attach To Buy object with variable in XML
         binding.myToBuy = toBuy
@@ -42,14 +55,14 @@ class RoundedBottomSheetDialogFragmentForToBuyDetails(private val toBuy: ToBuy, 
 
         binding.IncludeLayoutForLifestyleItemActionButtons.ButtonForLifestyleItemActionDelete.setOnClickListener{
             //Deletes the item
-            viewModel.markAsDeleted(toBuy)
+            _viewModel.markAsDeleted(toBuy)
             //Dismiss the dialog
             this.dismiss()
         }
 
         binding.IncludeLayoutForLifestyleItemActionButtons.ButtonForLifestyleItemActionDone.setOnClickListener{
             //Marks the item as either complete or incomplete
-            viewModel.markItem(toBuy)
+            _viewModel.markItem(toBuy)
             //Dismiss the dialog
             this.dismiss()
         }

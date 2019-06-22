@@ -8,8 +8,10 @@
         <variable
                 name="MyGoal"
                 type="com.th3pl4gu3.lifestyle.core.lifestyle.Goal"/>
-    
-        <variable name="clickListener" type="com.th3pl4gu3.lifestyle.ui.home.section_goal.GoalListener"/>
+        
+        <variable
+                name="clickListener"
+                type="com.th3pl4gu3.lifestyle.ui.home.section_goal.GoalListener"/>
     </data>
     
     <FrameLayout

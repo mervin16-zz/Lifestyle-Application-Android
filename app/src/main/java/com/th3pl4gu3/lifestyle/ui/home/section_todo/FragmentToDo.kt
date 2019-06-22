@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,11 +49,9 @@ class FragmentToDo : Fragment() {
         //Fetch the database
         val dataSource = LifestyleDatabase.getInstance(application)
 
-        //Instantiate the view model factory
-        val viewModelFactory = ToDoViewModelFactory(dataSource, application)
-
         //Instantiate the view model of this fragment
-        mToDoViewModel = ViewModelProviders.of(this, viewModelFactory).get(ToDoViewModel::class.java)
+        mToDoViewModel =
+            ViewModelProviders.of(this, ToDoViewModelFactory(dataSource, application)).get(ToDoViewModel::class.java)
 
         //Bind view model
         mBinding.toDoViewModel = mToDoViewModel
@@ -61,8 +61,11 @@ class FragmentToDo : Fragment() {
 
         //RecyclerView's configuration
         val adapter = ToDoAdapter(ToDoListener {
-            val bottomFragment = RoundedBottomSheetDialogFragmentForToDoDetails(it, viewModelFactory)
-            bottomFragment.show(requireActivity().supportFragmentManager, bottomFragment.tag)
+            requireActivity().findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                .navigate(
+                    R.id.BottomSheetDialog_fromFragmentToDo_Details,
+                    bundleOf(getString(R.string.ValuePair_forDataPassing_LifestyleItem) to it)
+                )
         })
 
         mBinding.RecyclerViewFromFragmentToDoMain.adapter = adapter
@@ -81,10 +84,12 @@ class FragmentToDo : Fragment() {
         val swipeHandler = object : ToDoSwipeToCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
-                val swipedToDo = (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
-                val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
+                val swipedToDo =
+                    (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
+                val fab =
+                    requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
 
-                when(direction){
+                when (direction) {
                     ItemTouchHelper.LEFT -> {
                         mToDoViewModel.markItem(swipedToDo)
                     }
@@ -93,14 +98,19 @@ class FragmentToDo : Fragment() {
                         mToDoViewModel.markAsDeleted(swipedToDo)
 
                         //Show Snackbar with 'Undo' action
-                        requireActivity().findViewById<View>(android.R.id.content).snackBarWithAction(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping, swipedToDo.title), anchorView = fab){
-                                action(getString(R.string.Button_forLifestyleRestoreItem_SnackBar_Undo)){
-                                    mToDoViewModel.insertItem(swipedToDo)
-                                }
+                        requireActivity().findViewById<View>(android.R.id.content).snackBarWithAction(
+                            getString(
+                                R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping,
+                                swipedToDo.title
+                            ), anchorView = fab
+                        ) {
+                            action(getString(R.string.Button_forLifestyleRestoreItem_SnackBar_Undo)) {
+                                mToDoViewModel.insertItem(swipedToDo)
                             }
+                        }
                     }
 
-                    else ->{
+                    else -> {
                         requireContext().toast(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping))
                     }
                 }
@@ -119,13 +129,13 @@ class FragmentToDo : Fragment() {
         val activity = requireActivity()
 
         activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Filter).setOnClickListener {
-            val filterBottomDialog = RoundedBottomSheetDialogFragmentFilter()
-            filterBottomDialog.show(requireFragmentManager(), filterBottomDialog.tag)
+            activity.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                .navigate(R.id.BottomSheetDialog_fromActivityHome_Filter)
         }
 
         activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Sort).setOnClickListener {
-            val sortBottomDialog = RoundedBottomSheetDialogFragmentSort()
-            sortBottomDialog.show(requireFragmentManager(), sortBottomDialog.tag)
+            activity.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                .navigate(R.id.BottomSheetDialog_fromActivityHome_Sort)
         }
     }
 
@@ -133,15 +143,17 @@ class FragmentToDo : Fragment() {
      * Private functions for internal use ONLY
      **/
 
-    private fun updateUI(recyclerViewVisible: Boolean){
-        if(recyclerViewVisible){
+    private fun updateUI(recyclerViewVisible: Boolean) {
+        if (recyclerViewVisible) {
             mBinding.RecyclerViewFromFragmentToDoMain.visibility = View.VISIBLE
             mBinding.EmptyViewForRecyclerView.visibility = View.GONE
-        }else{
-            if(mToDoViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_COMPLETE){
-                mBinding.TextViewFromFragmentToDoEmptyView.text = getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Completed)
-            }else if(mToDoViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_ACTIVE){
-                mBinding.TextViewFromFragmentToDoEmptyView.text = getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Active)
+        } else {
+            if (mToDoViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_COMPLETE) {
+                mBinding.TextViewFromFragmentToDoEmptyView.text =
+                    getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Completed)
+            } else if (mToDoViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_ACTIVE) {
+                mBinding.TextViewFromFragmentToDoEmptyView.text =
+                    getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Active)
             }
 
             mBinding.RecyclerViewFromFragmentToDoMain.visibility = View.GONE
@@ -149,17 +161,18 @@ class FragmentToDo : Fragment() {
         }
     }
 
-    private fun configureScreenAppearance(){
+    private fun configureScreenAppearance() {
+
+        val activity = requireActivity()
+
         //Set title of fragment
-        val screenTitle = requireActivity().findViewById<TextView>(R.id.TextView_fromHomeActivity_Screen_Title)
-        screenTitle.text = getString(R.string.TextView_fromFragmentInHomeActivity_ScreenTitle_ToDo)
+        activity.findViewById<TextView>(R.id.TextView_fromHomeActivity_Screen_Title).text =
+            getString(R.string.TextView_fromFragmentInHomeActivity_ScreenTitle_ToDo)
 
         //Show Top Bar
-        val topBar = requireActivity().findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar)
-        topBar.visibility = View.VISIBLE
+        activity.findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar).visibility = View.VISIBLE
 
         //Show Fab
-        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
-        fab.show()
+        activity.findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached).show()
     }
 }

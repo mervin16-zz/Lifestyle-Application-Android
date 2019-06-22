@@ -1,5 +1,6 @@
 package com.th3pl4gu3.lifestyle.core.lifestyle
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,6 +8,7 @@ import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.enums.Priority
 import com.th3pl4gu3.lifestyle.core.utils.*
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 /**
@@ -14,6 +16,7 @@ import java.util.*
  * The purpose of the To Buy class is to hold data about each to buy task of the user.
  **/
 @Entity(tableName = DATABASE_TABLE_TOBUY)
+@Parcelize
 data class ToBuy constructor(
     @ColumnInfo(name = DATABASE_TABLE_TOBUY_TITLE)
     override var title: String = PLACEHOLDER_ITEM_LIFESTYLE_TITLE,
@@ -29,7 +32,7 @@ data class ToBuy constructor(
 
     @ColumnInfo(name = DATABASE_TABLE_TOBUY_PRIORITY)
     var priority: Priority = Priority.P4
-) : Lifestyle() {
+) : Lifestyle(), Parcelable{
 
     @PrimaryKey(autoGenerate = false)
     var id: String = super.uniqueId

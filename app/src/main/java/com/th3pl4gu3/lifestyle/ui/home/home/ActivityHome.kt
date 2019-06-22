@@ -3,10 +3,10 @@ package com.th3pl4gu3.lifestyle.ui.home.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.databinding.ActivityHomeBinding
@@ -16,9 +16,6 @@ import com.th3pl4gu3.lifestyle.ui.add_item.ActivityAddItem
 class ActivityHome : AppCompatActivity(){
 
     private lateinit var mBinding: ActivityHomeBinding
-    private var mBottomNavDrawerFragment: RoundedBottomSheetDialogFragmentForBottomAppBarDrawer? = null
-
-    private var saveClickCounter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,16 +46,7 @@ class ActivityHome : AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                if (saveClickCounter++ == 0) {
-
-                    mBottomNavDrawerFragment =
-                        RoundedBottomSheetDialogFragmentForBottomAppBarDrawer()
-                    mBottomNavDrawerFragment?.show(supportFragmentManager, mBottomNavDrawerFragment?.tag)
-
-                    Handler().postDelayed({
-                        saveClickCounter = 0
-                    },1000)
-                }
+                this.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments).navigate(R.id.BottomAppBar_fromActivityHome_Drawer)
                 true
             }
 

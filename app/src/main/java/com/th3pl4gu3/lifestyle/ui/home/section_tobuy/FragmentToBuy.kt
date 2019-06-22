@@ -1,29 +1,28 @@
 package com.th3pl4gu3.lifestyle.ui.home.section_tobuy
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToBuyBinding
-import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
-import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentFilter
-import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentSort
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
+import com.th3pl4gu3.lifestyle.ui.utils.toast
 
 class FragmentToBuy : Fragment() {
 
@@ -44,11 +43,9 @@ class FragmentToBuy : Fragment() {
         //Fetch the database
         val dataSource = LifestyleDatabase.getInstance(application)
 
-        //Instantiate the view model factory
-        val viewModelFactory = ToBuyViewModelFactory(dataSource, application)
-
         //Instantiate the view model of this fragment
-        mToBuyViewModel = ViewModelProviders.of(this, viewModelFactory).get(ToBuyViewModel::class.java)
+        mToBuyViewModel =
+            ViewModelProviders.of(this, ToBuyViewModelFactory(dataSource, application)).get(ToBuyViewModel::class.java)
 
         //Bind view model
         mBinding.toBuyViewModel = mToBuyViewModel
@@ -57,10 +54,12 @@ class FragmentToBuy : Fragment() {
         mBinding.lifecycleOwner = this
 
         //RecyclerView's configuration
-        val adapter = ToBuyAdapter(ToBuyListener{
-            val bottomFragment =
-                RoundedBottomSheetDialogFragmentForToBuyDetails(it, viewModelFactory)
-            bottomFragment.show(requireActivity().supportFragmentManager, bottomFragment.tag)
+        val adapter = ToBuyAdapter(ToBuyListener {
+            requireActivity().findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                .navigate(
+                    R.id.BottomSheetDialog_fromFragmentToBuy_Details,
+                    bundleOf(getString(R.string.ValuePair_forDataPassing_LifestyleItem) to it)
+                )
         })
 
         mBinding.RecyclerViewFromFragmentToBuyMain.adapter = adapter
@@ -79,10 +78,12 @@ class FragmentToBuy : Fragment() {
         val swipeHandler = object : ToBuySwipeToCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
-                val swipedToBuy = (mBinding.RecyclerViewFromFragmentToBuyMain.adapter as ToBuyAdapter).currentList[viewHolder.adapterPosition]
-                val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
+                val swipedToBuy =
+                    (mBinding.RecyclerViewFromFragmentToBuyMain.adapter as ToBuyAdapter).currentList[viewHolder.adapterPosition]
+                val fab =
+                    requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
 
-                when(direction){
+                when (direction) {
                     ItemTouchHelper.LEFT -> {
                         mToBuyViewModel.markItem(swipedToBuy)
                     }
@@ -91,15 +92,20 @@ class FragmentToBuy : Fragment() {
                         mToBuyViewModel.markAsDeleted(swipedToBuy)
 
                         //Show Snackbar with 'Undo' action
-                        requireActivity().findViewById<View>(android.R.id.content).snackBarWithAction(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping, swipedToBuy.title), anchorView = fab){
-                            action(getString(R.string.Button_forLifestyleRestoreItem_SnackBar_Undo)){
+                        requireActivity().findViewById<View>(android.R.id.content).snackBarWithAction(
+                            getString(
+                                R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping,
+                                swipedToBuy.title
+                            ), anchorView = fab
+                        ) {
+                            action(getString(R.string.Button_forLifestyleRestoreItem_SnackBar_Undo)) {
                                 mToBuyViewModel.insertItem(swipedToBuy)
                                 //Restore Item
                             }
                         }
                     }
 
-                    else ->{
+                    else -> {
                         requireContext().toast(getString(R.string.Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping))
                     }
                 }
@@ -118,13 +124,13 @@ class FragmentToBuy : Fragment() {
         val activity = requireActivity()
 
         activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Filter).setOnClickListener {
-            val filterBottomDialog = RoundedBottomSheetDialogFragmentFilter()
-            filterBottomDialog.show(requireFragmentManager(), filterBottomDialog.tag)
+            activity.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                .navigate(R.id.BottomSheetDialog_fromActivityHome_Filter)
         }
 
         activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Sort).setOnClickListener {
-            val sortBottomDialog = RoundedBottomSheetDialogFragmentSort()
-            sortBottomDialog.show(requireFragmentManager(), sortBottomDialog.tag)
+            activity.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                .navigate(R.id.BottomSheetDialog_fromActivityHome_Sort)
         }
     }
 
@@ -132,15 +138,17 @@ class FragmentToBuy : Fragment() {
      * Private functions for internal use ONLY
      **/
 
-    private fun updateUI(recyclerViewVisible: Boolean){
-        if(recyclerViewVisible){
+    private fun updateUI(recyclerViewVisible: Boolean) {
+        if (recyclerViewVisible) {
             mBinding.RecyclerViewFromFragmentToBuyMain.visibility = View.VISIBLE
             mBinding.EmptyViewForRecyclerView.visibility = View.GONE
-        }else{
-            if(mToBuyViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_COMPLETE){
-                mBinding.TextViewFromFragmentToBuyEmptyView.text = getString(R.string.TextView_fromToBuyFragment_Message_EmptyList_Completed)
-            }else if(mToBuyViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_ACTIVE){
-                mBinding.TextViewFromFragmentToBuyEmptyView.text = getString(R.string.TextView_fromToBuyFragment_Message_EmptyList_Active)
+        } else {
+            if (mToBuyViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_COMPLETE) {
+                mBinding.TextViewFromFragmentToBuyEmptyView.text =
+                    getString(R.string.TextView_fromToBuyFragment_Message_EmptyList_Completed)
+            } else if (mToBuyViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_ACTIVE) {
+                mBinding.TextViewFromFragmentToBuyEmptyView.text =
+                    getString(R.string.TextView_fromToBuyFragment_Message_EmptyList_Active)
             }
 
             mBinding.RecyclerViewFromFragmentToBuyMain.visibility = View.GONE
@@ -148,17 +156,18 @@ class FragmentToBuy : Fragment() {
         }
     }
 
-    private fun configureScreenAppearance(){
+    private fun configureScreenAppearance() {
+        val activity = requireActivity()
+
         //Set title of fragment
-        val screenTitle = requireActivity().findViewById<TextView>(R.id.TextView_fromHomeActivity_Screen_Title)
-        screenTitle.text = getString(R.string.TextView_fromFragmentInHomeActivity_ScreenTitle_ToBuy)
+        activity.findViewById<TextView>(R.id.TextView_fromHomeActivity_Screen_Title).text =
+            getString(R.string.TextView_fromFragmentInHomeActivity_ScreenTitle_ToBuy)
 
         //Show Top Bar
-        val topBar = requireActivity().findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar)
-        topBar.visibility = View.VISIBLE
+        activity.findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar).visibility =
+            View.VISIBLE
 
         //Show Fab
-        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
-        fab.show()
+        activity.findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached).show()
     }
 }

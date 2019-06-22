@@ -6,7 +6,13 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     
     <data>
-        <variable name="MyGoal" type="com.th3pl4gu3.lifestyle.core.lifestyle.Goal"/>
+        <variable
+                name="MyGoal"
+                type="com.th3pl4gu3.lifestyle.core.lifestyle.Goal"/>
+    
+        <variable
+                name="LifestyleViewModel"
+                type="com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel"/>
     </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout

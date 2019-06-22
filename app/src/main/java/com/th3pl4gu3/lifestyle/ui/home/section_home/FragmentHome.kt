@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,14 +27,13 @@ class FragmentHome : Fragment() {
         return mBinding.root
     }
 
-    private fun configureScreenAppearance(){
+    private fun configureScreenAppearance() {
         //Hide Top Bar
-        val topBar = requireActivity().findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar)
-        topBar.visibility = View.GONE
+        requireActivity().findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar).visibility =
+            View.GONE
 
         //Hide Fab
-        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
-        fab.hide()
+        requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached).hide()
     }
 
 }

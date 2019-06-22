@@ -1,11 +1,14 @@
 package com.th3pl4gu3.lifestyle.core.lifestyle
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.utils.*
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
+import kotlinx.android.parcel.IgnoredOnParcel
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 /**
@@ -13,13 +16,14 @@ import java.util.*
  * The purpose of the Goal class is to hold data about each goals of the user.
  **/
 @Entity(tableName = DATABASE_TABLE_GOAL)
+@Parcelize
 data class Goal constructor(
     @ColumnInfo(name = DATABASE_TABLE_GOAL_TITLE)
     override var title: String = PLACEHOLDER_ITEM_LIFESTYLE_TITLE,
 
     @ColumnInfo(name = DATABASE_TABLE_GOAL_CATEGORY)
     override var category: String = PLACEHOLDER_ITEM_LIFESTYLE_CATEGORY
-) : Lifestyle() {
+) : Lifestyle(), Parcelable {
 
     @PrimaryKey(autoGenerate = false)
     var id: String = super.uniqueId

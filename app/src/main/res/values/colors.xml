@@ -4,10 +4,10 @@
     <!--
         System Color Palette
     -->
-    <color name="colorPrimary">@color/blue_300</color>
+    <color name="colorPrimary">@color/alternate_blue_200</color>
     <color name="colorPrimaryDark">@color/white_000</color>
-    <color name="colorAccent">@color/blue_300</color>
-    <color name="colorAccentLight">@color/blue_100</color>
+    <color name="colorAccent">@color/alternate_blue_200</color>
+    <color name="colorAccentLight">@color/alternate_blue_light_200</color>
 
     <color name="colorTextPrimary">@color/black_800</color>
     <color name="colorTextSecondary">@color/white_000</color>
@@ -26,7 +26,7 @@
         Green Material Color Palette
     -->
     <color name="green_dark_200">#75a478</color>
-    <color name="green_light_200">#d7ffd9</color>
+    <color name="green_200">#a5d6a7</color>
     
     <!--
         Red Material Color Palette
@@ -41,12 +41,14 @@
     <color name="blue_dark_200">#4ba3c7</color>
     <color name="blue_light_200">#81d4fa</color>
     <color name="blue_300">#64b5f6</color>
-    <color name="blue_100">#bbdefb</color>
+    <color name="blue_200">#90caf9</color>
+    <color name="alternate_blue_light_200">#83b9ff</color>
+    <color name="alternate_blue_200">#448aff</color>
     
     <!--
         Yellow Material Color Palette
     -->
-    <color name="yellow_light_200">#ffffcf</color>
+    <color name="yellow_200">#fff59d</color>
     
     <!--
         Orange Material Color Palette
@@ -78,19 +80,19 @@
     -->
     <color name="item_priority_1">@color/red_200</color>
     <color name="item_priority_2">@color/orange_200</color>
-    <color name="item_priority_3">@color/yellow_light_200</color>
-    <color name="item_priority_4">@color/blue_100</color>
+    <color name="item_priority_3">@color/yellow_200</color>
+    <color name="item_priority_4">@color/blue_200</color>
     
-    <color name="notification_successful">@color/green_light_200</color>
+    <color name="notification_successful">@color/green_200</color>
     <color name="notification_error">@color/red_light_300</color>
     
     
-    <color name="button_edit_background">@color/blue_100</color>
+    <color name="button_edit_background">@color/blue_200</color>
     <color name="button_edit_content">@color/blue_dark_200</color>
     
     <color name="button_delete_background">@color/red_light_300</color>
     <color name="button_delete_content">@color/red_dark_300</color>
     
-    <color name="button_complete_background">@color/green_light_200</color>
+    <color name="button_complete_background">@color/green_200</color>
     <color name="button_complete_content">@color/green_dark_200</color>
 </resources>

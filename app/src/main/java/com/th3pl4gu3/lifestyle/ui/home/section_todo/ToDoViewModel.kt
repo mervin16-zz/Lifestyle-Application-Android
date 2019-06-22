@@ -7,15 +7,11 @@ import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
 import com.th3pl4gu3.lifestyle.core.operations.ToDoOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
-import kotlinx.coroutines.*
+import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
 
 class ToDoViewModel(
-    val database: LifestyleDatabase,
-    application: Application) : AndroidViewModel(application) {
-
-    private var _viewModelJob = Job()
-
-    private val _uiScope = CoroutineScope(Dispatchers.Main + _viewModelJob)
+    val db: LifestyleDatabase,
+    application: Application) : LifestyleOpsViewModel(database = db, application = application) {
 
     //Current state of the toggle button (Current button checked)
     var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
@@ -61,72 +57,5 @@ class ToDoViewModel(
                 }
             }
         }
-    }
-
-    fun insertItem(toDo: ToDo) {
-        _uiScope.launch {
-            insert(toDo)
-        }
-    }
-
-    fun markAsDeleted(toDo: ToDo) {
-        _uiScope.launch {
-            remove(toDo)
-        }
-    }
-
-    fun markItem(toDo: ToDo){
-        if(toDo.dateCompleted == null){
-            markAsCompleted(toDo)
-        }else{
-            markAsIncomplete(toDo)
-        }
-    }
-
-
-    /**
-     * Private functions for internal use ONLY
-     **/
-
-    private fun markAsCompleted(newToDo: ToDo) {
-        _uiScope.launch {
-            newToDo.markAsComplete()
-            update(newToDo)
-        }
-    }
-
-    private fun markAsIncomplete(newToDo: ToDo) {
-        _uiScope.launch {
-            newToDo.markAsIncomplete()
-            update(newToDo)
-        }
-    }
-
-    private suspend fun insert(toDo: ToDo) {
-        withContext(Dispatchers.IO) {
-            toDo.add(database)
-        }
-    }
-
-    private suspend fun remove(toDo: ToDo) {
-        withContext(Dispatchers.IO) {
-            toDo.delete(database)
-        }
-    }
-
-    private suspend fun update(newToDo: ToDo) {
-        withContext(Dispatchers.IO) {
-            newToDo.update(database)
-        }
-    }
-
-    /**
-     * Overridden functions
-     **/
-    override fun onCleared() {
-        super.onCleared()
-
-        //Clear the view model job when user leave
-        _viewModelJob.cancel()
     }
 }

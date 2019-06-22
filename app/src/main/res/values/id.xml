@@ -67,6 +67,7 @@
      -->
     
     <!-- Bottom App Bar Drawer Menu & Navigation -->
+    <item type="id" name="BottomAppBar_fromActivityHome_Drawer" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Home" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Goals" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_ToBuy" />
@@ -75,6 +76,18 @@
     
     <!-- Bottom App Bar Menu Main -->
     <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Search" />
+    
+    
+    <!-- Bottom Sheet Dialogs Sort -->
+    <item type="id" name="BottomSheetDialog_fromActivityHome_Sort" />
+    
+    <!-- Bottom Sheet Dialogs Filter -->
+    <item type="id" name="BottomSheetDialog_fromActivityHome_Filter" />
+    
+    <!-- Bottom Sheet Dialogs Filter -->
+    <item type="id" name="BottomSheetDialog_fromFragmentGoal_Details" />
+    <item type="id" name="BottomSheetDialog_fromFragmentToDo_Details" />
+    <item type="id" name="BottomSheetDialog_fromFragmentToBuy_Details" />
     
     
     <!--
