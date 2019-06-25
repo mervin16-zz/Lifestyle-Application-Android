@@ -13,3 +13,10 @@ const val VALUE_BINDING_LIFESTYLE_ITEM_SWIPINGMARKINGICON = "lifestyleItemSwipin
 const val VALUE_BINDING_TOBUY_ITEM_PRICE = "toBuyPrice"
 const val VALUE_BINDING_TOBUY_ITEM_QTY = "toBuyQuantity"
 const val VALUE_BINDING_TOBUY_ITEM_TOTAL = "toBuyTotal"
+
+
+/********************************* Messages *********************************/
+
+// Validation Error Messages //
+const val MESSAGE_ERROR_EMPTY_FIELD = "This field cannot be empty."
+const val MESSAGE_ERROR_NUMBER_VALID = "Please enter a valid number"

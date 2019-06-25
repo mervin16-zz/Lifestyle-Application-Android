@@ -4,25 +4,57 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.databinding.DataBindingUtil
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.databinding.ActivityAddItemBinding
-import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.snackbar.Snackbar
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.utils.Utils
-import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
+import com.th3pl4gu3.lifestyle.databinding.ActivityAddItemBinding
+import com.th3pl4gu3.lifestyle.ui.SpinnerAdapter
+import com.th3pl4gu3.lifestyle.ui.utils.Validation
+import com.th3pl4gu3.lifestyle.ui.utils.snackBar
+import kotlinx.android.synthetic.main.include_foradditem_section_calendar.view.*
+import kotlinx.android.synthetic.main.include_foradditem_section_details.view.*
 
 
-class ActivityAddItem : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class ActivityAddItem : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityAddItemBinding
     private lateinit var mViewModel: AddItemViewModel
+
+    private val spinnerTypeListener = object : OnItemSelectedListener {
+        override fun onNothingSelected(parent: AdapterView<*>?) {return}
+
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            try{
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+
+                if (selectedItem == getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseTask)) return
+
+                when (Utils.formattedStringToLifestyleEnum(selectedItem)) {
+                    LifestyleItem.GOAL -> {
+                        updateUI_DetailsExtraFields(false)
+                        updateUI_Priorities(false)
+                    }
+                    LifestyleItem.TO_BUY -> {
+                        updateUI_DetailsExtraFields(true)
+                        updateUI_Priorities(true)
+                    }
+                    LifestyleItem.TO_DO -> {
+                        updateUI_DetailsExtraFields(false)
+                        updateUI_Priorities(true)
+                    }
+                }
+            }catch (ex: Exception){
+                showToast(getString(R.string.Message_Exception_fromActivityAddItem_ErrorWhileFetchingTask, ex.message))
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +65,8 @@ class ActivityAddItem : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         //Get the correct status bar color
         initializeStatusBarColor()
 
-        //Configure EditTexts & Spinners in the form
-        configureViews()
+        //Configure Spinners in the form
+        configureSpinners()
 
         //Get the application
         val application = requireNotNull(this).application
@@ -56,167 +88,262 @@ class ActivityAddItem : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         mViewModel.showSnackBarEvent.observe(this, Observer {message ->
             if (message != null) {
                 // Observed state is true.
-                val snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_INDEFINITE)
-                snackbar.setAction("Ok") { snackbar.dismiss() }.show()
-                snackbar.anchorView = mBinding.FABFromAddItemActivityAddItem
+                showSnackBar(message)
                 // Reset state to make sure the snackbar is only shown once, even if the device
                 // has a configuration change.
                 viewModel.doneShowingSnackbar()
             }
         })
-
-        // Add an Observer on the state variable for showing a Toast message
-        mViewModel.showToastEvent.observe(this, Observer {message ->
-            if (message != null) { // Observed state is not null.
-                this.toast(message)
-                // Reset state to make sure the snackbar is only shown once, even if the device
-                // has a configuration change.
-                viewModel.doneShowingToast()
-            }
-        })
-
-        // Add Observers for TextBoxes
-        mViewModel.showErrorMessageForItemTitle.observe(this, Observer {message ->
-            if (message != null) {
-                // Observed state is not null.
-                mBinding.EditTextFromAddItemActivityName.error = message
-                // Reset state to make sure the message is only shown once, even if the device
-                // has a configuration change.
-                viewModel.doneShowingErrorMessageForItemTitle()
-            }
-        })
-
-        mViewModel.showErrorMessageForItemPrice.observe(this, Observer {message ->
-            if (message != null) {
-                // Observed state is not null.
-                mBinding.EditTextFromAddItemActivityPrice.error = message
-                // Reset state to make sure the message is only shown once, even if the device
-                // has a configuration change.
-                viewModel.doneShowingErrorMessageForItemPrice()
-            }
-        })
-
-        mViewModel.showErrorMessageForItemQuantity.observe(this, Observer {message ->
-            if (message != null) {
-                // Observed state is not null.
-                mBinding.EditTextFromAddItemActivityQuantity.error = message
-                // Reset state to make sure the message is only shown once, even if the device
-                // has a configuration change.
-                viewModel.doneShowingErrorMessageForItemQuantity()
-            }
-        })
-
     }
 
     override fun onStart() {
         super.onStart()
 
-        mBinding.FABFromAddItemActivityAddItem.setOnClickListener {
-
-                val title = mBinding.EditTextFromAddItemActivityName.text.toString()
-                val category = mBinding.SpinnerFromAddItemActivityCategory.selectedItem.toString()
-                val type = mBinding.SpinnerFromAddItemActivityType.selectedItem.toString()
-                val price = mBinding.EditTextFromAddItemActivityPrice.text.toString().toDoubleOrNull()
-                val qty = mBinding.EditTextFromAddItemActivityQuantity.text.toString().toIntOrNull()
-
-                mViewModel.addItem(type, title, category, price, qty)
-        }
-
-        mBinding.ImageViewFromAddItemActivityIconBack.setOnClickListener {
+        mBinding.ImageButtonFromAddItemActivityIconBack.setOnClickListener {
             finish()
         }
-    }
 
+        mBinding.ExtendedFABFromAddItemActivityAddItem.setOnClickListener {
 
-    //Item selected listener for Type Spinner
-    override fun onNothingSelected(parent: AdapterView<*>?) {return}
+            try{
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val selectedItem = parent?.getItemAtPosition(position).toString()
-        when(Utils.formattedStringToLifestyleEnum(selectedItem)){
-            LifestyleItem.GOAL -> mBinding.LinearLayoutFromAddItemActivityToBuyExtraTextFields.visibility = View.GONE
-            LifestyleItem.TO_BUY -> mBinding.LinearLayoutFromAddItemActivityToBuyExtraTextFields.visibility = View.VISIBLE
-            LifestyleItem.TO_DO -> mBinding.LinearLayoutFromAddItemActivityToBuyExtraTextFields.visibility = View.GONE
+                val type = mBinding.SpinnerFromAddItemActivityType.selectedItem.toString()
+
+                if(type == getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseTask)){
+                    showSnackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChooseTask))
+                }else{
+
+                    val title = mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Name.text.toString()
+                    val category = mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.selectedItem.toString()
+
+                    if(category == getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseCategory)){
+                        showSnackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChooseCategory))
+                        return@setOnClickListener
+                    }
+
+                    val validator = Validation()
+                    validator.checkIfEmpty(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Name)
+
+                    when(Utils.formattedStringToLifestyleEnum(type)){
+                        LifestyleItem.TO_DO -> {
+
+                            if(validator.hasErrors()){
+                                validator.errors.forEach{
+                                    it.key.error = it.value
+                                }
+
+                                return@setOnClickListener
+                            }
+
+                            if (mViewModel.itemPriority == null) {
+                                showSnackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChoosePriority))
+                                return@setOnClickListener
+                            }
+
+                            mViewModel.addToDo(title, category)
+                        }
+
+                        LifestyleItem.TO_BUY -> {
+                            val price = mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Price.text.toString().toDoubleOrNull()
+                            val qty = mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Quantity.text.toString().toIntOrNull()
+
+                            validator.checkIfDoubleGreaterThanZero(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Price)
+                            validator.checkIfIntegerGreaterThanZero(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Quantity)
+
+                            if(validator.hasErrors()){
+                                validator.errors.forEach{
+                                    it.key.error = it.value
+                                }
+
+                                return@setOnClickListener
+                            }
+
+                            if (mViewModel.itemPriority == null) {
+                                showSnackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChoosePriority))
+                                return@setOnClickListener
+                            }
+
+                            mViewModel.addToBuy(title, category, qty!!, price!!)
+                        }
+
+                        LifestyleItem.GOAL -> {
+
+                            if(validator.hasErrors()){
+                                validator.errors.forEach{
+                                    it.key.error = it.value
+                                }
+
+                                return@setOnClickListener
+                            }
+
+                            mViewModel.addGoal(title, category)
+
+                        }
+                    }
+
+                    validator.clear()
+
+                }
+            }catch (ex: Exception){
+                showToast(getString(R.string.Message_Exception_fromActivityAddItem_ErrorWhileAddingTask, ex.message))
+            }
+        }
+
+        mBinding.NestedScrollViewFromAddItemActivityMainContent.setOnScrollChangeListener { _, _, y, _, oldY ->
+            if (oldY < y) {
+                mBinding.ExtendedFABFromAddItemActivityAddItem.shrink(true)
+            } else if (oldY > y) {
+                mBinding.ExtendedFABFromAddItemActivityAddItem.extend(true)
+            }
+        }
+
+        mBinding.IncludeLayoutFromAddItemActivitySectionCalendar.Switch_fromAddItemActivity_Calendar_Enable.setOnCheckedChangeListener { _, isChecked ->
+            updateUI_Calendar(isChecked)
         }
     }
 
-    fun setPriority(view: View){
+    fun setPriority(view: View) {
         //Update the view and determine whether a priority was selected or unselected
         val prioritySelected = updatePriorityViewAndDetermineIfPriorityHasBeenSelected(view)
 
-        if(prioritySelected){
+        if (prioritySelected) {
             //Set the priority of the view model
             mViewModel.setPriority(Integer.parseInt(view.tag.toString()))
-        }else{
+        } else {
             //Flag to set priority to null
             mViewModel.setPriority(0)
         }
     }
 
-    //Private Methods
+
+    /**
+     * Private functions for internal use ONLY
+     **/
     private fun initializeStatusBarColor() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorAccent)
     }
 
-    private fun updatePriorityViewAndDetermineIfPriorityHasBeenSelected(view: View) : Boolean{
+    private fun updatePriorityViewAndDetermineIfPriorityHasBeenSelected(view: View): Boolean {
 
-        if(!mBinding.ImageButtonFromAddItemActivityIconPriority1.isVisible ||
-            !mBinding.ImageButtonFromAddItemActivityIconPriority2.isVisible ||
-            !mBinding.ImageButtonFromAddItemActivityIconPriority3.isVisible ||
-            !mBinding.ImageButtonFromAddItemActivityIconPriority4.isVisible){
+        if (!mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority1.isVisible ||
+            !mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority2.isVisible ||
+            !mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority3.isVisible ||
+            !mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority4.isVisible
+        ) {
 
             //If any of these views are not visible, it means that a priority was already selected.
             //Therefore we need to reset all views to visible again.
-            mBinding.ImageButtonFromAddItemActivityIconPriority1.visibility = View.VISIBLE
-            mBinding.ImageButtonFromAddItemActivityIconPriority2.visibility = View.VISIBLE
-            mBinding.ImageButtonFromAddItemActivityIconPriority3.visibility = View.VISIBLE
-            mBinding.ImageButtonFromAddItemActivityIconPriority4.visibility = View.VISIBLE
+            updateUI_Priority1Icon(true)
+            updateUI_Priority2Icon(true)
+            updateUI_Priority3Icon(true)
+            updateUI_Priority4Icon(true)
+
             return false
         }
 
-        when(view.id){
+        when (view.id) {
             R.id.ImageButton_fromAddItemActivity_Icon_Priority1 -> {
-                mBinding.ImageButtonFromAddItemActivityIconPriority2.visibility = View.GONE
-                mBinding.ImageButtonFromAddItemActivityIconPriority3.visibility = View.GONE
-                mBinding.ImageButtonFromAddItemActivityIconPriority4.visibility = View.GONE
+                updateUI_Priority2Icon(false)
+                updateUI_Priority3Icon(false)
+                updateUI_Priority4Icon(false)
             }
             R.id.ImageButton_fromAddItemActivity_Icon_Priority2 -> {
-                mBinding.ImageButtonFromAddItemActivityIconPriority1.visibility = View.GONE
-                mBinding.ImageButtonFromAddItemActivityIconPriority3.visibility = View.GONE
-                mBinding.ImageButtonFromAddItemActivityIconPriority4.visibility = View.GONE
+                updateUI_Priority1Icon(false)
+                updateUI_Priority3Icon(false)
+                updateUI_Priority4Icon(false)
             }
             R.id.ImageButton_fromAddItemActivity_Icon_Priority3 -> {
-                mBinding.ImageButtonFromAddItemActivityIconPriority1.visibility = View.GONE
-                mBinding.ImageButtonFromAddItemActivityIconPriority2.visibility = View.GONE
-                mBinding.ImageButtonFromAddItemActivityIconPriority4.visibility = View.GONE
+                updateUI_Priority1Icon(false)
+                updateUI_Priority2Icon(false)
+                updateUI_Priority4Icon(false)
             }
             R.id.ImageButton_fromAddItemActivity_Icon_Priority4 -> {
-                mBinding.ImageButtonFromAddItemActivityIconPriority1.visibility = View.GONE
-                mBinding.ImageButtonFromAddItemActivityIconPriority2.visibility = View.GONE
-                mBinding.ImageButtonFromAddItemActivityIconPriority3.visibility = View.GONE
+                updateUI_Priority1Icon(false)
+                updateUI_Priority2Icon(false)
+                updateUI_Priority3Icon(false)
             }
-            else -> {return false}
+            else -> {
+                return false
+            }
         }
 
         return true
     }
 
-    private fun configureViews() {
+    private fun configureSpinners() {
 
         /*
          * Load Spinners
          */
 
         //Type Spinner
-        val typeAdapter = ArrayAdapter(this, R.layout.custom_text_spinner_default, Utils.getLifestyleItemEnumsToFormattedString())
+        val typeList = Utils.getLifestyleItemEnumsToFormattedString()
+        val typeAdapter = SpinnerAdapter(this, R.layout.custom_text_spinner_default)
+
+        typeAdapter.addAll(typeList)
+        typeAdapter.add(getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseTask))
         typeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         mBinding.SpinnerFromAddItemActivityType.adapter = typeAdapter
-        mBinding.SpinnerFromAddItemActivityType.onItemSelectedListener = this
+        mBinding.SpinnerFromAddItemActivityType.onItemSelectedListener = spinnerTypeListener
+        mBinding.SpinnerFromAddItemActivityType.setSelection(typeAdapter.count)
 
         //Category Spinner
-        val categoryAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.App_LifeStyleItem_Categories))
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-        mBinding.SpinnerFromAddItemActivityCategory.adapter = categoryAdapter
+        val categoryList = resources.getStringArray(R.array.App_LifeStyleItem_Categories)
+        val categoryAdapter = SpinnerAdapter(this, R.layout.custom_text_spinner_default)
 
+        categoryAdapter.addAll(categoryList.asList())
+        categoryAdapter.add(getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseCategory))
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.adapter =
+            categoryAdapter
+        //mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.onItemSelectedListener = this
+        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.setSelection(
+            categoryAdapter.count
+        )
+
+    }
+
+    private fun updateUI_DetailsExtraFields(visible: Boolean) {
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.LinearLayout_fromAddItemActivity_ToBuy_ExtraTextFields, visible)
+    }
+
+    private fun updateUI_Priorities(enabled: Boolean) {
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.root, enabled)
+    }
+
+    private fun updateUI_Calendar(isVisible: Boolean) {
+
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionCalendar.TextInputLayout_fromAddItemActivity_Calendar_Date, isVisible)
+
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionCalendar.TextInputLayout_fromAddItemActivity_Calendar_Description, isVisible)
+
+    }
+
+    private fun updateUI_Priority1Icon(isVisible: Boolean){
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority1, isVisible)
+    }
+
+    private fun updateUI_Priority2Icon(isVisible: Boolean){
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority2, isVisible)
+    }
+
+    private fun updateUI_Priority3Icon(isVisible: Boolean){
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority3, isVisible)
+    }
+
+    private fun updateUI_Priority4Icon(isVisible: Boolean){
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority4, isVisible)
+    }
+
+    private fun setViewVisibility(v: View, isVisible: Boolean){
+        v.visibility = if(isVisible) View.VISIBLE else View.GONE
+    }
+
+    private fun showSnackBar(message: String) {
+        mBinding.CoordinatorLayoutFromAddItemActivityTopParent.snackBar(message)
+    }
+
+    private fun showToast(message: String) {
+        this.showToast(message)
     }
 }

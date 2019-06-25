@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_centerHorizontal="true"
-                    layout="@layout/include_buttons_lifestyle_items_action" />
+                    layout="@layout/include_forlifestyleitems_buttons_actions" />
         
         </RelativeLayout>
     

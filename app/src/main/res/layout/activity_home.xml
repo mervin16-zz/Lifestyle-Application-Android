@@ -91,6 +91,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_add_dark"
                     android:backgroundTint="@color/colorAccent"
+                    app:tint="@color/white_000"
                     app:layout_anchor="@id/BottomAppBar_fromHomeActivity_Main"/>
         
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

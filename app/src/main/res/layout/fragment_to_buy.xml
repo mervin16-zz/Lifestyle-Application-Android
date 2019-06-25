@@ -42,7 +42,7 @@
                         android:id="@id/Button_forLifestyleList_ToggleButton_Active"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Button_forLifestyleList_ToggleButton_Active"
+                        android:text="@{toBuyViewModel.currentActiveButtonText}"
                         android:onClick="@{() -> toBuyViewModel.updateList(toggleButtonState.BUTTON_ACTIVE)}"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
                 
@@ -50,7 +50,7 @@
                         android:id="@id/Button_forLifestyleList_ToggleButton_Completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Button_forLifestyleList_ToggleButton_Completed"
+                        android:text="@{toBuyViewModel.currentCompletedButtonText}"
                         android:onClick="@{() -> toBuyViewModel.updateList(toggleButtonState.BUTTON_COMPLETE)}"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
             </com.google.android.material.button.MaterialButtonToggleGroup>

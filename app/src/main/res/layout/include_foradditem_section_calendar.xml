@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+    
+    <TextView
+            android:text="@string/TextView_fromAddItemActivity_Subtitle_Calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Centered_Subtitle_Overline_Default"/>
+    
+    <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@id/Switch_fromAddItemActivity_Calendar_Enable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/TextView_fromAddItemActivity_Subtitle_Calendar_Add"
+            android:textColor="@color/colorTextAlternate"
+            app:switchPadding="@dimen/Padding_Views_Default"
+            style="@style/Widget.AppCompat.CompoundButton.Switch"/>
+    
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@id/TextInputLayout_fromAddItemActivity_Calendar_Date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/EditText_fromAddItemActivity_Hint_Calendar_Date"
+            android:visibility="gone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@id/EditText_fromAddItemActivity_Calendar_Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@id/TextInputLayout_fromAddItemActivity_Calendar_Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/EditText_fromAddItemActivity_Hint_Calendar_Description"
+            android:visibility="gone"
+            app:helperTextEnabled="true"
+            app:helperText="@string/EditText_fromAddItemActivity_HelperText_Calendar_Description"
+            app:helperTextTextColor="@color/colorHelperText"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@id/EditText_fromAddItemActivity_Calendar_Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

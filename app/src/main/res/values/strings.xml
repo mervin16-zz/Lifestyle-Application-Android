@@ -25,6 +25,8 @@
      -->
     
     <!-- Toggle Button -->
+    <string name="Button_forLifestyleList_ToggleButton_Active_WithSize">Active (%1$s)</string>
+    <string name="Button_forLifestyleList_ToggleButton_Completed_WithSize">Completed (%1$s)</string>
     <string name="Button_forLifestyleList_ToggleButton_Active">Active</string>
     <string name="Button_forLifestyleList_ToggleButton_Completed">Completed</string>
     <string name="Button_forLifestyleRestoreItem_SnackBar_Undo">Undo</string>
@@ -35,13 +37,13 @@
     
     <!-- Placeholders -->
     <string name="Placeholder_BottomAppBar_DrawerMenu_Title_User">User</string>
-    <string name="Placeholder_forLifestyleItem_Details_Category">Category: </string>
-    <string name="Placeholder_forLifestyleItem_Details_DateAdded">Date Added: </string>
-    <string name="Placeholder_forLifestyleItem_Details_Priority">Priority: </string>
-    <string name="Placeholder_forLifestyleItem_Details_DaysActive">Days Active: </string>
-    <string name="Placeholder_forLifestyleItem_Details_Price">Estimated Price: </string>
-    <string name="Placeholder_forLifestyleItem_Details_Quantity">Quantity: </string>
-    <string name="Placeholder_forLifestyleItem_Details_Total">Total: </string>
+    <string name="Placeholder_forLifestyleItem_Details_Category">Category:</string>
+    <string name="Placeholder_forLifestyleItem_Details_DateAdded">Date Added:</string>
+    <string name="Placeholder_forLifestyleItem_Details_Priority">Priority:</string>
+    <string name="Placeholder_forLifestyleItem_Details_DaysActive">Days Active:</string>
+    <string name="Placeholder_forLifestyleItem_Details_Price">Estimated Price:</string>
+    <string name="Placeholder_forLifestyleItem_Details_Quantity">Quantity:</string>
+    <string name="Placeholder_forLifestyleItem_Details_Total">Total:</string>
     
     
     <!-- 
@@ -64,15 +66,23 @@
      -->
     
     <!-- Add Item Activity -->
-    <string name="TextView_fromAddItemActivity_Title">Add Item</string>
+    <string name="TextView_fromAddItemActivity_Screen_Title">Add A Task</string>
+    <string name="TextView_fromAddItemActivity_Screen_Subtitle">Create your tasks here!</string>
     <string name="TextView_fromAddItemActivity_Subtitle_Details">Details</string>
     <string name="TextView_fromAddItemActivity_Subtitle_Priority">Priority</string>
+    <string name="TextView_fromAddItemActivity_Subtitle_Calendar">Google Calendar</string>
+    <string name="TextView_fromAddItemActivity_Subtitle_Calendar_Add">Add to Calendar</string>
     <string name="EditText_fromAddItemActivity_Hint_Title">Title</string>
     <string name="EditText_fromAddItemActivity_Hint_Price">Price</string>
     <string name="EditText_fromAddItemActivity_Hint_Qty">Quantity</string>
+    <string name="EditText_fromAddItemActivity_Hint_Calendar_Date">Date</string>
+    <string name="EditText_fromAddItemActivity_Hint_Calendar_Description">Description</string>
+    <string name="EditText_fromAddItemActivity_HelperText_Calendar_Description">This is optional.</string>
+    <string name="Spinner_fromAddItemActivity_Hint_ChooseTask">Choose a Task</string>
+    <string name="Spinner_fromAddItemActivity_Hint_ChooseCategory">Choose a Category</string>
+    <string name="FAB_fromAddItemActivity_Button_Save">Save</string>
     
     <!-- Home Activity -->
-    
     
     
     <!--
@@ -89,8 +99,10 @@
     <string name="TextView_fromStatisticsFragment_Title_Main">Statistics</string>
     
     <!-- Goals Fragment -->
-    <string name="TextView_fromToBuyFragment_Message_EmptyList_Active">Stop being a miser and plan to buy something!</string>
-    <string name="TextView_fromToBuyFragment_Message_EmptyList_Completed">You have not been able to buy anything!</string>
+    <string name="TextView_fromToBuyFragment_Message_EmptyList_Active">Stop being a miser and plan to buy something!
+    </string>
+    <string name="TextView_fromToBuyFragment_Message_EmptyList_Completed">You have not been able to buy anything!
+    </string>
     
     <!-- To Buy Fragment -->
     <string name="TextView_fromToDoFragment_Message_EmptyList_Active">Please plan to do something with your life!</string>
@@ -131,11 +143,19 @@
         Messages
      -->
     
+    <!-- Success Message -->
+    <string name="Message_Success_fromActivityAddItem_ItemAdded">Item \'%1$s\' has been successfully added.</string>
+    
     <!-- Info Message -->
-    <string name="Message_Info_fromFragmentLifeStyleItems_ItemDeleted">"There was an error while swiping your request. Please try again."</string>
+    <string name="Message_Info_fromFragmentLifeStyleItems_ItemDeleted">There was an error while swiping your request. Please try again.</string>
+    <string name="Message_Info_fromFragmentLifeStyleItems_ChooseTask">Please choose a task.</string>
+    <string name="Message_Info_fromFragmentLifeStyleItems_ChoosePriority">Please choose a priority.</string>
+    <string name="Message_Info_fromFragmentLifeStyleItems_ChooseCategory">Please choose a category.</string>
     
     <!-- Error Message -->
-    <string name="Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping">"Your item %1$s has been deleted"</string>
+    <string name="Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping">Your item %1$s has been deleted</string>
+    <string name="Message_Exception_fromActivityAddItem_ErrorWhileFetchingTask">An error has occurred while fetching your Task. Error: %1$s</string>
+    <string name="Message_Exception_fromActivityAddItem_ErrorWhileAddingTask">An error has occurred while adding your Task. Error: %1$s</string>
     
     
     <!--
@@ -173,4 +193,5 @@
     <string name="ContentDescription_fromLifestyleItemList_Icon_Priority">The Priority icon</string>
     <string name="ContentDescription_fromLifestyleItemList_Icon_Delete">The Delete icon</string>
     <string name="ContentDescription_fromLifestyleItemList_Icon_Complete">The Complete icon</string>
+    
 </resources>

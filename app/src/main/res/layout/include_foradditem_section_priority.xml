@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <data>
+        <variable
+                name="Constant"
+                type="com.th3pl4gu3.lifestyle.core.utils.ConstantsKt"/>
+    </data>
+    
+    <LinearLayout
+            android:id="@id/LinearLayout_fromAddItemActivity_Priority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        
+        <TextView
+                android:id="@id/TextView_fromAddItemActivity_SubtitlePriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TextView_fromAddItemActivity_Subtitle_Priority"
+                style="@style/Centered_Subtitle_Overline_Default"/>
+        
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Margin_Views_Small">
+            
+            <ImageButton
+                    android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority1"
+                    android:layout_width="@dimen/Size_Icon_Priority"
+                    android:layout_height="@dimen/Size_Icon_Priority"
+                    android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
+                    android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
+                    android:tag="@{Constant.ENUM_PRIORITY_P1}"
+                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority1Icon"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:onClick="setPriority"
+                    app:srcCompat="@drawable/ic_priority_1"/>
+            
+            <ImageButton
+                    android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority2"
+                    android:layout_width="@dimen/Size_Icon_Priority"
+                    android:layout_height="@dimen/Size_Icon_Priority"
+                    android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
+                    android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
+                    android:tag="@{Constant.ENUM_PRIORITY_P2}"
+                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority2Icon"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:onClick="setPriority"
+                    app:srcCompat="@drawable/ic_priority_2"/>
+            
+            <ImageButton
+                    android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority3"
+                    android:layout_width="@dimen/Size_Icon_Priority"
+                    android:layout_height="@dimen/Size_Icon_Priority"
+                    android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
+                    android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
+                    android:tag="@{Constant.ENUM_PRIORITY_P3}"
+                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority3Icon"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:onClick="setPriority"
+                    app:srcCompat="@drawable/ic_priority_3"/>
+            
+            <ImageButton
+                    android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority4"
+                    android:layout_width="@dimen/Size_Icon_Priority"
+                    android:layout_height="@dimen/Size_Icon_Priority"
+                    android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
+                    android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
+                    android:tag="@{Constant.ENUM_PRIORITY_P4}"
+                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority4Icon"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:onClick="setPriority"
+                    app:srcCompat="@drawable/ic_priority_4"/>
+        
+        </LinearLayout>
+    
+    
+    </LinearLayout>
+
+</layout>

@@ -16,7 +16,7 @@ import com.th3pl4gu3.lifestyle.core.utils.Utils
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_TITLE)
 fun TextView.setLifestyleItemTitle(lifestyle: Lifestyle){
     lifestyle.let {
-        text = lifestyle.title.capitalizeEachWords().abbreviate(25)
+        text = lifestyle.title.capitalizeEachWords().abbreviate(35)
     }
 }
 

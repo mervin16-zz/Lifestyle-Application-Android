@@ -147,21 +147,32 @@
     <item type="id" name="LinearLayout_fromHomeActivity_ToggleButton"/>
     
     <!-- Add Item Activity -->
-    <item type="id" name="ImageView_fromAddItemActivity_Icon_Back"/>
+    <item type="id" name="ImageButton_fromAddItemActivity_Icon_Back"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority1"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority2"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority3"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority4"/>
-    <item type="id" name="TextView_fromAddItemActivity_ActivityTitle"/>
+    <item type="id" name="TextView_fromAddItemActivity_Screen_Title"/>
+    <item type="id" name="TextView_fromAddItemActivity_Screen_Subtitle"/>
     <item type="id" name="TextView_fromAddItemActivity_SubtitleDetails"/>
     <item type="id" name="TextView_fromAddItemActivity_SubtitlePriority"/>
     <item type="id" name="EditText_fromAddItemActivity_Name"/>
     <item type="id" name="EditText_fromAddItemActivity_Price"/>
     <item type="id" name="EditText_fromAddItemActivity_Quantity"/>
-    <item type="id" name="LinearLayout_fromAddItemActivity_Details"/>
+    <item type="id" name="EditText_fromAddItemActivity_Calendar_Date"/>
+    <item type="id" name="EditText_fromAddItemActivity_Calendar_Description"/>
+    <item type="id" name="TextInputLayout_fromAddItemActivity_Calendar_Date"/>
+    <item type="id" name="TextInputLayout_fromAddItemActivity_Calendar_Description"/>
+    <item type="id" name="Switch_fromAddItemActivity_Calendar_Enable"/>
     <item type="id" name="Spinner_fromAddItemActivity_Type"/>
     <item type="id" name="Spinner_fromAddItemActivity_Category"/>
+    <item type="id" name="LinearLayout_fromAddItemActivity_Details"/>
     <item type="id" name="LinearLayout_fromAddItemActivity_Priority"/>
     <item type="id" name="LinearLayout_fromAddItemActivity_ToBuy_ExtraTextFields"/>
-    <item type="id" name="FAB_fromAddItemActivity_AddItem"/>
+    <item type="id" name="CoordinatorLayout_fromAddItemActivity_TopParent"/>
+    <item type="id" name="NestedScrollView_fromAddItemActivity_MainContent"/>
+    <item type="id" name="IncludeLayout_fromAddItemActivity_Section_Details"/>
+    <item type="id" name="IncludeLayout_fromAddItemActivity_Section_Calendar"/>
+    <item type="id" name="IncludeLayout_fromAddItemActivity_Section_Priority"/>
+    <item type="id" name="ExtendedFAB_fromAddItemActivity_AddItem"/>
 </resources>

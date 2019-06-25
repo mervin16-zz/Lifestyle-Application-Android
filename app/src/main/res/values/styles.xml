@@ -11,7 +11,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+    
         <!-- App Status Bar -->
         <item name="android:windowLightStatusBar">@bool/Windows_StatusBar_Light</item>
         
@@ -100,7 +100,7 @@
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
     
-    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog"/>
     
     
     <!-- Lifestyle Item List theme -->
@@ -150,4 +150,17 @@
         <item name="android:textColor">@color/custom_chips_text_states</item>
         <item name="chipBackgroundColor">@color/custom_chips_background_states</item>
     </style>
+    
+    <!-- General Titles & Subtitles -->
+    <style name="Centered_Subtitle_Overline_Default" parent="@style/typography_overline">
+        <item name="android:textColor">@color/black_800</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 </resources>

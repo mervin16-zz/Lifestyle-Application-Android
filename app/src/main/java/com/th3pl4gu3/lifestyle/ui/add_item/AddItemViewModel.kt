@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.enums.Priority
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
@@ -11,172 +12,59 @@ import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
 import com.th3pl4gu3.lifestyle.core.utils.Utils
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
+import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
+import com.th3pl4gu3.lifestyle.ui.utils.Validation
 import kotlinx.coroutines.*
 
 class AddItemViewModel(
-    private val database: LifestyleDatabase,
-    application: Application) : AndroidViewModel(application) {
-
-    private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    db: LifestyleDatabase,
+    application: Application) : LifestyleOpsViewModel(db, application) {
 
     //Screen Messages
     private var _showSnackbarEvent = MutableLiveData<String>()
-    private var _showToastEvent = MutableLiveData<String>()
 
-    //Edit Text Error Messages
-    private var _errorMessageForItemTitle = MutableLiveData<String>()
-    private var _errorMessageForItemPrice = MutableLiveData<String>()
-    private var _errorMessageForItemQuantity = MutableLiveData<String>()
-
-    private var _itemPriority: Priority? = null
-
+    var itemPriority: Priority? = null
+        private set
 
 
     val showSnackBarEvent: LiveData<String>
         get() = _showSnackbarEvent
 
-    val showToastEvent: LiveData<String>
-        get() = _showToastEvent
-
-    val showErrorMessageForItemTitle: LiveData<String>
-        get() = _errorMessageForItemTitle
-
-    val showErrorMessageForItemPrice: LiveData<String>
-        get() = _errorMessageForItemPrice
-
-    val showErrorMessageForItemQuantity: LiveData<String>
-        get() = _errorMessageForItemQuantity
-
     fun doneShowingSnackbar() {
         _showSnackbarEvent.value = null
     }
 
-    fun doneShowingToast() {
-        _showToastEvent.value = null
-    }
-
-    fun doneShowingErrorMessageForItemTitle() {
-        _errorMessageForItemTitle.value = null
-    }
-
-    fun doneShowingErrorMessageForItemPrice() {
-        _errorMessageForItemPrice.value = null
-    }
-
-    fun doneShowingErrorMessageForItemQuantity() {
-        _errorMessageForItemQuantity.value = null
-    }
 
     fun setPriority(priorityValue: Int){
         Priority.values().forEach {priority ->
             if(priority.value == priorityValue){
-                _itemPriority = priority
+                itemPriority = priority
                 return
             }
         }
 
-        _itemPriority = null
+        itemPriority = null
     }
 
-    fun addItem(itemType: String, itemTitle: String, itemCategory: String, itemPrice: Double?, itemQty: Int?) {
+    fun addToDo(title: String, category: String) {
+        val toDo = ToDo(title = title, category = category, priority = itemPriority!!)
+        insertItem(toDo)
 
-        uiScope.launch {
+        _showSnackbarEvent.value = getApplication<Application>().getString(R.string.Message_Success_fromActivityAddItem_ItemAdded, title)
 
-            try{
-                when(Utils.formattedStringToLifestyleEnum(itemType)){
-                    LifestyleItem.GOAL ->{
-                        if(itemTitle.isEmpty()){
-                            _errorMessageForItemTitle.value = "Please choose a title for your Goal."
-                            return@launch
-                        }
-
-                        val goal = Goal(title = itemTitle, category = itemCategory)
-                        insert(goal)
-
-                        _showSnackbarEvent.value = "$itemTitle has been added successfully."
-                    }
-
-                    LifestyleItem.TO_DO ->{
-
-                        if(itemTitle.isEmpty()){
-                            _errorMessageForItemTitle.value = "Please choose a title for your To Do."
-                            return@launch
-                        }
-
-                        if(_itemPriority == null){
-                            _showSnackbarEvent.value = "Please choose a priority."
-                            return@launch
-                        }
-
-                        val toDo = ToDo(title = itemTitle, category = itemCategory, priority = _itemPriority!!)
-                        insert(toDo)
-
-                        _showSnackbarEvent.value = "$itemTitle has been added successfully."
-                    }
-
-                    LifestyleItem.TO_BUY ->{
-
-                        if(itemTitle.isEmpty()){
-                            _errorMessageForItemTitle.value = "Please choose a title for your To Buy."
-                            return@launch
-                        }
-
-                        if(itemPrice == null){
-                            _errorMessageForItemPrice.value = "Please set and estimation price for your To Buy."
-                            return@launch
-                        }
-
-                        if(itemQty == null){
-                            _errorMessageForItemQuantity.value = "Please set a quantity for your To Buy."
-                            return@launch
-                        }
-
-                        if(itemQty < 1){
-                            _errorMessageForItemQuantity.value = "Your quantity cannot be less than 1."
-                            return@launch
-                        }
-
-                        if(_itemPriority == null){
-                            _showSnackbarEvent.value = "Please choose a priority."
-                            return@launch
-                        }
-
-                        val toBuy = ToBuy(title = itemTitle, category = itemCategory, priority = _itemPriority!!, estimatedPrice = itemPrice, quantity = itemQty)
-                        insert(toBuy)
-
-                        _showSnackbarEvent.value = "$itemTitle has been added successfully."
-                    }
-                }
-
-            }catch (ex: Exception){
-                _showToastEvent.value = ex.message.toString()
-            }
-        }
     }
 
-    //Private Methods
-    private suspend fun insert(goal: Goal) {
-        withContext(Dispatchers.IO) {
-            goal.add(database)
-        }
+    fun addGoal(title: String, category: String) {
+        val goal = Goal(title = title, category = category)
+        insertItem(goal)
+
+        _showSnackbarEvent.value = getApplication<Application>().getString(R.string.Message_Success_fromActivityAddItem_ItemAdded, title)
     }
 
-    private suspend fun insert(toDo: ToDo) {
-        withContext(Dispatchers.IO) {
-            toDo.add(database)
-        }
-    }
+    fun addToBuy(title: String, category: String, quantity: Int, price: Double) {
+        val toBuy = ToBuy(title = title, category = category, priority = itemPriority!!, quantity = quantity, estimatedPrice = price)
+        insertItem(toBuy)
 
-    private suspend fun insert(toBuy: ToBuy) {
-        withContext(Dispatchers.IO) {
-            toBuy.add(database)
-        }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-
-        viewModelJob.cancel()
+        _showSnackbarEvent.value = getApplication<Application>().getString(R.string.Message_Success_fromActivityAddItem_ItemAdded, title)
     }
 }
