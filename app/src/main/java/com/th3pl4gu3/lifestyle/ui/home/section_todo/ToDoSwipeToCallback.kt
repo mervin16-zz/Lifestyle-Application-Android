@@ -19,9 +19,9 @@ abstract class ToDoSwipeToCallback(val context: Context) : ItemTouchHelper.Simpl
         val foregroundView = (viewHolder as ToDoAdapter.ViewHolder).binding.RecyclerViewConstraintLayoutListForegroundView
 
         if(dX < 0){
-            (viewHolder).binding.RecyclerViewLinearLayoutListBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.notification_successful))
+            (viewHolder).binding.RecyclerViewLinearLayoutListBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.message_info_successful_light))
         }else if(dX > 0){
-            (viewHolder).binding.RecyclerViewLinearLayoutListBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.notification_error))
+            (viewHolder).binding.RecyclerViewLinearLayoutListBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.message_alert_deletion_light))
         }
 
         ItemTouchHelper.Callback.getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX/2, dY, actionState, isCurrentlyActive)

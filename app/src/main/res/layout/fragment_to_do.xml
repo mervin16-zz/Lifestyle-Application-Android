@@ -43,6 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{toDoViewModel.currentActiveButtonText}"
+                        android:textAppearance="@style/typography_button"
                         android:onClick="@{() -> toDoViewModel.updateList(toggleButtonState.BUTTON_ACTIVE)}"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
             
@@ -51,6 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{toDoViewModel.currentCompletedButtonText}"
+                        android:textAppearance="@style/typography_button"
                         android:onClick="@{() -> toDoViewModel.updateList(toggleButtonState.BUTTON_COMPLETE)}"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
             </com.google.android.material.button.MaterialButtonToggleGroup>

@@ -27,28 +27,50 @@
     
     <color name="colorHelperText">@color/grey_600</color>
     
+    
     <!--
-        Green Material Color Palette
+        Green
     -->
+    
+    <!-- Material Color Palette -->
     <color name="green_dark_200">#75a478</color>
     <color name="green_200">#a5d6a7</color>
     
+    <!-- Customized Color Palette -->
+    <color name="other_green_light_200">#8FFB94</color>
+    <color name="other_green_dark_800">#0B9F0D</color>
+    
+    
+    
     <!--
-        Red Material Color Palette
+        Red
     -->
+    
+    <!-- Material Color Palette -->
     <color name="red_dark_300">#af4448</color>
     <color name="red_light_300">#ffa4a2</color>
     <color name="red_200">#ef9a9a</color>
     
+    <!-- Customized Color Palette -->
+    <color name="other_red_dark_800">#FF3366</color>
+    
+    
     <!--
-        Blue Material Color Palette
+        Blue
     -->
+    
+    <!-- Material Color Palette -->
     <color name="blue_dark_200">#4ba3c7</color>
     <color name="blue_light_200">#81d4fa</color>
     <color name="blue_300">#64b5f6</color>
     <color name="blue_200">#90caf9</color>
     <color name="alternate_blue_light_200">#83b9ff</color>
     <color name="alternate_blue_200">#448aff</color>
+    
+    <!-- Customized Color Palette -->
+    <color name="other_blue_dark_800">#2462FF</color>
+    
+    
     
     <!--
         Yellow Material Color Palette
@@ -88,16 +110,12 @@
     <color name="item_priority_3">@color/yellow_200</color>
     <color name="item_priority_4">@color/blue_200</color>
     
-    <color name="notification_successful">@color/green_200</color>
-    <color name="notification_error">@color/red_light_300</color>
+    <color name="message_info_successful_light">@color/other_green_light_200</color>
+    <color name="message_info_successful_dark">@color/other_green_dark_800</color>
     
+    <color name="message_alert_deletion_light">@color/red_light_300</color>
+    <color name="message_alert_deletion_dark">@color/other_red_dark_800</color>
     
-    <color name="button_edit_background">@color/blue_200</color>
-    <color name="button_edit_content">@color/blue_dark_200</color>
-    
-    <color name="button_delete_background">@color/red_light_300</color>
-    <color name="button_delete_content">@color/red_dark_300</color>
-    
-    <color name="button_complete_background">@color/green_200</color>
-    <color name="button_complete_content">@color/green_dark_200</color>
+    <color name="message_info_options_light">@color/alternate_blue_light_200</color>
+    <color name="message_info_options_dark">@color/other_blue_dark_800</color>
 </resources>

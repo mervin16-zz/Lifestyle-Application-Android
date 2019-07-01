@@ -11,8 +11,7 @@
             android:theme="@style/AppTheme">
         <activity android:name=".ui.add_item.ActivityAddItem"/>
         <activity
-                android:name=".ui.home.home.ActivityHome"
-                android:screenOrientation="user">
+                android:name=".ui.home.home.ActivityHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 

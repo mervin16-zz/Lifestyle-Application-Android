@@ -221,6 +221,7 @@ class ActivityAddItem : AppCompatActivity() {
      **/
     private fun initializeStatusBarColor() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorAccent)
+        window.
     }
 
     private fun updatePriorityViewAndDetermineIfPriorityHasBeenSelected(view: View): Boolean {

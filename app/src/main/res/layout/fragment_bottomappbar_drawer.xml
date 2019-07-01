@@ -66,7 +66,7 @@
                 android:layout_marginEnd="@dimen/MarginEnd_forSettingsIcon"
                 android:layout_marginTop="@dimen/MarginTop_forSettingsIcon"
                 android:contentDescription="@string/ContentDescription_BottomAppBarDrawerFragment_SettingsIcon"
-                app:srcCompat="@drawable/ic_settings_accent"
+                app:srcCompat="@drawable/ic_settings_dark"
                 app:layout_constraintBottom_toTopOf="@id/BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_NavigationView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

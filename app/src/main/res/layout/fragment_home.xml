@@ -24,7 +24,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    style="@style/typography_h6"/>
+                    style="@style/typography_h5"/>
         
         </androidx.constraintlayout.widget.ConstraintLayout>
     
