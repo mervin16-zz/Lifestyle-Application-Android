@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    
+    <!--
+        Fragments
+     -->
+
+    <!-- General -->
+    <integer name="ProgressBar_Default_MaxProgress">100</integer>
+    <integer name="ProgressBar_Default_ScaleY">8</integer>
+    
+</resources>

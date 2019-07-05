@@ -1,6 +1,7 @@
 package com.th3pl4gu3.lifestyle.ui.home.home
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.databinding.FragmentBottomappbarDrawerBinding
+import com.th3pl4gu3.lifestyle.ui.settings.SettingsActivity
 
 class RoundedBottomSheetDialogFragmentForBottomAppBarDrawer : BottomSheetDialogFragment() {
 
@@ -23,6 +25,10 @@ class RoundedBottomSheetDialogFragmentForBottomAppBarDrawer : BottomSheetDialogF
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottomappbar_drawer, container, false)
+
+        mBinding.BottomAppBarFromFragmentBottomAppBarDrawerDrawerSettingsIcon.setOnClickListener {
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
+        }
 
         return mBinding.root
     }

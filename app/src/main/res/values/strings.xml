@@ -58,7 +58,8 @@
     <string name="Menu_BottomAppBar_DrawerMain_Statistics">Statistics</string>
     
     <!-- Bottom App Bar Menu Main -->
-    <string name="Menu_BottomAppBar_MenuMain_Search">Search</string>
+    <string name="Menu_BottomAppBar_MenuMain_Filter">Filter</string>
+    <string name="Menu_BottomAppBar_MenuMain_Sort">Sort</string>
     
     
     <!--
@@ -92,9 +93,6 @@
     <!-- Bottom App Bar Drawer Fragment -->
     <string name="Fragment_BottomAppBar_Drawer_Menu">Menu</string>
     
-    <!-- Home Fragment -->
-    <string name="TextView_fromHomeFragment_Title_Main">Lifestyle</string>
-    
     <!-- Statistics Fragment -->
     <string name="TextView_fromStatisticsFragment_Title_Main">Statistics</string>
     
@@ -105,7 +103,8 @@
     </string>
     
     <!-- To Buy Fragment -->
-    <string name="TextView_fromToDoFragment_Message_EmptyList_Active">Please plan to do something with your life!</string>
+    <string name="TextView_fromToDoFragment_Message_EmptyList_Active">Please plan to do something with your life!
+    </string>
     <string name="TextView_fromToDoFragment_Message_EmptyList_Completed">You have not completed any tasks… Yet!</string>
     
     <!-- To Do Fragment -->
@@ -147,35 +146,44 @@
     <string name="Message_Success_fromActivityAddItem_ItemAdded">Item \'%1$s\' has been successfully added.</string>
     
     <!-- Info Message -->
-    <string name="Message_Info_fromFragmentLifeStyleItems_ItemDeleted">There was an error while swiping your request. Please try again.</string>
+    <string name="Message_Info_fromFragmentLifeStyleItems_ItemDeleted">There was an error while swiping your request.
+        Please try again.
+    </string>
     <string name="Message_Info_fromFragmentLifeStyleItems_ChooseTask">Please choose a task.</string>
     <string name="Message_Info_fromFragmentLifeStyleItems_ChoosePriority">Please choose a priority.</string>
     <string name="Message_Info_fromFragmentLifeStyleItems_ChooseCategory">Please choose a category.</string>
     
     <!-- Error Message -->
-    <string name="Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping">Your item %1$s has been deleted</string>
-    <string name="Message_Exception_fromActivityAddItem_ErrorWhileFetchingTask">An error has occurred while fetching your Task. Error: %1$s</string>
-    <string name="Message_Exception_fromActivityAddItem_ErrorWhileAddingTask">An error has occurred while adding your Task. Error: %1$s</string>
+    <string name="Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping">Your item %1$s has been deleted
+    </string>
+    <string name="Message_Exception_fromActivityAddItem_ErrorWhileFetchingTask">An error has occurred while fetching
+        your Task. Error: %1$s
+    </string>
+    <string name="Message_Exception_fromActivityAddItem_ErrorWhileAddingTask">An error has occurred while adding your
+        Task. Error: %1$s
+    </string>
     
     
     <!--
        Image Content Description
     -->
     
+    <!-- General -->
+    <string name="ContentDescription_Icon_Priority_1">Priority 1 Icon</string>
+    <string name="ContentDescription_Icon_Priority_2">Priority 2 Icon</string>
+    <string name="ContentDescription_Icon_Priority_3">Priority 3 Icon</string>
+    <string name="ContentDescription_Icon_Priority_4">Priority 4 Icon</string>
+    
+    <string name="ContentDescription_Icon_Back">Back Icon</string>
+    
     <!-- Bottom App Bar Drawer Menu -->
     <string name="ContentDescription_BottomAppBarDrawerFragment_UserIcon">The User Icon.</string>
     <string name="ContentDescription_BottomAppBarDrawerFragment_SettingsIcon">The Settings Icon.</string>
     
     <!-- AddItemActivity -->
-    <string name="ContentDescription_fromAddItemActivity_Priority1Icon">Priority 1 Icon</string>
-    <string name="ContentDescription_fromAddItemActivity_Priority2Icon">Priority 2 Icon</string>
-    <string name="ContentDescription_fromAddItemActivity_Priority3Icon">Priority 3 Icon</string>
-    <string name="ContentDescription_fromAddItemActivity_Priority4Icon">Priority 4 Icon</string>
-    <string name="ContentDescription_fromAddItemActivity_BackIcon">Back Icon</string>
     
     <!-- HomeActivity -->
-    <string name="ContentDescription_fromHomeActivity_SortIcon">Sort Icon</string>
-    <string name="ContentDescription_fromHomeActivity_FilterIcon">Filter Icon</string>
+    <string name="TextView_fromHomeActivity_Icon_Search">Search Icon</string>
     
     <!-- Bottom App Bar Drawer Menu -->
     <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_Home">Home</string>
@@ -193,5 +201,5 @@
     <string name="ContentDescription_fromLifestyleItemList_Icon_Priority">The Priority icon</string>
     <string name="ContentDescription_fromLifestyleItemList_Icon_Delete">The Delete icon</string>
     <string name="ContentDescription_fromLifestyleItemList_Icon_Complete">The Complete icon</string>
-    
+
 </resources>

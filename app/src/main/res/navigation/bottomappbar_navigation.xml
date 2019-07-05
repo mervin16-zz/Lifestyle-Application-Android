@@ -2,15 +2,11 @@
 
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:startDestination="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home">
+            app:startDestination="@id/BottomAppBar_fromActivityHome_DrawerMenu_Statistics">
     
     <!--
         Home fragments
     -->
-    <fragment
-            android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home"
-            android:name="com.th3pl4gu3.lifestyle.ui.home.section_home.FragmentHome"
-            android:label="FragmentHome"/>
     
     <fragment
             android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Goals"
@@ -44,15 +40,7 @@
             android:id="@id/BottomSheetDialog_fromActivityHome_Filter"
             android:name="com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentFilter"
             android:label="RoundedBottomSheetDialogFragmentFilter"/>
-    
-    <!--
-        Bottom App Bar Drawer Dialog
-    -->
-    <dialog
-            android:id="@id/BottomAppBar_fromActivityHome_Drawer"
-            android:name="com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentForBottomAppBarDrawer"
-            android:label="RoundedBottomSheetDialogFragmentForBottomAppBarDrawer"/>
-    
+     
     <!--
         Lifestyle Item Details Dialogs
     -->

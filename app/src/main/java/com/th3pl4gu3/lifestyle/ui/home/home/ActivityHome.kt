@@ -35,6 +35,10 @@ class ActivityHome : AppCompatActivity(){
             startActivity(Intent(this, ActivityAddItem::class.java))
             overridePendingTransition(R.anim.slide_up_in, R.anim.slide_down_out)
         }
+
+        mBinding.ImageButtonFromHomeActivityIconSearch.setOnClickListener {
+            this.toast("Search has not been implemented yet!")
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,16 +50,24 @@ class ActivityHome : AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                this.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments).navigate(R.id.BottomAppBar_fromActivityHome_Drawer)
+                val bottomAppBarDialog = RoundedBottomSheetDialogFragmentForBottomAppBarDrawer()
+                bottomAppBarDialog.show(supportFragmentManager, bottomAppBarDialog.tag)
                 true
             }
 
-            R.id.BottomAppBar_fromHomeActivity_MenuMain_Search -> {
-                this.toast("Not Implemented yet!")
-                false
+            R.id.BottomAppBar_fromHomeActivity_MenuMain_Filter -> {
+                this.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                    .navigate(R.id.BottomSheetDialog_fromActivityHome_Filter)
+                true
             }
 
-            else -> true
+            R.id.BottomAppBar_fromHomeActivity_MenuMain_Sort -> {
+                this.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                    .navigate(R.id.BottomSheetDialog_fromActivityHome_Sort)
+                true
+            }
+
+            else -> false
         }
     }
 

@@ -78,9 +78,36 @@
     <color name="yellow_200">#fff59d</color>
     
     <!--
-        Orange Material Color Palette
+        Orange
     -->
+    
+    <!-- Material Color Palette -->
     <color name="orange_200">#ffcc80</color>
+    <color name="orange_800">#ff6f00</color>
+    
+    <!-- Customized Color Palette -->
+    
+    
+    <!--
+        Purple
+    -->
+    
+    <!-- Material Color Palette -->
+    <color name="purple_deep_100">#d1c4e9</color>
+    
+    <!-- Customized Color Palette -->
+    <color name="other_purple_dark_800">#701DCD</color>
+    
+    
+    <!--
+        CYane
+    -->
+    
+    <!-- Material Color Palette -->
+    <color name="cyan_100">#b2ebf2</color>
+    <color name="cyan_700">#0097a7</color>
+    
+    <!-- Customized Color Palette -->
     
     <!--
         Black Material Color Palette
@@ -118,4 +145,20 @@
     
     <color name="message_info_options_light">@color/alternate_blue_light_200</color>
     <color name="message_info_options_dark">@color/other_blue_dark_800</color>
+    
+    <color name="progressBar_goals_progress">@color/other_red_dark_800</color>
+    <color name="progressBar_toDo_progress">@color/other_blue_dark_800</color>
+    <color name="progressBar_toBuy_progress">@color/other_green_light_200</color>
+    
+    <color name="themed_purple_dark">@color/other_purple_dark_800</color>
+    <color name="themed_purple_light">@color/purple_deep_100</color>
+    
+    <color name="themed_orange_dark">@color/orange_800</color>
+    <color name="themed_orange_light">@color/orange_200</color>
+    
+    <color name="themed_blue_dark">@color/other_blue_dark_800</color>
+    <color name="themed_blue_light">@color/blue_200</color>
+    
+    <color name="themed_cyan_dark">@color/cyan_700</color>
+    <color name="themed_cyan_light">@color/cyan_100</color>
 </resources>

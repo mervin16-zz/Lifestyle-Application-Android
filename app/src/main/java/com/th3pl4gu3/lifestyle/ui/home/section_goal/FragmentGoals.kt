@@ -1,12 +1,10 @@
 package com.th3pl4gu3.lifestyle.ui.home.section_goal
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
@@ -116,22 +114,6 @@ class FragmentGoals : Fragment() {
         return mBinding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        val activity = requireActivity()
-
-        activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Filter).setOnClickListener {
-            activity.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
-                .navigate(R.id.BottomSheetDialog_fromActivityHome_Filter)
-        }
-
-        activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Sort).setOnClickListener {
-            activity.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
-                .navigate(R.id.BottomSheetDialog_fromActivityHome_Sort)
-        }
-    }
-
     /**
      * Private functions for internal use ONLY
      **/
@@ -167,4 +149,6 @@ class FragmentGoals : Fragment() {
         //Show Fab
         activity.findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached).show()
     }
+
+
 }

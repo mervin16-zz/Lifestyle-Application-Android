@@ -1,13 +1,10 @@
 package com.th3pl4gu3.lifestyle.ui.home.section_todo
 
-
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
@@ -26,8 +23,6 @@ import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
-import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentFilter
-import com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentSort
 
 class FragmentToDo : Fragment() {
 
@@ -121,22 +116,6 @@ class FragmentToDo : Fragment() {
         itemTouchHelper.attachToRecyclerView(mBinding.RecyclerViewFromFragmentToDoMain)
 
         return mBinding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        val activity = requireActivity()
-
-        activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Filter).setOnClickListener {
-            activity.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
-                .navigate(R.id.BottomSheetDialog_fromActivityHome_Filter)
-        }
-
-        activity.findViewById<ImageButton>(R.id.ImageButton_fromHomeActivity_Icon_Sort).setOnClickListener {
-            activity.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
-                .navigate(R.id.BottomSheetDialog_fromActivityHome_Sort)
-        }
     }
 
     /**

@@ -2,10 +2,12 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
+        
         <item
-                android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Home"
-                android:icon="@drawable/ic_home_dark"
-                android:title="@string/Menu_BottomAppBar_DrawerMain_Home"/>
+                android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Statistics"
+                android:icon="@drawable/ic_statistics_dark"
+                android:title="@string/Menu_BottomAppBar_DrawerMain_Statistics"/>
+        
         <item
                 android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Goals"
                 android:icon="@drawable/ic_goals_dark"
@@ -20,10 +22,5 @@
                 android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_ToBuy"
                 android:icon="@drawable/ic_tobuy_dark"
                 android:title="@string/Menu_BottomAppBar_DrawerMain_ToBuy"/>
-
-        <item
-                android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Statistics"
-                android:icon="@drawable/ic_statistics_dark"
-                android:title="@string/Menu_BottomAppBar_DrawerMain_Statistics"/>
     </group>
 </menu>

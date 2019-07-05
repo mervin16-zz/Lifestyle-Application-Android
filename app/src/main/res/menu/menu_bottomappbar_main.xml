@@ -2,11 +2,17 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item android:id="@id/BottomAppBar_fromHomeActivity_MenuMain_Search"
-          android:title="@string/Menu_BottomAppBar_MenuMain_Search"
-          android:icon="@drawable/ic_search_dark"
+    
+    <item android:id="@id/BottomAppBar_fromHomeActivity_MenuMain_Sort"
+          android:title="@string/Menu_BottomAppBar_MenuMain_Sort"
+          android:icon="@drawable/ic_sort_dark"
           app:showAsAction="always"
-          android:tooltipText="@string/Menu_BottomAppBar_MenuMain_Search" />
+          android:tooltipText="@string/Menu_BottomAppBar_MenuMain_Sort" />
+    
+    <item android:id="@id/BottomAppBar_fromHomeActivity_MenuMain_Filter"
+          android:title="@string/Menu_BottomAppBar_MenuMain_Filter"
+          android:icon="@drawable/ic_filter_dark"
+          app:showAsAction="ifRoom"
+          android:tooltipText="@string/Menu_BottomAppBar_MenuMain_Filter" />
 
 </menu>

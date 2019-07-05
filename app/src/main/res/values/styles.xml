@@ -144,6 +144,11 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:textStyle">bold</item>
     </style>
+    
+    <style name="Screen_Title_Default" parent="@style/typography_h5">
+        <item name="android:textColor">@color/black_800</item>
+    </style>
+    
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

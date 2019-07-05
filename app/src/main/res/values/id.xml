@@ -67,15 +67,14 @@
      -->
     
     <!-- Bottom App Bar Drawer Menu & Navigation -->
-    <item type="id" name="BottomAppBar_fromActivityHome_Drawer" />
-    <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Home" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Goals" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_ToBuy" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_ToDo" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Statistics" />
     
     <!-- Bottom App Bar Menu Main -->
-    <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Search" />
+    <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Filter" />
+    <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Sort" />
     
     
     <!-- Bottom Sheet Dialogs Sort -->
@@ -100,6 +99,11 @@
     <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_SettingsIcon"/>
     <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_Title"/>
     <item type="id" name="BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_Subtitle"/>
+    
+    <item type="id" name="ImageView_fromHomeFragment_Icon_RecentlyAdded"/>
+    <item type="id" name="ImageView_fromHomeFragment_Icon_RecentlyCompleted"/>
+    <item type="id" name="ImageView_fromHomeFragment_Icon_OlderTasks"/>
+    <item type="id" name="ImageView_fromHomeFragment_Icon_CompletedTasks"/>
     
     <!-- To Do Fragment -->
     <item type="id" name="RecyclerView_fromFragmentToDo_Main"/>
@@ -141,8 +145,7 @@
     <item type="id" name="BottomAppBar_fromHomeActivity_Main"/>
     <item type="id" name="FAB_fromHomeActivity_BottomAppBarAttached"/>
     <item type="id" name="TextView_fromHomeActivity_Screen_Title"/>
-    <item type="id" name="ImageButton_fromHomeActivity_Icon_Filter"/>
-    <item type="id" name="ImageButton_fromHomeActivity_Icon_Sort"/>
+    <item type="id" name="ImageButton_fromHomeActivity_Icon_Search"/>
     <item type="id" name="RelativeLayout_fromHomeActivity_TopBar"/>
     <item type="id" name="LinearLayout_fromHomeActivity_ToggleButton"/>
     

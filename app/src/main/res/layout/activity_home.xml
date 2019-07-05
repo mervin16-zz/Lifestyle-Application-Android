@@ -35,29 +35,20 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_alignParentStart="true"
-                            android:layout_toStartOf="@+id/ImageButton_fromHomeActivity_Icon_Filter"
+                            android:layout_toStartOf="@+id/ImageButton_fromHomeActivity_Icon_Search"
                             style="@style/typography_overline"
                             tools:text="Title"/>
                     
                     <ImageButton
-                            android:id="@id/ImageButton_fromHomeActivity_Icon_Filter"
+                            android:id="@id/ImageButton_fromHomeActivity_Icon_Search"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toStartOf="@+id/ImageButton_fromHomeActivity_Icon_Sort"
-                            android:layout_marginStart="@dimen/Margin_Views_Default"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:contentDescription="@string/ContentDescription_fromHomeActivity_SortIcon"
-                            app:srcCompat="@drawable/ic_filter_dark"/>
-                    
-                    <ImageButton
-                            android:id="@id/ImageButton_fromHomeActivity_Icon_Sort"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/Margin_Views_Small"
+                            android:layout_marginEnd="@dimen/Margin_Views_Small"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginStart="@dimen/Margin_Views_Default"
                             android:background="?attr/selectableItemBackgroundBorderless"
-                            android:contentDescription="@string/ContentDescription_fromHomeActivity_FilterIcon"
-                            app:srcCompat="@drawable/ic_sort_dark"/>
+                            android:contentDescription="@string/TextView_fromHomeActivity_Icon_Search"
+                            app:srcCompat="@drawable/ic_search_dark"/>
                 
                 </RelativeLayout>
                 

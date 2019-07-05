@@ -36,7 +36,7 @@
                     android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
                     android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
                     android:tag="@{Constant.ENUM_PRIORITY_P1}"
-                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority1Icon"
+                    android:contentDescription="@string/ContentDescription_Icon_Priority_1"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:onClick="setPriority"
                     app:srcCompat="@drawable/ic_priority_1"/>
@@ -48,7 +48,7 @@
                     android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
                     android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
                     android:tag="@{Constant.ENUM_PRIORITY_P2}"
-                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority2Icon"
+                    android:contentDescription="@string/ContentDescription_Icon_Priority_2"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:onClick="setPriority"
                     app:srcCompat="@drawable/ic_priority_2"/>
@@ -60,7 +60,7 @@
                     android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
                     android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
                     android:tag="@{Constant.ENUM_PRIORITY_P3}"
-                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority3Icon"
+                    android:contentDescription="@string/ContentDescription_Icon_Priority_3"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:onClick="setPriority"
                     app:srcCompat="@drawable/ic_priority_3"/>
@@ -72,7 +72,7 @@
                     android:layout_marginStart="@dimen/Margin_BetweenIcon_Priority"
                     android:layout_marginEnd="@dimen/Margin_BetweenIcon_Priority"
                     android:tag="@{Constant.ENUM_PRIORITY_P4}"
-                    android:contentDescription="@string/ContentDescription_fromAddItemActivity_Priority4Icon"
+                    android:contentDescription="@string/ContentDescription_Icon_Priority_4"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:onClick="setPriority"
                     app:srcCompat="@drawable/ic_priority_4"/>
