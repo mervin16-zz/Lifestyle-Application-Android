@@ -144,7 +144,7 @@ class FragmentToBuy : Fragment() {
 
         //Set title of fragment
         activity.findViewById<TextView>(R.id.TextView_fromHomeActivity_Screen_Title).text =
-            getString(R.string.TextView_fromFragmentInHomeActivity_ScreenTitle_ToBuy)
+            getString(R.string.Menu_BottomAppBar_DrawerMain_ToBuy)
 
         //Show Top Bar
         activity.findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar).visibility =

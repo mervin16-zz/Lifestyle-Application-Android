@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/Margin_Views_Default">
+            android:padding="@dimen/Padding_Screen_Default">
         
         <TextView
                 android:id="@id/Placeholder_forLifestyleItem_Value_Title"
@@ -101,7 +101,7 @@
                 android:text="@string/Placeholder_forLifestyleItem_Details_DaysActive"
                 app:layout_constraintStart_toStartOf="@+id/Placeholder_forLifestyleItem_DateAdded"
                 app:layout_constraintTop_toBottomOf="@+id/Placeholder_forLifestyleItem_DateAdded"
-                app:layout_constraintBottom_toTopOf="@+id/RelativeLayout_forLifestyleItem_ActionButtons"
+                app:layout_constraintBottom_toTopOf="@+id/IncludeLayout_forLifestyleItem_ActionButtons"
                 app:layout_constraintVertical_chainStyle="spread"
                 style="@style/typography_body_2"/>
     
@@ -115,26 +115,18 @@
                 app:lifestyleItemDaysOld="@{MyToDo}"
                 tools:text="30 Days Ago"
                 style="@style/typography_caption"/>
-        
-        <RelativeLayout
-                android:id="@id/RelativeLayout_forLifestyleItem_ActionButtons"
-                android:layout_width="match_parent"
+    
+        <include
+                android:id="@id/IncludeLayout_forLifestyleItem_ActionButtons"
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"
                 app:layout_constraintTop_toBottomOf="@+id/Placeholder_forLifestyleItem_DaysActive"
                 app:layout_constraintVertical_chainStyle="spread"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-            
-            <include
-                    android:id="@id/IncludeLayout_forLifestyleItem_ActionButtons"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    layout="@layout/include_forlifestyleitems_buttons_actions" />
-        
-        </RelativeLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                layout="@layout/include_forlifestyleitems_buttons_actions" />
     
     </androidx.constraintlayout.widget.ConstraintLayout>
 

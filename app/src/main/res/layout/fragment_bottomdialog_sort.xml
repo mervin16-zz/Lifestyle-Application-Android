@@ -9,14 +9,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/Padding_Views_Default">
+            android:padding="@dimen/Padding_Screen_Default">
     
         <TextView
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/Margin_Views_Small"
-                android:layout_marginStart="@dimen/Margin_Views_Small"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
                 android:text="@string/Fragment_BottomSheetDialog_Sort_Title"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ChipGroup"
@@ -29,7 +29,7 @@
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ChipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/Margin_Views_Small"
+                android:layout_margin="@dimen/Margin_ChipGroup_Small"
                 app:singleSelection="true"
                 app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_Title"
                 app:layout_constraintBottom_toTopOf="@+id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup"
@@ -73,10 +73,10 @@
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/Margin_Views_Small"
-                android:layout_marginBottom="@dimen/Margin_Views_Default"
-                android:layout_marginStart="@dimen/Margin_Views_Default"
-                android:layout_marginEnd="@dimen/Margin_Views_Default"
+                android:layout_marginTop="@dimen/Margin_ButtonGroup_Small"
+                android:layout_marginBottom="@dimen/Margin_ButtonGroup_Default"
+                android:layout_marginStart="@dimen/Margin_ButtonGroup_Default"
+                android:layout_marginEnd="@dimen/Margin_ButtonGroup_Default"
                 app:singleSelection="true"
                 app:checkedButton="@+id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup_Ascending"
                 app:layout_constraintEnd_toEndOf="parent"

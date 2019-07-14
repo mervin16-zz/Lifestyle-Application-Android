@@ -2,10 +2,14 @@
 
 <resources>
     
-    <!-- Application -->
+    <!--
+        Application Specific
+    -->
+    
+    <!-- My Application Data -->
     <string name="App_Name">Lifestyle</string>
     
-    <string-array name="App_LifeStyleItem_Categories">
+    <string-array name="App_LifeStyle_Items_Categories">
         <item>Personal</item>
         <item>Household</item>
         <item>House Chores</item>
@@ -16,8 +20,38 @@
         <item>Party</item>
     </string-array>
     
+    <string name="App_Lifestyle_Items_Priority_P1">Priority 1</string>
+    <string name="App_Lifestyle_Items_Priority_P2">Priority 2</string>
+    <string name="App_Lifestyle_Items_Priority_P3">Priority 3</string>
+    <string name="App_Lifestyle_Items_Priority_P4">Priority 4</string>
+    
+    <string name="App_Lifestyle_Task_Goal_Title">Goal</string>
+    <string name="App_Lifestyle_Task_ToDo_Title">To Do</string>
+    <string name="App_Lifestyle_Task_ToBuy_Title">To Buy</string>
+    
+    <!-- Placeholders -->
+    <string name="Placeholder_Loading_Number_Default">0</string>
+    
     <!-- Pairs & Values -->
     <string name="ValuePair_forDataPassing_LifestyleItem">LifestyleItemValuePairDataPassingKey</string>
+    
+    <string name="ValueKey_forSettingsPreference_Profile_Name">ValueKey_forSettingsPreference_Profile_Name</string>
+    <string name="ValueKey_forSettingsPreference_Currency_Preferred">ValueKey_forSettingsPreference_Currency_Preferred</string>
+    <string name="ValueKey_forSettingsPreference_Backup_Local">ValueKey_forSettingsPreference_Backup_Local</string>
+    <string name="ValueKey_forSettingsPreference_Backup_Cloud">ValueKey_forSettingsPreference_Backup_Cloud</string>
+    <string name="ValueKey_forSettingsPreference_Restore_Local">ValueKey_forSettingsPreference_Restore_Local</string>
+    <string name="ValueKey_forSettingsPreference_Restore_Cloud">ValueKey_forSettingsPreference_Restore_Cloud</string>
+    <string name="ValueKey_forSettingsPreference_About_AboutUs">ValueKey_forSettingsPreference_About_AboutUs</string>
+    
+    <!-- Default Values -->
+    <string name="ValueDefault_Profile_Username">This User</string>
+    <string name="ValueDefault_Currency">Rs</string>
+    <string-array name="ValueDefault_Currencies">
+        <item>Rs</item>
+        <item>$</item>
+        <item>£</item>
+        <item>€</item>
+    </string-array>
     
     
     <!--
@@ -51,11 +85,10 @@
      -->
     
     <!-- Bottom App Bar Drawer Menu -->
-    <string name="Menu_BottomAppBar_DrawerMain_Home">Home</string>
-    <string name="Menu_BottomAppBar_DrawerMain_Goals">Goals</string>
-    <string name="Menu_BottomAppBar_DrawerMain_ToDo">To Do</string>
-    <string name="Menu_BottomAppBar_DrawerMain_ToBuy">To Buy</string>
-    <string name="Menu_BottomAppBar_DrawerMain_Statistics">Statistics</string>
+    <string name="Menu_BottomAppBar_DrawerMain_Goals">@string/App_Lifestyle_Task_Goal_Title</string>
+    <string name="Menu_BottomAppBar_DrawerMain_ToDo">@string/App_Lifestyle_Task_ToDo_Title</string>
+    <string name="Menu_BottomAppBar_DrawerMain_ToBuy">@string/App_Lifestyle_Task_ToBuy_Title</string>
+    <string name="Menu_BottomAppBar_DrawerMain_Dashboard">Dashboard</string>
     
     <!-- Bottom App Bar Menu Main -->
     <string name="Menu_BottomAppBar_MenuMain_Filter">Filter</string>
@@ -93,18 +126,19 @@
     <!-- Bottom App Bar Drawer Fragment -->
     <string name="Fragment_BottomAppBar_Drawer_Menu">Menu</string>
     
-    <!-- Statistics Fragment -->
-    <string name="TextView_fromStatisticsFragment_Title_Main">Statistics</string>
+    <!-- Dashboard Fragment -->
+    <string name="TextView_fromDashboardFragment_Title_Main">Dashboard</string>
+    <string name="TextView_fromDashboardFragment_LifestyleItem_Subtitle_Priorities">Priorities</string>
+    <string name="TextView_fromDashboardFragment_LifestyleItem_Statistics_Active">Active</string>
+    <string name="TextView_fromDashboardFragment_LifestyleItem_Statistics_AllTime">All Time</string>
+    <string name="TextView_fromDashboardFragment_LifestyleItem_Statistics_Completed">Completed</string>
     
     <!-- Goals Fragment -->
-    <string name="TextView_fromToBuyFragment_Message_EmptyList_Active">Stop being a miser and plan to buy something!
-    </string>
-    <string name="TextView_fromToBuyFragment_Message_EmptyList_Completed">You have not been able to buy anything!
-    </string>
+    <string name="TextView_fromToBuyFragment_Message_EmptyList_Active">Stop being a miser and plan to buy something!</string>
+    <string name="TextView_fromToBuyFragment_Message_EmptyList_Completed">You have not been able to buy anything!</string>
     
     <!-- To Buy Fragment -->
-    <string name="TextView_fromToDoFragment_Message_EmptyList_Active">Please plan to do something with your life!
-    </string>
+    <string name="TextView_fromToDoFragment_Message_EmptyList_Active">Please plan to do something with your life!</string>
     <string name="TextView_fromToDoFragment_Message_EmptyList_Completed">You have not completed any tasks… Yet!</string>
     
     <!-- To Do Fragment -->
@@ -125,10 +159,6 @@
     <string name="Fragment_BottomSheetDialog_Filter_Title">Filter</string>
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_Title">Priority</string>
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Title">Category</string>
-    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_P1">Priority 1</string>
-    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_P2">Priority 2</string>
-    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_P3">Priority 3</string>
-    <string name="Fragment_BottomSheetDialog_Filter_Groups_Priority_P4">Priority 4</string>
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_All">All</string>
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Personal">Personal</string>
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Family">Family</string>
@@ -137,6 +167,25 @@
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Friends">Friends</string>
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Business">Business</string>
     
+    <!-- Settings Main Fragment -->
+    <string name="Fragment_fromSettingsMain_Category_Profile_Title">Profile</string>
+    <string name="Fragment_fromSettingsMain_Category_Profile_Username_Title">Preferred Name</string>
+    <string name="Fragment_fromSettingsMain_Category_Profile_Username_Summary">Your preferred name in the app.</string>
+    <string name="Fragment_fromSettingsMain_Category_Currency_Title">Currency</string>
+    <string name="Fragment_fromSettingsMain_Category_Currency_Preferred_Title">Preferred Currency</string>
+    <string name="Fragment_fromSettingsMain_Category_Backup_Title">Backup</string>
+    <string name="Fragment_fromSettingsMain_Category_Backup_Locally_Title">Create a Backup Locally</string>
+    <string name="Fragment_fromSettingsMain_Category_Backup_Locally_Summary">Creates a backup locally and saves to specified path.</string>
+    <string name="Fragment_fromSettingsMain_Category_Backup_Cloud_Title">Create a Backup in Cloud</string>
+    <string name="Fragment_fromSettingsMain_Category_Backup_Cloud_Summary">Creates a backup and saves to Google Drive</string>
+    <string name="Fragment_fromSettingsMain_Category_Restore_Title">Restore</string>
+    <string name="Fragment_fromSettingsMain_Category_Restore_Locally_Title">Restore Locally</string>
+    <string name="Fragment_fromSettingsMain_Category_Restore_Locally_Summary">Restore a Backup Locally</string>
+    <string name="Fragment_fromSettingsMain_Category_Restore_Cloud_Title">Restore from Cloud</string>
+    <string name="Fragment_fromSettingsMain_Category_Restore_Cloud_Summary">Restore a Backup from Google Drive</string>
+    <string name="Fragment_fromSettingsMain_Category_About_Title">About</string>
+    <string name="Fragment_fromSettingsMain_Category_About_AboutUs_Title">About Us</string>
+    <string name="Fragment_fromSettingsMain_Category_About_AboutUs_Summary">About the Lifestyle application</string>
     
     <!--
         Messages
@@ -169,11 +218,6 @@
     -->
     
     <!-- General -->
-    <string name="ContentDescription_Icon_Priority_1">Priority 1 Icon</string>
-    <string name="ContentDescription_Icon_Priority_2">Priority 2 Icon</string>
-    <string name="ContentDescription_Icon_Priority_3">Priority 3 Icon</string>
-    <string name="ContentDescription_Icon_Priority_4">Priority 4 Icon</string>
-    
     <string name="ContentDescription_Icon_Back">Back Icon</string>
     
     <!-- Bottom App Bar Drawer Menu -->
@@ -186,11 +230,6 @@
     <string name="TextView_fromHomeActivity_Icon_Search">Search Icon</string>
     
     <!-- Bottom App Bar Drawer Menu -->
-    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_Home">Home</string>
-    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_Goals">Goals</string>
-    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_ToDo">To Do</string>
-    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_ToBuy">To Buy</string>
-    <string name="TextView_fromFragmentInHomeActivity_ScreenTitle_Statistics">Statistics</string>
     
     <!-- To Do Fragment -->
     <string name="ContentDescription_fromToBuyFragment_EmptyView">Sad Face</string>

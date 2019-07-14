@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        
+        <!--
+            Main Content
+        -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:paddingBottom="16dp">
+            
+            <!--
+                The Upper layer
+            -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/View_Upper_Layer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="100dp"
+                    android:background="@color/colorAccent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+    
+                <ImageView
+                        android:id="@+id/Avatar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:srcCompat="@drawable/img_user_colored_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/MainTitle"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"/>
+    
+                <TextView
+                        android:id="@+id/MainTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/App_Name"
+                        android:textColor="@color/colorTextSecondary"
+                        app:layout_constraintEnd_toEndOf="@+id/Avatar"
+                        app:layout_constraintTop_toBottomOf="@+id/Avatar"
+                        app:layout_constraintBottom_toTopOf="@+id/Subtitle"
+                        app:layout_constraintStart_toStartOf="@+id/Avatar"
+                        style="@style/typography_h6"/>
+    
+                <TextView
+                        android:id="@+id/Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextSecondary"
+                        android:text="@string/TextView_fromDashboardFragment_Title_Main"
+                        app:layout_constraintStart_toStartOf="@+id/Avatar"
+                        app:layout_constraintEnd_toEndOf="@+id/Avatar"
+                        app:layout_constraintTop_toBottomOf="@+id/MainTitle"
+                        style="@style/typography_caption"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            
+            <!--
+                The lower content.
+            -->
+    
+            <include
+                    android:id="@+id/IncludeLayout_Goal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    app:layout_constraintTop_toBottomOf="@+id/View_Upper_Layer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/IncludeLayout_ToDo"
+                    layout="@layout/include_forfragmentdashboard_section_goal"/>
+    
+            <include
+                    android:id="@+id/IncludeLayout_ToDo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/IncludeLayout_Goal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/IncludeLayout_ToBuy"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    layout="@layout/include_forfragmentdashboard_section_todo"/>
+    
+            <include
+                    android:id="@+id/IncludeLayout_ToBuy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/IncludeLayout_ToDo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    layout="@layout/include_forfragmentdashboard_section_tobuy"/>
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+        
+        <!--
+            The anchored CardView on the middle of the screen
+        -->
+    
+        <com.google.android.material.card.MaterialCardView
+                android:id="@+id/CardView_Active_Panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Margin_CardView_Simple"
+                app:layout_anchor="@+id/View_Upper_Layer"
+                app:layout_anchorGravity="center_horizontal|bottom"
+                app:cardElevation="@dimen/Elevation_CardView_Simple">
+        
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/Margin_CardView_Simple"
+                    android:layout_marginBottom="@dimen/Margin_CardView_Simple">
+    
+                <TextView
+                        android:id="@+id/Active_Panel_Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/TextView_fromDashboardFragment_LifestyleItem_Statistics_Active"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/typography_overline"/>
+    
+                <TextView
+                        android:id="@+id/Active_Panel_Goals_Number"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Placeholder_Loading_Number_Default"
+                        android:textColor="@color/colorAccent"
+                        android:textAlignment="center"
+                        app:layout_constraintTop_toBottomOf="@+id/Active_Panel_Title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/Active_Panel_ToDo_Number"
+                        style="@style/typography_h2"/>
+                
+                <TextView
+                        android:id="@+id/Active_Panel_ToDo_Number"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Placeholder_Loading_Number_Default"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccent"
+                        app:layout_constraintTop_toTopOf="@+id/Active_Panel_Goals_Number"
+                        app:layout_constraintBottom_toBottomOf="@+id/Active_Panel_Goals_Number"
+                        app:layout_constraintEnd_toStartOf="@+id/Active_Panel_ToBuy_Number"
+                        app:layout_constraintStart_toEndOf="@+id/Active_Panel_Goals_Number"
+                        style="@style/typography_h2"/>
+                
+                <TextView
+                        android:id="@+id/Active_Panel_ToBuy_Number"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/Placeholder_Loading_Number_Default"
+                        android:textColor="@color/colorAccent"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/Active_Panel_ToDo_Number"
+                        app:layout_constraintBottom_toBottomOf="@+id/Active_Panel_ToDo_Number"
+                        app:layout_constraintStart_toEndOf="@+id/Active_Panel_ToDo_Number"
+                        style="@style/typography_h2" />
+    
+                <TextView
+                        android:id="@+id/Active_Panel_Goals_Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/App_Lifestyle_Task_Goal_Title"
+                        app:layout_constraintTop_toBottomOf="@+id/Active_Panel_Goals_Number"
+                        app:layout_constraintEnd_toEndOf="@+id/Active_Panel_Goals_Number"
+                        app:layout_constraintStart_toStartOf="@+id/Active_Panel_Goals_Number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        style="@style/typography_caption"/>
+    
+                <TextView
+                        android:id="@+id/Active_Panel_ToDo_Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/App_Lifestyle_Task_ToDo_Title"
+                        app:layout_constraintEnd_toEndOf="@+id/Active_Panel_ToDo_Number"
+                        app:layout_constraintStart_toStartOf="@+id/Active_Panel_ToDo_Number"
+                        app:layout_constraintBottom_toBottomOf="@+id/Active_Panel_Goals_Title"
+                        app:layout_constraintTop_toTopOf="@+id/Active_Panel_Goals_Title"
+                        style="@style/typography_caption" />
+    
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/App_Lifestyle_Task_ToBuy_Title"
+                        app:layout_constraintEnd_toEndOf="@+id/Active_Panel_ToBuy_Number"
+                        app:layout_constraintStart_toStartOf="@+id/Active_Panel_ToBuy_Number"
+                        app:layout_constraintBottom_toBottomOf="@+id/Active_Panel_ToDo_Title"
+                        app:layout_constraintTop_toTopOf="@+id/Active_Panel_ToDo_Title"
+                        style="@style/typography_caption"/>
+                
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    
+        </com.google.android.material.card.MaterialCardView>
+        
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

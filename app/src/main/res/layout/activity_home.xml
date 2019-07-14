@@ -24,10 +24,10 @@
                         android:id="@id/RelativeLayout_fromHomeActivity_TopBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/Padding_Views_Default"
-                        android:paddingStart="@dimen/Padding_Views_Default"
-                        android:paddingEnd="@dimen/Padding_Views_Small"
-                        android:paddingBottom="@dimen/Padding_Views_Small">
+                        android:paddingTop="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp">
                     
                     <TextView
                             android:id="@id/TextView_fromHomeActivity_Screen_Title"
@@ -43,8 +43,8 @@
                             android:id="@id/ImageButton_fromHomeActivity_Icon_Search"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/Margin_Views_Small"
-                            android:layout_marginEnd="@dimen/Margin_Views_Small"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
                             android:layout_alignParentEnd="true"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:contentDescription="@string/TextView_fromHomeActivity_Icon_Search"

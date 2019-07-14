@@ -7,37 +7,38 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:baselineAligned="false">
         
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@id/Button_forLifestyleItem_Action_Delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/Margin_Views_Small"
+                android:layout_margin="@dimen/Margin_FAB_Small"
                 android:src="@drawable/ic_delete_dark"
                 app:fabSize="mini"
                 app:backgroundTint="@color/message_alert_deletion_light"
-                app:tint="@color/message_alert_deletion_dark" />
+                app:tint="@color/message_alert_deletion_dark"/>
         
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@id/Button_forLifestyleItem_Action_Done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/Margin_Views_Small"
+                android:layout_margin="@dimen/Margin_FAB_Small"
                 android:src="@drawable/ic_done_light"
                 app:fabSize="mini"
                 app:backgroundTint="@color/message_info_successful_light"
-                app:tint="@color/message_info_successful_dark" />
+                app:tint="@color/message_info_successful_dark"/>
         
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@id/Button_forLifestyleItem_Action_Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/Margin_Views_Small"
+                android:layout_margin="@dimen/Margin_FAB_Small"
                 android:src="@drawable/ic_twotone_edit_dark"
                 app:fabSize="mini"
                 app:backgroundTint="@color/message_info_options_light"
-                app:tint="@color/message_info_options_dark" />
+                app:tint="@color/message_info_options_dark"/>
     
     </LinearLayout>
 

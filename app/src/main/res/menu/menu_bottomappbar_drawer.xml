@@ -4,9 +4,9 @@
     <group android:checkableBehavior="single">
         
         <item
-                android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Statistics"
-                android:icon="@drawable/ic_statistics_dark"
-                android:title="@string/Menu_BottomAppBar_DrawerMain_Statistics"/>
+                android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Dashboard"
+                android:icon="@drawable/ic_dashboard_dark"
+                android:title="@string/Menu_BottomAppBar_DrawerMain_Dashboard"/>
         
         <item
                 android:id="@id/BottomAppBar_fromActivityHome_DrawerMenu_Goals"

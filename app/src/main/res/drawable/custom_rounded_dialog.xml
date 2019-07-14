@@ -5,6 +5,6 @@
     <corners
             android:topLeftRadius="@dimen/Rounded_Views_Default"
             android:topRightRadius="@dimen/Rounded_Views_Default" />
-    <padding android:top="@dimen/Padding_Views_Default" />
+    <padding android:top="16dp" />
     <solid android:color="@color/white_000" />
 </shape>

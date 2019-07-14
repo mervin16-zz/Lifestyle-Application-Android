@@ -27,7 +27,7 @@
                 android:id="@id/LinearLayout_fromHomeActivity_ToggleButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/Margin_Views_Small"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal"
                 android:gravity="center">
         
@@ -62,7 +62,7 @@
                 android:id="@id/RecyclerView_fromFragmentToDo_Main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/Margin_Views_Small"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="?attr/actionBarSize"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
         
@@ -78,8 +78,8 @@
                     android:id="@id/ImageView_fromFragmentToDo_EmptyView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/Margin_Views_Small"
-                    android:layout_marginStart="@dimen/Margin_Views_Small"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
                     android:contentDescription="@string/ContentDescription_fromToDoFragment_EmptyView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

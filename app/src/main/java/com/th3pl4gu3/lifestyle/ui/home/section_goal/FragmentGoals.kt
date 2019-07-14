@@ -141,7 +141,7 @@ class FragmentGoals : Fragment() {
 
         //Set title of fragment
         activity.findViewById<TextView>(R.id.TextView_fromHomeActivity_Screen_Title).text =
-            getString(R.string.TextView_fromFragmentInHomeActivity_ScreenTitle_Goals)
+            getString(R.string.Menu_BottomAppBar_DrawerMain_Goals)
 
         //Show Top Bar
         activity.findViewById<RelativeLayout>(R.id.RelativeLayout_fromHomeActivity_TopBar).visibility = View.VISIBLE

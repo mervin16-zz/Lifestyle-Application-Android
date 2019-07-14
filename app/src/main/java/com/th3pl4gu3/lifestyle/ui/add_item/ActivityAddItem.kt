@@ -288,7 +288,7 @@ class ActivityAddItem : AppCompatActivity() {
         mBinding.SpinnerFromAddItemActivityType.setSelection(typeAdapter.count)
 
         //Category Spinner
-        val categoryList = resources.getStringArray(R.array.App_LifeStyleItem_Categories)
+        val categoryList = resources.getStringArray(R.array.App_LifeStyle_Items_Categories)
         val categoryAdapter = SpinnerAdapter(this, R.layout.custom_text_spinner_default)
 
         categoryAdapter.addAll(categoryList.asList())
@@ -304,7 +304,8 @@ class ActivityAddItem : AppCompatActivity() {
     }
 
     private fun updateUI_DetailsExtraFields(visible: Boolean) {
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.LinearLayout_fromAddItemActivity_ToBuy_ExtraTextFields, visible)
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.TextInputLayout_fromAddItemActivity_Details_Price, visible)
+        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.TextInputLayout_fromAddItemActivity_Details_Quantity, visible)
     }
 
     private fun updateUI_Priorities(enabled: Boolean) {

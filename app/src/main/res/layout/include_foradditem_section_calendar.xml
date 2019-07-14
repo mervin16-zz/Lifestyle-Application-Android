@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:text="@string/TextView_fromAddItemActivity_Subtitle_Calendar_Add"
             android:textColor="@color/colorTextAlternate"
-            app:switchPadding="@dimen/Padding_Views_Default"
+            app:switchPadding="@dimen/Padding_Switch_Default"
             style="@style/Widget.AppCompat.CompoundButton.Switch"/>
     
     <com.google.android.material.textfield.TextInputLayout

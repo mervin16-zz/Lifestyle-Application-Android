@@ -9,14 +9,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/Padding_Views_Default">
+            android:padding="@dimen/Padding_Screen_Default">
     
         <TextView
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/Margin_Views_Small"
-                android:layout_marginBottom="@dimen/Margin_Views_Default"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/Fragment_BottomSheetDialog_Filter_Title"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -29,8 +29,8 @@
                 android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/Margin_Views_Default"
-                android:layout_marginBottom="@dimen/Margin_Views_Small"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:textColor="@color/colorTextAlternate"
                 app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Title"
                 app:layout_constraintStart_toStartOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Title"
@@ -41,7 +41,7 @@
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_ChipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/Margin_Views_Small"
+                android:layout_margin="@dimen/Margin_ChipGroup_Small"
                 app:singleSelection="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,25 +51,25 @@
             <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_P1"
+                    android:text="@string/App_Lifestyle_Items_Priority_P1"
                     style="@style/Chips_Filter_Default"/>
     
             <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_P2"
+                    android:text="@string/App_Lifestyle_Items_Priority_P2"
                     style="@style/Chips_Filter_Default"/>
     
             <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_P3"
+                    android:text="@string/App_Lifestyle_Items_Priority_P3"
                     style="@style/Chips_Filter_Default"/>
     
             <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Priority_P4"
+                    android:text="@string/App_Lifestyle_Items_Priority_P4"
                     style="@style/Chips_Filter_Default"/>
 
         </com.google.android.material.chip.ChipGroup>
@@ -78,8 +78,8 @@
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/Margin_Views_Small"
-                android:layout_marginTop="@dimen/Margin_Views_Default"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/Fragment_BottomSheetDialog_Filter_Groups_Category_Title"
                 android:textColor="@color/colorTextAlternate"
                 app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_ChipGroup"
@@ -91,10 +91,10 @@
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_ChipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/Margin_Views_Default"
-                android:layout_marginEnd="@dimen/Margin_Views_Small"
-                android:layout_marginTop="@dimen/Margin_Views_Small"
-                android:layout_marginStart="@dimen/Margin_Views_Small"
+                android:layout_marginBottom="@dimen/Margin_ChipGroup_Default"
+                android:layout_marginEnd="@dimen/Margin_ChipGroup_Small"
+                android:layout_marginTop="@dimen/Margin_ChipGroup_Small"
+                android:layout_marginStart="@dimen/Margin_ChipGroup_Small"
                 app:singleSelection="false"
                 app:checkedChip="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Category_Chip_All"
                 app:layout_constraintStart_toStartOf="parent"

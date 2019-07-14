@@ -8,7 +8,6 @@
      -->
     
     <!-- Layouts -->
-    <item type="id" name="RelativeLayout_forLifestyleItem_ActionButtons"/>
     <item type="id" name="IncludeLayout_forLifestyleItem_ActionButtons"/>
     
     
@@ -43,6 +42,7 @@
     <item type="id" name="Placeholder_forLifestyleItem_Value_Total"/>
     <item type="id" name="Placeholder_forLifestyleItem_Value_Quantity"/>
     
+    
     <!--
         Custom Lists
      -->
@@ -70,7 +70,7 @@
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Goals" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_ToBuy" />
     <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_ToDo" />
-    <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Statistics" />
+    <item type="id" name="BottomAppBar_fromActivityHome_DrawerMenu_Dashboard" />
     
     <!-- Bottom App Bar Menu Main -->
     <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Filter" />
@@ -166,12 +166,13 @@
     <item type="id" name="EditText_fromAddItemActivity_Calendar_Description"/>
     <item type="id" name="TextInputLayout_fromAddItemActivity_Calendar_Date"/>
     <item type="id" name="TextInputLayout_fromAddItemActivity_Calendar_Description"/>
+    <item type="id" name="TextInputLayout_fromAddItemActivity_Details_Quantity"/>
+    <item type="id" name="TextInputLayout_fromAddItemActivity_Details_Price"/>
     <item type="id" name="Switch_fromAddItemActivity_Calendar_Enable"/>
     <item type="id" name="Spinner_fromAddItemActivity_Type"/>
     <item type="id" name="Spinner_fromAddItemActivity_Category"/>
     <item type="id" name="LinearLayout_fromAddItemActivity_Details"/>
     <item type="id" name="LinearLayout_fromAddItemActivity_Priority"/>
-    <item type="id" name="LinearLayout_fromAddItemActivity_ToBuy_ExtraTextFields"/>
     <item type="id" name="CoordinatorLayout_fromAddItemActivity_TopParent"/>
     <item type="id" name="NestedScrollView_fromAddItemActivity_MainContent"/>
     <item type="id" name="IncludeLayout_fromAddItemActivity_Section_Details"/>

@@ -4,28 +4,77 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     
-    <Preference
-            app:key="user_profile"
-            app:title="Profile"
-            app:summary="Configure your local profile"
-            android:icon="@drawable/ic_account_dark"/>
+    <!--
+         Profile Section
+    -->
+    <PreferenceCategory app:title="@string/Fragment_fromSettingsMain_Category_Profile_Title">
     
-    <Preference
-            app:key="preferred_currency"
-            app:title="Default Currency"
-            app:summary="Choose your default currency."
-            android:icon="@drawable/ic_currency_dark"/>
+        <EditTextPreference
+                android:key="@string/ValueKey_forSettingsPreference_Profile_Name"
+                android:defaultValue="@string/ValueDefault_Profile_Username"
+                android:summary="@string/Fragment_fromSettingsMain_Category_Profile_Username_Summary"
+                android:title="@string/Fragment_fromSettingsMain_Category_Profile_Username_Title"/>
     
-    <Preference
-            app:key="backup_local"
-            app:title="Backup"
-            app:summary="Create and restore backups"
-            android:icon="@drawable/ic_backup_dark"/>
+    </PreferenceCategory>
     
-    <Preference
-            app:key="about"
-            app:title="About"
-            app:summary="About this application"
-            android:icon="@drawable/ic_info_dark"/>
+    <!--
+         Currency Section
+    -->
+    <PreferenceCategory app:title="@string/Fragment_fromSettingsMain_Category_Currency_Title">
+        
+        <ListPreference
+                android:key="@string/ValueKey_forSettingsPreference_Currency_Preferred"
+                android:entries="@array/ValueDefault_Currencies"
+                android:entryValues="@array/ValueDefault_Currencies"
+                android:defaultValue="@string/ValueDefault_Currency"
+                app:title="@string/Fragment_fromSettingsMain_Category_Currency_Preferred_Title" />
+    
+    </PreferenceCategory>
+    
+    <!--
+        Backup Section
+    -->
+    <PreferenceCategory app:title="@string/Fragment_fromSettingsMain_Category_Backup_Title">
+        
+        <Preference
+                android:key="@string/ValueKey_forSettingsPreference_Backup_Local"
+                app:title="@string/Fragment_fromSettingsMain_Category_Backup_Locally_Title"
+                app:summary="@string/Fragment_fromSettingsMain_Category_Backup_Locally_Summary"/>
+        
+        <Preference
+                android:key="@string/ValueKey_forSettingsPreference_Backup_Cloud"
+                app:title="@string/Fragment_fromSettingsMain_Category_Backup_Cloud_Title"
+                app:summary="@string/Fragment_fromSettingsMain_Category_Backup_Cloud_Summary"/>
+    
+    </PreferenceCategory>
+    
+    <!--
+        Restore Section
+    -->
+    <PreferenceCategory app:title="@string/Fragment_fromSettingsMain_Category_Restore_Title">
+        
+        <Preference
+                android:key="@string/ValueKey_forSettingsPreference_Restore_Local"
+                app:title="@string/Fragment_fromSettingsMain_Category_Restore_Locally_Title"
+                app:summary="@string/Fragment_fromSettingsMain_Category_Restore_Locally_Summary"/>
+        
+        <Preference
+                android:key="@string/ValueKey_forSettingsPreference_Restore_Cloud"
+                app:title="@string/Fragment_fromSettingsMain_Category_Restore_Cloud_Title"
+                app:summary="@string/Fragment_fromSettingsMain_Category_Restore_Cloud_Summary"/>
+    
+    </PreferenceCategory>
+    
+    <!--
+        About Section
+    -->
+    <PreferenceCategory app:title="@string/Fragment_fromSettingsMain_Category_About_Title">
+        
+        <Preference
+                android:key="@string/ValueKey_forSettingsPreference_About_AboutUs"
+                app:title="@string/Fragment_fromSettingsMain_Category_About_AboutUs_Title"
+                app:summary="@string/Fragment_fromSettingsMain_Category_About_AboutUs_Summary"/>
+    
+    </PreferenceCategory>
     
 </PreferenceScreen>

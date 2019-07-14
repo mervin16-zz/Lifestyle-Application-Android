@@ -3,25 +3,52 @@
 <resources>
     
     <!-- Rounded Views Dimensions -->
-    <dimen name="Rounded_Views_Default">16dp</dimen>
-    
-    <!-- Padding Views Dimensions -->
-    <dimen name="Padding_Views_Default">16dp</dimen>
-    <dimen name="Padding_Views_Small">8dp</dimen>
-    
-    <!-- Margin Views Dimensions -->
-    <dimen name="Margin_Views_Default">16dp</dimen>
-    <dimen name="Margin_Views_Small">8dp</dimen>
-    
+    <dimen name="Rounded_Views_Default">8dp</dimen>
+    <dimen name="Rounded_Views_Small">5dp</dimen>
     
     <!--
-        Custom Views
-     -->
+        Global Views & Widgets
+    -->
+    
+    <!-- Screen -->
+    <dimen name="Margin_Screen_Default">16dp</dimen>
+    <dimen name="Margin_Screen_Small">8dp</dimen>
+    <dimen name="Padding_Screen_Default">16dp</dimen>
+    <dimen name="Padding_Screen_Small">8dp</dimen>
+    
+    <!-- Spinner Config -->
+    <dimen name="Padding_Spinner_Default">16dp</dimen>
+    <dimen name="Stroke_Spinner_Thin">1dp</dimen>
+    
+    <!-- FAB Config -->
+    <dimen name="Margin_FAB_Default">16dp</dimen>
+    <dimen name="Margin_FAB_Small">8dp</dimen>
+    
+    <!-- Chip Config -->
+    <dimen name="Margin_ChipGroup_Default">16dp</dimen>
+    <dimen name="Margin_ChipGroup_Small">8dp</dimen>
+    
+    <!-- Button Config -->
+    <dimen name="Margin_ButtonGroup_Default">16dp</dimen>
+    <dimen name="Margin_ButtonGroup_Small">8dp</dimen>
+    
+    <!-- Switch Config -->
+    <dimen name="Padding_Switch_Default">16dp</dimen>
+    
+    <!-- CardView Config -->
+    <dimen name="Margin_CardView_Simple">16dp</dimen>
+    <dimen name="Padding_CardView_Simple">16dp</dimen>
+    
+    <dimen name="Elevation_CardView_Simple">8dp</dimen>
+    
     
     <!-- RecyclerView Lifestyle Item List Layouts -->
+    <dimen name="Padding_List_RecyclerView_ForegroundContent">16dp</dimen>
     <dimen name="Margin_List_RecyclerView_Default_StartOfView">8dp</dimen>
     <dimen name="Margin_List_RecyclerView_Default_BetweenViews">4dp</dimen>
     <dimen name="Margin_List_RecyclerView_Default_EndOfList">8dp</dimen>
+    
+    
     
     <!--
         Fragment
@@ -36,6 +63,7 @@
     <dimen name="MarginTop_forSettingsIcon">8dp</dimen>
     
     <dimen name="PaddingTop_forNavigationView">16dp</dimen>
+    
     
     
     <!--

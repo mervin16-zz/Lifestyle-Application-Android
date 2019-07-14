@@ -43,7 +43,7 @@
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
     
-    <style name="typography_subtitle_1." parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="typography_subtitle_1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
     

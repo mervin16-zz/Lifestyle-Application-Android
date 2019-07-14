@@ -17,58 +17,44 @@
             android:layout_height="wrap_content">
     
         <!-- Background View: Where the action to be taken when swiping on the Lifestyle item -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@id/RecyclerView_LinearLayout_List_BackgroundView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
-            
-            <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/Margin_Views_Default">
-                
-                <ImageView
-                        android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="@string/ContentDescription_fromLifestyleItemList_Icon_Delete"
-                        android:tint="@color/white_000"
-                        android:src="@drawable/ic_delete_dark"/>
-            
-            </RelativeLayout>
-            
-            <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/Margin_Views_Default">
-                
-                <ImageView
-                        android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Complete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="@string/ContentDescription_fromLifestyleItemList_Icon_Complete"
-                        app:lifestyleItemSwipingMarkingIcon="@{MyToDo}"
-                        app:srcCompat="@drawable/ic_done_light"
-                        tools:srcCompat="@drawable/ic_done_light"/>
-            
-            </RelativeLayout>
+                android:padding="16dp">
         
-        </LinearLayout>
+            <ImageView
+                    android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/ContentDescription_fromLifestyleItemList_Icon_Delete"
+                    android:tint="@color/white_000"
+                    android:src="@drawable/ic_delete_dark"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+        
+            <ImageView
+                    android:id="@id/RecyclerView_LifestyleItem_ImageView_List_Complete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/ContentDescription_fromLifestyleItemList_Icon_Complete"
+                    app:lifestyleItemSwipingMarkingIcon="@{MyToDo}"
+                    app:srcCompat="@drawable/ic_done_light"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"  />
+    
+        </androidx.constraintlayout.widget.ConstraintLayout>
         
         <!-- Foreground View: Where the Lifestyle item information is visible -->
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@id/RecyclerView_ConstraintLayout_List_ForegroundView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/Padding_Views_Default"
+                android:padding="@dimen/Padding_List_RecyclerView_ForegroundContent"
                 android:clickable="true"
                 android:focusable="true"
                 android:background="@color/white_000"

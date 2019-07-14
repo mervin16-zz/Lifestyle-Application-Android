@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+    <TextView
+            android:id="@+id/Title_Main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/App_Lifestyle_Task_ToDo_Title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Centered_Subtitle_Overline_Default"/>
+    
+    <com.google.android.material.card.MaterialCardView
+            android:id="@+id/CardView_AllTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/cardView_background_default"
+            app:cardElevation="@dimen/Elevation_CardView_Simple"
+            app:layout_constraintTop_toBottomOf="@+id/Title_Main"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/CardView_Completed">
+        
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/Margin_CardView_Simple"
+                android:orientation="vertical"
+                android:baselineAligned="false">
+            
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/Placeholder_Loading_Number_Default"
+                    android:textColor="@color/colorAccent"
+                    style="@style/typography_h2"/>
+            
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/TextView_fromDashboardFragment_LifestyleItem_Statistics_AllTime"
+                    style="@style/typography_caption"/>
+        
+        </LinearLayout>
+    
+    </com.google.android.material.card.MaterialCardView>
+    
+    <com.google.android.material.card.MaterialCardView
+            android:id="@+id/CardView_Completed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/cardView_background_default"
+            app:cardElevation="@dimen/Elevation_CardView_Simple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/CardView_AllTime"
+            app:layout_constraintStart_toEndOf="@+id/CardView_AllTime"
+            app:layout_constraintTop_toTopOf="@+id/CardView_AllTime">
+        
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/Margin_CardView_Simple"
+                android:orientation="vertical"
+                android:baselineAligned="false">
+            
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/Placeholder_Loading_Number_Default"
+                    android:textColor="@color/colorAccent"
+                    style="@style/typography_h2"/>
+            
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/TextView_fromDashboardFragment_LifestyleItem_Statistics_Completed"
+                    style="@style/typography_caption"/>
+        
+        </LinearLayout>
+    
+    </com.google.android.material.card.MaterialCardView>
+    
+    
+    <TextView
+            android:id="@+id/Title_Priorities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/colorTextAlternateLight"
+            android:text="@string/TextView_fromDashboardFragment_LifestyleItem_Subtitle_Priorities"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CardView_AllTime"
+            style="@style/typography_caption"/>
+    
+    <ProgressBar
+            android:id="@+id/ProgressBar_Priority_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:max="@integer/ProgressBar_Default_MaxProgress"
+            android:progress="56"
+            android:progressTint="@color/item_priority_1"
+            android:scaleY="5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toBottomOf="@+id/Title_Priorities"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ProgressBar_Priority_2"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+    
+    <ProgressBar
+            android:id="@+id/ProgressBar_Priority_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:max="@integer/ProgressBar_Default_MaxProgress"
+            android:progress="56"
+            android:progressTint="@color/item_priority_2"
+            android:scaleY="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toTopOf="@+id/ProgressBar_Priority_1"
+            app:layout_constraintBottom_toBottomOf="@+id/ProgressBar_Priority_1"
+            app:layout_constraintStart_toEndOf="@+id/ProgressBar_Priority_1"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+    
+    <ProgressBar
+            android:id="@+id/ProgressBar_Priority_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:max="@integer/ProgressBar_Default_MaxProgress"
+            android:progress="56"
+            android:progressTint="@color/item_priority_3"
+            android:scaleY="5"
+            android:layout_marginTop="16dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toBottomOf="@+id/ProgressBar_Priority_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ProgressBar_Priority_4"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+    
+    <ProgressBar
+            android:id="@+id/ProgressBar_Priority_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:max="@integer/ProgressBar_Default_MaxProgress"
+            android:progress="56"
+            android:progressTint="@color/item_priority_4"
+            android:scaleY="5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toTopOf="@+id/ProgressBar_Priority_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/ProgressBar_Priority_3"
+            app:layout_constraintStart_toEndOf="@+id/ProgressBar_Priority_3"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

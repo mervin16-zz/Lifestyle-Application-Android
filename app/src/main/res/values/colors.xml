@@ -132,6 +132,9 @@
     <!--
         Application Color Palette
     -->
+    
+    <color name="cardView_background_default">@color/white_000</color>
+    
     <color name="item_priority_1">@color/red_200</color>
     <color name="item_priority_2">@color/orange_200</color>
     <color name="item_priority_3">@color/yellow_200</color>
