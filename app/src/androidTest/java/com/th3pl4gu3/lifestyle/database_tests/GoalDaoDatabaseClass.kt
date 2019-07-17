@@ -218,7 +218,7 @@ class GoalDaoDatabaseClass {
         //Arrange
 
         //Act
-        val sutGoal = goalDao.getAllGoals().value
+        val sutGoal = goalDao.getAllGoalsLive().value
 
         //Assert
         assertNull(sutGoal)
@@ -245,7 +245,7 @@ class GoalDaoDatabaseClass {
         }
 
         //Get the item
-        val sutGoal = LiveDataTestUtil.getValue(goalDao.getAllGoals())
+        val sutGoal = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
         resultSize = sutGoal.size
 
         //Assert
@@ -283,7 +283,7 @@ class GoalDaoDatabaseClass {
         //Remove the item
         goalDao.remove(idToRemove)
         //Try to get all objects
-        goals = LiveDataTestUtil.getValue(goalDao.getAllGoals())
+        goals = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
         //Try to get the object
         resultGoal = goalDao.get(idToRemove)
 
@@ -325,7 +325,7 @@ class GoalDaoDatabaseClass {
         //Remove the item
         goalDao.remove(idToRemove)
         //Try to get all objects
-        goals = LiveDataTestUtil.getValue(goalDao.getAllGoals())
+        goals = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
         //Try to get the object
         resultGoal = goalDao.get(idToRemove)
 
@@ -359,7 +359,7 @@ class GoalDaoDatabaseClass {
         //Remove the item
         goalDao.removeAll()
         //Try to get all objects
-        goals = LiveDataTestUtil.getValue(goalDao.getAllGoals())
+        goals = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
 
         resultSize = goals.size
 
@@ -380,7 +380,7 @@ class GoalDaoDatabaseClass {
         //Act
         goalDao.removeAll()
         //Try to get all objects
-        goals = LiveDataTestUtil.getValue(goalDao.getAllGoals())
+        goals = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
         resultSize = goals.size
 
         //Assert

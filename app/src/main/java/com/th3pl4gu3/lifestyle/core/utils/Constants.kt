@@ -1,6 +1,17 @@
 package com.th3pl4gu3.lifestyle.core.utils
 
 
+/********************************* Application Files & Directories *********************************/
+
+// Directories //
+const val APPLICATION_DIRECTORY_BACKUP_NAME = "Lifestyle_Backup"
+
+// Files //
+const val APPLICATION_FILES_BACKUP_GOALS_NAME= "Goals.bkp"
+const val APPLICATION_FILES_BACKUP_TODOS_NAME= "ToDos.bkp"
+const val APPLICATION_FILES_BACKUP_TOBUYS_NAME= "ToBuys.bkp"
+
+
 /********************************* Values *********************************/
 
 // Regex Values //
@@ -12,6 +23,8 @@ const val VALUE_SUPPRESSED_UNCHECKED_CAST = "unchecked_cast"
 // General Values //
 const val VALUE_WHITESPACE = " "
 const val VALUE_UNDERSCORE = "_"
+const val VALUE_SLASH_FRONT = "/"
+const val VALUE_ABBREVIATION_LISTS_TITLE = 35
 
 // Lifestyle Items String Values //
 const val VALUE_LIFESTYLE_ITEM_GOAL = "Goal"
@@ -20,6 +33,12 @@ const val VALUE_LIFESTYLE_ITEM_TOBUY = "To Buy"
 
 // Currency //
 const val VALUE_CURRENCY_SYMBOL_RS= "Rs "
+
+// Notifications //
+const val VALUE_NOTIFICATION_ID_BACKUP_RESTORE_ = 16
+const val VALUE_NOTIFICATION_CHANNEL_ID_BACKUP_RESTORE_ = "backup_&_restore_notification_channel"
+const val VALUE_NOTIFICATION_CHANNEL_NAME_BACKUP_RESTORE_ = "Backup & Restoration"
+const val VALUE_NOTIFICATION_CHANNEL_DESCRIPTION_BACKUP_RESTORE_ = "Performing Backup and Restoration on your Tasks."
 
 /********************************* Enums *********************************/
 
@@ -91,7 +110,10 @@ const val MESSAGE_EXCEPTION_TODO_NOT_EXIST = "Error while fetching your To Do. T
 const val MESSAGE_EXCEPTION_TOBUY_NOT_EXIST = "Error while fetching your To Buy. This To Buy task doesn't exist."
 const val MESSAGE_EXCEPTION_DAYSACTIVE_ERROR = "An error has occurred while processing the active days in your task. Please try again or refresh the screen."
 const val MESSAGE_EXCEPTION_REQUEST_PROCESSING = "An error has occurred while processing your request. Please try again."
+const val MESSAGE_EXCEPTION_BACKUP_CREATION_LOCALLY_SETTINGS = "An error has occurred while creating your backup. Please try again."
+const val MESSAGE_EXCEPTION_RESTORATION_LOCALLY_SETTINGS = "An error has occurred while performing your restore. Please try again."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_ADDITEM = "An internal error occurred: Unknown View Model when trying to fetch item."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_GOALS = "An internal error occurred: Unknown View Model when trying to fetch your goals."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_TODOS = "An internal error occurred: Unknown View Model when trying to fetch your to dos."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_TOBUYS = "An internal error occurred: Unknown View Model when trying to fetch your to buys."
+const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_SETTINGS = "An internal error occurred: Unknown View Model when trying to fetch your settings."

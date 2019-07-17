@@ -8,12 +8,13 @@ import java.util.*
  * Lifestyle Class is the parent class of the Lifestyle objects.
  * There are currently 3 lifestyle objects available namely:
  * @see Goal
- * @see ToDo
- * @see ToBuy
+ * @see To_Do
+ * @see To_Buy
  * All Lifestyle objects inherit the Lifestyle class.
  **/
 abstract class Lifestyle {
 
+    @Transient
     var uniqueId: String = UUID.randomUUID().toString()
     open var dateAdded: Calendar = Calendar.getInstance()
 

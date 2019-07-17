@@ -2,18 +2,19 @@ package com.th3pl4gu3.lifestyle.ui.home
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
 import com.th3pl4gu3.lifestyle.core.lifestyle.Lifestyle
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
+import com.th3pl4gu3.lifestyle.core.operations.GoalOperations
+import com.th3pl4gu3.lifestyle.core.operations.ToBuyOperations
+import com.th3pl4gu3.lifestyle.core.operations.ToDoOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import kotlinx.coroutines.*
 
 open class LifestyleOpsViewModel(
-    open val database: LifestyleDatabase,
+    val database: LifestyleDatabase,
     application: Application
 ) : AndroidViewModel(application) {
 
@@ -21,6 +22,9 @@ open class LifestyleOpsViewModel(
 
     private val _uiScope = CoroutineScope(Dispatchers.Main + _viewModelJob)
 
+    var goals = GoalOperations.getAllLiveOffline(database)
+    var toDos = ToDoOperations.getAllLiveOffline(database)
+    var toBuys = ToBuyOperations.getAllLiveOffline(database)
 
     /**
      * Public functions that are accessible from the outside

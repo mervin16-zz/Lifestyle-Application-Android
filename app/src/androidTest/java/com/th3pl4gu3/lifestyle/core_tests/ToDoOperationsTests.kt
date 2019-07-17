@@ -179,7 +179,7 @@ class ToDoOperationsTests {
         //Create the dummy Db
         initializeDbWithNoData()
         //Test the function
-        val sutToDo = LiveDataTestUtil.getValue(ToDoOperations.getAllOffline(emptyDb))
+        val sutToDo = LiveDataTestUtil.getValue(ToDoOperations.getAllLiveOffline(emptyDb))
         resultSize = sutToDo.size
 
         //Clear memory of dummy data
@@ -200,7 +200,7 @@ class ToDoOperationsTests {
         //Act
         ToDoOperations.removeAllOffline(db)
 
-        resultSize = LiveDataTestUtil.getValue(ToDoOperations.getAllOffline(db)).size
+        resultSize = LiveDataTestUtil.getValue(ToDoOperations.getAllLiveOffline(db)).size
 
         //Assert
         Assert.assertEquals(expectedSize, resultSize)
@@ -220,7 +220,7 @@ class ToDoOperationsTests {
         //Test the function
         ToDoOperations.removeAllOffline(emptyDb)
 
-        resultSize = LiveDataTestUtil.getValue(ToDoOperations.getAllOffline(emptyDb)).size
+        resultSize = LiveDataTestUtil.getValue(ToDoOperations.getAllLiveOffline(emptyDb)).size
 
         //Clear memory of dummy data
         emptyDb.close()

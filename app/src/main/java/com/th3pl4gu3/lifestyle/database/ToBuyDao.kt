@@ -29,6 +29,8 @@ interface ToBuyDao {
     fun get(key: String): ToBuy?
 
     @Query("SELECT * FROM $DATABASE_TABLE_TOBUY")
-    fun getAllToBuys(): LiveData<List<ToBuy>>
+    fun getAllToBuysLive(): LiveData<List<ToBuy>>
 
+    @Query("SELECT * FROM $DATABASE_TABLE_TOBUY")
+    suspend fun getAllToBuys(): List<ToBuy>
 }

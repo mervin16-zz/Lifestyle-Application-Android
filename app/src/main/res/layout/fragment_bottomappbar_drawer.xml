@@ -59,13 +59,14 @@
                 app:layout_constraintBottom_toBottomOf="@+id/BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_UserIcon"
                 style="@style/typography_subtitle_2" />
     
-        <ImageView
+        <ImageButton
                 android:id="@id/BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_SettingsIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/MarginEnd_forSettingsIcon"
                 android:layout_marginTop="@dimen/MarginTop_forSettingsIcon"
                 android:contentDescription="@string/ContentDescription_BottomAppBarDrawerFragment_SettingsIcon"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_settings_dark"
                 app:layout_constraintBottom_toTopOf="@id/BottomAppBar_fromFragmentBottomAppBarDrawer_Drawer_NavigationView"
                 app:layout_constraintTop_toTopOf="parent"

@@ -260,7 +260,7 @@ class ToBuyDaoDatabaseClass {
         //Arrange
 
         //Act
-        val sutTodo = toBuyDao.getAllToBuys().value
+        val sutTodo = toBuyDao.getAllToBuysLive().value
 
         //Assert
         assertNull(sutTodo)
@@ -287,7 +287,7 @@ class ToBuyDaoDatabaseClass {
         }
 
         //Get the item
-        val sutToBuy = LiveDataTestUtil.getValue(toBuyDao.getAllToBuys())
+        val sutToBuy = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
         resultSize = sutToBuy.size
 
         //Assert
@@ -326,7 +326,7 @@ class ToBuyDaoDatabaseClass {
         //Remove the item
         toBuyDao.remove(idToRemove)
         //Try to get all objects
-        toBuys = LiveDataTestUtil.getValue(toBuyDao.getAllToBuys())
+        toBuys = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
         //Try to get the object
         resultToBuy = toBuyDao.get(idToRemove)
 
@@ -369,7 +369,7 @@ class ToBuyDaoDatabaseClass {
         //Remove the item
         toBuyDao.remove(idToRemove)
         //Try to get all objects
-        toBuys = LiveDataTestUtil.getValue(toBuyDao.getAllToBuys())
+        toBuys = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
         //Try to get the object
         resultToBuy = toBuyDao.get(idToRemove)
 
@@ -403,7 +403,7 @@ class ToBuyDaoDatabaseClass {
         //Remove the item
         toBuyDao.removeAll()
         //Try to get all objects
-        toDos = LiveDataTestUtil.getValue(toBuyDao.getAllToBuys())
+        toDos = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
 
         resultSize = toDos.size
 
@@ -424,7 +424,7 @@ class ToBuyDaoDatabaseClass {
         //Act
         toBuyDao.removeAll()
         //Try to get all objects
-        toDos = LiveDataTestUtil.getValue(toBuyDao.getAllToBuys())
+        toDos = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
         resultSize = toDos.size
 
         //Assert

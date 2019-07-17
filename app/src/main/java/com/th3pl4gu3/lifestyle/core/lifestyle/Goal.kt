@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.utils.*
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
@@ -29,6 +30,7 @@ data class Goal constructor(
     var id: String = super.uniqueId
 
     @ColumnInfo(name = DATABASE_TABLE_GOAL_DATEADDED)
+    @Transient
     override var dateAdded: Calendar = super.dateAdded
 
     @ColumnInfo(name = DATABASE_TABLE_GOAL_DATECOMPLETED)

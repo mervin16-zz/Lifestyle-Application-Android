@@ -116,7 +116,8 @@
     <string name="Spinner_fromAddItemActivity_Hint_ChooseCategory">Choose a Category</string>
     <string name="FAB_fromAddItemActivity_Button_Save">Save</string>
     
-    <!-- Home Activity -->
+    <!-- Settings Activity -->
+    <string name="TextView_fromSettingsActivity_Screen_Title">Settings</string>
     
     
     <!--
@@ -193,6 +194,8 @@
     
     <!-- Success Message -->
     <string name="Message_Success_fromActivityAddItem_ItemAdded">Item \'%1$s\' has been successfully added.</string>
+    <string name="Message_Success_fromSettings_BackupComplete">Your backup has been successfully created.</string>
+    <string name="Message_Success_fromSettings_RestoreComplete">Your tasks has been successfully restored.</string>
     
     <!-- Info Message -->
     <string name="Message_Info_fromFragmentLifeStyleItems_ItemDeleted">There was an error while swiping your request.
@@ -229,6 +232,7 @@
     <!-- HomeActivity -->
     <string name="TextView_fromHomeActivity_Icon_Search">Search Icon</string>
     
+    
     <!-- Bottom App Bar Drawer Menu -->
     
     <!-- To Do Fragment -->
@@ -240,5 +244,17 @@
     <string name="ContentDescription_fromLifestyleItemList_Icon_Priority">The Priority icon</string>
     <string name="ContentDescription_fromLifestyleItemList_Icon_Delete">The Delete icon</string>
     <string name="ContentDescription_fromLifestyleItemList_Icon_Complete">The Complete icon</string>
-
+    
+    
+    <!--
+        Notifications
+     -->
+    
+    <!-- Backup & Restore -->
+    <string name="Notification_Backup_Title">Backup</string>
+    <string name="Notification_Backup_Text">Backing Up your Tasks.</string>
+    <string name="Notification_Backup_TextComplete">Backup Complete.</string>
+    <string name="Notification_Restore_Title">Restore</string>
+    <string name="Notification_Restore_Text">Restoring your Tasks.</string>
+    <string name="Notification_Restore_TextComplete">Restore Complete.</string>
 </resources>

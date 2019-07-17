@@ -23,6 +23,7 @@
     <item type="id" name="Button_forLifestyleItem_Action_Delete"/>
     <item type="id" name="Button_forLifestyleItem_Action_Edit"/>
     <item type="id" name="Button_forLifestyleItem_Action_Done"/>
+    <item type="id" name="ImageButton_Icon_Back"/>
     
     <!-- Placeholder -->
     <item type="id" name="Placeholder_forLifestyleItem_Category"/>
@@ -150,7 +151,6 @@
     <item type="id" name="LinearLayout_fromHomeActivity_ToggleButton"/>
     
     <!-- Add Item Activity -->
-    <item type="id" name="ImageButton_fromAddItemActivity_Icon_Back"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority1"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority2"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority3"/>
@@ -179,4 +179,7 @@
     <item type="id" name="IncludeLayout_fromAddItemActivity_Section_Calendar"/>
     <item type="id" name="IncludeLayout_fromAddItemActivity_Section_Priority"/>
     <item type="id" name="ExtendedFAB_fromAddItemActivity_AddItem"/>
+    
+    <!-- Settings Activity -->
+    <item type="id" name="Container_fromSettingsActivity_SettingsFragments"/>
 </resources>

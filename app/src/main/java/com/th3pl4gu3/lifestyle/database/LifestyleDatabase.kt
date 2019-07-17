@@ -11,7 +11,7 @@ import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
 import com.th3pl4gu3.lifestyle.core.utils.DATABASE_NAME
 
 
-@Database(entities = [ToDo::class, ToBuy::class, Goal::class], version = 1, exportSchema = false)
+@Database(entities = [ToDo::class, ToBuy::class, Goal::class], version = 2, exportSchema = false)
 @TypeConverters(com.th3pl4gu3.lifestyle.database.Converters::class)
 abstract class LifestyleDatabase : RoomDatabase() {
 

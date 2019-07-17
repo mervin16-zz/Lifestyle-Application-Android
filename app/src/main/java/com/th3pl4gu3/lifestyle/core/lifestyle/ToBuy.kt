@@ -38,6 +38,7 @@ data class ToBuy constructor(
     var id: String = super.uniqueId
 
     @ColumnInfo(name = DATABASE_TABLE_TOBUY_DATEADDED)
+    @Transient
     override var dateAdded: Calendar = super.dateAdded
 
     @ColumnInfo(name = DATABASE_TABLE_TOBUY_DATECOMPLETED)

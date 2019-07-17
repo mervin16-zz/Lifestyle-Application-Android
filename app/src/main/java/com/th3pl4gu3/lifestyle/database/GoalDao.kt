@@ -28,6 +28,9 @@ interface GoalDao {
     fun get(key: String): Goal?
 
     @Query("SELECT * FROM $DATABASE_TABLE_GOAL")
-    fun getAllGoals(): LiveData<List<Goal>>
+    fun getAllGoalsLive(): LiveData<List<Goal>>
+
+    @Query("SELECT * FROM $DATABASE_TABLE_GOAL")
+    suspend fun getAllGoals(): List<Goal>
 
 }

@@ -1,20 +1,15 @@
 package com.th3pl4gu3.lifestyle.ui.add_item
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
 import com.th3pl4gu3.lifestyle.core.enums.Priority
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
-import com.th3pl4gu3.lifestyle.core.utils.Utils
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
-import com.th3pl4gu3.lifestyle.ui.utils.Validation
-import kotlinx.coroutines.*
 
 class AddItemViewModel(
     db: LifestyleDatabase,

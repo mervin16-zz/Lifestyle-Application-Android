@@ -8,7 +8,6 @@ import androidx.lifecycle.Transformations
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
 import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
-import com.th3pl4gu3.lifestyle.core.operations.GoalOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
 import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
@@ -25,7 +24,6 @@ class GoalViewModel(
     var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
     //Fetch all goals from database
-    private var _goals = GoalOperations.getAllOffline(database)
     val goalsMediatorLiveData = MediatorLiveData<List<Goal>>()
 
 
@@ -61,13 +59,13 @@ class GoalViewModel(
      **/
     fun updateList(toggleButton: ToggleButtonStates) {
 
-        goalsMediatorLiveData.removeSource(_goals)
+        goalsMediatorLiveData.removeSource(goals)
 
         when(toggleButton){
             ToggleButtonStates.BUTTON_ALL ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ALL
 
-                goalsMediatorLiveData.addSource(_goals){
+                goalsMediatorLiveData.addSource(goals){
                     goalsMediatorLiveData.value = it
                 }
             }
@@ -75,7 +73,7 @@ class GoalViewModel(
             ToggleButtonStates.BUTTON_ACTIVE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
-                goalsMediatorLiveData.addSource(_goals){
+                goalsMediatorLiveData.addSource(goals){
                     val activeGoals = FilterOperations<Goal>(it).getActive()
                     goalsMediatorLiveData.value = activeGoals
                     _activeGoalsSize.value = activeGoals.size
@@ -85,7 +83,7 @@ class GoalViewModel(
             ToggleButtonStates.BUTTON_COMPLETE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
-                goalsMediatorLiveData.addSource(_goals){
+                goalsMediatorLiveData.addSource(goals){
                     val completedGoals = FilterOperations<Goal>(it).getCompleted()
                     goalsMediatorLiveData.value = completedGoals
                     _completedGoalsSize.value = completedGoals.size

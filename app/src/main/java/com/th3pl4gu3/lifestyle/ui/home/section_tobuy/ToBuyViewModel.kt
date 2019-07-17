@@ -8,7 +8,6 @@ import androidx.lifecycle.Transformations
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
-import com.th3pl4gu3.lifestyle.core.operations.ToBuyOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
 import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
@@ -25,7 +24,6 @@ class ToBuyViewModel(
     var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
     //Fetch all To Buys from database
-    private var _toBuys = ToBuyOperations.getAllOffline(database)
     val toBuysMediatorLiveData = MediatorLiveData<List<ToBuy>>()
 
     private val _activeToBuySize = MutableLiveData<Int>()
@@ -59,13 +57,13 @@ class ToBuyViewModel(
      * Public functions that are accessible from the outside
      **/
     fun updateList(toggleButton: ToggleButtonStates) {
-        toBuysMediatorLiveData.removeSource(_toBuys)
+        toBuysMediatorLiveData.removeSource(toBuys)
 
         when(toggleButton){
             ToggleButtonStates.BUTTON_ALL ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ALL
 
-                toBuysMediatorLiveData.addSource(_toBuys){
+                toBuysMediatorLiveData.addSource(toBuys){
                     toBuysMediatorLiveData.value = it
                 }
             }
@@ -73,7 +71,7 @@ class ToBuyViewModel(
             ToggleButtonStates.BUTTON_ACTIVE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
-                toBuysMediatorLiveData.addSource(_toBuys){
+                toBuysMediatorLiveData.addSource(toBuys){
                     val activeToBuys = FilterOperations<ToBuy>(it).getActive()
                     toBuysMediatorLiveData.value = activeToBuys
                     _activeToBuySize.value = activeToBuys.size
@@ -83,7 +81,7 @@ class ToBuyViewModel(
             ToggleButtonStates.BUTTON_COMPLETE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
-                toBuysMediatorLiveData.addSource(_toBuys){
+                toBuysMediatorLiveData.addSource(toBuys){
                     val completedToBuys = FilterOperations<ToBuy>(it).getCompleted()
                     toBuysMediatorLiveData.value = completedToBuys
                     _completedToBuySize.value = completedToBuys.size

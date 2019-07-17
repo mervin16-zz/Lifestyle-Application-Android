@@ -184,7 +184,7 @@ class GoalOperationsTests {
         //Create the dummy Db
         initializeDbWithNoData()
         //Test the function
-        val sutGoal = LiveDataTestUtil.getValue(GoalOperations.getAllOffline(emptyDb))
+        val sutGoal = LiveDataTestUtil.getValue(GoalOperations.getAllLiveOffline(emptyDb))
         resultSize = sutGoal.size
 
         //Clear memory of dummy data
@@ -206,7 +206,7 @@ class GoalOperationsTests {
         //Act
         GoalOperations.removeAllOffline(db)
 
-        resultSize = LiveDataTestUtil.getValue(GoalOperations.getAllOffline(db)).size
+        resultSize = LiveDataTestUtil.getValue(GoalOperations.getAllLiveOffline(db)).size
 
         //Assert
         assertEquals(expectedSize, resultSize)
@@ -227,7 +227,7 @@ class GoalOperationsTests {
         //Test the function
         GoalOperations.removeAllOffline(emptyDb)
 
-        resultSize = LiveDataTestUtil.getValue(GoalOperations.getAllOffline(emptyDb)).size
+        resultSize = LiveDataTestUtil.getValue(GoalOperations.getAllLiveOffline(emptyDb)).size
 
         //Clear memory of dummy data
         emptyDb.close()

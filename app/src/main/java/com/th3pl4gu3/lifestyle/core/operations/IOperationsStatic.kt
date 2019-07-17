@@ -8,7 +8,9 @@ interface IOperationsStatic <LifestyleItem> {
     //Offline Operations
     fun getByIdOffline(database: LifestyleDatabase, id: String): LifestyleItem
 
-    fun getAllOffline(database: LifestyleDatabase): LiveData<List<LifestyleItem>>
+    fun getAllLiveOffline(database: LifestyleDatabase): LiveData<List<LifestyleItem>>
+
+    suspend fun getAllOffline(database: LifestyleDatabase): List<LifestyleItem>
 
     fun removeAllOffline(database: LifestyleDatabase)
 }

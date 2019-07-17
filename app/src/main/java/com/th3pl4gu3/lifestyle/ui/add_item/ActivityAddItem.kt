@@ -99,7 +99,7 @@ class ActivityAddItem : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        mBinding.ImageButtonFromAddItemActivityIconBack.setOnClickListener {
+        mBinding.ImageButtonIconBack.setOnClickListener {
             onBackPressed()
         }
 

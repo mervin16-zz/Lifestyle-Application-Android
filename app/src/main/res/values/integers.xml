@@ -2,6 +2,17 @@
 
 <resources>
     
+    
+    <!--
+        Application General
+     -->
+    
+    <!-- Values -->
+    
+    
+    
+    
+    
     <!--
         Fragments
      -->
@@ -9,5 +20,4 @@
     <!-- General -->
     <integer name="ProgressBar_Default_MaxProgress">100</integer>
     <integer name="ProgressBar_Default_ScaleY">8</integer>
-    
 </resources>

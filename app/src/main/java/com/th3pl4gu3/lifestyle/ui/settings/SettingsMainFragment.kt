@@ -8,8 +8,8 @@ import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 
 
-
-class SettingsMainFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener{
+class SettingsMainFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener,
+    Preference.OnPreferenceClickListener {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences_settings_main, rootKey)
@@ -18,11 +18,16 @@ class SettingsMainFragment : PreferenceFragmentCompat(), SharedPreferences.OnSha
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val preferenceBackupLocal = findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_Backup_Local))
-        val preferenceBackupCloud = findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_Backup_Cloud))
-        val preferenceRestoreLocal = findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_Restore_Local))
-        val preferenceRestoreCloud = findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_Restore_Cloud))
-        val preferenceAbout = findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_About_AboutUs))
+        val preferenceBackupLocal =
+            findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_Backup_Local))
+        val preferenceBackupCloud =
+            findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_Backup_Cloud))
+        val preferenceRestoreLocal =
+            findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_Restore_Local))
+        val preferenceRestoreCloud =
+            findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_Restore_Cloud))
+        val preferenceAbout =
+            findPreference<Preference>(getString(R.string.ValueKey_forSettingsPreference_About_AboutUs))
 
         preferenceBackupLocal?.onPreferenceClickListener = this
         preferenceBackupCloud?.onPreferenceClickListener = this
@@ -49,9 +54,15 @@ class SettingsMainFragment : PreferenceFragmentCompat(), SharedPreferences.OnSha
 
     override fun onPreferenceClick(preference: Preference): Boolean {
 
-        return when(preference.key){
+        return when (preference.key) {
             getString(R.string.ValueKey_forSettingsPreference_Backup_Local) -> {
-                requireContext().toast("Creation of Local Backup has not been implemented yet.")
+                try {
+
+                    (requireActivity() as SettingsActivity).viewModel.backupLocally()
+
+                } catch (ex: Exception) {
+                    requireContext().toast(ex.message.toString())
+                }
                 true
             }
             getString(R.string.ValueKey_forSettingsPreference_Backup_Cloud) -> {
@@ -59,7 +70,13 @@ class SettingsMainFragment : PreferenceFragmentCompat(), SharedPreferences.OnSha
                 true
             }
             getString(R.string.ValueKey_forSettingsPreference_Restore_Local) -> {
-                requireContext().toast("Local Restoration has not been implemented yet.")
+                try {
+                    (requireActivity() as SettingsActivity).viewModel.restoreLocally()
+
+                } catch (ex: Exception) {
+                    requireContext().toast(ex.message.toString())
+                }
+
                 true
             }
             getString(R.string.ValueKey_forSettingsPreference_Restore_Cloud) -> {
@@ -71,7 +88,9 @@ class SettingsMainFragment : PreferenceFragmentCompat(), SharedPreferences.OnSha
                 true
             }
 
-            else -> { false }
+            else -> {
+                false
+            }
         }
     }
 }

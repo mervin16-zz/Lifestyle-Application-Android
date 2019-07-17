@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
 import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
-import com.th3pl4gu3.lifestyle.core.operations.ToDoOperations
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
 import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
@@ -21,7 +20,6 @@ class ToDoViewModel(
     var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
     //Fetch all to dos from database
-    private var _toDos = ToDoOperations.getAllOffline(database)
     val toDosMediatorLiveData = MediatorLiveData<List<ToDo>>()
 
     private val _activeToDoSize = MutableLiveData<Int>()
@@ -57,13 +55,13 @@ class ToDoViewModel(
      **/
 
     fun updateList(toggleButton: ToggleButtonStates) {
-        toDosMediatorLiveData.removeSource(_toDos)
+        toDosMediatorLiveData.removeSource(toDos)
 
         when(toggleButton){
             ToggleButtonStates.BUTTON_ALL ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ALL
 
-                toDosMediatorLiveData.addSource(_toDos){
+                toDosMediatorLiveData.addSource(toDos){
                     toDosMediatorLiveData.value = it
                 }
             }
@@ -71,7 +69,7 @@ class ToDoViewModel(
             ToggleButtonStates.BUTTON_ACTIVE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
-                toDosMediatorLiveData.addSource(_toDos){
+                toDosMediatorLiveData.addSource(toDos){
                     val activeToDo = FilterOperations<ToDo>(it).getActive()
                     toDosMediatorLiveData.value = activeToDo
                     _activeToDoSize.value = activeToDo.size
@@ -81,7 +79,7 @@ class ToDoViewModel(
             ToggleButtonStates.BUTTON_COMPLETE ->{
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
-                toDosMediatorLiveData.addSource(_toDos){
+                toDosMediatorLiveData.addSource(toDos){
                     val completedToDo = FilterOperations<ToDo>(it).getCompleted()
                     toDosMediatorLiveData.value = completedToDo
                     _completedToDoSize.value = completedToDo.size

@@ -32,7 +32,7 @@
                     android:background="@color/colorAccent">
     
                 <ImageButton
-                        android:id="@id/ImageButton_fromAddItemActivity_Icon_Back"
+                        android:id="@id/ImageButton_Icon_Back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:tint="@color/white_000"
@@ -55,7 +55,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/TextView_fromAddItemActivity_Screen_Subtitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintVertical_chainStyle="packed"
-                        app:layout_constraintTop_toBottomOf="@+id/ImageButton_fromAddItemActivity_Icon_Back"
+                        app:layout_constraintTop_toBottomOf="@+id/ImageButton_Icon_Back"
                         app:layout_constraintStart_toStartOf="parent"
                         style="@style/typography_h5"/>
                 
