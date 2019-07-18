@@ -14,5 +14,11 @@
           android:icon="@drawable/ic_filter_dark"
           app:showAsAction="ifRoom"
           android:tooltipText="@string/Menu_BottomAppBar_MenuMain_Filter" />
+    
+    <item android:id="@id/BottomAppBar_fromHomeActivity_MenuMain_Search"
+          android:title="@string/Menu_BottomAppBar_MenuMain_Search"
+          android:icon="@drawable/ic_search_dark"
+          app:showAsAction="ifRoom"
+          android:tooltipText="@string/Menu_BottomAppBar_MenuMain_Search" />
 
 </menu>

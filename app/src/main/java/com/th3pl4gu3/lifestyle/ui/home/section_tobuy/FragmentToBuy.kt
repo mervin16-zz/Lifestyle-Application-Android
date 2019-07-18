@@ -1,9 +1,7 @@
 package com.th3pl4gu3.lifestyle.ui.home.section_tobuy
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
@@ -32,6 +30,9 @@ class FragmentToBuy : Fragment() {
 
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_to_buy, container, false)
+
+        //Set has menu to true to access bottom app bar's menu item here
+        setHasOptionsMenu(true)
 
         //Configures the screen views (Eg. Title, appearance of top bar etc...)
         configureScreenAppearance()
@@ -99,7 +100,6 @@ class FragmentToBuy : Fragment() {
                         ) {
                             action(getString(R.string.Button_forLifestyleRestoreItem_SnackBar_Undo)) {
                                 mToBuyViewModel.insertItem(swipedToBuy)
-                                //Restore Item
                             }
                         }
                     }
@@ -115,6 +115,13 @@ class FragmentToBuy : Fragment() {
         itemTouchHelper.attachToRecyclerView(mBinding.RecyclerViewFromFragmentToBuyMain)
 
         return mBinding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Sort).isVisible = true
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Filter).isVisible = true
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Search).isVisible = false
     }
 
     /**

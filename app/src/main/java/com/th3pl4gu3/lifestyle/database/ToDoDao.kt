@@ -27,7 +27,7 @@ interface ToDoDao {
     @Query("SELECT * FROM $DATABASE_TABLE_TODO WHERE id = :key")
     fun get(key: String): ToDo?
 
-    @Query("SELECT * FROM $DATABASE_TABLE_TODO")
+    @Query("SELECT * FROM $DATABASE_TABLE_TODO ORDER BY dateAdded")
     fun getAllToDosLive(): LiveData<List<ToDo>>
 
     @Query("SELECT * FROM $DATABASE_TABLE_TODO")

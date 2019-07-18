@@ -1,10 +1,8 @@
 package com.th3pl4gu3.lifestyle.ui.home.section_todo
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
@@ -34,6 +32,9 @@ class FragmentToDo : Fragment() {
 
         //Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_to_do, container, false)
+
+        //Set has menu to true to access bottom app bar's menu item here
+        setHasOptionsMenu(true)
 
         //Configures the screen views (Eg. Title, appearance of top bar etc...)
         configureScreenAppearance()
@@ -116,6 +117,13 @@ class FragmentToDo : Fragment() {
         itemTouchHelper.attachToRecyclerView(mBinding.RecyclerViewFromFragmentToDoMain)
 
         return mBinding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Sort).isVisible = true
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Filter).isVisible = true
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Search).isVisible = false
     }
 
     /**

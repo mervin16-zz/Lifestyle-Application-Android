@@ -27,7 +27,7 @@ interface GoalDao {
     @Query("SELECT * FROM $DATABASE_TABLE_GOAL WHERE id = :key")
     fun get(key: String): Goal?
 
-    @Query("SELECT * FROM $DATABASE_TABLE_GOAL")
+    @Query("SELECT * FROM $DATABASE_TABLE_GOAL ORDER BY dateAdded")
     fun getAllGoalsLive(): LiveData<List<Goal>>
 
     @Query("SELECT * FROM $DATABASE_TABLE_GOAL")

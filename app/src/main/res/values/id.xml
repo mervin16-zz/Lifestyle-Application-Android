@@ -76,6 +76,7 @@
     <!-- Bottom App Bar Menu Main -->
     <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Filter" />
     <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Sort" />
+    <item type="id" name="BottomAppBar_fromHomeActivity_MenuMain_Search" />
     
     
     <!-- Bottom Sheet Dialogs Sort -->

@@ -24,7 +24,6 @@ const val VALUE_SUPPRESSED_UNCHECKED_CAST = "unchecked_cast"
 const val VALUE_WHITESPACE = " "
 const val VALUE_UNDERSCORE = "_"
 const val VALUE_SLASH_FRONT = "/"
-const val VALUE_ABBREVIATION_LISTS_TITLE = 35
 
 // Lifestyle Items String Values //
 const val VALUE_LIFESTYLE_ITEM_GOAL = "Goal"

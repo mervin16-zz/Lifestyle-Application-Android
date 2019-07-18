@@ -8,7 +8,6 @@ import com.th3pl4gu3.lifestyle.core.enums.Priority
 import com.th3pl4gu3.lifestyle.core.lifestyle.Lifestyle
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
-import com.th3pl4gu3.lifestyle.core.utils.*
 
 /**
 * Lifestyle Item Data Bindings
@@ -16,7 +15,7 @@ import com.th3pl4gu3.lifestyle.core.utils.*
 @BindingAdapter(VALUE_BINDING_LIFESTYLE_ITEM_TITLE)
 fun TextView.setLifestyleItemTitle(lifestyle: Lifestyle){
     lifestyle.let {
-        text = lifestyle.title.capitalizeEachWords().abbreviate(VALUE_ABBREVIATION_LISTS_TITLE)
+        text = lifestyle.title.abbreviate(VALUE_ABBREVIATION_LISTS_TITLE)
     }
 }
 

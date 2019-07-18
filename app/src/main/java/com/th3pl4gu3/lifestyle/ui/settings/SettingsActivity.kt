@@ -1,5 +1,6 @@
 package com.th3pl4gu3.lifestyle.ui.settings
 
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
@@ -10,7 +11,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.ActivitySettingsBinding
+import com.th3pl4gu3.lifestyle.ui.utils.*
 import com.th3pl4gu3.lifestyle.ui.utils.NotificationUtils
+import com.th3pl4gu3.lifestyle.ui.utils.snackBar
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 
 class SettingsActivity : AppCompatActivity() {
@@ -52,7 +55,7 @@ class SettingsActivity : AppCompatActivity() {
                 } else {
                     NotificationUtils.progressComplete(builder, getString(R.string.Notification_Backup_TextComplete))
                     notify(NotificationUtils.BACKUP_AND_RESTORE_NOTIFICATION_ID, builder.build())
-                    applicationContext.toast(getString(R.string.Message_Success_fromSettings_BackupComplete))
+                    _binding.SettingsLayoutParent.snackBar(getString(R.string.Message_Success_fromSettings_BackupComplete))
                 }
             }
         })
@@ -73,7 +76,7 @@ class SettingsActivity : AppCompatActivity() {
                 } else {
                     NotificationUtils.progressComplete(builder, getString(R.string.Notification_Restore_TextComplete))
                     notify(NotificationUtils.BACKUP_AND_RESTORE_NOTIFICATION_ID, builder.build())
-                    applicationContext.toast(getString(R.string.Message_Success_fromSettings_RestoreComplete))
+                    _binding.SettingsLayoutParent.snackBar(getString(R.string.Message_Success_fromSettings_RestoreComplete))
                 }
             }
         })
@@ -84,6 +87,51 @@ class SettingsActivity : AppCompatActivity() {
 
         _binding.ImageButtonIconBack.setOnClickListener {
             onBackPressed()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when(requestCode){
+            CODE_PERMISSIONS_STORAGE_EXTERNAL_WRITE_BACKUP -> {
+                // Request for Storage Write permission.
+                if (grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission has been granted. Perform the backup.
+                    performBackup()
+                } else {
+                    toast(getString(R.string.Message_Info_fromSettingsMainFragment_Permissions_Denied))
+                }
+            }
+            CODE_PERMISSIONS_STORAGE_EXTERNAL_WRITE_RESTORE -> {
+                // Request for Storage Read permission.
+                if (grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission has been granted. Restore data.
+                    performRestore()
+                } else {
+                    toast(getString(R.string.Message_Info_fromSettingsMainFragment_Permissions_Denied))
+                }
+            }
+
+            else ->{ return }
+        }
+    }
+
+    fun performBackup() {
+        _binding.SettingsLayoutParent.snackBar(getString(R.string.Message_Info_fromSettingsActivity_Backup_InProgress))
+        try {
+            viewModel.backupLocally()
+        } catch (ex: Exception) {
+            toast(ex.message.toString())
+        }
+    }
+
+    fun performRestore() {
+        _binding.SettingsLayoutParent.snackBar(getString(R.string.Message_Info_fromSettingsActivity_Restore_InProgress))
+        try {
+            viewModel.restoreLocally()
+        } catch (ex: Exception) {
+            toast(ex.message.toString())
         }
     }
 }

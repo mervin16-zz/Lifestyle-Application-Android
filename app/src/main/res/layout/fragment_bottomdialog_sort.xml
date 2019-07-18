@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/Margin_ChipGroup_Small"
+                app:checkedChip="@id/Chip_DateAdded"
                 app:singleSelection="true"
                 app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_Title"
                 app:layout_constraintBottom_toTopOf="@+id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup"
@@ -38,12 +39,14 @@
                 app:layout_constraintVertical_chainStyle="packed">
         
             <com.google.android.material.chip.Chip
+                    android:id="@+id/Chip_Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_Chips_Title"
                     style="@style/Chips_Choice_Default"/>
     
             <com.google.android.material.chip.Chip
+                    android:id="@+id/Chip_DateAdded"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_Chips_DateAdded"

@@ -1,22 +1,14 @@
 package com.th3pl4gu3.lifestyle.ui.home.section_dashboard
 
-import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
 import com.th3pl4gu3.lifestyle.databinding.FragmentDashboardBinding
-import android.util.DisplayMetrics
-import android.util.Log
+import android.view.*
 import androidx.core.content.ContextCompat
 import com.th3pl4gu3.lifestyle.R
-import com.th3pl4gu3.lifestyle.ui.utils.toast
-import kotlin.math.roundToInt
 
 
 
@@ -29,6 +21,9 @@ class FragmentDashboard : Fragment() {
 
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
+
+        //Set has menu to true to access bottom app bar's menu item here
+        setHasOptionsMenu(true)
 
         configureScreenAppearance()
 
@@ -46,6 +41,14 @@ class FragmentDashboard : Fragment() {
 
         changeStatusBarColorToDefault()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Sort).isVisible = false
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Filter).isVisible = false
+        menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Search).isVisible = true
+    }
+
 
     /**
      * Private functions for internal use ONLY

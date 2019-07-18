@@ -14,6 +14,14 @@ const val VALUE_BINDING_TOBUY_ITEM_PRICE = "toBuyPrice"
 const val VALUE_BINDING_TOBUY_ITEM_QTY = "toBuyQuantity"
 const val VALUE_BINDING_TOBUY_ITEM_TOTAL = "toBuyTotal"
 
+// Application General Values //
+const val VALUE_ABBREVIATION_LISTS_TITLE = 25
+const val VALUE_URI_SCHEME_PACKAGE_NAME = "package"
+
+// Application Codes //
+const val CODE_PERMISSIONS_STORAGE_EXTERNAL_WRITE_BACKUP = 0
+const val CODE_PERMISSIONS_STORAGE_EXTERNAL_WRITE_RESTORE = 1
+const val CODE_INTENT_APPLICATION_DETAILS_SETTINGS = 101
 
 /********************************* Messages *********************************/
 

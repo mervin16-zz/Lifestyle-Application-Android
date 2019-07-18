@@ -93,6 +93,7 @@
     <!-- Bottom App Bar Menu Main -->
     <string name="Menu_BottomAppBar_MenuMain_Filter">Filter</string>
     <string name="Menu_BottomAppBar_MenuMain_Sort">Sort</string>
+    <string name="Menu_BottomAppBar_MenuMain_Search">Search</string>
     
     
     <!--
@@ -187,6 +188,13 @@
     <string name="Fragment_fromSettingsMain_Category_About_Title">About</string>
     <string name="Fragment_fromSettingsMain_Category_About_AboutUs_Title">About Us</string>
     <string name="Fragment_fromSettingsMain_Category_About_AboutUs_Summary">About the Lifestyle application</string>
+    <string name="Dialog_fromSettingsMainFragment_BackupRestore_Permissions_Write_Title">Write Storage Permission</string>
+    <string name="Dialog_fromSettingsMainFragment_BackupRestore_Permissions_Write_Content">
+        To perform a <b>Backup/Restore</b>, we need the <b>Write Storage</b> permission so that we can store/restore the data
+        in/from your internal storage. Please permit manually if you want to proceed.
+    </string>
+    <string name="Dialog_fromSettingsMainFragment_BackupRestore_Permissions_Write_PositiveButton">Permit Manually</string>
+    <string name="Dialog_fromSettingsMainFragment_BackupRestore_Permissions_Write_NegativeButton">Cancel</string>
     
     <!--
         Messages
@@ -204,6 +212,9 @@
     <string name="Message_Info_fromFragmentLifeStyleItems_ChooseTask">Please choose a task.</string>
     <string name="Message_Info_fromFragmentLifeStyleItems_ChoosePriority">Please choose a priority.</string>
     <string name="Message_Info_fromFragmentLifeStyleItems_ChooseCategory">Please choose a category.</string>
+    <string name="Message_Info_fromSettingsMainFragment_Permissions_Denied">Permissions Denied</string>
+    <string name="Message_Info_fromSettingsActivity_Backup_InProgress">Performing backup…</string>
+    <string name="Message_Info_fromSettingsActivity_Restore_InProgress">Restoring your data…</string>
     
     <!-- Error Message -->
     <string name="Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping">Your item %1$s has been deleted

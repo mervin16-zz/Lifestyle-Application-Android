@@ -27,6 +27,7 @@ class RoundedBottomSheetDialogFragmentForBottomAppBarDrawer : BottomSheetDialogF
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottomappbar_drawer, container, false)
 
         mBinding.BottomAppBarFromFragmentBottomAppBarDrawerDrawerSettingsIcon.setOnClickListener {
+            this.dismiss()
             startActivity(Intent(requireContext(), SettingsActivity::class.java))
         }
 
