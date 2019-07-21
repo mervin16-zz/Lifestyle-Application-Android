@@ -79,7 +79,6 @@
                     android:id="@id/RecyclerView_LifestyleItem_List_Category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/Margin_List_RecyclerView_Default_BetweenViews"
                     app:lifestyleItemCategory="@{MyToDo}"
                     app:layout_constraintTop_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Title"
                     app:layout_constraintBottom_toBottomOf="parent"

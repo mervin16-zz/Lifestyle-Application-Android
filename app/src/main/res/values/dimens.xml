@@ -43,7 +43,7 @@
     
     
     <!-- RecyclerView Lifestyle Item List Layouts -->
-    <dimen name="Padding_List_RecyclerView_ForegroundContent">16dp</dimen>
+    <dimen name="Padding_List_RecyclerView_ForegroundContent">10dp</dimen>
     <dimen name="Margin_List_RecyclerView_Default_StartOfView">8dp</dimen>
     <dimen name="Margin_List_RecyclerView_Default_BetweenViews">4dp</dimen>
     <dimen name="Margin_List_RecyclerView_Default_EndOfList">8dp</dimen>

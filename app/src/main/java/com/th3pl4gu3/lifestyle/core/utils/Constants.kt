@@ -116,3 +116,5 @@ const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_GOALS = "An internal error occurre
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_TODOS = "An internal error occurred: Unknown View Model when trying to fetch your to dos."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_TOBUYS = "An internal error occurred: Unknown View Model when trying to fetch your to buys."
 const val MESSAGE_EXCEPTION_UNKNOWN_VIEWMODEL_SETTINGS = "An internal error occurred: Unknown View Model when trying to fetch your settings."
+const val MESSAGE_EXCEPTION_SORT_GOALS = "An internal error occurred: Cannot process field 'priority' for your Goals"
+const val MESSAGE_EXCEPTION_SORT_OTHERS = "An internal error occurred: Cannot process field 'priority'"

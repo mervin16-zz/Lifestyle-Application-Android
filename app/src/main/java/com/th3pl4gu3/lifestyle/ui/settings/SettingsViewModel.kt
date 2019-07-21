@@ -36,7 +36,6 @@ class SettingsViewModel(
      * Public functions that are accessible from the outside
      **/
 
-    //TODO Refactor code (database part)
     fun backupLocally() {
 
         _showBackupProgressNotification.value = true

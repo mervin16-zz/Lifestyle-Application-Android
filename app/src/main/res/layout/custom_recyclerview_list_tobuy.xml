@@ -96,7 +96,6 @@
                     android:id="@id/RecyclerView_LifestyleItem_List_Category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/Margin_List_RecyclerView_Default_BetweenViews"
                     app:lifestyleItemCategory="@{MyToBuy}"
                     app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="@+id/RecyclerView_LifestyleItem_List_Title"

@@ -34,6 +34,12 @@
     
     <!-- Pairs & Values -->
     <string name="ValuePair_forDataPassing_LifestyleItem">LifestyleItemValuePairDataPassingKey</string>
+    <string name="ValuePair_forDataPassing_LifestyleItem_Value">ValuePair_forDataPassing_LifestyleItem_Value</string>
+    <string name="ValuePair_forSortPreferences_Key_SortValue">ValuePair_forSortPreferences_Key_SortValue</string>
+    <string name="ValuePair_forSortPreferences_Key_SortOrder">ValuePair_forSortPreferences_Key_SortOrder</string>
+    <string name="ValuePair_forSortPreferences_Name_Goals_SortingPreferences">ValuePair_forSortPreferences_Name_Goals_SortingPreferences</string>
+    <string name="ValuePair_forSortPreferences_Name_ToDo_SortingPreferences">ValuePair_forSortPreferences_Name_ToDo_SortingPreferences</string>
+    <string name="ValuePair_forSortPreferences_Name_ToBuy_SortingPreferences">ValuePair_forSortPreferences_Name_ToBuy_SortingPreferences</string>
     
     <string name="ValueKey_forSettingsPreference_Profile_Name">ValueKey_forSettingsPreference_Profile_Name</string>
     <string name="ValueKey_forSettingsPreference_Currency_Preferred">ValueKey_forSettingsPreference_Currency_Preferred</string>
@@ -154,6 +160,7 @@
     <string name="Fragment_BottomSheetDialog_Sort_Chips_DaysAlive">Days Alive</string>
     <string name="Fragment_BottomSheetDialog_Sort_Chips_Priority">Priority</string>
     <string name="Fragment_BottomSheetDialog_Sort_Chips_Category">Category</string>
+    <string name="Fragment_BottomSheetDialog_Sort_Chips_DateCompleted">Date Completed</string>
     <string name="Fragment_BottomSheetDialog_Sort_ToggleButton_Ascending">Asc.</string>
     <string name="Fragment_BottomSheetDialog_Sort_ToggleButton_Descending">Desc.</string>
     

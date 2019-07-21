@@ -8,6 +8,7 @@ import androidx.lifecycle.Transformations
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
 import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
+import com.th3pl4gu3.lifestyle.core.tuning.Sort
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
 import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
@@ -17,81 +18,126 @@ class GoalViewModel(
     application: Application
 ) : LifestyleOpsViewModel(database = db, application = application) {
 
-    //Application
-    val app = getApplication<Application>()
 
-    //Current state of the toggle button (Current button checked)
-    var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
-
-    //Fetch all goals from database
-    val goalsMediatorLiveData = MediatorLiveData<List<Goal>>()
-
-
+    /**
+     * Private Global Variables
+     **/
     private val _activeGoalsSize = MutableLiveData<Int>()
+    private val _completedGoalsSize = MutableLiveData<Int>()
+
+
+    /**
+     * Public Global Variables
+     **/
+    var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE //Current state of the toggle button (Current button checked)
+    val goalsMediatorLiveData = MediatorLiveData<List<Goal>>() //Fetch all goals from database
+    var sort: Sort<Goal> = Sort()
+        set(value) {
+            field = value
+            filterGoals()
+        }
 
     val currentActiveButtonText: LiveData<String> = Transformations.map(_activeGoalsSize) { size ->
-        if(size == null){
-            app.getString(R.string.Button_forLifestyleList_ToggleButton_Active)
-        }else{
-            app.getString(R.string.Button_forLifestyleList_ToggleButton_Active_WithSize, size.toString())
+        if (size == null) {
+            application.getString(R.string.Button_forLifestyleList_ToggleButton_Active)
+        } else {
+            application.getString(R.string.Button_forLifestyleList_ToggleButton_Active_WithSize, size.toString())
         }
     }
 
-    private val _completedGoalsSize = MutableLiveData<Int>()
-
     val currentCompletedButtonText: LiveData<String> = Transformations.map(_completedGoalsSize) { size ->
-        if(size == null){
-            app.getString(R.string.Button_forLifestyleList_ToggleButton_Completed)
-        }else{
-            app.getString(R.string.Button_forLifestyleList_ToggleButton_Completed_WithSize, size.toString())
+        if (size == null) {
+            application.getString(R.string.Button_forLifestyleList_ToggleButton_Completed)
+        } else {
+            application.getString(R.string.Button_forLifestyleList_ToggleButton_Completed_WithSize, size.toString())
         }
     }
 
     init {
         _activeGoalsSize.value = 0
         _completedGoalsSize.value = 0
-        //Update the list of the recyclerview on INIT
-        updateList(currentToggleButtonState)
     }
 
     /**
      * Public functions that are accessible from the outside
      **/
+
     fun updateList(toggleButton: ToggleButtonStates) {
 
         goalsMediatorLiveData.removeSource(goals)
 
-        when(toggleButton){
-            ToggleButtonStates.BUTTON_ALL ->{
+        when (toggleButton) {
+            ToggleButtonStates.BUTTON_ALL -> {
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ALL
 
-                goalsMediatorLiveData.addSource(goals){
-                    goalsMediatorLiveData.value = it
+                goalsMediatorLiveData.addSource(goals) {
+                    addAllGoalsToSource(it)
                 }
             }
 
-            ToggleButtonStates.BUTTON_ACTIVE ->{
+            ToggleButtonStates.BUTTON_ACTIVE -> {
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
-                goalsMediatorLiveData.addSource(goals){
-                    val activeGoals = FilterOperations<Goal>(it).getActive()
-                    goalsMediatorLiveData.value = activeGoals
-                    _activeGoalsSize.value = activeGoals.size
-                    _completedGoalsSize.value = null
+                goalsMediatorLiveData.addSource(goals) {
+                    addActiveGoalsToSource(it)
                 }
             }
-            ToggleButtonStates.BUTTON_COMPLETE ->{
+            ToggleButtonStates.BUTTON_COMPLETE -> {
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
-                goalsMediatorLiveData.addSource(goals){
-                    val completedGoals = FilterOperations<Goal>(it).getCompleted()
-                    goalsMediatorLiveData.value = completedGoals
-                    _completedGoalsSize.value = completedGoals.size
-                    _activeGoalsSize.value = null
+                goalsMediatorLiveData.addSource(goals) {
+                    addCompletedGoalsToSource(it)
                 }
             }
         }
     }
 
 
+    /**
+     * Private functions for internal use ONLY
+     **/
+    private fun filterGoals() {
+
+        goalsMediatorLiveData.removeSource(goals)
+
+        goalsMediatorLiveData.addSource(goals) {
+
+            when(currentToggleButtonState){
+                ToggleButtonStates.BUTTON_ALL -> {
+                    addAllGoalsToSource(it)
+                }
+
+                ToggleButtonStates.BUTTON_ACTIVE -> {
+                    addActiveGoalsToSource(it)
+                }
+
+                ToggleButtonStates.BUTTON_COMPLETE -> {
+                    addCompletedGoalsToSource(it)
+                }
+            }
+
+
+        }
+    }
+
+    private fun addActiveGoalsToSource(goals: List<Goal>){
+        sort.list = FilterOperations<Goal>(goals).getActive()
+        goalsMediatorLiveData.value = sort.getSortedList()
+
+        _activeGoalsSize.value = sort.list.size
+        _completedGoalsSize.value = null
+    }
+
+    private fun addCompletedGoalsToSource(goals: List<Goal>){
+        sort.list = FilterOperations<Goal>(goals).getCompleted()
+        goalsMediatorLiveData.value = sort.getSortedList()
+
+        _activeGoalsSize.value = null
+        _completedGoalsSize.value = sort.list.size
+    }
+
+    private fun addAllGoalsToSource(goals: List<Goal>){
+        sort.list = goals
+        goalsMediatorLiveData.value = sort.getSortedList()
+    }
 }

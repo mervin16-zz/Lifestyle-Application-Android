@@ -1,5 +1,7 @@
 package com.th3pl4gu3.lifestyle.ui.home.section_todo
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -15,23 +17,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 import com.th3pl4gu3.lifestyle.R
+import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
+import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
+import com.th3pl4gu3.lifestyle.core.tuning.Sort
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.FragmentToDoBinding
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
+import com.th3pl4gu3.lifestyle.ui.utils.SharedPrefUtils
 
-class FragmentToDo : Fragment() {
+class FragmentToDo : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private lateinit var mBinding: FragmentToDoBinding
-    private lateinit var mToDoViewModel: ToDoViewModel
-
+    private lateinit var _viewModel: ToDoViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         //Inflate the layout for this fragment
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_to_do, container, false)
+        val binding: FragmentToDoBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_to_do, container, false)
 
         //Set has menu to true to access bottom app bar's menu item here
         setHasOptionsMenu(true)
@@ -46,14 +50,17 @@ class FragmentToDo : Fragment() {
         val dataSource = LifestyleDatabase.getInstance(application)
 
         //Instantiate the view model of this fragment
-        mToDoViewModel =
+        _viewModel =
             ViewModelProviders.of(this, ToDoViewModelFactory(dataSource, application)).get(ToDoViewModel::class.java)
 
         //Bind view model
-        mBinding.toDoViewModel = mToDoViewModel
+        binding.toDoViewModel = _viewModel
 
         //Instantiate the lifecycle owner
-        mBinding.lifecycleOwner = this
+        binding.lifecycleOwner = this
+
+        //Attach Sort class to ViewModel
+        _viewModel.sort = getPreferences()
 
         //RecyclerView's configuration
         val adapter = ToDoAdapter(ToDoListener {
@@ -64,13 +71,13 @@ class FragmentToDo : Fragment() {
                 )
         })
 
-        mBinding.RecyclerViewFromFragmentToDoMain.adapter = adapter
+        binding.RecyclerViewFromFragmentToDoMain.adapter = adapter
 
-        mToDoViewModel.toDosMediatorLiveData.observe(viewLifecycleOwner, Observer {
+        _viewModel.toDosMediatorLiveData.observe(viewLifecycleOwner, Observer {
             it.let { x ->
 
                 //Update the UI and determine whether recyclerview should be visible or not
-                updateUI(x.isNotEmpty())
+                updateUI(binding, x.isNotEmpty())
 
                 adapter.submitList(x)
             }
@@ -81,17 +88,17 @@ class FragmentToDo : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
                 val swipedToDo =
-                    (mBinding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
+                    (binding.RecyclerViewFromFragmentToDoMain.adapter as ToDoAdapter).currentList[viewHolder.adapterPosition]
                 val fab =
                     requireActivity().findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached)
 
                 when (direction) {
                     ItemTouchHelper.LEFT -> {
-                        mToDoViewModel.markItem(swipedToDo)
+                        _viewModel.markItem(swipedToDo)
                     }
 
                     ItemTouchHelper.RIGHT -> {
-                        mToDoViewModel.markAsDeleted(swipedToDo)
+                        _viewModel.markAsDeleted(swipedToDo)
 
                         //Show Snackbar with 'Undo' action
                         requireActivity().findViewById<View>(android.R.id.content).snackBarWithAction(
@@ -101,7 +108,7 @@ class FragmentToDo : Fragment() {
                             ), anchorView = fab
                         ) {
                             action(getString(R.string.Button_forLifestyleRestoreItem_SnackBar_Undo)) {
-                                mToDoViewModel.insertItem(swipedToDo)
+                                _viewModel.insertItem(swipedToDo)
                             }
                         }
                     }
@@ -114,9 +121,21 @@ class FragmentToDo : Fragment() {
         }
 
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
-        itemTouchHelper.attachToRecyclerView(mBinding.RecyclerViewFromFragmentToDoMain)
+        itemTouchHelper.attachToRecyclerView(binding.RecyclerViewFromFragmentToDoMain)
 
-        return mBinding.root
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        requireContext().getSharedPreferences(getString(R.string.ValuePair_forSortPreferences_Name_ToDo_SortingPreferences), Context.MODE_PRIVATE).registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        requireContext().getSharedPreferences(getString(R.string.ValuePair_forSortPreferences_Name_ToDo_SortingPreferences), Context.MODE_PRIVATE).unregisterOnSharedPreferenceChangeListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -126,25 +145,51 @@ class FragmentToDo : Fragment() {
         menu.findItem(R.id.BottomAppBar_fromHomeActivity_MenuMain_Search).isVisible = false
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+
+            R.id.BottomAppBar_fromHomeActivity_MenuMain_Filter -> {
+                requireActivity().findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                    .navigate(R.id.BottomSheetDialog_fromActivityHome_Filter)
+                true
+            }
+
+            R.id.BottomAppBar_fromHomeActivity_MenuMain_Sort -> {
+                requireActivity().findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
+                    .navigate(
+                        R.id.BottomSheetDialog_fromActivityHome_Sort,
+                        bundleOf(getString(R.string.ValuePair_forDataPassing_LifestyleItem_Value) to LifestyleItem.TO_DO.value)
+                    )
+                true
+            }
+
+            else -> false
+        }
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        _viewModel.sort = getPreferences()
+    }
+
     /**
      * Private functions for internal use ONLY
      **/
 
-    private fun updateUI(recyclerViewVisible: Boolean) {
+    private fun updateUI(binding: FragmentToDoBinding, recyclerViewVisible: Boolean) {
         if (recyclerViewVisible) {
-            mBinding.RecyclerViewFromFragmentToDoMain.visibility = View.VISIBLE
-            mBinding.EmptyViewForRecyclerView.visibility = View.GONE
+            binding.RecyclerViewFromFragmentToDoMain.visibility = View.VISIBLE
+            binding.EmptyViewForRecyclerView.visibility = View.GONE
         } else {
-            if (mToDoViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_COMPLETE) {
-                mBinding.TextViewFromFragmentToDoEmptyView.text =
+            if (_viewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_COMPLETE) {
+                binding.TextViewFromFragmentToDoEmptyView.text =
                     getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Completed)
-            } else if (mToDoViewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_ACTIVE) {
-                mBinding.TextViewFromFragmentToDoEmptyView.text =
+            } else if (_viewModel.currentToggleButtonState == ToggleButtonStates.BUTTON_ACTIVE) {
+                binding.TextViewFromFragmentToDoEmptyView.text =
                     getString(R.string.TextView_fromToDoFragment_Message_EmptyList_Active)
             }
 
-            mBinding.RecyclerViewFromFragmentToDoMain.visibility = View.GONE
-            mBinding.EmptyViewForRecyclerView.visibility = View.VISIBLE
+            binding.RecyclerViewFromFragmentToDoMain.visibility = View.GONE
+            binding.EmptyViewForRecyclerView.visibility = View.VISIBLE
         }
     }
 
@@ -161,5 +206,9 @@ class FragmentToDo : Fragment() {
 
         //Show Fab
         activity.findViewById<FloatingActionButton>(R.id.FAB_fromHomeActivity_BottomAppBarAttached).show()
+    }
+
+    private fun getPreferences(): Sort<ToDo> {
+        return SharedPrefUtils(requireContext(), getString(R.string.ValuePair_forSortPreferences_Name_ToDo_SortingPreferences)).getSort()
     }
 }

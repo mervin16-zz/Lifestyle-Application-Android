@@ -1,6 +1,7 @@
 package com.th3pl4gu3.lifestyle.core_tests
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.th3pl4gu3.lifestyle.core.enums.SortingOrder
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.operations.SortOperations
 import org.junit.After
@@ -89,24 +90,25 @@ class ToBuySortOperationsTests {
         val expectedResultRowBeforeLast = "Vegetables 8"
         val expectedResultRowLast = "Vegetables 9"
 
-        var resultRowFirst:String?
-        var resultRowSecond:String?
-        var resultRowBeforeLast:String?
-        var resultRowLast:String?
+        var resultRowFirst: String?
+        var resultRowSecond: String?
+        var resultRowBeforeLast: String?
+        var resultRowLast: String?
 
         val filteredGoals: List<ToBuy>
-        val order = SortOperations.Order.ASC
+        val order = SortingOrder.ASC
 
         //Act
-        try{
-            val sutSort = SortOperations<ToBuy>(toBuys)
+        try {
+            val sutSort = SortOperations<ToBuy>()
+            sutSort.list = toBuys
             filteredGoals = sutSort.byTitle(order)
 
             resultRowFirst = filteredGoals[0].title
             resultRowSecond = filteredGoals[1].title
             resultRowBeforeLast = filteredGoals[filteredGoals.size - 2].title
             resultRowLast = filteredGoals[filteredGoals.size - 1].title
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
             resultRowFirst = ex.message
             resultRowSecond = ex.message
             resultRowBeforeLast = ex.message
@@ -130,24 +132,25 @@ class ToBuySortOperationsTests {
         val expectedResultRowBeforeLast = "Android Phone 10"
         val expectedResultRowLast = "Android Phone 1"
 
-        var resultRowFirst:String?
-        var resultRowSecond:String?
-        var resultRowBeforeLast:String?
-        var resultRowLast:String?
+        var resultRowFirst: String?
+        var resultRowSecond: String?
+        var resultRowBeforeLast: String?
+        var resultRowLast: String?
 
         val filteredGoals: List<ToBuy>
-        val order = SortOperations.Order.DESC
+        val order = SortingOrder.DESC
 
         //Act
-        try{
-            val sutSort = SortOperations<ToBuy>(toBuys)
+        try {
+            val sutSort = SortOperations<ToBuy>()
+            sutSort.list = toBuys
             filteredGoals = sutSort.byTitle(order)
 
             resultRowFirst = filteredGoals[0].title
             resultRowSecond = filteredGoals[1].title
             resultRowBeforeLast = filteredGoals[filteredGoals.size - 2].title
             resultRowLast = filteredGoals[filteredGoals.size - 1].title
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
             resultRowFirst = ex.message
             resultRowSecond = ex.message
             resultRowBeforeLast = ex.message
@@ -168,20 +171,21 @@ class ToBuySortOperationsTests {
         //Arrange
         val expectedResult = "Passed"
 
-        var result:String?
+        var result: String?
 
         val filteredGoals: List<ToBuy>
-        val order = SortOperations.Order.DESC
+        val order = SortingOrder.DESC
 
         //Act
         //Clear the list first
         toBuys.clear()
         //Test the function
-        try{
-            val sutSort = SortOperations<ToBuy>(toBuys)
+        try {
+            val sutSort = SortOperations<ToBuy>()
+            sutSort.list = toBuys
             filteredGoals = sutSort.byTitle(order)
             result = "Passed"
-        }catch (ex: Exception){
+        } catch (ex: Exception) {
             result = ex.message
         }
 
@@ -197,20 +201,21 @@ class ToBuySortOperationsTests {
         val expectedResultRowFirst = "House Chores"
         val expectedResultRowLast = "Personal"
 
-        var resultRowFirst:String?
-        var resultRowLast:String?
+        var resultRowFirst: String?
+        var resultRowLast: String?
 
         val filteredToBuys: List<ToBuy>
-        val order = SortOperations.Order.ASC
+        val order = SortingOrder.ASC
 
         //Act
-        try{
-            val sutSort = SortOperations<ToBuy>(toBuys)
+        try {
+            val sutSort = SortOperations<ToBuy>()
+            sutSort.list = toBuys
             filteredToBuys = sutSort.byCategory(order)
 
             resultRowFirst = filteredToBuys[0].category
             resultRowLast = filteredToBuys[filteredToBuys.size - 1].category
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
             resultRowFirst = ex.message
             resultRowLast = ex.message
         }
@@ -228,20 +233,21 @@ class ToBuySortOperationsTests {
         val expectedResultRowFirst = "Personal"
         val expectedResultRowLast = "House Chores"
 
-        var resultRowFirst:String?
-        var resultRowLast:String?
+        var resultRowFirst: String?
+        var resultRowLast: String?
 
         val filteredToBuys: List<ToBuy>
-        val order = SortOperations.Order.DESC
+        val order = SortingOrder.DESC
 
         //Act
-        try{
-            val sutSort = SortOperations<ToBuy>(toBuys)
+        try {
+            val sutSort = SortOperations<ToBuy>()
+            sutSort.list = toBuys
             filteredToBuys = sutSort.byCategory(order)
 
             resultRowFirst = filteredToBuys[0].category
             resultRowLast = filteredToBuys[filteredToBuys.size - 1].category
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
             resultRowFirst = ex.message
             resultRowLast = ex.message
         }
@@ -258,20 +264,21 @@ class ToBuySortOperationsTests {
         //Arrange
         val expectedResult = "Passed"
 
-        var result:String?
+        var result: String?
 
         val filteredToBuys: List<ToBuy>
-        val order = SortOperations.Order.DESC
+        val order = SortingOrder.DESC
 
         //Act
         //Clear the list first
         toBuys.clear()
         //Test the function
-        try{
-            val sutSort = SortOperations<ToBuy>(toBuys)
+        try {
+            val sutSort = SortOperations<ToBuy>()
+            sutSort.list = toBuys
             filteredToBuys = sutSort.byCategory(order)
             result = "Passed"
-        }catch (ex: Exception){
+        } catch (ex: Exception) {
             result = ex.message
         }
 

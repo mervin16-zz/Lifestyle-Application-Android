@@ -8,6 +8,7 @@ import androidx.lifecycle.Transformations
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.core.lifestyle.ToBuy
 import com.th3pl4gu3.lifestyle.core.operations.FilterOperations
+import com.th3pl4gu3.lifestyle.core.tuning.Sort
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
 import com.th3pl4gu3.lifestyle.ui.home.LifestyleOpsViewModel
@@ -17,78 +18,125 @@ class ToBuyViewModel(
     application: Application
 ) : LifestyleOpsViewModel(database = db, application = application)  {
 
-    //Application
-    val app = getApplication<Application>()
-
-    //Current state of the toggle button (Current button checked)
-    var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
-
-    //Fetch all To Buys from database
-    val toBuysMediatorLiveData = MediatorLiveData<List<ToBuy>>()
-
+    /**
+     * Private Global Variables
+     **/
     private val _activeToBuySize = MutableLiveData<Int>()
+    private val _completedToBuySize = MutableLiveData<Int>()
+
+
+    /**
+     * Public Global Variables
+     **/
+    var currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE //Current state of the toggle button (Current button checked)
+    val toBuysMediatorLiveData = MediatorLiveData<List<ToBuy>>() //Fetch all tobuys from database
+    var sort: Sort<ToBuy> = Sort()
+        set(value) {
+            field = value
+            filterToBuys()
+        }
 
     val currentActiveButtonText: LiveData<String> = Transformations.map(_activeToBuySize) { size ->
-        if(size == null){
-            app.getString(R.string.Button_forLifestyleList_ToggleButton_Active)
-        }else{
-            app.getString(R.string.Button_forLifestyleList_ToggleButton_Active_WithSize, size.toString())
+        if (size == null) {
+            application.getString(R.string.Button_forLifestyleList_ToggleButton_Active)
+        } else {
+            application.getString(R.string.Button_forLifestyleList_ToggleButton_Active_WithSize, size.toString())
         }
     }
 
-    private val _completedToBuySize = MutableLiveData<Int>()
-
     val currentCompletedButtonText: LiveData<String> = Transformations.map(_completedToBuySize) { size ->
-        if(size == null){
-            app.getString(R.string.Button_forLifestyleList_ToggleButton_Completed)
-        }else{
-            app.getString(R.string.Button_forLifestyleList_ToggleButton_Completed_WithSize, size.toString())
+        if (size == null) {
+            application.getString(R.string.Button_forLifestyleList_ToggleButton_Completed)
+        } else {
+            application.getString(R.string.Button_forLifestyleList_ToggleButton_Completed_WithSize, size.toString())
         }
     }
 
     init {
         _activeToBuySize.value = 0
         _completedToBuySize.value = 0
-        //Update the list of the recyclerview on INIT
-        updateList(currentToggleButtonState)
     }
 
     /**
      * Public functions that are accessible from the outside
      **/
+
     fun updateList(toggleButton: ToggleButtonStates) {
+
         toBuysMediatorLiveData.removeSource(toBuys)
 
-        when(toggleButton){
-            ToggleButtonStates.BUTTON_ALL ->{
+        when (toggleButton) {
+            ToggleButtonStates.BUTTON_ALL -> {
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ALL
 
-                toBuysMediatorLiveData.addSource(toBuys){
-                    toBuysMediatorLiveData.value = it
+                toBuysMediatorLiveData.addSource(toBuys) {
+                    addAllToBuysToSource(it)
                 }
             }
 
-            ToggleButtonStates.BUTTON_ACTIVE ->{
+            ToggleButtonStates.BUTTON_ACTIVE -> {
                 currentToggleButtonState = ToggleButtonStates.BUTTON_ACTIVE
 
-                toBuysMediatorLiveData.addSource(toBuys){
-                    val activeToBuys = FilterOperations<ToBuy>(it).getActive()
-                    toBuysMediatorLiveData.value = activeToBuys
-                    _activeToBuySize.value = activeToBuys.size
-                    _completedToBuySize.value = null
+                toBuysMediatorLiveData.addSource(toBuys) {
+                    addActiveToBuysToSource(it)
                 }
             }
-            ToggleButtonStates.BUTTON_COMPLETE ->{
+            ToggleButtonStates.BUTTON_COMPLETE -> {
                 currentToggleButtonState = ToggleButtonStates.BUTTON_COMPLETE
 
-                toBuysMediatorLiveData.addSource(toBuys){
-                    val completedToBuys = FilterOperations<ToBuy>(it).getCompleted()
-                    toBuysMediatorLiveData.value = completedToBuys
-                    _completedToBuySize.value = completedToBuys.size
-                    _activeToBuySize.value = null
+                toBuysMediatorLiveData.addSource(toBuys) {
+                    addCompletedToBuysToSource(it)
                 }
             }
         }
     }
 
+
+    /**
+     * Private functions for internal use ONLY
+     **/
+    private fun filterToBuys() {
+
+        toBuysMediatorLiveData.removeSource(toBuys)
+
+        toBuysMediatorLiveData.addSource(toBuys) {
+
+            when(currentToggleButtonState){
+                ToggleButtonStates.BUTTON_ALL -> {
+                    addAllToBuysToSource(it)
+                }
+
+                ToggleButtonStates.BUTTON_ACTIVE -> {
+                    addActiveToBuysToSource(it)
+                }
+
+                ToggleButtonStates.BUTTON_COMPLETE -> {
+                    addCompletedToBuysToSource(it)
+                }
+            }
+
+
+        }
+    }
+
+    private fun addActiveToBuysToSource(toBuys: List<ToBuy>){
+        sort.list = FilterOperations<ToBuy>(toBuys).getActive()
+        toBuysMediatorLiveData.value = sort.getSortedList()
+
+        _activeToBuySize.value = sort.list.size
+        _completedToBuySize.value = null
+    }
+
+    private fun addCompletedToBuysToSource(toBuys: List<ToBuy>){
+        sort.list = FilterOperations<ToBuy>(toBuys).getCompleted()
+        toBuysMediatorLiveData.value = sort.getSortedList()
+
+        _activeToBuySize.value = null
+        _completedToBuySize.value = sort.list.size
+    }
+
+    private fun addAllToBuysToSource(toBuys: List<ToBuy>){
+        sort.list = toBuys
+        toBuysMediatorLiveData.value = sort.getSortedList()
+    }
 }

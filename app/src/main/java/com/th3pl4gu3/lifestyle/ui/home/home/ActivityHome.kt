@@ -55,18 +55,6 @@ class ActivityHome : AppCompatActivity(){
                 true
             }
 
-            R.id.BottomAppBar_fromHomeActivity_MenuMain_Filter -> {
-                this.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
-                    .navigate(R.id.BottomSheetDialog_fromActivityHome_Filter)
-                true
-            }
-
-            R.id.BottomAppBar_fromHomeActivity_MenuMain_Sort -> {
-                this.findNavController(R.id.Container_fromHomeActivity_BottomAppBarFragments)
-                    .navigate(R.id.BottomSheetDialog_fromActivityHome_Sort)
-                true
-            }
-
             else -> false
         }
     }

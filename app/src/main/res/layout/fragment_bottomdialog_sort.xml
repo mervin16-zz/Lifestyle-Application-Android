@@ -5,12 +5,17 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android">
     
+    <data>
+        <variable name="SortValue" type="com.th3pl4gu3.lifestyle.core.enums.SortingValue"/>
+        <variable name="SortOrder" type="com.th3pl4gu3.lifestyle.core.enums.SortingOrder"/>
+        <variable name="ThisFragment" type="com.th3pl4gu3.lifestyle.ui.home.home.RoundedBottomSheetDialogFragmentSort"/>
+    </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/Padding_Screen_Default">
-    
+        
         <TextView
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_Title"
                 android:layout_width="wrap_content"
@@ -23,8 +28,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:text="@string/Fragment_BottomSheetDialog_Sort_Title"
-                style="@style/typography_h5" />
-    
+                style="@style/typography_h5"/>
+        
         <com.google.android.material.chip.ChipGroup
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ChipGroup"
                 android:layout_width="match_parent"
@@ -37,41 +42,63 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintVertical_chainStyle="packed">
-        
+            
             <com.google.android.material.chip.Chip
                     android:id="@+id/Chip_Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_Chips_Title"
+                    android:tag="@{SortValue.TITLE}"
+                    android:onClick="@{(view) -> ThisFragment.sortValueClick(view)}"
                     style="@style/Chips_Choice_Default"/>
-    
+            
             <com.google.android.material.chip.Chip
                     android:id="@+id/Chip_DateAdded"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_Chips_DateAdded"
+                    android:tag="@{SortValue.DATE_ADDED}"
+                    android:onClick="@{(view) -> ThisFragment.sortValueClick(view)}"
                     style="@style/Chips_Choice_Default"/>
-    
+            
             <com.google.android.material.chip.Chip
+                    android:id="@+id/Chip_DaysAlive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_Chips_DaysAlive"
+                    android:tag="@{SortValue.DAYS_ALIVE}"
+                    android:onClick="@{(view) -> ThisFragment.sortValueClick(view)}"
                     style="@style/Chips_Choice_Default"/>
-    
+            
             <com.google.android.material.chip.Chip
+                    android:id="@+id/Chip_Priority"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_Chips_Priority"
+                    android:tag="@{SortValue.PRIORITY}"
+                    android:onClick="@{(view) -> ThisFragment.sortValueClick(view)}"
                     style="@style/Chips_Choice_Default"/>
-    
+            
             <com.google.android.material.chip.Chip
+                    android:id="@+id/Chip_Category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_Chips_Category"
+                    android:tag="@{SortValue.CATEGORY}"
+                    android:onClick="@{(view) -> ThisFragment.sortValueClick(view)}"
                     style="@style/Chips_Choice_Default"/>
-    
+            
+            <com.google.android.material.chip.Chip
+                    android:id="@+id/Chip_DateCompleted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Fragment_BottomSheetDialog_Sort_Chips_DateCompleted"
+                    android:tag="@{SortValue.DATE_COMPLETED}"
+                    android:onClick="@{(view) -> ThisFragment.sortValueClick(view)}"
+                    style="@style/Chips_Choice_Default"/>
+        
         </com.google.android.material.chip.ChipGroup>
-    
+        
         <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup"
                 android:layout_width="wrap_content"
@@ -87,20 +114,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ChipGroup"
                 app:layout_constraintVertical_chainStyle="packed">
-    
+            
             <com.google.android.material.button.MaterialButton
                     android:id="@id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup_Ascending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_ToggleButton_Ascending"
+                    android:tag="@{SortOrder.ASC}"
+                    android:onClick="@{(view) -> ThisFragment.sortOrderClick(view)}"
                     app:backgroundTint="@color/custom_button_background_states"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-    
+            
             <com.google.android.material.button.MaterialButton
                     android:id="@id/BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup_Descending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Fragment_BottomSheetDialog_Sort_ToggleButton_Descending"
+                    android:tag="@{SortOrder.DESC}"
+                    android:onClick="@{(view) -> ThisFragment.sortOrderClick(view)}"
                     app:backgroundTint="@color/custom_button_background_states"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
         </com.google.android.material.button.MaterialButtonToggleGroup>
