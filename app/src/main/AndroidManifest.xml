@@ -2,8 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.th3pl4gu3.lifestyle">
     
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--
+        Permissions
+    -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     
+    <!--
+        Application
+    -->
     <application
             android:icon="@mipmap/ic_launcher"
             android:label="@string/App_Name"
@@ -11,6 +17,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         
+        <!--
+            Activity Entries
+        -->
         <activity
                 android:name=".ui.settings.SettingsActivity"
                 android:parentActivityName=".ui.home.home.ActivityHome"/>
@@ -28,6 +37,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        
+        <!--
+            Fonts
+        -->
+        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
+        
     </application>
 
 </manifest>

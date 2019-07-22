@@ -88,28 +88,28 @@
                     app:layout_constraintTop_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Title"
                     tools:text="This is the subtitle."
                     style="@style/LifeStyleItemList_Category"/>
-            
-            <TextView
-                    android:id="@id/RecyclerView_LifestyleItem_List_DaysOld"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:lifestyleItemDaysOld="@{MyGoal}"
-                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Title"
-                    tools:text="10 Days Ago"
-                    style="@style/LifeStyleItemList_DaysOld"/>
-            
+    
             <TextView
                     android:id="@id/RecyclerView_LifestyleItem_List_Date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:lifestyleItemDateAdded="@{MyGoal}"
-                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Category"
-                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Category"
-                    app:layout_constraintEnd_toEndOf="@+id/RecyclerView_LifestyleItem_List_DaysOld"
+                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Title"
+                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Title"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:text="Added On 16 March 1996"
                     style="@style/LifeStyleItemList_DateAdded"/>
+    
+            <TextView
+                    android:id="@id/RecyclerView_LifestyleItem_List_DaysOld"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:lifestyleItemDaysOld="@{MyGoal}"
+                    app:layout_constraintTop_toTopOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    app:layout_constraintBottom_toBottomOf="@+id/RecyclerView_LifestyleItem_List_Category"
+                    app:layout_constraintEnd_toEndOf="@+id/RecyclerView_LifestyleItem_List_Date"
+                    tools:text="10 Days Ago"
+                    style="@style/LifeStyleItemList_DaysOld" />
         
         </androidx.constraintlayout.widget.ConstraintLayout>
     

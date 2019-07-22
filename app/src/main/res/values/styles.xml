@@ -16,6 +16,10 @@
         <item name="android:windowLightStatusBar">@bool/Windows_StatusBar_Light</item>
         
         <item name="android:windowIsTranslucent">@bool/Windows_IsTranslucent</item>
+    
+        <!-- Typography -->
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="fontFamily">@font/open_sans</item>
     </style>
     
     <!-- The Application's Typography  -->
@@ -25,10 +29,12 @@
     
     <style name="typography_h2" parent="TextAppearance.MaterialComponents.Headline2">
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textStyle">bold</item>
     </style>
     
     <style name="typography_h3" parent="TextAppearance.MaterialComponents.Headline3">
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textStyle">bold</item>
     </style>
     
     <style name="typography_h4" parent="TextAppearance.MaterialComponents.Headline4">
@@ -37,14 +43,17 @@
     
     <style name="typography_h5" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textStyle">bold</item>
     </style>
     
     <style name="typography_h6" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
     </style>
     
     <style name="typography_subtitle_1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textStyle">bold</item>
     </style>
     
     <style name="typography_subtitle_2" parent="TextAppearance.MaterialComponents.Subtitle2">
@@ -61,10 +70,13 @@
     
     <style name="typography_button" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
     </style>
     
     <style name="typography_caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
     </style>
     
     <style name="typography_overline" parent="TextAppearance.MaterialComponents.Overline">
@@ -93,6 +105,8 @@
     <!-- Lifestyle Item List theme -->
     <style name="LifeStyleItemList_Title" parent="@style/typography_h6">
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textStyle">bold</item>
     </style>
     
     <style name="LifeStyleItemList_Category" parent="@style/typography_subtitle_2">
@@ -101,6 +115,7 @@
     
     <style name="LifeStyleItemList_DateAdded" parent="@style/typography_caption">
         <item name="android:textColor">@color/colorTextAlternateLight</item>
+        <item name="android:textSize">10sp</item>
     </style>
     
     <style name="LifeStyleItemList_DaysOld" parent="@style/typography_caption">
@@ -112,12 +127,12 @@
         <item name="android:textColor">@color/colorTextAlternateLight</item>
     </style>
     
-    <style name="LifeStyleItemList_Price" parent="@style/typography_body_1">
+    <style name="LifeStyleItemList_Price" parent="@style/typography_body_2">
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>
     
-    <style name="LifeStyleItemList_Quantity" parent="@style/typography_body_2">
+    <style name="LifeStyleItemList_Quantity" parent="@style/typography_body_1">
         <item name="android:textColor">@color/colorAccent</item>
     </style>
     

@@ -4,15 +4,16 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -27,6 +28,8 @@ import com.th3pl4gu3.lifestyle.ui.enums.ToggleButtonStates
 import com.th3pl4gu3.lifestyle.ui.utils.SharedPrefUtils
 import com.th3pl4gu3.lifestyle.ui.utils.action
 import com.th3pl4gu3.lifestyle.ui.utils.snackBarWithAction
+
+
 
 class FragmentGoals : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -205,5 +208,4 @@ class FragmentGoals : Fragment(), SharedPreferences.OnSharedPreferenceChangeList
     private fun getPreferences(): Sort<Goal> {
         return SharedPrefUtils(requireContext(), getString(R.string.ValuePair_forSortPreferences_Name_Goals_SortingPreferences)).getSort()
     }
-
 }

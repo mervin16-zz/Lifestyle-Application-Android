@@ -18,8 +18,6 @@ class Sort<L>(var order: SortingOrder = ASC,
     override lateinit var list: List<Lifestyle>
 
     fun getSortedList(): List<L> {
-        if(list.isNullOrEmpty())
-            throw Exception("Error")
         return when(value){
             TITLE -> byTitle(order)
             CATEGORY -> byCategory(order)
