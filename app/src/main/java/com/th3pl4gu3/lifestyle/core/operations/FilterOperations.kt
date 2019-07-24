@@ -10,6 +10,7 @@ import com.th3pl4gu3.lifestyle.core.utils.*
 @Suppress(VALUE_SUPPRESSED_UNCHECKED_CAST)
 open class FilterOperations<L>(open var list: List<Lifestyle> = ArrayList()) {
 
+    //TODO Refactor whole class and Filter class.
     fun byCategory(category: String): List<L> {
         return list.filter {
             (it.category.toLowerCase() == category.toLowerCase())

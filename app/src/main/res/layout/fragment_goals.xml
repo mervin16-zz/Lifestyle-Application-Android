@@ -72,13 +72,9 @@
                 android:layout_marginBottom="?attr/actionBarSize"
                 android:visibility="visible"
                 tools:visibility="visible">
-            
+    
             <ImageView
                     android:id="@id/ImageView_fromFragmentGoal_EmptyView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
                     android:contentDescription="@string/ContentDescription_fromGoalFragment_EmptyView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -86,23 +82,19 @@
                     app:layout_constraintBottom_toTopOf="@+id/TextView_fromFragmentGoal_EmptyView"
                     app:layout_constraintVertical_chainStyle="packed"
                     app:srcCompat="@drawable/ic_sadface_accent_light"
-                    tools:srcCompat="@drawable/ic_sadface_accent_light"/>
+                    tools:srcCompat="@drawable/ic_sadface_accent_light"
+                    style="@style/EmptyView_Image_LifestyleList"/>
             
             <TextView
                     android:id="@id/TextView_fromFragmentGoal_EmptyView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:text="@string/TextView_fromGoalsFragment_Message_EmptyList_Active"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextAlternate"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ImageView_fromFragmentGoal_EmptyView"
                     app:layout_constraintVertical_chainStyle="packed"
                     tools:text="@string/TextView_fromGoalsFragment_Message_EmptyList_Active"
-                    style="@style/typography_h6"/>
+                    style="@style/EmptyView_Text_LifestyleList"/>
         
         </androidx.constraintlayout.widget.ConstraintLayout>
     

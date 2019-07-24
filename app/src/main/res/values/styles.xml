@@ -22,6 +22,15 @@
         <item name="fontFamily">@font/open_sans</item>
     </style>
     
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    
+    
+    
     <!-- The Application's Typography  -->
     <style name="typography_h1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="android:textColor">@color/colorTextPrimary</item>
@@ -164,10 +173,22 @@
         <item name="android:textColor">@color/black_800</item>
     </style>
     
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <!-- Other Views Styles -->
+    <style name="EmptyView_Image_LifestyleList">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    
+    <style name="EmptyView_Text_LifestyleList" parent="typography_h6">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorTextAlternate</item>
+    </style>
 </resources>

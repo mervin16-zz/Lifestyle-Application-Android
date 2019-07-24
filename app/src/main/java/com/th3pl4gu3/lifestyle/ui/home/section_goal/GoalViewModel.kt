@@ -18,7 +18,6 @@ class GoalViewModel(
     application: Application
 ) : LifestyleOpsViewModel(database = db, application = application) {
 
-
     /**
      * Private Global Variables
      **/
