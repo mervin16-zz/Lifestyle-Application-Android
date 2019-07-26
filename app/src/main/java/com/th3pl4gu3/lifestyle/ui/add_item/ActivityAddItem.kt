@@ -1,5 +1,7 @@
 package com.th3pl4gu3.lifestyle.ui.add_item
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.th3pl4gu3.lifestyle.R
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.core.view.size
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
@@ -16,13 +19,15 @@ import com.th3pl4gu3.lifestyle.core.utils.Utils
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
 import com.th3pl4gu3.lifestyle.databinding.ActivityAddItemBinding
 import com.th3pl4gu3.lifestyle.ui.SpinnerAdapter
+import com.th3pl4gu3.lifestyle.ui.utils.SharedPrefUtils
 import com.th3pl4gu3.lifestyle.ui.utils.Validation
 import com.th3pl4gu3.lifestyle.ui.utils.snackBar
+import com.th3pl4gu3.lifestyle.ui.utils.toast
 import kotlinx.android.synthetic.main.include_foradditem_section_calendar.view.*
 import kotlinx.android.synthetic.main.include_foradditem_section_details.view.*
 
 
-class ActivityAddItem : AppCompatActivity() {
+class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
 
     private lateinit var mBinding: ActivityAddItemBinding
     private lateinit var mViewModel: AddItemViewModel
@@ -55,6 +60,7 @@ class ActivityAddItem : AppCompatActivity() {
             }
         }
     }
+    private lateinit var spinnerCategoryAdapter: SpinnerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -200,6 +206,38 @@ class ActivityAddItem : AppCompatActivity() {
         mBinding.IncludeLayoutFromAddItemActivitySectionCalendar.Switch_fromAddItemActivity_Calendar_Enable.setOnCheckedChangeListener { _, isChecked ->
             updateUI_Calendar(isChecked)
         }
+
+        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.ImageButton_fromAddItemActivity_Icon_AddCategory.setOnClickListener {
+            val bottomAppBarDialog = RoundedBottomSheetDialogFragmentAddCategory()
+            bottomAppBarDialog.show(supportFragmentManager, bottomAppBarDialog.tag)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        this.getSharedPreferences(getString(R.string.ValuePair_forCategories_Name_Categories), Context.MODE_PRIVATE).registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        this.getSharedPreferences(getString(R.string.ValuePair_forCategories_Name_Categories), Context.MODE_PRIVATE).unregisterOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+
+        //Category Spinner
+        spinnerCategoryAdapter = SpinnerAdapter(this, R.layout.custom_text_spinner_default)
+
+        spinnerCategoryAdapter.addAll(loadCategories())
+        spinnerCategoryAdapter.add(getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseCategory))
+        spinnerCategoryAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.adapter =
+            spinnerCategoryAdapter
+        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.setSelection(
+            spinnerCategoryAdapter.count
+        )
     }
 
     fun setPriority(view: View) {
@@ -288,17 +326,15 @@ class ActivityAddItem : AppCompatActivity() {
         mBinding.SpinnerFromAddItemActivityType.setSelection(typeAdapter.count)
 
         //Category Spinner
-        val categoryList = resources.getStringArray(R.array.App_LifeStyle_Items_Categories)
-        val categoryAdapter = SpinnerAdapter(this, R.layout.custom_text_spinner_default)
+        spinnerCategoryAdapter = SpinnerAdapter(this, R.layout.custom_text_spinner_default)
 
-        categoryAdapter.addAll(categoryList.asList())
-        categoryAdapter.add(getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseCategory))
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        spinnerCategoryAdapter.addAll(loadCategories())
+        spinnerCategoryAdapter.add(getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseCategory))
+        spinnerCategoryAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.adapter =
-            categoryAdapter
-        //mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.onItemSelectedListener = this
+            spinnerCategoryAdapter
         mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.setSelection(
-            categoryAdapter.count
+            spinnerCategoryAdapter.count
         )
 
     }
@@ -338,6 +374,10 @@ class ActivityAddItem : AppCompatActivity() {
 
     private fun setViewVisibility(v: View, isVisible: Boolean){
         v.visibility = if(isVisible) View.VISIBLE else View.GONE
+    }
+
+    private fun loadCategories(): List<String> {
+        return ArrayList(SharedPrefUtils(this, getString(R.string.ValuePair_forCategories_Name_Categories)).getCategories())
     }
 
     private fun showSnackBar(message: String) {

@@ -10,10 +10,10 @@ class ToDoOperations(list: List<ToDo>) : LifestyleOperations<ToDo>(list) {
 
         override fun getByIdOffline(database: LifestyleDatabase, id: String) = database.toDoDao.get(id) ?: throw Exception(MESSAGE_EXCEPTION_TODO_NOT_EXIST)
 
-        override fun getAllLiveOffline(database: LifestyleDatabase) = database.toDoDao.getAllToDosLive()
+        override fun getAllLiveOffline(database: LifestyleDatabase) = database.toDoDao.getAllLive()
 
         //TODO: Test Function
-        override suspend fun getAllOffline(database: LifestyleDatabase) = database.toDoDao.getAllToDos()
+        override suspend fun getAllOffline(database: LifestyleDatabase) = database.toDoDao.getAll()
 
         override fun removeAllOffline(database: LifestyleDatabase) = database.toDoDao.removeAll()
     }

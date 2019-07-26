@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
-import com.th3pl4gu3.lifestyle.core.lifestyle.Goal
-import com.th3pl4gu3.lifestyle.database.GoalDao
+import com.th3pl4gu3.lifestyle.core.enums.Priority
+import com.th3pl4gu3.lifestyle.core.lifestyle.ToDo
 import com.th3pl4gu3.lifestyle.database.LifestyleDatabase
+import com.th3pl4gu3.lifestyle.database.ToDoDao
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -20,10 +21,10 @@ import java.util.*
 
 
 @RunWith(AndroidJUnit4::class)
-class GoalDaoDatabaseClass {
+class ToDoDaoDatabaseTests {
 
     @get:Rule val instantTaskExecutorRule = InstantTaskExecutorRule()
-    private lateinit var goalDao: GoalDao
+    private lateinit var toDoDao: ToDoDao
     private lateinit var db: LifestyleDatabase
 
     @Before
@@ -35,7 +36,7 @@ class GoalDaoDatabaseClass {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        goalDao = db.goalDao
+        toDoDao = db.toDoDao
     }
 
     @After
@@ -49,40 +50,44 @@ class GoalDaoDatabaseClass {
     fun insertAndGet_Unmodified() {
 
         //Arrange
-        val goal = Goal()
-        val id = goal.id
-        val dateNow = goal.dateAdded
+        val toDo = ToDo()
+        val id = toDo.id
+        val dateNow = toDo.dateAdded
         val expectedId = id
         val expectedTitle = "Title"
         val expectedCategory = "Category"
+        val expectedPriority = Priority.P4
         val expectedDateAdded = dateNow
-        val expectedTypeValue = LifestyleItem.GOAL.value
+        val expectedTypeValue = LifestyleItem.TO_DO.value
 
         val resultTypeValue: Int
         val resultId: String
         val resultTitle: String
         val resultCategory: String
+        val resultPriority: Priority
         val resultDateAdded: Calendar
         val resultDateCompleted: Calendar?
 
         //Act
         //Insert into db
-        goalDao.insert(goal)
+        toDoDao.insert(toDo)
         //Get the item
-        val sutGoal = goalDao.get(id)
+        val sutTodo = toDoDao.get(id)
 
-        resultTypeValue = sutGoal!!.type
-        resultId = sutGoal.id
-        resultTitle = sutGoal.title
-        resultCategory = sutGoal.category
-        resultDateAdded = sutGoal.dateAdded
-        resultDateCompleted = sutGoal.dateCompleted
+        resultTypeValue = sutTodo!!.type
+        resultId = sutTodo.id
+        resultTitle = sutTodo.title
+        resultCategory = sutTodo.category
+        resultPriority = sutTodo.priority
+        resultDateAdded = sutTodo.dateAdded
+        resultDateCompleted = sutTodo.dateCompleted
 
         //Assert
         assertEquals(expectedTypeValue, resultTypeValue)
         assertEquals(expectedId, resultId)
         assertEquals(expectedTitle, resultTitle)
         assertEquals(expectedCategory, resultCategory)
+        assertEquals(expectedPriority, resultPriority)
         assertEquals(expectedDateAdded, resultDateAdded)
         assertNull(resultDateCompleted)
     }
@@ -97,45 +102,49 @@ class GoalDaoDatabaseClass {
         val dateCompleted = Calendar.getInstance()
         dateCompleted.add(Calendar.DAY_OF_YEAR, 10)
 
-        val goal = Goal(title = title, category = category)
+        val toDo = ToDo(title = title, category = category)
         //Mark this to do as completed
-        goal.dateCompleted = dateCompleted
+        toDo.dateCompleted = dateCompleted
 
-        val id = goal.id
-        val dateNow = goal.dateAdded
+        val id = toDo.id
+        val dateNow = toDo.dateAdded
 
         val expectedId = id
         val expectedTitle = title
         val expectedCategory = category
+        val expectedPriority = Priority.P4
         val expectedDateAdded = dateNow
         val expectedDateCompleted = dateCompleted
-        val expectedTypeValue = LifestyleItem.GOAL.value
+        val expectedTypeValue = LifestyleItem.TO_DO.value
 
         val resultTypeValue: Int
         val resultId: String
         val resultTitle: String
         val resultCategory: String
+        val resultPriority: Priority
         val resultDateAdded: Calendar
         val resultDateCompleted: Calendar?
 
         //Act
         //Insert into db
-        goalDao.insert(goal)
+        toDoDao.insert(toDo)
         //Get the item
-        val sutGoal = goalDao.get(id)
+        val sutTodo = toDoDao.get(id)
 
-        resultTypeValue = sutGoal!!.type
-        resultId = sutGoal.id
-        resultTitle = sutGoal.title
-        resultCategory = sutGoal.category
-        resultDateAdded = sutGoal.dateAdded
-        resultDateCompleted = sutGoal.dateCompleted
+        resultTypeValue = sutTodo!!.type
+        resultId = sutTodo.id
+        resultTitle = sutTodo.title
+        resultCategory = sutTodo.category
+        resultPriority = sutTodo.priority
+        resultDateAdded = sutTodo.dateAdded
+        resultDateCompleted = sutTodo.dateCompleted
 
         //Assert
         assertEquals(expectedTypeValue, resultTypeValue)
         assertEquals(expectedId, resultId)
         assertEquals(expectedTitle, resultTitle)
         assertEquals(expectedCategory, resultCategory)
+        assertEquals(expectedPriority, resultPriority)
         assertEquals(expectedDateAdded, resultDateAdded)
         assertEquals(expectedDateCompleted, resultDateCompleted)
     }
@@ -148,51 +157,57 @@ class GoalDaoDatabaseClass {
         val testID = "21h312oi3"
         val title = "Do the dishes"
         val category = "House Chores"
+        val priority = Priority.P3
 
-        val oldGoal = Goal()
-        val newGoal = oldGoal.copy()
+        val oldToDo = ToDo()
+        val newToDo = oldToDo.copy()
 
         //set the IDs
-        oldGoal.id = testID
-        newGoal.id = testID
+        oldToDo.id = testID
+        newToDo.id = testID
 
         //Make changes to new To Do
-        newGoal.title = title
-        newGoal.category = category
+        newToDo.title = title
+        newToDo.category = category
+        newToDo.priority = priority
 
         val expectedId = testID
         val expectedTitle = title
         val expectedCategory = category
-        val expectedDateAdded = newGoal.dateAdded
-        val expectedTypeValue = LifestyleItem.GOAL.value
+        val expectedPriority = priority
+        val expectedDateAdded = newToDo.dateAdded
+        val expectedTypeValue = LifestyleItem.TO_DO.value
 
         val resultTypeValue: Int
         val resultId: String
         val resultTitle: String
         val resultCategory: String
+        val resultPriority: Priority
         val resultDateAdded: Calendar
         val resultDateCompleted: Calendar?
 
         //Act
         //Insert an unmodified To Do into db
-        goalDao.insert(oldGoal)
+        toDoDao.insert(oldToDo)
         //Update To Do into db
-        goalDao.update(newGoal)
+        toDoDao.update(newToDo)
         //Get the new To Do
-        val sutGoal = goalDao.get(testID)
+        val sutTodo = toDoDao.get(testID)
 
-        resultTypeValue = sutGoal!!.type
-        resultId = sutGoal.id
-        resultTitle = sutGoal.title
-        resultCategory = sutGoal.category
-        resultDateAdded = sutGoal.dateAdded
-        resultDateCompleted = sutGoal.dateCompleted
+        resultTypeValue = sutTodo!!.type
+        resultId = sutTodo.id
+        resultTitle = sutTodo.title
+        resultCategory = sutTodo.category
+        resultPriority = sutTodo.priority
+        resultDateAdded = sutTodo.dateAdded
+        resultDateCompleted = sutTodo.dateCompleted
 
         //Assert
         assertEquals(expectedTypeValue, resultTypeValue)
         assertEquals(expectedId, resultId)
         assertEquals(expectedTitle, resultTitle)
         assertEquals(expectedCategory, resultCategory)
+        assertEquals(expectedPriority, resultPriority)
         assertEquals(expectedDateAdded, resultDateAdded)
         assertNull(resultDateCompleted)
     }
@@ -205,10 +220,10 @@ class GoalDaoDatabaseClass {
         val id = "d223v45t4ct"
 
         //Act
-        val sutGoal = goalDao.get(id)
+        val sutTodo = toDoDao.get(id)
 
         //Assert
-        assertNull(sutGoal)
+        assertNull(sutTodo)
     }
 
     @Test
@@ -218,10 +233,10 @@ class GoalDaoDatabaseClass {
         //Arrange
 
         //Act
-        val sutGoal = goalDao.getAllGoalsLive().value
+        val sutTodo = toDoDao.getAllLive().value
 
         //Assert
-        assertNull(sutGoal)
+        assertNull(sutTodo)
     }
 
     @Test
@@ -232,7 +247,7 @@ class GoalDaoDatabaseClass {
         var title = "Do the dishes"
         val expectedSize = 11
         val resultSize: Int
-        var goal: Goal
+        var toDo:ToDo
 
 
 
@@ -240,13 +255,13 @@ class GoalDaoDatabaseClass {
         //Add several to do's in a for loop
         for(x in 0..10){
             title += x
-            goal = Goal(title = title)
-            goalDao.insert(goal)
+            toDo = ToDo(title = title)
+            toDoDao.insert(toDo)
         }
 
         //Get the item
-        val sutGoal = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
-        resultSize = sutGoal.size
+        val sutTodo = LiveDataTestUtil.getValue(toDoDao.getAllLive())
+        resultSize = sutTodo.size
 
         //Assert
         assertEquals(expectedSize, resultSize)
@@ -261,37 +276,37 @@ class GoalDaoDatabaseClass {
         var idToRemove = "null"
         val expectedSize = 10
         val resultSize: Int
-        var goal: Goal
-        val resultGoal: Goal?
-        val goals: List<Goal>?
+        var toDo: ToDo
+        val resultToDo: ToDo?
+        val toDos: List<ToDo>?
 
 
         //Act
         //Add several to do's in a for loop
         for(x in 0..10){
             title += x
-            goal = Goal(title = title)
+            toDo = ToDo(title = title)
 
             //Take a number at random
             if(x == 4){
-                idToRemove = goal.id
+                idToRemove = toDo.id
             }
 
-            goalDao.insert(goal)
+            toDoDao.insert(toDo)
         }
 
         //Remove the item
-        goalDao.remove(idToRemove)
+        toDoDao.remove(idToRemove)
         //Try to get all objects
-        goals = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
+        toDos = LiveDataTestUtil.getValue(toDoDao.getAllLive())
         //Try to get the object
-        resultGoal = goalDao.get(idToRemove)
+        resultToDo = toDoDao.get(idToRemove)
 
-        resultSize = goals.size
+        resultSize = toDos.size
 
         //Assert
         assertEquals(expectedSize, resultSize)
-        assertNull(resultGoal)
+        assertNull(resultToDo)
     }
 
     @Test
@@ -303,37 +318,38 @@ class GoalDaoDatabaseClass {
         var idToRemove = "null"
         val expectedSize = 11
         val resultSize: Int
-        var goal: Goal
-        val resultGoal: Goal?
-        val goals: List<Goal>?
+        var toDo: ToDo
+        val resultToDo: ToDo?
+        val toDos: List<ToDo>?
 
 
         //Act
         //Add several to do's in a for loop
         for(x in 0..10){
             title += x
-            goal = Goal(title = title)
+            toDo = ToDo(title = title)
+
 
             //Take a number at random
             if(x == 12){
-                idToRemove = goal.id
+                idToRemove = toDo.id
             }
 
-            goalDao.insert(goal)
+            toDoDao.insert(toDo)
         }
 
         //Remove the item
-        goalDao.remove(idToRemove)
+        toDoDao.remove(idToRemove)
         //Try to get all objects
-        goals = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
+        toDos = LiveDataTestUtil.getValue(toDoDao.getAllLive())
         //Try to get the object
-        resultGoal = goalDao.get(idToRemove)
+        resultToDo = toDoDao.get(idToRemove)
 
-        resultSize = goals.size
+        resultSize = toDos.size
 
         //Assert
         assertEquals(expectedSize, resultSize)
-        assertNull(resultGoal)
+        assertNull(resultToDo)
     }
 
     @Test
@@ -344,24 +360,24 @@ class GoalDaoDatabaseClass {
         var title = "Do the dishes"
         val expectedSize = 0
         val resultSize: Int
-        var goal: Goal
-        val goals: List<Goal>?
+        var toDo: ToDo
+        val toDos: List<ToDo>?
 
 
         //Act
         //Add several to do's in a for loop
         for(x in 0..10){
             title += x
-            goal = Goal(title = title)
-            goalDao.insert(goal)
+            toDo = ToDo(title = title)
+            toDoDao.insert(toDo)
         }
 
         //Remove the item
-        goalDao.removeAll()
+        toDoDao.removeAll()
         //Try to get all objects
-        goals = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
+        toDos = LiveDataTestUtil.getValue(toDoDao.getAllLive())
 
-        resultSize = goals.size
+        resultSize = toDos.size
 
         //Assert
         assertEquals(expectedSize, resultSize)
@@ -374,14 +390,14 @@ class GoalDaoDatabaseClass {
         //Arrange
         val expectedSize = 0
         val resultSize: Int
-        val goals: List<Goal>?
+        val toDos: List<ToDo>?
 
 
         //Act
-        goalDao.removeAll()
+        toDoDao.removeAll()
         //Try to get all objects
-        goals = LiveDataTestUtil.getValue(goalDao.getAllGoalsLive())
-        resultSize = goals.size
+        toDos = LiveDataTestUtil.getValue(toDoDao.getAllLive())
+        resultSize = toDos.size
 
         //Assert
         assertEquals(expectedSize, resultSize)

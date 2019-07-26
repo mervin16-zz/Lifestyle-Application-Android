@@ -28,7 +28,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/Padding_Screen_Default"
+                    android:padding="@dimen/Padding_Screen_Small"
                     android:background="@color/colorAccent">
     
                 <ImageButton
@@ -106,8 +106,8 @@
                         android:layout_height="match_parent"
                         android:paddingTop="@dimen/Padding_Screen_Default"
                         android:paddingBottom="88dp"
-                        android:paddingStart="@dimen/Padding_Screen_Default"
-                        android:paddingEnd="@dimen/Padding_Screen_Default">
+                        android:paddingStart="@dimen/Padding_Screen_Small"
+                        android:paddingEnd="@dimen/Padding_Screen_Small">
                     
                     <!-- Details -->
                     <include

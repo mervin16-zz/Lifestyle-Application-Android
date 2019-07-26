@@ -156,6 +156,7 @@
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority2"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority3"/>
     <item type="id" name="ImageButton_fromAddItemActivity_Icon_Priority4"/>
+    <item type="id" name="ImageButton_fromAddItemActivity_Icon_AddCategory"/>
     <item type="id" name="TextView_fromAddItemActivity_Screen_Title"/>
     <item type="id" name="TextView_fromAddItemActivity_Screen_Subtitle"/>
     <item type="id" name="TextView_fromAddItemActivity_SubtitleDetails"/>

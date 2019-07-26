@@ -28,9 +28,10 @@ interface ToDoDao {
     fun get(key: String): ToDo?
 
     @Query("SELECT * FROM $DATABASE_TABLE_TODO ORDER BY dateAdded")
-    fun getAllToDosLive(): LiveData<List<ToDo>>
+    fun getAllLive(): LiveData<List<ToDo>>
 
+    //TODO: Need to Test function
     @Query("SELECT * FROM $DATABASE_TABLE_TODO")
-    suspend fun getAllToDos(): List<ToDo>
+    suspend fun getAll(): List<ToDo>
 
 }

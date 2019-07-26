@@ -10,10 +10,10 @@ class ToBuyOperations(list: List<ToBuy>) : LifestyleOperations<ToBuy>(list) {
 
         override fun getByIdOffline(database: LifestyleDatabase, id: String) = database.toBuyDao.get(id) ?: throw Exception(MESSAGE_EXCEPTION_TOBUY_NOT_EXIST)
 
-        override fun getAllLiveOffline(database: LifestyleDatabase) = database.toBuyDao.getAllToBuysLive()
+        override fun getAllLiveOffline(database: LifestyleDatabase) = database.toBuyDao.getAllLive()
 
         //TODO: Test Function
-        override suspend fun getAllOffline(database: LifestyleDatabase) = database.toBuyDao.getAllToBuys()
+        override suspend fun getAllOffline(database: LifestyleDatabase) = database.toBuyDao.getAll()
 
         override fun removeAllOffline(database: LifestyleDatabase) = database.toBuyDao.removeAll()
     }

@@ -15,14 +15,13 @@
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/Fragment_BottomSheetDialog_Filter_Title"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_Title"
                 tools:text="@string/Fragment_BottomSheetDialog_Filter_Title"
-                style="@style/typography_h5" />
+                style="@style/Text_Title_BottomFragmentDialog" />
     
         <TextView
                 android:id="@id/BottomSheetDialog_fromFragmentBottomSheetFilter_Filter_Groups_Priority_Title"

@@ -44,10 +44,26 @@
     
     <Spinner
             android:id="@id/Spinner_fromAddItemActivity_Category"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:spinnerMode="dropdown"
             android:background="@drawable/custom_background_spinner_default"
+            app:layout_constraintEnd_toStartOf="@id/ImageButton_fromAddItemActivity_Icon_AddCategory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout" />
+    
+    <ImageButton
+            android:id="@id/ImageButton_fromAddItemActivity_Icon_AddCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_dark"
+            android:tint="@color/white_000"
+            android:backgroundTint="@color/colorAccent"
+            android:tooltipText="Add Category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/Spinner_fromAddItemActivity_Category"
+            app:layout_constraintBottom_toBottomOf="@id/Spinner_fromAddItemActivity_Category"
             app:layout_constraintTop_toBottomOf="@id/textInputLayout"/>
     
     <!-- Layout should appear for To Buy ONLY -->

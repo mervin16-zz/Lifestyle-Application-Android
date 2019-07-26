@@ -31,6 +31,10 @@
     
     
     
+    <!--
+        Typography & Styles
+    -->
+    
     <!-- The Application's Typography  -->
     <style name="typography_h1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="android:textColor">@color/colorTextPrimary</item>
@@ -92,26 +96,13 @@
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
     
-    
-    <!--
-        Custom Themes
-    -->
-    
-    <!-- Bottom Sheet Dialog -->
-    <!-- Set the rounded drawable as background to your bottom sheet -->
-    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/custom_rounded_dialog</item>
+    <!-- Text Styles :: General -->
+    <style name="Text_Title_BottomFragmentDialog" parent="@style/typography_h5">
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:titleMarginTop">8dp</item>
     </style>
     
-    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
-        <item name="android:windowIsFloating">@bool/Windows_IsFloating</item>
-        <item name="bottomSheetStyle">@style/BottomSheet</item>
-    </style>
-    
-    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog"/>
-    
-    
-    <!-- Lifestyle Item List theme -->
+    <!-- Text Styles :: Lifestyle Item List  -->
     <style name="LifeStyleItemList_Title" parent="@style/typography_h6">
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="android:fontFamily">@font/open_sans</item>
@@ -145,6 +136,47 @@
         <item name="android:textColor">@color/colorAccent</item>
     </style>
     
+    <!-- Text Styles :: General Titles & Subtitles -->
+    <style name="Centered_Subtitle_Overline_Default" parent="@style/typography_overline">
+        <item name="android:textColor">@color/black_800</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="Screen_Title_Default" parent="@style/typography_h5">
+        <item name="android:textColor">@color/black_800</item>
+    </style>
+    
+    <style name="EmptyView_Text_LifestyleList" parent="typography_h6">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorTextAlternate</item>
+    </style>
+    
+    
+    
+    <!--
+        Custom Themes
+    -->
+    
+    <!-- Bottom Sheet Dialog -->
+    <!-- Set the rounded drawable as background to your bottom sheet -->
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/custom_rounded_dialog</item>
+    </style>
+    
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">@bool/Windows_IsFloating</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+    
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog"/>
+    
+    
     <!-- Chips Customization -->
     <style name="Chips_Choice_Default" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="checkedIcon">@drawable/ic_done_light</item>
@@ -162,17 +194,6 @@
         <item name="chipBackgroundColor">@color/custom_chips_background_states</item>
     </style>
     
-    <!-- General Titles & Subtitles -->
-    <style name="Centered_Subtitle_Overline_Default" parent="@style/typography_overline">
-        <item name="android:textColor">@color/black_800</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-    
-    <style name="Screen_Title_Default" parent="@style/typography_h5">
-        <item name="android:textColor">@color/black_800</item>
-    </style>
-    
     <!-- Other Views Styles -->
     <style name="EmptyView_Image_LifestyleList">
         <item name="android:layout_width">wrap_content</item>
@@ -180,15 +201,5 @@
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
-    </style>
-    
-    <style name="EmptyView_Text_LifestyleList" parent="typography_h6">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/colorTextAlternate</item>
     </style>
 </resources>

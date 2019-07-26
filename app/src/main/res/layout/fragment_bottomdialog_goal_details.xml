@@ -24,11 +24,10 @@
                 android:id="@id/Placeholder_forLifestyleItem_Value_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/Margin_List_RecyclerView_Default_StartOfView"
                 android:text="@{MyGoal.title}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                style="@style/typography_h5"
+                style="@style/Text_Title_BottomFragmentDialog"
                 tools:text="The Title"/>
     
         <TextView

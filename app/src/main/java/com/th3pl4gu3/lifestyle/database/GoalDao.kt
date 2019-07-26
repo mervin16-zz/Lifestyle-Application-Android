@@ -28,9 +28,10 @@ interface GoalDao {
     fun get(key: String): Goal?
 
     @Query("SELECT * FROM $DATABASE_TABLE_GOAL ORDER BY dateAdded")
-    fun getAllGoalsLive(): LiveData<List<Goal>>
+    fun getAllLive(): LiveData<List<Goal>>
 
+    //TODO: Need to Test function
     @Query("SELECT * FROM $DATABASE_TABLE_GOAL")
-    suspend fun getAllGoals(): List<Goal>
+    suspend fun getAll(): List<Goal>
 
 }

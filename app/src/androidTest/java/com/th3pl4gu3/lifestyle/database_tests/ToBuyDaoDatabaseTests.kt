@@ -21,7 +21,7 @@ import java.util.*
 
 
 @RunWith(AndroidJUnit4::class)
-class ToBuyDaoDatabaseClass {
+class ToBuyDaoDatabaseTests {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -260,7 +260,7 @@ class ToBuyDaoDatabaseClass {
         //Arrange
 
         //Act
-        val sutTodo = toBuyDao.getAllToBuysLive().value
+        val sutTodo = toBuyDao.getAllLive().value
 
         //Assert
         assertNull(sutTodo)
@@ -287,7 +287,7 @@ class ToBuyDaoDatabaseClass {
         }
 
         //Get the item
-        val sutToBuy = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
+        val sutToBuy = LiveDataTestUtil.getValue(toBuyDao.getAllLive())
         resultSize = sutToBuy.size
 
         //Assert
@@ -326,7 +326,7 @@ class ToBuyDaoDatabaseClass {
         //Remove the item
         toBuyDao.remove(idToRemove)
         //Try to get all objects
-        toBuys = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
+        toBuys = LiveDataTestUtil.getValue(toBuyDao.getAllLive())
         //Try to get the object
         resultToBuy = toBuyDao.get(idToRemove)
 
@@ -369,7 +369,7 @@ class ToBuyDaoDatabaseClass {
         //Remove the item
         toBuyDao.remove(idToRemove)
         //Try to get all objects
-        toBuys = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
+        toBuys = LiveDataTestUtil.getValue(toBuyDao.getAllLive())
         //Try to get the object
         resultToBuy = toBuyDao.get(idToRemove)
 
@@ -403,7 +403,7 @@ class ToBuyDaoDatabaseClass {
         //Remove the item
         toBuyDao.removeAll()
         //Try to get all objects
-        toDos = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
+        toDos = LiveDataTestUtil.getValue(toBuyDao.getAllLive())
 
         resultSize = toDos.size
 
@@ -424,7 +424,7 @@ class ToBuyDaoDatabaseClass {
         //Act
         toBuyDao.removeAll()
         //Try to get all objects
-        toDos = LiveDataTestUtil.getValue(toBuyDao.getAllToBuysLive())
+        toDos = LiveDataTestUtil.getValue(toBuyDao.getAllLive())
         resultSize = toDos.size
 
         //Assert

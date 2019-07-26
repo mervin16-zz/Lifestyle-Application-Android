@@ -9,17 +9,6 @@
     <!-- My Application Data -->
     <string name="App_Name">Lifestyle</string>
     
-    <string-array name="App_LifeStyle_Items_Categories">
-        <item>Personal</item>
-        <item>Household</item>
-        <item>House Chores</item>
-        <item>Family</item>
-        <item>Business</item>
-        <item>School</item>
-        <item>Personal</item>
-        <item>Party</item>
-    </string-array>
-    
     <string name="App_Lifestyle_Items_Priority_P1">Priority 1</string>
     <string name="App_Lifestyle_Items_Priority_P2">Priority 2</string>
     <string name="App_Lifestyle_Items_Priority_P3">Priority 3</string>
@@ -40,6 +29,9 @@
     <string name="ValuePair_forSortPreferences_Name_Goals_SortingPreferences">ValuePair_forSortPreferences_Name_Goals_SortingPreferences</string>
     <string name="ValuePair_forSortPreferences_Name_ToDo_SortingPreferences">ValuePair_forSortPreferences_Name_ToDo_SortingPreferences</string>
     <string name="ValuePair_forSortPreferences_Name_ToBuy_SortingPreferences">ValuePair_forSortPreferences_Name_ToBuy_SortingPreferences</string>
+    
+    <string name="ValuePair_forCategories_Name_Categories">ValuePair_forCategories_Name_Categories</string>
+    <string name="ValuePair_forCategories_Key_Categories">ValuePair_forCategories_Key_Categories</string>
     
     <string name="ValueKey_forSettingsPreference_Profile_Name">ValueKey_forSettingsPreference_Profile_Name</string>
     <string name="ValueKey_forSettingsPreference_Currency_Preferred">ValueKey_forSettingsPreference_Currency_Preferred</string>

@@ -10,10 +10,10 @@ class GoalOperations(list: List<Goal>) : LifestyleOperations<Goal>(list) {
 
         override fun getByIdOffline(database: LifestyleDatabase, id: String) = database.goalDao.get(id) ?: throw Exception(MESSAGE_EXCEPTION_GOAL_NOT_EXIST)
 
-        override fun getAllLiveOffline(database: LifestyleDatabase) = database.goalDao.getAllGoalsLive()
+        override fun getAllLiveOffline(database: LifestyleDatabase) = database.goalDao.getAllLive()
 
         //TODO: Test Function
-        override suspend fun getAllOffline(database: LifestyleDatabase) = database.goalDao.getAllGoals()
+        override suspend fun getAllOffline(database: LifestyleDatabase) = database.goalDao.getAll()
 
         override fun removeAllOffline(database: LifestyleDatabase) = database.goalDao.removeAll()
     }
