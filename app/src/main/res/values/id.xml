@@ -5,7 +5,7 @@
     
     <!--
         General
-     -->
+    -->
     
     <!-- Layouts -->
     <item type="id" name="IncludeLayout_forLifestyleItem_ActionButtons"/>
@@ -137,6 +137,9 @@
     <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup_Ascending"/>
     <item type="id" name="BottomSheetDialog_fromFragmentBottomSheetSort_Sort_ToggleButtonGroup_Descending"/>
     
+    <!-- Bottom App Bar Add Category Fragment -->
+    <item type="id" name="EditText_fromFragmentBottomSheetAddCategory_Category"/>
+    <item type="id" name="Button_fromFragmentBottomSheetAddCategory_Save"/>
     
     <!--
         Activity

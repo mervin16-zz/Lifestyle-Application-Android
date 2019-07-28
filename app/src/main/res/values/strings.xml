@@ -113,6 +113,7 @@
     <string name="EditText_fromAddItemActivity_HelperText_Calendar_Description">This is optional.</string>
     <string name="Spinner_fromAddItemActivity_Hint_ChooseTask">Choose a Task</string>
     <string name="Spinner_fromAddItemActivity_Hint_ChooseCategory">Choose a Category</string>
+    <string name="Spinner_fromAddItemActivity_Category_Item_Master">Master List</string>
     <string name="FAB_fromAddItemActivity_Button_Save">Save</string>
     
     <!-- Settings Activity -->
@@ -168,6 +169,12 @@
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Friends">Friends</string>
     <string name="Fragment_BottomSheetDialog_Filter_Groups_Category_Business">Business</string>
     
+    <!-- Bottom Sheet Dialog Add Category Fragment -->
+    <string name="Fragment_BottomSheetDialog_AddCategory_Title">Category</string>
+    <string name="Fragment_BottomSheetDialog_AddCategory_Button_Save">Save</string>
+    <string name="Fragment_BottomSheetDialog_AddCategory_TextInputLayout_Hint_Category">Category</string>
+    
+    
     <!-- Settings Main Fragment -->
     <string name="Fragment_fromSettingsMain_Category_Profile_Title">Profile</string>
     <string name="Fragment_fromSettingsMain_Category_Profile_Username_Title">Preferred Name</string>
@@ -203,6 +210,7 @@
     <string name="Message_Success_fromActivityAddItem_ItemAdded">Item \'%1$s\' has been successfully added.</string>
     <string name="Message_Success_fromSettings_BackupComplete">Your backup has been successfully created.</string>
     <string name="Message_Success_fromSettings_RestoreComplete">Your tasks has been successfully restored.</string>
+    <string name="Message_Success_fromAddCategory_CategoryAdded">Your category \'%1$s\' has been successfully added.</string>
     
     <!-- Info Message -->
     <string name="Message_Info_fromFragmentLifeStyleItems_ItemDeleted">There was an error while swiping your request.
@@ -214,6 +222,7 @@
     <string name="Message_Info_fromSettingsMainFragment_Permissions_Denied">Permissions Denied</string>
     <string name="Message_Info_fromSettingsActivity_Backup_InProgress">Performing backup…</string>
     <string name="Message_Info_fromSettingsActivity_Restore_InProgress">Restoring your data…</string>
+    <string name="Message_Info_fromAddCategory_CategoryAlreadyPresent">This category has already been added.</string>
     
     <!-- Error Message -->
     <string name="Message_Exception_fromFragmentLifeStyleItems_ErrorWhileSwiping">Your item %1$s has been deleted
@@ -223,6 +232,9 @@
     </string>
     <string name="Message_Exception_fromActivityAddItem_ErrorWhileAddingTask">An error has occurred while adding your
         Task. Error: %1$s
+    </string>
+    <string name="Message_Exception_fromAddCategoryFragment_ErrorWhileAddingCategory">An error has occurred while adding your
+        Category. Error: %1$s
     </string>
     
     

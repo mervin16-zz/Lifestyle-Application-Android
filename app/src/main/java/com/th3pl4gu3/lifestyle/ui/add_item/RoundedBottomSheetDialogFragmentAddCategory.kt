@@ -10,8 +10,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.th3pl4gu3.lifestyle.R
 import com.th3pl4gu3.lifestyle.databinding.FragmentBottomdialogAddCategoryBinding
-import com.th3pl4gu3.lifestyle.databinding.FragmentBottomdialogFilterBinding
 import com.th3pl4gu3.lifestyle.ui.utils.SharedPrefUtils
+import com.th3pl4gu3.lifestyle.ui.utils.Validation
 import com.th3pl4gu3.lifestyle.ui.utils.toast
 
 class RoundedBottomSheetDialogFragmentAddCategory : BottomSheetDialogFragment() {
@@ -20,33 +20,52 @@ class RoundedBottomSheetDialogFragmentAddCategory : BottomSheetDialogFragment() 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = BottomSheetDialog(requireContext(), theme)
 
-    private lateinit var mBinding: FragmentBottomdialogAddCategoryBinding
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottomdialog_add_category, container, false)
+        val binding: FragmentBottomdialogAddCategoryBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_bottomdialog_add_category, container, false)
 
-        return mBinding.root
-    }
+        binding.ButtonFromFragmentBottomSheetAddCategorySave.setOnClickListener {
+            try {
+                val category = binding.EditTextFromFragmentBottomSheetAddCategoryCategory
+                val validator = Validation()
 
-    override fun onStart() {
-        super.onStart()
+                validator.checkIfEmpty(category)
 
-        mBinding.materialIconButton.setOnClickListener{
-            try{
-                if(saveCategory(mBinding.categoryput.text.toString())){
-                    requireContext().toast("Category saved successfully")
-                    dismiss()
+                if(validator.hasErrors()){
+                    validator.errors.forEach{
+                        it.key.error = it.value
+                    }
                 }else{
-                    requireContext().toast("This category exists already")
+                    if (saveCategory(category.text.toString())) {
+                        toast(getString(R.string.Message_Success_fromAddCategory_CategoryAdded, category.text.toString()))
+                        dismiss()
+                    } else {
+                        toast(getString(R.string.Message_Info_fromAddCategory_CategoryAlreadyPresent))
+                    }
                 }
-            }catch (ex: Exception){
-                requireContext().toast(ex.message.toString())
+
+            } catch (ex: Exception) {
+                toast(
+                    getString(
+                        R.string.Message_Exception_fromAddCategoryFragment_ErrorWhileAddingCategory,
+                        ex.message.toString()
+                    )
+                )
                 dismiss()
             }
         }
+
+        return binding.root
     }
 
     private fun saveCategory(category: String): Boolean {
-        return SharedPrefUtils(requireContext(), getString(R.string.ValuePair_forCategories_Name_Categories)).updateCategories(category)
+        return SharedPrefUtils(
+            requireContext(),
+            getString(R.string.ValuePair_forCategories_Name_Categories)
+        ).updateCategories(category)
+    }
+
+    private fun toast(message: String) {
+        requireContext().toast(message)
     }
 }

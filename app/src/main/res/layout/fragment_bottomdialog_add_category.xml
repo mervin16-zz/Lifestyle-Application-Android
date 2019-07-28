@@ -11,52 +11,48 @@
             android:padding="@dimen/Padding_Screen_Default">
     
         <TextView
-                android:id="@id/title"
+                android:id="@+id/Main_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Category"
+                android:text="@string/Fragment_BottomSheetDialog_AddCategory_Title"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="Add Category"
+                tools:text="@string/Fragment_BottomSheetDialog_AddCategory_Title"
                 style="@style/Text_Title_BottomFragmentDialog"/>
     
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/category"
+                android:id="@+id/TextInputLayout_fromFragmentBottomSheetAddCategory_Category_TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Category"
-                app:boxStrokeColor="@color/colorAccent"
-                app:hintTextColor="@color/colorAccent"
-                app:counterEnabled="true"
-                app:counterMaxLength="60"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/colorAccent"
+                android:layout_marginTop="16dp"
+                android:hint="@string/Fragment_BottomSheetDialog_AddCategory_TextInputLayout_Hint_Category"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:layout_constraintTop_toBottomOf="@+id/title" android:layout_marginTop="16dp">
+                app:layout_constraintTop_toBottomOf="@+id/Main_Title"
+                style="@style/TextBox_Outline_WithCounter" >
         
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/categoryput"
+                    android:id="@id/EditText_fromFragmentBottomSheetAddCategory_Category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapWords"
-                    android:textColor="@color/colorTextPrimary"/>
-    
+                    android:inputType="textCapWords"/>
         </com.google.android.material.textfield.TextInputLayout>
     
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/material_icon_button"
-                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:id="@id/Button_fromFragmentBottomSheetAddCategory_Save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
-                app:icon="@drawable/ic_save"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/Fragment_BottomSheetDialog_AddCategory_Button_Save"
                 android:textColor="@color/colorAccent"
-                app:iconTint="@color/colorAccent" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/category"
-                app:layout_constraintEnd_toEndOf="@+id/category" app:layout_constraintStart_toStartOf="@+id/category"
-                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
+                app:icon="@drawable/ic_save"
+                app:iconTint="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@+id/TextInputLayout_fromFragmentBottomSheetAddCategory_Category_TextInputLayout"
+                app:layout_constraintEnd_toEndOf="@+id/TextInputLayout_fromFragmentBottomSheetAddCategory_Category_TextInputLayout"
+                app:layout_constraintStart_toStartOf="@+id/TextInputLayout_fromFragmentBottomSheetAddCategory_Category_TextInputLayout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
         
     </androidx.constraintlayout.widget.ConstraintLayout>
 

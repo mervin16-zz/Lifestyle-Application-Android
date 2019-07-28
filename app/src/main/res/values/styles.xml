@@ -176,7 +176,6 @@
     
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog"/>
     
-    
     <!-- Chips Customization -->
     <style name="Chips_Choice_Default" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="checkedIcon">@drawable/ic_done_light</item>
@@ -201,5 +200,27 @@
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
+    </style>
+    
+    <style name="ImageButton_fromAddItem_Priorities">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+    
+    <style name="TextBox_Outline_Default" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/colorAccent</item>
+        <item name="hintTextColor">@color/colorAccent</item>
+        <item name="endIconTint">@color/colorAccent</item>
+        <item name="endIconMode">clear_text</item>
+    </style>
+    
+    <style name="TextBox_Outline_WithCounter" parent="TextBox_Outline_Default">
+        <item name="counterEnabled">true</item>
+        <item name="counterMaxLength">60</item>
     </style>
 </resources>

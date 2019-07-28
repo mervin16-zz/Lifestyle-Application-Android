@@ -8,7 +8,6 @@ import com.th3pl4gu3.lifestyle.core.enums.SortingValue.*
 import com.th3pl4gu3.lifestyle.core.enums.SortingOrder
 import com.th3pl4gu3.lifestyle.core.enums.SortingValue
 import com.th3pl4gu3.lifestyle.core.tuning.Sort
-import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -16,6 +15,11 @@ import kotlin.collections.ArrayList
  * It will query the SharedPreferences API and format the data into required object need by the application UI.
  **/
 class SharedPrefUtils(private val context: Context, private val name: String) {
+
+
+    /**
+     * Lifestyle Items' Category Manipulations
+     **/
 
     fun getCategories(): ArrayList<String> {
         val list = ArrayList(
@@ -25,7 +29,9 @@ class SharedPrefUtils(private val context: Context, private val name: String) {
             )
         )
 
-        if(!list.contains("Master List")) list.add("Master List")
+        val masterListValue = context.getString(R.string.Spinner_fromAddItemActivity_Category_Item_Master)
+
+        if (!list.contains(masterListValue)) list.add(masterListValue)
 
         list.sort()
 
@@ -33,17 +39,17 @@ class SharedPrefUtils(private val context: Context, private val name: String) {
     }
 
     fun removeCategory(category: String) {
-        val categories = ArrayList(getCategories())
-        categories.forEach {
-            if (category == it) {
-                categories.remove(it)
-                return
-            }
+        val categories = getCategories()
+        categories.remove(category)
+
+        with(getSharedPrefs().edit()) {
+            putStringSet(context.getString(R.string.ValuePair_forCategories_Key_Categories), categories.toSet())
+            apply()
         }
     }
 
     fun updateCategories(category: String): Boolean {
-        val categories = ArrayList(getCategories())
+        val categories = getCategories()
 
         if (categories.contains(category)) {
             return false
@@ -57,6 +63,11 @@ class SharedPrefUtils(private val context: Context, private val name: String) {
             return true
         }
     }
+
+
+    /**
+     * Lifestyle Items' Sorting Manipulations
+     **/
 
     fun updateSortOrder(order: String) {
         with(getSharedPrefs().edit()) {
@@ -85,6 +96,10 @@ class SharedPrefUtils(private val context: Context, private val name: String) {
         return Sort(SortingOrder.valueOf(order), SortingValue.valueOf(value))
     }
 
+
+    /**
+     * Fetch the SharedPreferences
+     **/
     private fun getSharedPrefs(): SharedPreferences {
         return context.getSharedPreferences(name, Context.MODE_PRIVATE)
     }

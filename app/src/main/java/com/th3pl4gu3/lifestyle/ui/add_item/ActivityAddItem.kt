@@ -10,8 +10,6 @@ import android.widget.AdapterView.OnItemSelectedListener
 import androidx.databinding.DataBindingUtil
 import com.th3pl4gu3.lifestyle.R
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import androidx.core.view.size
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.th3pl4gu3.lifestyle.core.enums.LifestyleItem
@@ -29,8 +27,8 @@ import kotlinx.android.synthetic.main.include_foradditem_section_details.view.*
 
 class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private lateinit var mBinding: ActivityAddItemBinding
-    private lateinit var mViewModel: AddItemViewModel
+    private lateinit var _binding: ActivityAddItemBinding
+    private lateinit var _viewModel: AddItemViewModel
 
     private val spinnerTypeListener = object : OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {return}
@@ -41,32 +39,21 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
 
                 if (selectedItem == getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseTask)) return
 
-                when (Utils.formattedStringToLifestyleEnum(selectedItem)) {
-                    LifestyleItem.GOAL -> {
-                        updateUI_DetailsExtraFields(false)
-                        updateUI_Priorities(false)
-                    }
-                    LifestyleItem.TO_BUY -> {
-                        updateUI_DetailsExtraFields(true)
-                        updateUI_Priorities(true)
-                    }
-                    LifestyleItem.TO_DO -> {
-                        updateUI_DetailsExtraFields(false)
-                        updateUI_Priorities(true)
-                    }
-                }
+                _viewModel.handleLifestyleItemSelections(selectedItem)
+
             }catch (ex: Exception){
-                showToast(getString(R.string.Message_Exception_fromActivityAddItem_ErrorWhileFetchingTask, ex.message))
+                toast(getString(R.string.Message_Exception_fromActivityAddItem_ErrorWhileFetchingTask, ex.message))
             }
         }
     }
+
     private lateinit var spinnerCategoryAdapter: SpinnerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //Get the binding
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_item)
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_add_item)
 
         //Get the correct status bar color
         initializeStatusBarColor()
@@ -86,15 +73,17 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
         //Get the view mode
         val viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddItemViewModel::class.java)
 
-        mViewModel = viewModel
+        _viewModel = viewModel
 
-        mBinding.lifecycleOwner = this
+        _binding.viewModel = viewModel
+
+        _binding.lifecycleOwner = this
 
         // Add an Observer on the state variable for showing a Snackbar message
-        mViewModel.showSnackBarEvent.observe(this, Observer {message ->
+        _viewModel.showSnackBarEvent.observe(this, Observer { message ->
             if (message != null) {
                 // Observed state is true.
-                showSnackBar(message)
+                snackBar(message)
                 // Reset state to make sure the snackbar is only shown once, even if the device
                 // has a configuration change.
                 viewModel.doneShowingSnackbar()
@@ -105,30 +94,30 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
     override fun onStart() {
         super.onStart()
 
-        mBinding.ImageButtonIconBack.setOnClickListener {
+        _binding.ImageButtonIconBack.setOnClickListener {
             onBackPressed()
         }
 
-        mBinding.ExtendedFABFromAddItemActivityAddItem.setOnClickListener {
+        _binding.ExtendedFABFromAddItemActivityAddItem.setOnClickListener {
 
             try{
 
-                val type = mBinding.SpinnerFromAddItemActivityType.selectedItem.toString()
+                val type = _binding.SpinnerFromAddItemActivityType.selectedItem.toString()
 
                 if(type == getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseTask)){
-                    showSnackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChooseTask))
+                    snackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChooseTask))
                 }else{
 
-                    val title = mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Name.text.toString()
-                    val category = mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.selectedItem.toString()
+                    val title = _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.EditText_fromAddItemActivity_Name.text.toString()
+                    val category = _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.Spinner_fromAddItemActivity_Category.selectedItem.toString()
 
                     if(category == getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseCategory)){
-                        showSnackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChooseCategory))
+                        snackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChooseCategory))
                         return@setOnClickListener
                     }
 
                     val validator = Validation()
-                    validator.checkIfEmpty(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Name)
+                    validator.checkIfEmpty(_binding.IncludeLayoutFromAddItemActivitySectionDetails.root.EditText_fromAddItemActivity_Name)
 
                     when(Utils.formattedStringToLifestyleEnum(type)){
                         LifestyleItem.TO_DO -> {
@@ -141,20 +130,20 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
                                 return@setOnClickListener
                             }
 
-                            if (mViewModel.itemPriority == null) {
-                                showSnackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChoosePriority))
+                            if (_viewModel.itemPriority == null) {
+                                snackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChoosePriority))
                                 return@setOnClickListener
                             }
 
-                            mViewModel.addToDo(title, category)
+                            _viewModel.addToDo(title, category)
                         }
 
                         LifestyleItem.TO_BUY -> {
-                            val price = mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Price.text.toString().toDoubleOrNull()
-                            val qty = mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Quantity.text.toString().toIntOrNull()
+                            val price = _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.EditText_fromAddItemActivity_Price.text.toString().toDoubleOrNull()
+                            val qty = _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.EditText_fromAddItemActivity_Quantity.text.toString().toIntOrNull()
 
-                            validator.checkIfDoubleGreaterThanZero(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Price)
-                            validator.checkIfIntegerGreaterThanZero(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.EditText_fromAddItemActivity_Quantity)
+                            validator.checkIfDoubleGreaterThanZero(_binding.IncludeLayoutFromAddItemActivitySectionDetails.root.EditText_fromAddItemActivity_Price)
+                            validator.checkIfIntegerGreaterThanZero(_binding.IncludeLayoutFromAddItemActivitySectionDetails.root.EditText_fromAddItemActivity_Quantity)
 
                             if(validator.hasErrors()){
                                 validator.errors.forEach{
@@ -164,12 +153,12 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
                                 return@setOnClickListener
                             }
 
-                            if (mViewModel.itemPriority == null) {
-                                showSnackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChoosePriority))
+                            if (_viewModel.itemPriority == null) {
+                                snackBar(getString(R.string.Message_Info_fromFragmentLifeStyleItems_ChoosePriority))
                                 return@setOnClickListener
                             }
 
-                            mViewModel.addToBuy(title, category, qty!!, price!!)
+                            _viewModel.addToBuy(title, category, qty!!, price!!)
                         }
 
                         LifestyleItem.GOAL -> {
@@ -182,7 +171,7 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
                                 return@setOnClickListener
                             }
 
-                            mViewModel.addGoal(title, category)
+                            _viewModel.addGoal(title, category)
 
                         }
                     }
@@ -191,23 +180,23 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
 
                 }
             }catch (ex: Exception){
-                showToast(getString(R.string.Message_Exception_fromActivityAddItem_ErrorWhileAddingTask, ex.message))
+                toast(getString(R.string.Message_Exception_fromActivityAddItem_ErrorWhileAddingTask, ex.message))
             }
         }
 
-        mBinding.NestedScrollViewFromAddItemActivityMainContent.setOnScrollChangeListener { _, _, y, _, oldY ->
+        _binding.NestedScrollViewFromAddItemActivityMainContent.setOnScrollChangeListener { _, _, y, _, oldY ->
             if (oldY < y) {
-                mBinding.ExtendedFABFromAddItemActivityAddItem.shrink(true)
+                _binding.ExtendedFABFromAddItemActivityAddItem.shrink(true)
             } else if (oldY > y) {
-                mBinding.ExtendedFABFromAddItemActivityAddItem.extend(true)
+                _binding.ExtendedFABFromAddItemActivityAddItem.extend(true)
             }
         }
 
-        mBinding.IncludeLayoutFromAddItemActivitySectionCalendar.Switch_fromAddItemActivity_Calendar_Enable.setOnCheckedChangeListener { _, isChecked ->
-            updateUI_Calendar(isChecked)
+        _binding.IncludeLayoutFromAddItemActivitySectionCalendar.root.Switch_fromAddItemActivity_Calendar_Enable.setOnCheckedChangeListener { _, isChecked ->
+            _viewModel.calendarSection.value = isChecked
         }
 
-        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.ImageButton_fromAddItemActivity_Icon_AddCategory.setOnClickListener {
+        _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.ImageButton_fromAddItemActivity_Icon_AddCategory.setOnClickListener {
             val bottomAppBarDialog = RoundedBottomSheetDialogFragmentAddCategory()
             bottomAppBarDialog.show(supportFragmentManager, bottomAppBarDialog.tag)
         }
@@ -233,79 +222,18 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
         spinnerCategoryAdapter.addAll(loadCategories())
         spinnerCategoryAdapter.add(getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseCategory))
         spinnerCategoryAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.adapter =
+        _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.Spinner_fromAddItemActivity_Category.adapter =
             spinnerCategoryAdapter
-        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.setSelection(
+        _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.Spinner_fromAddItemActivity_Category.setSelection(
             spinnerCategoryAdapter.count
         )
     }
-
-    fun setPriority(view: View) {
-        //Update the view and determine whether a priority was selected or unselected
-        val prioritySelected = updatePriorityViewAndDetermineIfPriorityHasBeenSelected(view)
-
-        if (prioritySelected) {
-            //Set the priority of the view model
-            mViewModel.setPriority(Integer.parseInt(view.tag.toString()))
-        } else {
-            //Flag to set priority to null
-            mViewModel.setPriority(0)
-        }
-    }
-
 
     /**
      * Private functions for internal use ONLY
      **/
     private fun initializeStatusBarColor() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorAccent)
-    }
-
-    private fun updatePriorityViewAndDetermineIfPriorityHasBeenSelected(view: View): Boolean {
-
-        if (!mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority1.isVisible ||
-            !mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority2.isVisible ||
-            !mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority3.isVisible ||
-            !mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority4.isVisible
-        ) {
-
-            //If any of these views are not visible, it means that a priority was already selected.
-            //Therefore we need to reset all views to visible again.
-            updateUI_Priority1Icon(true)
-            updateUI_Priority2Icon(true)
-            updateUI_Priority3Icon(true)
-            updateUI_Priority4Icon(true)
-
-            return false
-        }
-
-        when (view.id) {
-            R.id.ImageButton_fromAddItemActivity_Icon_Priority1 -> {
-                updateUI_Priority2Icon(false)
-                updateUI_Priority3Icon(false)
-                updateUI_Priority4Icon(false)
-            }
-            R.id.ImageButton_fromAddItemActivity_Icon_Priority2 -> {
-                updateUI_Priority1Icon(false)
-                updateUI_Priority3Icon(false)
-                updateUI_Priority4Icon(false)
-            }
-            R.id.ImageButton_fromAddItemActivity_Icon_Priority3 -> {
-                updateUI_Priority1Icon(false)
-                updateUI_Priority2Icon(false)
-                updateUI_Priority4Icon(false)
-            }
-            R.id.ImageButton_fromAddItemActivity_Icon_Priority4 -> {
-                updateUI_Priority1Icon(false)
-                updateUI_Priority2Icon(false)
-                updateUI_Priority3Icon(false)
-            }
-            else -> {
-                return false
-            }
-        }
-
-        return true
     }
 
     private fun configureSpinners() {
@@ -321,9 +249,9 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
         typeAdapter.addAll(typeList)
         typeAdapter.add(getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseTask))
         typeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-        mBinding.SpinnerFromAddItemActivityType.adapter = typeAdapter
-        mBinding.SpinnerFromAddItemActivityType.onItemSelectedListener = spinnerTypeListener
-        mBinding.SpinnerFromAddItemActivityType.setSelection(typeAdapter.count)
+        _binding.SpinnerFromAddItemActivityType.adapter = typeAdapter
+        _binding.SpinnerFromAddItemActivityType.onItemSelectedListener = spinnerTypeListener
+        _binding.SpinnerFromAddItemActivityType.setSelection(typeAdapter.count)
 
         //Category Spinner
         spinnerCategoryAdapter = SpinnerAdapter(this, R.layout.custom_text_spinner_default)
@@ -331,60 +259,19 @@ class ActivityAddItem : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
         spinnerCategoryAdapter.addAll(loadCategories())
         spinnerCategoryAdapter.add(getString(R.string.Spinner_fromAddItemActivity_Hint_ChooseCategory))
         spinnerCategoryAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.adapter =
+        _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.Spinner_fromAddItemActivity_Category.adapter =
             spinnerCategoryAdapter
-        mBinding.IncludeLayoutFromAddItemActivitySectionDetails.Spinner_fromAddItemActivity_Category.setSelection(
+        _binding.IncludeLayoutFromAddItemActivitySectionDetails.root.Spinner_fromAddItemActivity_Category.setSelection(
             spinnerCategoryAdapter.count
         )
 
-    }
-
-    private fun updateUI_DetailsExtraFields(visible: Boolean) {
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.TextInputLayout_fromAddItemActivity_Details_Price, visible)
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionDetails.TextInputLayout_fromAddItemActivity_Details_Quantity, visible)
-    }
-
-    private fun updateUI_Priorities(enabled: Boolean) {
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.root, enabled)
-    }
-
-    private fun updateUI_Calendar(isVisible: Boolean) {
-
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionCalendar.TextInputLayout_fromAddItemActivity_Calendar_Date, isVisible)
-
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionCalendar.TextInputLayout_fromAddItemActivity_Calendar_Description, isVisible)
-
-    }
-
-    private fun updateUI_Priority1Icon(isVisible: Boolean){
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority1, isVisible)
-    }
-
-    private fun updateUI_Priority2Icon(isVisible: Boolean){
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority2, isVisible)
-    }
-
-    private fun updateUI_Priority3Icon(isVisible: Boolean){
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority3, isVisible)
-    }
-
-    private fun updateUI_Priority4Icon(isVisible: Boolean){
-        setViewVisibility(mBinding.IncludeLayoutFromAddItemActivitySectionPriority.ImageButtonFromAddItemActivityIconPriority4, isVisible)
-    }
-
-    private fun setViewVisibility(v: View, isVisible: Boolean){
-        v.visibility = if(isVisible) View.VISIBLE else View.GONE
     }
 
     private fun loadCategories(): List<String> {
         return ArrayList(SharedPrefUtils(this, getString(R.string.ValuePair_forCategories_Name_Categories)).getCategories())
     }
 
-    private fun showSnackBar(message: String) {
-        mBinding.CoordinatorLayoutFromAddItemActivityTopParent.snackBar(message)
-    }
-
-    private fun showToast(message: String) {
-        this.showToast(message)
+    private fun snackBar(message: String) {
+        _binding.CoordinatorLayoutFromAddItemActivityTopParent.snackBar(message)
     }
 }

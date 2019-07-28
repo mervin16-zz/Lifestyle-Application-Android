@@ -5,15 +5,16 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
     
     <data>
-        <variable
-                name="Constant"
-                type="com.th3pl4gu3.lifestyle.core.utils.ConstantsKt"/>
+        <variable name="ViewModel" type="com.th3pl4gu3.lifestyle.ui.add_item.AddItemViewModel"/>
+    
+        <variable name="MyPriority" type="com.th3pl4gu3.lifestyle.core.enums.Priority"/>
     </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@id/LinearLayout_fromAddItemActivity_Priority"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="@{ViewModel.prioritySectionVisibility}">
         
         <TextView
                 android:id="@id/TextView_fromAddItemActivity_SubtitlePriority"
@@ -29,76 +30,52 @@
         
         <ImageButton
                 android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority1"
-                android:layout_width="@dimen/Size_Icon_Priority"
-                android:layout_height="@dimen/Size_Icon_Priority"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="8dp"
-                android:tag="@{Constant.ENUM_PRIORITY_P1}"
                 android:contentDescription="@string/App_Lifestyle_Items_Priority_P1"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="setPriority"
+                android:visibility="@{ViewModel.priority1Visibility}"
+                android:onClick="@{() -> ViewModel.updatePrioritiesVisibility(MyPriority.P1)}"
                 app:srcCompat="@drawable/ic_priority_1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_SubtitlePriority"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ImageButton_fromAddItemActivity_Icon_Priority2"/>
+                app:layout_constraintEnd_toStartOf="@+id/ImageButton_fromAddItemActivity_Icon_Priority2"
+                style="@style/ImageButton_fromAddItem_Priorities"/>
         
         <ImageButton
                 android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority2"
-                android:layout_width="@dimen/Size_Icon_Priority"
-                android:layout_height="@dimen/Size_Icon_Priority"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="16dp"
-                android:tag="@{Constant.ENUM_PRIORITY_P2}"
                 android:contentDescription="@string/App_Lifestyle_Items_Priority_P2"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="setPriority"
+                android:visibility="@{ViewModel.priority2Visibility}"
+                android:onClick="@{() -> ViewModel.updatePrioritiesVisibility(MyPriority.P2)}"
                 app:srcCompat="@drawable/ic_priority_2"
                 app:layout_constraintStart_toEndOf="@+id/ImageButton_fromAddItemActivity_Icon_Priority1"
                 app:layout_constraintEnd_toStartOf="@+id/ImageButton_fromAddItemActivity_Icon_Priority3"
                 app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_SubtitlePriority"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/ImageButton_fromAddItem_Priorities"/>
         
         <ImageButton
                 android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority3"
-                android:layout_width="@dimen/Size_Icon_Priority"
-                android:layout_height="@dimen/Size_Icon_Priority"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:tag="@{Constant.ENUM_PRIORITY_P3}"
                 android:contentDescription="@string/App_Lifestyle_Items_Priority_P3"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="setPriority"
+                android:visibility="@{ViewModel.priority3Visibility}"
+                android:onClick="@{() -> ViewModel.updatePrioritiesVisibility(MyPriority.P3)}"
                 app:srcCompat="@drawable/ic_priority_3"
                 app:layout_constraintEnd_toStartOf="@+id/ImageButton_fromAddItemActivity_Icon_Priority4"
                 app:layout_constraintStart_toEndOf="@+id/ImageButton_fromAddItemActivity_Icon_Priority2"
                 app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_SubtitlePriority"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/ImageButton_fromAddItem_Priorities"/>
         
         <ImageButton
                 android:id="@id/ImageButton_fromAddItemActivity_Icon_Priority4"
-                android:layout_width="@dimen/Size_Icon_Priority"
-                android:layout_height="@dimen/Size_Icon_Priority"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:tag="@{Constant.ENUM_PRIORITY_P4}"
                 android:contentDescription="@string/App_Lifestyle_Items_Priority_P4"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="setPriority"
+                android:visibility="@{ViewModel.priority4Visibility}"
+                android:onClick="@{() -> ViewModel.updatePrioritiesVisibility(MyPriority.P4)}"
                 app:srcCompat="@drawable/ic_priority_4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ImageButton_fromAddItemActivity_Icon_Priority3"
                 app:layout_constraintTop_toBottomOf="@+id/TextView_fromAddItemActivity_SubtitlePriority"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/ImageButton_fromAddItem_Priorities"/>
     
     </androidx.constraintlayout.widget.ConstraintLayout>
 
